@@ -55,24 +55,6 @@ def save_single_metric_plot(
     plt.close(fig)
 
 
-def derive_plot_paths(output_plot: str) -> Tuple[Path, Path, Path]:
-    """
-    If output_plot="length_sweep_corr.png",
-    save:
-      length_sweep_corr_pearson.png
-      length_sweep_corr_spearman.png
-      length_sweep_corr_jsd.png
-    """
-    p = Path(output_plot)
-    stem = p.stem
-    suffix = p.suffix if p.suffix else ".png"
-    base_dir = p.parent if str(p.parent) != "" else Path(".")
-    pear = base_dir / f"{stem}_pearson{suffix}"
-    spear = base_dir / f"{stem}_spearman{suffix}"
-    jsd = base_dir / f"{stem}_jsd{suffix}"
-    return pear, spear, jsd
-
-
 def nice_ylim(data_mean: List[float], data_std: List[float], clamp: Optional[Tuple[float, float]] = None):
     ys = []
     for m, s in zip(data_mean, data_std):

@@ -24,10 +24,22 @@ def parse_lengths(s: str) -> List[int]:
 def load_model(model_path: str, dtype: torch.dtype,) -> Tuple[AutoTokenizer, AutoModelForCausalLM]:
     tok = AutoTokenizer.from_pretrained(model_path, use_fast=True, local_files_only=True)
 
+    max_memory = {
+        0: "18GiB",
+        1: "18GiB",
+        2: "18GiB",
+        3: "18GiB",
+        4: "18GiB",
+        5: "18GiB",
+        6: "18GiB",
+        7: "5GiB",
+    }
+
     model = AutoModelForCausalLM.from_pretrained(
         model_path,
         torch_dtype=dtype,
         device_map="auto",
+        max_memory=max_memory,
         local_files_only=True,
     )
 
@@ -61,13 +73,13 @@ def parse_args():
     p.add_argument("--model_path", type=str, required=True)
 
     p.add_argument("--dataset_path", type=str, required=True)
-    p.add_argument("--split", type=str, default="train[:20%]")
+    p.add_argument("--split", type=str, default="train[:80%]")
     p.add_argument("--max_samples", type=int, default=300)
 
     p.add_argument("--sweep_step", type=int, default=10, help="If >0, ignore --lengths and sweep to --max_L.")
     p.add_argument("--max_L", type=int, required=True, help="Upper bound when --sweep_step>0.")
 
-    p.add_argument("--dtype", type=str, default="float16", choices=["float16", "bfloat16", "float32"])
+    p.add_argument("--dtype", type=str, default="bfloat16", choices=["float16", "bfloat16", "float32"])
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--attention_precision", type=int, default=6)
 
