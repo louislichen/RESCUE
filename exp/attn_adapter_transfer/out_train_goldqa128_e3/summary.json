@@ -1,0 +1,31 @@
+{
+  "checkpoint": "exp/attn_adapter_transfer/out_train_goldqa128_e3/adapter.pt",
+  "log": "exp/attn_adapter_transfer/out_train_goldqa128_e3/train_log.jsonl",
+  "steps": 1527,
+  "loss_mean": 0.6160659979844585,
+  "skipped": {
+    "empty": 0,
+    "too_long": 0,
+    "no_target": 0
+  },
+  "teacher_layer_indices": [
+    24,
+    25,
+    26,
+    27
+  ],
+  "student_layer_indices": [
+    24,
+    25,
+    26,
+    27
+  ],
+  "adapter_config": {
+    "num_teacher_layers": 4,
+    "num_teacher_heads": 28,
+    "num_student_layers": 4,
+    "num_student_heads": 12,
+    "max_alpha": 1.0,
+    "eps": 1e-08
+  }
+}

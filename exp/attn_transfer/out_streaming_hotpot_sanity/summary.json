@@ -1,0 +1,17 @@
+{
+  "seen": 28,
+  "kept": 1,
+  "skipped_too_long": 27,
+  "skipped_bad": 0,
+  "output_path": "exp/attn_transfer/out_streaming_hotpot_sanity/streaming_hotpot_sanity.jsonl",
+  "configs": [
+    {
+      "layer_scope": "last_layer",
+      "layer_indices": [
+        27
+      ],
+      "lambda": 1.0,
+      "steering_mode": "prob_mix"
+    }
+  ]
+}

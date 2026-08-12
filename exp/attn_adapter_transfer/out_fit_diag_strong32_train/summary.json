@@ -1,0 +1,24 @@
+{
+  "checkpoint": "exp/attn_adapter_transfer/out_train_strong32/adapter.pt",
+  "samples_path": "exp/attn_transfer/data/hotpot_stream_300_maxL2048.jsonl",
+  "seen": 32,
+  "kept": 32,
+  "skipped": {
+    "empty": 0,
+    "too_long": 0,
+    "no_target": 0
+  },
+  "tokens": 97,
+  "target_mode": "gold",
+  "baseline_ce": 0.6794612264224007,
+  "adapter_ce": 0.6938697060020449,
+  "ce_delta_adapter_minus_baseline": 0.01440847957964411,
+  "baseline_argmax_acc": 0.8041237113402062,
+  "adapter_argmax_acc": 0.7835051546391752,
+  "argmax_acc_delta": -0.020618556701030927,
+  "adapter_changed_argmax_rate": 0.030927835051546393,
+  "adapter_target_prob_delta": -0.003151016679145034,
+  "alpha_mean": 0.3018338084220886,
+  "teacher_layer_scope": "last_4_layers",
+  "student_layer_scope": "last_4_layers"
+}

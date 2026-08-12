@@ -1,0 +1,85 @@
+{
+  "seen": 1,
+  "kept": 1,
+  "skipped_too_long": 0,
+  "skipped_bad": 0,
+  "output_path": "exp/attn_transfer/out_sanity_prob_mix/sanity_prob_mix_synthetic.jsonl",
+  "configs": [
+    {
+      "layer_scope": "last_layer",
+      "layer_indices": [
+        27
+      ],
+      "lambda": 0.5,
+      "steering_mode": "prob_mix"
+    },
+    {
+      "layer_scope": "last_layer",
+      "layer_indices": [
+        27
+      ],
+      "lambda": 1.0,
+      "steering_mode": "prob_mix"
+    },
+    {
+      "layer_scope": "last_layer",
+      "layer_indices": [
+        27
+      ],
+      "lambda": 2.0,
+      "steering_mode": "prob_mix"
+    },
+    {
+      "layer_scope": "last_layer",
+      "layer_indices": [
+        27
+      ],
+      "lambda": 4.0,
+      "steering_mode": "prob_mix"
+    },
+    {
+      "layer_scope": "last_4_layers",
+      "layer_indices": [
+        24,
+        25,
+        26,
+        27
+      ],
+      "lambda": 0.5,
+      "steering_mode": "prob_mix"
+    },
+    {
+      "layer_scope": "last_4_layers",
+      "layer_indices": [
+        24,
+        25,
+        26,
+        27
+      ],
+      "lambda": 1.0,
+      "steering_mode": "prob_mix"
+    },
+    {
+      "layer_scope": "last_4_layers",
+      "layer_indices": [
+        24,
+        25,
+        26,
+        27
+      ],
+      "lambda": 2.0,
+      "steering_mode": "prob_mix"
+    },
+    {
+      "layer_scope": "last_4_layers",
+      "layer_indices": [
+        24,
+        25,
+        26,
+        27
+      ],
+      "lambda": 4.0,
+      "steering_mode": "prob_mix"
+    }
+  ]
+}

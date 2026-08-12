@@ -1,0 +1,17 @@
+name: rescue
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      # On this machine the live rescue env was cloned from holotrace, which
+      # already had torch 2.7.1+cu128 working on the H100.
+      - torch
+      - transformers==4.40.2
+      - accelerate
+      - datasets
+      - safetensors
+      - sentencepiece
+      - protobuf
+      - tqdm

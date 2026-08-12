@@ -1,0 +1,10 @@
+{
+  "seen": 321,
+  "kept": 300,
+  "skipped_bad": 0,
+  "skipped_too_long": 21,
+  "tokenizer_mismatch": 0,
+  "max_L": 2048,
+  "doc_mode": "all",
+  "output_path": "exp/attn_transfer/data/hotpot_stream_300_maxL2048.jsonl"
+}

@@ -1,0 +1,51 @@
+{
+  "samples_path": "exp/attn_transfer/data/hotpot_stream_300_maxL2048.jsonl",
+  "seen": 50,
+  "kept": 50,
+  "skipped_tokenizer_mismatch": 0,
+  "config": {
+    "max_new_tokens": 32,
+    "draft_k": 4,
+    "lambda": 2.0,
+    "layer_scope": "last_12_layers",
+    "steering_mode": "prob_mix",
+    "prior_mode": "prompt_once",
+    "append_teacher_on_full_accept": true
+  },
+  "baseline": {
+    "n": 50,
+    "accept_rate": 0.6336308687733566,
+    "full_accept_rate": 0.5367952602952604,
+    "mean_accept_len": 2.425163891663892,
+    "first_token_match_rate": 0.7582016317016316,
+    "teacher_call_reduction_proxy": 3.3671939726939706,
+    "clean_em": 0.22,
+    "clean_f1": 0.3717034771483284,
+    "em": 0.06,
+    "f1": 0.2220885720253333,
+    "time": {
+      "teacher_prior_s": 0.0,
+      "student_draft_s": 1.4343873348552734,
+      "verifier_s": 0.28217965058982375,
+      "teacher_greedy_s": 0.0
+    }
+  },
+  "steered": {
+    "n": 50,
+    "accept_rate": 0.5606269203111897,
+    "full_accept_rate": 0.430138861138861,
+    "mean_accept_len": 2.160813353313354,
+    "first_token_match_rate": 0.7056444666444669,
+    "teacher_call_reduction_proxy": 3.117401931401931,
+    "clean_em": 0.22,
+    "clean_f1": 0.3715701438149951,
+    "em": 0.06,
+    "f1": 0.22175379635096953,
+    "time": {
+      "teacher_prior_s": 0.2181344864424318,
+      "student_draft_s": 1.6048524882365018,
+      "verifier_s": 0.29378076340071857,
+      "teacher_greedy_s": 0.0
+    }
+  }
+}

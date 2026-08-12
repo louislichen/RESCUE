@@ -1,0 +1,27 @@
+{
+  "checkpoint": "exp/attn_adapter_transfer/out_train_pilot/adapter.pt",
+  "samples_path": "exp/attn_transfer/data/hotpot_stream_300_maxL2048.jsonl",
+  "seen": 9,
+  "kept": 4,
+  "skipped": {
+    "too_long": 1,
+    "empty": 0
+  },
+  "teacher_layer_scope": "last_4_layers",
+  "student_layer_scope": "last_4_layers",
+  "baseline": {
+    "n": 4,
+    "clean_em": 0.5,
+    "clean_f1": 0.7986111111111112,
+    "em": 0.25,
+    "f1": 0.45535714285714285
+  },
+  "adapter": {
+    "n": 4,
+    "clean_em": 0.5,
+    "clean_f1": 0.7986111111111112,
+    "em": 0.25,
+    "f1": 0.45535714285714285
+  },
+  "alpha_mean": 0.04170253127813339
+}

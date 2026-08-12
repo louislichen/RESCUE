@@ -1,0 +1,31 @@
+{
+  "checkpoint": "exp/attn_adapter_transfer/out_train_pilot32/adapter.pt",
+  "log": "exp/attn_adapter_transfer/out_train_pilot32/train_log.jsonl",
+  "steps": 32,
+  "loss_mean": 1.927845221478492,
+  "skipped": {
+    "empty": 0,
+    "too_long": 0,
+    "no_target": 0
+  },
+  "teacher_layer_indices": [
+    24,
+    25,
+    26,
+    27
+  ],
+  "student_layer_indices": [
+    24,
+    25,
+    26,
+    27
+  ],
+  "adapter_config": {
+    "num_teacher_layers": 4,
+    "num_teacher_heads": 28,
+    "num_student_layers": 4,
+    "num_student_heads": 12,
+    "max_alpha": 0.7,
+    "eps": 1e-08
+  }
+}

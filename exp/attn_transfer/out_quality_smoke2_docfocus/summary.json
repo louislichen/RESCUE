@@ -1,0 +1,36 @@
+{
+  "samples_path": "exp/attn_transfer/data/hotpot_stream_300_maxL2048.jsonl",
+  "seen": 2,
+  "kept": 2,
+  "skipped_tokenizer_mismatch": 0,
+  "config": {
+    "max_new_tokens": 8,
+    "lambda": 2.0,
+    "layer_scope": "last_12_layers",
+    "steering_mode": "prob_mix",
+    "prior_mode": "prompt_once",
+    "teacher_head_mode": "topk_doc_focus",
+    "teacher_top_k": 4
+  },
+  "baseline": {
+    "n": 2,
+    "clean_em": 0.0,
+    "clean_f1": 0.1111111111111111,
+    "em": 0.0,
+    "f1": 0.1111111111111111,
+    "time": {
+      "student_decode_s": 0.30658665648661554
+    }
+  },
+  "steered": {
+    "n": 2,
+    "clean_em": 0.0,
+    "clean_f1": 0.1111111111111111,
+    "em": 0.0,
+    "f1": 0.1111111111111111,
+    "time": {
+      "student_decode_s": 0.21331537468358874,
+      "teacher_prior_s": 0.21450142841786146
+    }
+  }
+}
