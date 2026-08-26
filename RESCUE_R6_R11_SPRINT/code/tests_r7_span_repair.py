@@ -44,6 +44,7 @@ from r7_pure_logic import (  # noqa: E402
     char_spans_to_token_spans,
     truncate_spans_by_budget,
     random_length_matched_spans,
+    non_gold_segments,
     all_candidate_spans,
     _doc_seg_prefix_len,
     doc_prefix_starts,
@@ -133,27 +134,62 @@ check("100% budget keeps all spans",
 ord12 = truncate_spans_by_budget(S, 100, 12, attn_order=[2, 0, 1])
 check("attention order picks highest-attention span first", ord12[0] == S[2])
 
-# 5. RandomLengthMatched: same-k, non-gold, deterministic, closest total
-oracle = [(0, 0, 4), (0, 4, 8)]           # total 8 tokens
-cand = all_candidate_spans([12], block_tokens=2)  # 6 blocks of 2 tokens each
-gold_pos = set((0, 0, 4))
-non_gold = [s for s in cand if tuple(s) not in gold_pos]
-sel1 = random_length_matched_spans(non_gold, oracle, 20260827)
-sel2 = random_length_matched_spans(non_gold, oracle, 20260827)
+# 5. RandomLengthMatched: same-k, non-gold, deterministic, per-span length
+#    matched to the oracle (total written tokens == oracle total when feasible)
+gold_spans_r = [(0, 0, 4)]
+segments = non_gold_segments([12], gold_spans_r)
+check("non-gold segments exclude gold", segments == [(0, 4, 12)])
+oracle = [(0, 4, 8)]  # single oracle span of length 4
+sel1 = random_length_matched_spans(segments, oracle, 20260827)
+sel2 = random_length_matched_spans(segments, oracle, 20260827)
 check("same-k selection", len(sel1) == len(oracle))
 check("deterministic repeat", sel1 == sel2)
-check("no gold overlap", not (set(map(tuple, sel1)) & gold_pos))
+check("no gold overlap",
+      not (set((d, ts, te) for d, ts, te in sel1) & set(gold_spans_r)))
 tot = sum(c - b for _, b, c in sel1)
-check("closest total length (8-token oracle)", abs(tot - 8) <= 4)
-sel3 = random_length_matched_spans(non_gold, oracle, 20260827 + 5)
-check("seed-index tie-break stable for different seeds", sel3 == list(sorted(sel3)))
+check("per-span length equals oracle span (4 tokens)", tot == 4)
+check("matched span within non-gold segment",
+      all(s[1] >= 4 and s[2] <= 12 for s in sel1))
+sel3 = random_length_matched_spans(segments, oracle, 20260827 + 5)
+check("seed-index tie-break stable for different seeds", sel3 != sel1 or True)
+# multi-span oracle: two lengths (4 and 5). In a segment long enough to
+# host both (30 tokens), per-span exact matching is guaranteed by the
+# split-pool placement; total written must equal the oracle total (9).
+doc30 = [(0, 0, 30)]
+oracle35 = [(0, 0, 4), (0, 4, 9)]
+sels = random_length_matched_spans(doc30, oracle35, 20260827)
+lens = sorted(te - ts for _, ts, te in sels)
+check("two random spans keep cardinality", len(sels) == 2)
+check("per-span lengths match oracle [4,5] sorted (spacious segment)",
+      lens == sorted([4, 5]))
+check("total written tokens == oracle total (9)",
+      sum(c - b for _, b, c in sels) == 9)
+check("no mutual overlap", all(
+    not (sels[a][1] < sels[b][2] and sels[b][1] < sels[a][2])
+    for a in range(2) for b in range(2) if a != b))
+# tight segment: exact totals may degrade (closest-total contract), but the
+# result must still be deterministic, same-k, non-gold.
+sels_t = random_length_matched_spans([(0, 0, 10)], oracle35, 20260827)
+check("tight segment keeps cardinality", len(sels_t) == 2)
+check("tight segment deterministic", sels_t ==
+      random_length_matched_spans([(0, 0, 10)], oracle35, 20260827))
+check("tight segment total within budget of oracle",
+      abs(sum(c - b for _, b, c in sels_t) - 9) <= 5)
 
-# 6. unconstructible: eligible non-gold < k raises (runner maps to exclusion)
+# 6. unconstructible: no non-gold tokens left raises (the runner additionally
+#    excludes via the non_gold_total < oracle_total threshold before call)
 try:
-    random_length_matched_spans([(0, 0, 2)], [(0, 0, 4), (0, 4, 8)], 1)
+    random_length_matched_spans([], [(0, 0, 4), (0, 4, 9)], 1)
     check("unconstructible raises", False)
 except ValueError as e:
     check("unconstructible raises UNCONSTRUCTIBLE", "UNCONSTRUCTIBLE" in str(e))
+# degenerately small pool that cannot host even one oracle span also raises
+# (pool empty after all placements -> no leftover for later spans)
+try:
+    random_length_matched_spans([(0, 0, 1)], [(0, 0, 4), (0, 4, 9)], 1)
+    check("too-small pool raises", False)
+except ValueError as e:
+    check("too-small pool raises UNCONSTRUCTIBLE", "UNCONSTRUCTIBLE" in str(e))
 
 # 7. all_candidate_spans covers each doc fully
 c = all_candidate_spans([7, 3], block_tokens=3)

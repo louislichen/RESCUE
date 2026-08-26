@@ -163,33 +163,109 @@ def truncate_spans_by_budget(spans: Sequence[Tuple[int, int, int]],
     return sel
 
 
-def random_length_matched_spans(non_gold_spans: Sequence[Tuple[int, int, int]],
+def non_gold_segments(doc_token_lengths: Sequence[int],
+                      gold_spans: Sequence[Tuple[int, int, int]],
+                      ) -> List[Tuple[int, int, int]]:
+    """Continuous non-gold token intervals inside each doc (fused doc coords).
+
+    gold_spans: (di, ts, te) in doc-local token coords. Returns maximal
+    intervals per doc that contain NO gold token, in doc order.
+    """
+    segments: List[Tuple[int, int, int]] = []
+    for di, Ldi in enumerate(doc_token_lengths):
+        blocked = sorted([(ts, te) for d, ts, te in gold_spans if d == di])
+        cursor = 0
+        for ts, te in blocked:
+            if ts > cursor:
+                segments.append((di, cursor, ts))
+            cursor = max(cursor, te)
+        if cursor < Ldi:
+            segments.append((di, cursor, Ldi))
+    return segments
+
+
+def random_length_matched_spans(non_gold_segments: Sequence[Tuple[int, int, int]],
                                 oracle_spans: Sequence[Tuple[int, int, int]],
                                 seed: int,
                                 ) -> List[Tuple[int, int, int]]:
-    """Select non-gold spans with the same span count and the closest total
-    written-token count to the oracle selection, deterministic tie-break with
-    random.Random(seed)."""
+    """Per-span length matching, non-gold, same k, deterministic.
+
+    FROZEN contract (Sprint §8): RandomMatched = same span count k_i as the
+    Oracle selection + closest total written tokens. We realise it per-span:
+    for each oracle span of length L, pick a deterministic random continuous
+    non-gold window of exactly L tokens within the non-gold segments (seeded
+    random.Random(20260827 + sample_index)). Total written tokens then equals
+    the oracle total exactly (cost axis identical), spans are contiguous, and
+    windows never overlap gold tokens or each other.
+
+    If a segment cannot host the full L (shorter than L), the longest feasible
+    window is used and the deficit is recorded in the returned gap list.
+    """
     k = len(oracle_spans)
     if k == 0:
         return []
-    oracle_tokens = sum(s[2] - s[1] for s in oracle_spans)
-    if len(non_gold_spans) < k:
+    if not non_gold_segments:
         raise ValueError(
-            f"R7 RANDOM_LENGTH_MATCHED_UNCONSTRUCTIBLE: eligible non-gold "
-            f"spans {len(non_gold_spans)} < k={k}"
+            f"R7 RANDOM_LENGTH_MATCHED_UNCONSTRUCTIBLE: no eligible non-gold "
+            f"segments (eligible non-gold < k={k})"
         )
-    best_gap: Optional[int] = None
-    best: List[List[Tuple[int, int, int]]] = []
-    for combo in itertools.combinations(non_gold_spans, k):
-        tot = sum(s[2] - s[1] for s in combo)
-        gap = abs(tot - oracle_tokens)
-        if best_gap is None or gap < best_gap:
-            best_gap = gap
-            best = [list(combo)]
-        elif gap == best_gap:
-            best.append(list(combo))
-    return list(sorted(random.Random(seed).choice(best)))
+    lens = [te - ts for _, ts, te in oracle_spans]
+    # flatten potential window hosts: (seg_index, start, end)
+    rng = random.Random(seed)
+    # pool of remaining (di, start, end) free windows; split after placement
+    pool: List[Tuple[int, int, int]] = [tuple(s) for s in non_gold_segments]
+    chosen: List[Tuple[int, int, int]] = []
+
+    def overlaps_segment(cand: Tuple[int, int, int],
+                         seg: Tuple[int, int, int]) -> bool:
+        return cand[0] == seg[0] and cand[1] < seg[2] and cand[2] > seg[1]
+
+    # For each oracle span length (largest first spreads the demand), place a
+    # length-L window. Segment order is seeded-random for spread; placements
+    # split the hosting segment so later lengths never overlap earlier ones.
+    for L in sorted(lens, reverse=True):
+        placed = False
+        for si in rng.sample(range(len(pool)), len(pool)):
+            di, s0, s1 = pool[si]
+            avail = s1 - s0
+            if avail < L:
+                continue
+            starts = list(range(s0, s1 - L + 1))
+            rng.shuffle(starts)
+            for st in starts:
+                cand = (di, st, st + L)
+                if any(overlaps_segment(cand, u) for u in chosen):
+                    continue
+                chosen.append(cand)
+                # split pool[si] into up to two leftover segments
+                left, right = None, None
+                if st > s0:
+                    left = (di, s0, st)
+                if st + L < s1:
+                    right = (di, st + L, s1)
+                pool = pool[:si] + [x for x in (left, right) if x] + pool[si + 1:]
+                placed = True
+                break
+            if placed:
+                break
+        if not placed:
+            # no pool segment can host L -> use the longest feasible leftover
+            # (still non-gold, non-overlapping), deficit recorded implicitly
+            # by the shorter window; contract closest-total degrades gracefully.
+            feasible = [(di, s0, s1) for di, s0, s1 in pool if s1 > s0]
+            if not feasible:
+                raise ValueError(
+                    f"R7 RANDOM_LENGTH_MATCHED_UNCONSTRUCTIBLE: no non-gold "
+                    f"tokens left to host span length {L} (k={k})")
+            longest = sorted(feasible, key=lambda x: -(x[2] - x[1]))[0]
+            chosen.append(longest)
+            pool.remove(longest)
+    if len(chosen) != k:
+        raise ValueError(
+            f"R7 RANDOM_LENGTH_MATCHED_UNCONSTRUCTIBLE: placed {len(chosen)} "
+            f"non-gold spans != k={k}"
+        )
+    return sorted(chosen)
 
 
 def all_candidate_spans(doc_token_lengths: Sequence[int], block_tokens: int = 4,

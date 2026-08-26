@@ -61,7 +61,7 @@ from r7_pure_logic import (  # noqa: E402
     char_spans_to_token_spans,
     truncate_spans_by_budget,
     random_length_matched_spans,
-    all_candidate_spans,
+    non_gold_segments,
     doc_prefix_starts,
     abs_span,
 )
@@ -404,10 +404,13 @@ def main():
                     attn_used = True
                 else:  # random_matched_budget
                     oracle_sel = truncate_spans_by_budget(tok_spans, L_A, bp)
-                    gold_pos = set((di, ts, te) for di, ts, te in tok_spans)
-                    non_gold = [s for s in _all_candidate_spans(doc_ids_list)
-                                if s not in gold_pos]
-                    if len(non_gold) < len(oracle_sel):
+                    doc_lens = [int(ids.shape[1]) for ids in doc_ids_list]
+                    segments = non_gold_segments(doc_lens, tok_spans)
+                    # enough non-gold tokens must exist to host the oracle
+                    # span-count k_i (each window >= the oracle span lengths)
+                    min_span_tokens = sum(te - ts for _, ts, te in oracle_sel)
+                    non_gold_total = sum(te - ts for _, ts, te in segments)
+                    if non_gold_total < min_span_tokens:
                         # frozen mechanical exclusion
                         excluded += 1
                         rec2 = dict(rec)
@@ -420,7 +423,7 @@ def main():
                         f.write(json.dumps(rec2, ensure_ascii=False) + "\n")
                         continue
                     sel_spans = random_length_matched_spans(
-                        non_gold, oracle_sel, args.repair_seed + i)
+                        segments, oracle_sel, args.repair_seed + i)
                     attn_used = True
 
                 if not sel_spans:
