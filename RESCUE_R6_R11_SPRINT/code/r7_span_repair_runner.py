@@ -143,11 +143,18 @@ def repair_span_kv(model, fused_past, doc_inputs_ids: Sequence[torch.Tensor],
 # Route-B prefill with R7 span repair
 # ---------------------------------------------------------------------------
 
+@torch.no_grad()
 def prefill_route_b_with_span_repair(
     model, doc_ids_list: List[torch.Tensor], query_ids: torch.Tensor,
     spans: Sequence[Tuple[int, int, int]],
 ) -> Tuple[Any, torch.Tensor, Dict[str, int]]:
-    """R6 Route-B construction, then fused-KV span repair, then query append."""
+    """R6 Route-B construction, then fused-KV span repair, then query append.
+
+    Memory discipline: doc_pasts (each doc's full KV) are freed right after
+    fusing; the fused KV is the only large resident tensor during repair.
+    no_grad: prefill/decode must not keep autograd graphs (R6 builds all its
+    prefills under @torch.no_grad() too).
+    """
     device = model.get_input_embeddings().weight.device
 
     doc_pasts = []
@@ -161,6 +168,8 @@ def prefill_route_b_with_span_repair(
         )
         doc_pasts.append(out.past_key_values)
     fused = r6.fuse_past_key_values(doc_pasts)
+    del doc_pasts
+    gc_collect()
     fused_len = r6.past_seq_len(fused)
     acct = {"written_kv_tokens": 0, "processed_tokens": 0, "attended_prefix_tokens": 0}
     if spans:
@@ -181,6 +190,13 @@ def prefill_route_b_with_span_repair(
         output_hidden_states=False,
     )
     return out.past_key_values, out.logits[:, -1, :], acct
+
+
+def gc_collect() -> None:
+    import gc
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
 
 # ---------------------------------------------------------------------------
@@ -212,7 +228,11 @@ def parse_args():
     ap.add_argument("--r7_condition", required=True,
                     choices=["oracle_span", "oracle_budget", "random_matched_budget"])
     ap.add_argument("--budget_pct", type=float, default=None,
-                    help="written-token budget percent. oracle_span forces 100.")
+                    help="single written-token budget percent; oracle_span forces 100.")
+    ap.add_argument("--budgets", type=str, default=None,
+                    help="comma-separated budget percents, e.g. '1,2,5,10,20'; "
+                         "overrides --budget_pct and runs all in ONE process "
+                         "(Route A/B prefills shared).")
     ap.add_argument("--teacher_attention_jsonl", type=str, default=None,
                     help="gold-span teacher-attention ordering asset (oracle_budget only).")
     ap.add_argument("--repair_seed", type=int, default=FROZEN_REPAIR_SEED)
@@ -232,12 +252,19 @@ def main():
 
     if args.r7_condition == "oracle_span":
         budgets = [100.0]
-        if args.budget_pct not in (None, 100.0):
+        if args.budgets is not None:
+            print("NOTE: oracle_span fixed at 100%; --budgets ignored.")
+        elif args.budget_pct not in (None, 100.0):
             raise ValueError("oracle_span requires budget_pct=100 (all gold spans)")
     else:
-        if args.budget_pct is None:
-            raise ValueError(f"--budget_pct required for {args.r7_condition}")
-        budgets = [args.budget_pct]
+        if args.budgets is not None:
+            budgets = [float(x) for x in args.budgets.split(",") if x.strip()]
+        elif args.budget_pct is not None:
+            budgets = [args.budget_pct]
+        else:
+            raise ValueError(f"--budget_pct or --budgets required for {args.r7_condition}")
+        if not budgets:
+            raise ValueError("empty budget list")
 
     if args.r7_condition == "oracle_budget" and args.teacher_attention_jsonl is None:
         raise SystemExit(
@@ -310,7 +337,9 @@ def main():
             # ---- span location ----
             char_spans = supporting_sentence_spans_in_doc_text(sample, doc_texts)
             doc_inputs_b = [seg + FROZEN_SEP for seg in r6.make_doc_segments(doc_texts)]
-            tok_spans = char_spans_to_token_spans(tokenizer, doc_inputs_b, char_spans)
+            # Sorted like the teacher-asset builder: span_order indices refer to
+            # this exact sorted list (guaranteed identical ordering both sides).
+            tok_spans = sorted(char_spans_to_token_spans(tokenizer, doc_inputs_b, char_spans))
 
             rec = {
                 "sample_index": i, "dropped": False,
@@ -337,6 +366,11 @@ def main():
                 "f1_route_a_clean": r6.f1_score(txt_a_clean, gold),
                 "route_a_semantics": "FULL_CONTINUOUS_PREFILL",
             })
+            # Route-A KV is no longer needed after decode; release it before
+            # Route-B so the two big caches never coexist (each ~3-4GB on this
+            # 1.5B model; both would exceed 11GB).
+            del past_a, logits_last_a, full_ids_in, full_attn
+            gc_collect()
 
             # ---- Route B (naive) ----
             past_b, logits_b = r6.prefill_route_b_from_ids(
@@ -352,6 +386,9 @@ def main():
                 "f1_route_b_clean": r6.f1_score(txt_b_clean, gold),
                 "route_b_semantics": "NAIVE_DOCUMENT_KV_REUSE",
             })
+            # NOTE: past_b/logits_b intentionally kept alive here — the
+            # zero-budget repair branch aliases them; freed after the repair
+            # loop (end of sample).
 
             # ---- R7 repair conditions on the shared fused KV ----
             for bp in budgets:
@@ -420,7 +457,17 @@ def main():
                         "(prefix via past KV, only span tokens computed)"),
                 })
                 f.write(json.dumps(r, ensure_ascii=False) + "\n")
+                try:
+                    del past_r, logits_r
+                except UnboundLocalError:
+                    pass
+                gc_collect()
             evaluated += 1
+            # Route-B KV may be aliased by the last repair branch (past_r);
+            # drop it here once all budgets for this sample are done.
+            del past_b, logits_b
+            del doc_ids_list, query_ids, full_ids
+            gc_collect()
 
     print(f"Seen={seen} Evaluated={evaluated} Dropped={dropped} Excluded={excluded}")
     print(f"JSONL saved to: {out_jsonl}")
