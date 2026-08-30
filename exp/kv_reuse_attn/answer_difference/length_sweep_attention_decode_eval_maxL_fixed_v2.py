@@ -51,6 +51,7 @@ import os
 import re
 import json
 import argparse
+import random
 import string
 from typing import List, Tuple, Optional, Dict, Any
 
@@ -215,7 +216,10 @@ def extract_final_answer(gen_text: str, gold_answer: str) -> str:
     if "Answer:" in t:
         t = t.split("Answer:")[-1].strip()
 
-    t = t.splitlines()[0].strip()
+    lines = t.splitlines()
+    if not lines:
+        return ""
+    t = lines[0].strip()
 
     for end in [".", "?", "!"]:
         if end in t:
@@ -327,6 +331,63 @@ def past_seq_len(past_key_values) -> int:
     k0 = legacy[0][0]
     return int(k0.shape[2])
 
+def select_repair_documents(doc_texts: List[str], question: str, repair_mode: str, repair_k: int, repair_seed: int) -> List[int]:
+    """Select complete retained document blocks with an equal document-count budget."""
+    n_docs = len(doc_texts)
+    if repair_mode == "none":
+        if repair_k != 0:
+            raise ValueError("repair_mode=none requires repair_k=0")
+        return []
+    if repair_mode not in ("importance", "random"):
+        raise ValueError(f"Unsupported repair_mode: {repair_mode}")
+    if not 1 <= repair_k <= n_docs:
+        raise ValueError(f"repair_k must be in [1, {n_docs}] for repair_mode={repair_mode}")
+    if repair_mode == "random":
+        return sorted(random.Random(repair_seed).sample(range(n_docs), repair_k))
+    question_terms = set(re.findall(r"\w+", question.lower()))
+    scores = [len(question_terms & set(re.findall(r"\w+", doc.lower()))) for doc in doc_texts]
+    return sorted(sorted(range(n_docs), key=lambda i: (-scores[i], i))[:repair_k])
+
+
+@torch.no_grad()
+def repair_document_spans(model, fused_past, doc_ids_list: List[torch.Tensor], selected_indices: List[int]):
+    """Re-prefill selected docs against their fused prefix and replace only their KV spans."""
+    legacy = _to_legacy_cache(fused_past)
+    had_cache_obj = _is_cache_obj(fused_past)
+    doc_lengths = [int(ids.shape[1]) for ids in doc_ids_list]
+    total_len = sum(doc_lengths)
+    if past_seq_len(legacy) != total_len:
+        raise ValueError("Fused KV length does not match retained document token lengths")
+    repaired = legacy
+    calls = 0
+    input_tokens = 0
+    for doc_index in selected_indices:
+        start = sum(doc_lengths[:doc_index])
+        length = doc_lengths[doc_index]
+        prefix = tuple((k[:, :, :start, :], v[:, :, :start, :]) for k, v in repaired)
+        doc_ids = doc_ids_list[doc_index].to(repaired[0][0].device)
+        position_ids = torch.arange(start, start + length, device=doc_ids.device).unsqueeze(0)
+        attention_mask = torch.ones((1, start + length), device=doc_ids.device, dtype=torch.long)
+        kwargs = dict(input_ids=doc_ids, attention_mask=attention_mask, position_ids=position_ids,
+                      use_cache=True, output_attentions=False, output_hidden_states=False)
+        if doc_index != 0:
+            kwargs["past_key_values"] = _from_legacy_cache(prefix) if had_cache_obj else prefix
+        out_legacy = _to_legacy_cache(model(**kwargs).past_key_values)
+        updated = []
+        for (old_k, old_v), (new_k, new_v) in zip(repaired, out_legacy):
+            replacement_k, replacement_v = new_k[:, :, -length:, :], new_v[:, :, -length:, :]
+            merged_k = torch.cat((old_k[:, :, :start, :], replacement_k, old_k[:, :, start + length:, :]), dim=2)
+            merged_v = torch.cat((old_v[:, :, :start, :], replacement_v, old_v[:, :, start + length:, :]), dim=2)
+            if merged_k.shape[2] != total_len or merged_v.shape[2] != total_len:
+                raise RuntimeError("Repair changed total KV sequence length")
+            updated.append((merged_k, merged_v))
+        repaired = tuple(updated)
+        calls += 1
+        input_tokens += length
+    repaired = _from_legacy_cache(repaired) if had_cache_obj else repaired
+    return repaired, calls, input_tokens
+
+
 def fuse_past_key_values(pasts):
     """Naively fuse past caches by concatenating along seq_len dim=2."""
     assert len(pasts) > 0, "No past_key_values to fuse."
@@ -370,11 +431,16 @@ def prefill_route_b_from_ids(
     doc_ids_list: List[torch.Tensor],
     query_ids: torch.Tensor,
     device_map_auto: bool,
+    repair_mode: str = "none",
+    repair_k: int = 0,
+    repair_seed: int = 1234,
+    repair_doc_texts: Optional[List[str]] = None,
+    repair_question: str = "",
 ):
-    device = next(model.parameters()).device
+    device = model.get_input_embeddings().weight.device if device_map_auto else next(model.parameters()).device
 
     def maybe_to_device(x: torch.Tensor) -> torch.Tensor:
-        return x if device_map_auto else x.to(device)
+        return x.to(device)
 
     doc_pasts = []
     for doc_ids in doc_ids_list:
@@ -387,11 +453,18 @@ def prefill_route_b_from_ids(
         )
         doc_pasts.append(out.past_key_values)
 
+    selected_indices = select_repair_documents(
+        repair_doc_texts if repair_doc_texts is not None else [], repair_question,
+        repair_mode, repair_k, repair_seed,
+    )
     if len(doc_pasts) == 0:
         fused = None
         fused_len = 0
     else:
         fused = fuse_past_key_values(doc_pasts)
+        fused, repair_prefill_calls, repair_input_tokens = repair_document_spans(
+            model, fused, doc_ids_list, selected_indices
+        )
         fused_len = past_seq_len(fused)
 
     query_ids = maybe_to_device(query_ids)
@@ -440,7 +513,7 @@ def greedy_decode_from_past(
     Greedy (argmax) decoding.
     If stop_on_question=True, stops early if decoded text contains "\\nQuestion:" or "\\nQ:".
     """
-    device = logits_last.device
+    device = model.get_input_embeddings().weight.device
     eos_id = tokenizer.eos_token_id
 
     generated: List[int] = []
@@ -561,6 +634,9 @@ def parse_args():
 
     ap.add_argument("--plot_dpi", type=int, default=600)
     ap.add_argument("--seed", type=int, default=1234)
+    ap.add_argument("--repair_mode", choices=["none", "importance", "random"], default="none")
+    ap.add_argument("--repair_k", type=int, default=0)
+    ap.add_argument("--repair_seed", type=int, default=1234)
 
     ap.add_argument("--write_dropped", action="store_true",
                     help="If set, write dropped samples to decode_eval.jsonl with reason/lengths.")
@@ -599,6 +675,8 @@ def load_hotpot_dataset(
 
 def main():
     args = parse_args()
+    if args.repair_mode == "none" and args.repair_k != 0:
+        raise ValueError("repair_mode=none requires repair_k=0")
     os.makedirs(args.output_dir, exist_ok=True)
     out_jsonl = os.path.join(args.output_dir, args.jsonl_name)
 
@@ -667,6 +745,7 @@ def main():
                 pbar.update(1)
 
                 doc_texts, query = build_docs_and_query(sample, doc_mode=args.doc_mode)
+                repair_question = str(sample.get("question", "")).strip()
                 gold = str(sample.get("answer", "")).strip()
 
                 full_ids, doc_ids_list, query_ids, L_A, L_B, full_prompt, b_prompt = pretokenize_for_routes(
@@ -718,8 +797,9 @@ def main():
 
                 # Route A attention mask
                 if device_map_auto:
-                    full_attn = torch.ones_like(full_ids, dtype=torch.long)
-                    full_ids_in = full_ids
+                    device = model.get_input_embeddings().weight.device
+                    full_ids_in = full_ids.to(device)
+                    full_attn = torch.ones_like(full_ids_in, device=device, dtype=torch.long)
                 else:
                     device = next(model.parameters()).device
                     full_ids_in = full_ids.to(device)
@@ -739,6 +819,11 @@ def main():
                     doc_ids_list=doc_ids_list,
                     query_ids=query_ids,
                     device_map_auto=device_map_auto,
+                    repair_mode=args.repair_mode,
+                    repair_k=args.repair_k,
+                    repair_seed=args.repair_seed,
+                    repair_doc_texts=doc_texts,
+                    repair_question=repair_question,
                 )
                 gen_ids_b, gen_text_b = greedy_decode_from_past(
                     model, tokenizer, past_b, logits_last_b,
@@ -778,6 +863,12 @@ def main():
                     "L": L,
                     "num_docs": len(doc_texts),
                     "doc_mode": args.doc_mode,
+                    "repair_mode": args.repair_mode,
+                    "repair_k": args.repair_k,
+                    "selected_indices": select_repair_documents(doc_texts, repair_question, args.repair_mode, args.repair_k, args.repair_seed),
+                    "repair_docs": len(select_repair_documents(doc_texts, repair_question, args.repair_mode, args.repair_k, args.repair_seed)),
+                    "repair_prefill_calls": len(select_repair_documents(doc_texts, repair_question, args.repair_mode, args.repair_k, args.repair_seed)),
+                    "repair_input_tokens": sum(int(doc_ids_list[j].shape[1]) for j in select_repair_documents(doc_texts, repair_question, args.repair_mode, args.repair_k, args.repair_seed)),
                     "question": sample.get("question", ""),
                     "gold_answer": gold,
 
