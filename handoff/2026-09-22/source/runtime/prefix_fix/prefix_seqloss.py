@@ -52,6 +52,7 @@ class PrefixSequenceBackend:
         self.supervision_backward_count = 0
         self.supervised_token_count = 0
 
+    # ---- core -----------------------------------------------------------
     def _maps(self, target, teacher_prior, student_rows):
         prior, alpha, entropy = self.adapter(
             teacher_prior.to(self.device), student_rows,
@@ -61,6 +62,7 @@ class PrefixSequenceBackend:
         return maps, gates, prior, alpha, entropy
 
     def prefix_logits(self, target, prefix_len: int, maps, gates):
+        """Prefill of prompt+gold[:prefix_len]; last row predicts answer position prefix_len."""
         ids = list(target.input_ids) + list(target.answer_ids[:prefix_len])
         input_ids = torch.tensor([ids], device=self.device, dtype=torch.long)
         mask = torch.ones((1, len(ids)), device=self.device, dtype=torch.long)
@@ -100,6 +102,7 @@ class PrefixSequenceBackend:
                 "later_loss": (float(tl[1:].mean()) if n > 1 else None),
                 "answer_token_count": n, "supervised_tokens": n, "grads_ok": grads_ok}
 
+    # ---- validation-only metrics (no grad) -------------------------------
     def first_gold_ce(self, target, teacher_prior, student_rows=None, null=False):
         rows = self.backend._student_rows(target) if student_rows is None else student_rows
         p = teacher_prior.roll(1, dims=-1) if null else teacher_prior
