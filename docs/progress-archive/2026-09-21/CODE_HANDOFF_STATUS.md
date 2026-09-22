@@ -1,65 +1,57 @@
 # RESCUE Code Handoff Status
 
-Status: **CODE_HANDOFF_COMPLETE / MAIN_SOURCE_EXPANDED**
+Status: **MAIN_SOURCE_EXPANDED / FULL_DIRECT_SOURCE_PENDING**
 
-The RESCUE work represented by this branch is paused and handed off to the next researcher.
-
-## Directly browsable source
-
-The principal source tree is now expanded under:
+The branch contains a substantial directly-browsable handoff source tree under:
 
 `handoff/2026-09-22/source/`
 
-It includes directly browsable implementation for:
+However, a strict audit against the verified handoff ZIP shows that **not every VALID_CURRENT /
+VALID_DIAGNOSTIC source file has yet been expanded directly into GitHub**. The complete ZIP remains
+the byte-level authority until the remaining runnable dependencies are copied.
 
-- Harness V3 pre-experiment correctness gate, identity/provenance entry points and integrity tests;
-- Qwen Adapter backend and frozen Adapter/source-lock steering definitions;
-- per-prefix sequence-supervision implementation and runner;
-- fixed-K=4 protocol and tests;
-- valid four-arm preparation / QA / K4 / orchestration;
-- decision-relevance preparation / common metrics / paired measurement / orchestration;
-- Student local controllability and same-budget Oracle diagnostic;
-- R1 value-norm pilot;
-- Teacher decision-attribution Phase C;
-- mechanism-sprint probes, feature extraction and orchestration;
-- V3 GPU/resource/identity/result-integrity/roll-up test entry points;
-- frozen config identities and handoff test documentation.
+## Direct-source coverage at this audit
 
-See:
-
-`handoff/2026-09-22/source/README.md`
-
-for the handoff map and scientific status of each code family.
-
-## Complete package
-
-The verified original package remains the byte-level authority for auxiliary files that are not
-expanded directly in GitHub:
-
+Verified handoff package:
 - `RESCUE_CODE_HANDOFF_20260922.zip`
 - SHA256 `ffa8da6207a65a784c22e4e2225fe5330dedcdd24c2328918d6941486b81fe37`
-- 434 files total
-- package-internal SHA256 verification: 433/433 OK
-- quick secret scan: 0 hits
+- 434 package members
+- 74 VALID_CURRENT/VALID_DIAGNOSTIC Python files
+- 10 VALID_CURRENT/VALID_DIAGNOSTIC shell scripts
 
-Very large auxiliary analysis/test modules, result snapshots, figures and external tensor/model
-artifacts are not duplicated blindly into the browsable source tree. A connector-truncated copy
-must never be treated as canonical; the full package / manifest is authoritative for those files.
+GitHub directly-browsable source tree currently includes the main research paths:
+- Harness V3 gate / provenance entry points / integrity tests
+- Qwen Adapter backend and frozen source-lock adapter/common/steering
+- per-prefix sequence supervision
+- fixed-K4 protocol
+- four-arm QA/K4 preparation/runners/orchestration
+- decision-relevance prepare/common/measurement/orchestration
+- Student local Oracle / controllability diagnostics
+- R1 pilot
+- Teacher decision-attribution main runner
+- mechanism-sprint probes/orchestration
+- V3 resource / identity / integrity / roll-up tests
+- frozen configs and test entry points
 
-## Repository comparison
+## Important remaining direct-source gaps
 
-Relative to `main` at `fc46ae2ab26cd30fe3fdc92684fb08d51f76a5a9`, the handoff branch contains
-dozens of handoff commits and directly visible source/config/test additions.
+At least these runnable dependencies are still present only in the verified handoff package and
+must be expanded before declaring FULL_DIRECT_SOURCE_COMPLETE:
 
-## Research validity
+- `harness/rescue_harness/training_identity.py`
+- `harness/rescue_harness/gpu_smokes.py`
+- `harness/rescue_harness/regression_scenarios.py`
+- `harness/rescue_harness/test_harness.py`
+- `runtime/prefix_fix/real_k4_runner.py`
+- `runtime/source/sequence_loss_runner.py`
+- `runners/four_arm/four_arm_aggregate.py`
+- `runners/decision_relevance/dr_aggregate.py`
+- `runners/teacher_decision/td_prepare.py`
+- `runners/teacher_decision/td_student_alignment.py`
+- `runners/teacher_decision/td_aggregate.py`
+- additional mechanism-sprint aggregation/grounding/failure-structure utilities and figure/report helpers
 
-- Harness V3: accepted / PRE gate PASS
-- four-arm rerun: VALID DEVELOPMENT / CASE 3
-- decision relevance: VALID DEVELOPMENT / INFO-B
-- mechanism sprint: VALID DEVELOPMENT / CONTROLLABILITY-A
-- R1: RETIRED / R1-FAIL
-- Teacher decision attribution: TD-A YES / TD-B LOSSY / TD-C NOT EXPLOITABLE under frozen transport
-- HSPR / sign-preserving transport: PROPOSED / NOT_RUN
-- historical pre-correctness Adapter results: INVALIDATED
+Therefore this branch is already useful for code review and understanding, but the directly expanded
+tree should **not yet be described as a completely standalone replacement for the verified ZIP**.
 
-No new RESCUE research execution is authorized by this handoff.
+Historical invalidated results remain invalidated. R1 remains retired. HSPR remains PROPOSED / NOT_RUN.
