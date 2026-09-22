@@ -9,11 +9,14 @@ import argparse
 import json
 import os
 import subprocess
+import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 EXPECTED_COUNT = 4
 EXPECTED_NAME = "NVIDIA GeForce RTX 2080 Ti"
+#: a real training/inference worker would show up as one of these; anything smaller is
+#: the preflight's own bookkeeping, not a residual run.
 RESIDUAL_PATTERNS = ("sequence_prefix_runner", "real_k4_runner", "window_k4", "window_qa",
                      "window_pair", "train.py", "q3_teacher_prior_worker")
 
@@ -51,7 +54,8 @@ def main() -> int:
                      "temperature_c": int(parts[6])})
     payload["gpus"] = gpus
     payload["gpu_count"] = len(gpus)
-    payload["all_expected_model"] = all(g["name"] == EXPECTED_NAME for g in gpus) and         len(gpus) == EXPECTED_COUNT
+    payload["all_expected_model"] = all(g["name"] == EXPECTED_NAME for g in gpus) and \
+        len(gpus) == EXPECTED_COUNT
 
     rc2, apps_txt = sh(["nvidia-smi", "--query-compute-apps=pid,process_name,used_memory",
                         "--format=csv,noheader"])
