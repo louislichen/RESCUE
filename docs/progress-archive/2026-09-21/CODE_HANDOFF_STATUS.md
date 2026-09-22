@@ -1,47 +1,28 @@
 # RESCUE Code Handoff Status
 
-Status: **CODE_HANDOFF_COMPLETE**
+Status: **CODE_HANDOFF_IN_PROGRESS**
 
-The `liangchen-man/rescue-progress-20260921` archive branch now contains:
+The validated progress archive is complete, and the original handoff ZIP has been verified locally. The latest source is now being expanded as directly browseable files under:
 
-1. validated research-progress documentation and evidence index;
-2. the pre-existing RESCUE repository source tree;
-3. a frozen core code handoff archive for the latest validated 2026-09-20/21 implementation.
+`handoff/2026-09-22/source/`
 
-Core handoff location:
+Already expanded in GitHub include core experiment entry points such as:
 
-`handoff/2026-09-22/core/`
+- Harness PRE_EXPERIMENT correctness gate;
+- fixed K=4 protocol and tests;
+- Qwen Adapter backend;
+- prefix sequence-supervision fix;
+- four-arm common/QA/K4 runners;
+- decision-relevance preparation;
+- entropy-conditioned Adapter wrapper.
 
-Reconstruct with the instructions in:
+The remaining large Harness/diagnostic runners are being copied from the handoff package without algorithmic changes.
 
-`handoff/2026-09-22/core/README.md`
+Do **not** treat this status as CODE_HANDOFF_COMPLETE until the principal source tree (Harness V3, runtime, four-arm, decision relevance, Student Oracle, R1 pilot, Teacher decision attribution, tests/configs) is directly browseable and the final source manifest is committed.
 
-The reconstructed archive contains the validated latest handoff code for:
-
-- Harness V3 correctness and identity/provenance logic;
-- PRE_EXPERIMENT_CORRECTNESS_GATE;
-- four-arm QA/K4 runners;
-- incremental K4 correctness implementation;
-- decision-relevance diagnostics;
-- Student local Oracle / controllability diagnostics;
-- R1 value-norm pilot;
-- Teacher decision-attribution Phase C;
-- tests, configs, project-control files and reproduction documentation.
-
-Core archive SHA256:
-
-`33c1cd3e0766e4366f8999904208e592e31c7daa21776c2d004312119bb45404`
-
-Original complete local handoff ZIP supplied to the web supervisor:
+Original complete local package:
 
 - `RESCUE_CODE_HANDOFF_20260922.zip`
 - SHA256 `ffa8da6207a65a784c22e4e2225fe5330dedcdd24c2328918d6941486b81fe37`
-- 434 files
-- package-internal SHA256 verification passed
-- quick secret scan found 0 hits
 
-Large model weights, prior tensors and other heavy external artifacts are intentionally not duplicated in GitHub. Their identities and provenance are documented in the handoff/archive materials.
-
-Historical invalidated results remain invalidated. R1 remains retired. HSPR/sign-preserving transport remains PROPOSED / NOT_RUN.
-
-The RESCUE work represented by this branch is paused for handoff to the next researcher.
+Large model weights and heavy tensor artifacts remain external by design.
