@@ -27,6 +27,7 @@ def status_of(node, default="MISSING"):
 
 
 def verdict_of(node, default="MISSING"):
+    """Gate artefacts that report `verdict` instead of `status` (identity preflight)."""
     if not isinstance(node, dict):
         return default
     return node.get("verdict") or node.get("status") or default
