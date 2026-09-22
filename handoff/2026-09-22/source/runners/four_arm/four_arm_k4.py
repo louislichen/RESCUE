@@ -1,7 +1,21 @@
 """Four-arm fixed-K=4 Draft evaluation — single process, target balanced over the 4 cards.
 
-Arms A/B/C/D only differ in how the draft is steered; Target is never steered
-and verification uses the correctness-accepted incremental path.
+Arms A/B/C/D only differ in how the *draft* (Student + Adapter) is steered; the Target
+(Qwen2-7B) is never steered and verification always uses the correctness-accepted
+``incremental`` path (one target forward per proposal).
+
+Resource note (§17): one 7B target (15 GiB bf16) does not fit on a single 11 GiB card, so
+the target is spread with ``device_map="balanced"`` + ``--target-max-memory`` exactly like
+the accepted K4 gate; running N such processes concurrently would need N x 15 GiB.  The
+run therefore uses one K4 process (all four cards, real concurrency inside the model) and
+keeps the four process-level slots for the QA phase, rather than inventing a distributed
+runtime.
+
+Usage:
+  four_arm_k4.py --harness-root H --config CFG --k4-dir KD --source-dir S --source-lock SL \
+      --teacher-model TM --student-model SM --dataset-path DS --validation-ledger V \
+      --validation-prior-cache P --checkpoint CK --device cuda:0 \
+      --shard-lo 0 --shard-hi 32 --shard-name k0 --out OUTDIR
 """
 from __future__ import annotations
 
@@ -14,7 +28,7 @@ from pathlib import Path
 import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from four_arm_common import (ARMS, ARM_POLICY, DECODE_PHASE, PREFILL_PHASE,
+from four_arm_common import (ARMS, ARM_POLICY, DECODE_PHASE, PREFILL_PHASE,  # noqa: E402
                             build_backend, cm_for, load_config, load_harness, load_modules,
                             maps_for)
 
@@ -63,6 +77,8 @@ def main() -> int:
     shard_rows = rows[args.shard_lo:args.shard_hi]
 
     class PolicyDraft(k4.CacheModel):
+        """Student draft under one arm policy.  A/B/C/D differ ONLY here."""
+
         def __init__(self, maps, alpha, window):
             super().__init__(backend.student, backend.device, vocab)
             self.lm, self.la = maps, alpha
@@ -104,7 +120,7 @@ def main() -> int:
             return self._greedy(o.logits[0, -1, :].float()), o.past_key_values
 
     body = out / f"k4_shard_{args.shard_name}.jsonl"
-    records = []
+    records: list[dict] = []
     t_shard = time.time()
     for n, row in enumerate(shard_rows):
         sid = row["canonical_source_id"]
@@ -127,11 +143,14 @@ def main() -> int:
             maps, al = (({}, None) if pol["prior"] is None else maps_by_arm[pol["prior"]])
             draft = PolicyDraft(maps, al, pol["window"])
             tgt = k4.TeacherTarget(model, device, vocab, "incremental")
+            t0 = time.time()
             spec = fixed_k4_decode(prompt_ids, draft, tgt, k4.EOS_ID, k=args.k,
                                    max_new_tokens=args.max_new_tokens)
+            wall = time.time() - t0
             c = vars(spec.counters)
             rollbacks = c.get("rollback_events", []) or []
             rejected_prefixes = [int(e["accepted_before_reject"]) for e in rollbacks]
+            full_accept_prefix_total = (c["accepted_draft_tokens"] - sum(rejected_prefixes))
             records.append({
                 "canonical_source_id": sid,
                 "source_index": row["source_index"],
@@ -148,9 +167,25 @@ def main() -> int:
                 "short_proposals": c["short_proposals"],
                 "zero_accept_blocks": sum(1 for v in rejected_prefixes if v == 0),
                 "partial_accept_blocks": sum(1 for v in rejected_prefixes if v > 0),
+                "full_k_blocks": c["full_accept_blocks"],
+                "accepted_prefix_lengths_rejected_blocks": rejected_prefixes,
+                "accepted_prefix_length_note":
+                    "rejected blocks: exact per-block value from the frozen protocol's "
+                    "rollback_events(accepted_before_reject); full-accept blocks: "
+                    "accepted_prefix_length_full_accept_mean below, derived from the exact "
+                    "identity accepted_draft_tokens - sum(rejected prefixes)",
+                "accepted_prefix_length_full_accept_mean": (
+                    full_accept_prefix_total / c["full_accept_blocks"]
+                    if c["full_accept_blocks"] else None),
+                "accepted_prefix_length_max": max(rejected_prefixes +
+                                                  ([args.k] if c["full_accept_blocks"] else [])
+                                                  or [0]),
                 "eos_terminated": bool(c["eos_terminated"]),
                 "target_forward_calls": tgt.forward_calls,
                 "draft_forward_calls": draft.forward_calls,
+                "draft_prefill_mix_calls": draft.prefill_mix_calls,
+                "draft_decode_mix_calls": draft.decode_mix_calls,
+                "draft_decode_steered_steps": draft.decode_steered_steps,
                 "tokens": spec.token_ids,
                 "target_only_tokens": ref,
                 "matches_target_only_greedy": bool(spec.token_ids == ref),
@@ -162,13 +197,37 @@ def main() -> int:
                 "run_config_hash": cfg["config_hash"],
                 "checkpoint_sha256": cfg["checkpoint_sha256"],
                 "shard": args.shard_name,
+                "wall_seconds": round(wall, 3),
             })
+            print(json.dumps({"shard": args.shard_name, "row": n, "src": row["source_index"],
+                              "arm": arm, "prop": c["proposed_draft_tokens"],
+                              "acc": c["accepted_draft_tokens"], "blocks": c["blocks"],
+                              "ident": bool(spec.token_ids == ref)}, ensure_ascii=False),
+                  flush=True)
         H.write_result_envelope(
             body, task_id="RESCUE-MINIMAL-FOUR-ARM-VALID-RERUN-001", stage="k4_four_arm",
             records=records, arms=list(ARMS),
             sample_ids=sorted({r["canonical_source_id"] for r in records}),
             config_hash=cfg["config_hash"], checkpoint_sha256=cfg["checkpoint_sha256"])
-    return 0
+    meta = {"shard": args.shard_name, "rows": len(shard_rows), "records": len(records),
+            "arms": list(ARMS), "k": args.k, "verify_mode": "incremental",
+            "max_new_tokens": args.max_new_tokens, "target_dtype": args.target_dtype,
+            "target_max_memory": args.target_max_memory, "target_device_map": dmap,
+            "device_count": torch.cuda.device_count(),
+            "harness_manifest_sha256": cfg["harness_manifest_sha256"],
+            "config_hash": cfg["config_hash"], "checkpoint_sha256": cfg["checkpoint_sha256"],
+            "shard_lo": args.shard_lo, "shard_hi": args.shard_hi,
+            "wall_seconds": round(time.time() - t_shard, 1),
+            "all_correct": all(r["matches_target_only_greedy"] for r in records),
+            "body": str(body), "body_sha256": H.sha256_file(body),
+            "verify": H.verify_result(body, expected_config_hash=cfg["config_hash"],
+                                      expected_checkpoint_sha256=cfg["checkpoint_sha256"])}
+    H.atomic_write_text(out / f"k4_shard_{args.shard_name}_meta.json",
+                        json.dumps(meta, ensure_ascii=False, indent=2) + "\n")
+    print(json.dumps({"shard": args.shard_name, "done": True, "records": len(records),
+                      "all_correct": meta["all_correct"], "verify": meta["verify"]["status"],
+                      "wall_seconds": meta["wall_seconds"]}, ensure_ascii=False), flush=True)
+    return 0 if (meta["verify"]["status"] == "PASS" and meta["all_correct"]) else 1
 
 
 if __name__ == "__main__":
