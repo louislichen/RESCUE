@@ -31,7 +31,7 @@ from pathlib import Path
 import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from dr_common import (build_backend, jsd_rows, l1_rows, load_config, load_harness,
+from dr_common import (build_backend, jsd_rows, l1_rows, load_config, load_harness,  # noqa: E402
                        load_modules, sha256_file)
 
 TOP_K = 16
@@ -162,7 +162,7 @@ def main() -> int:
             for h in handles:
                 h.remove()
 
-        r0 = prep(prior_cache[sid].float())
+        r0 = prep(prior_cache[sid].float())                     # [4,28,K_student] frozen prior
         r1_layers, r2_stats = [], {}
         for li, L in enumerate(teacher_layers):
             a = attn_caps.get(L)
@@ -172,7 +172,7 @@ def main() -> int:
             a = a.float()
             n = min(a.shape[-1], v.shape[-1])
             a, v = a[:, :n], v[:, :n]
-            score = a * v
+            score = a * v                                       # R2 = ||attn_j * V_j||
             r1 = prep(score)
             r1_layers.append(r1)
             r2_stats[str(L)] = {"score_sum": float(score.sum()),
@@ -181,6 +181,7 @@ def main() -> int:
                                 "vnorm_mean": float(v.mean()),
                                 "vnorm_std": float(v.std())}
         R1_teacher = torch.stack(r1_layers, 0) if r1_layers else None
+        # the frozen projection takes one [heads, K] layer row at a time
         proj1 = (torch.stack([RHT.project_teacher_heads_to_student(R1_teacher[li], t_off,
                                                                   s_off, eps)
                               for li in range(R1_teacher.shape[0])], 0)

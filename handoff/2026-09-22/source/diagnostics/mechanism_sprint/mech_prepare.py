@@ -40,7 +40,8 @@ def main() -> int:
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     H = load_harness(args.harness_root)
-    manifest = Path(args.manifest_path) if args.manifest_path else         Path(args.harness_root) / "HARNESS_FREEZE_CANDIDATE_MANIFEST_V3.json"
+    manifest = Path(args.manifest_path) if args.manifest_path else \
+        Path(args.harness_root) / "HARNESS_FREEZE_CANDIDATE_MANIFEST_V3.json"
     manifest_sha = sha256_file(manifest)
     if args.manifest_sha256 and args.manifest_sha256 != manifest_sha:
         raise SystemExit(f"MANIFEST_SHA_MISMATCH: cli={args.manifest_sha256} file={manifest_sha}")
@@ -66,7 +67,8 @@ def main() -> int:
             "decision_positions": str(args.dr_summary),
             "planned_positions": args.planned_positions,
             "S_ne_T_positions": args.sne_t_positions,
-            "note": "positions, prefixes, y_base and y_target are reused from the parent diagnostic; no experiment is re-run"},
+            "note": "positions, prefixes, y_base and y_target are reused from the parent "
+                    "diagnostic; no experiment is re-run"},
         "frozen_scientific_objects": ["Teacher/Target", "Student", "tokenizer pair",
                                       "step80 checkpoint", "selected Adapter layers",
                                       "Teacher prior definition", "Null definition",
@@ -74,17 +76,24 @@ def main() -> int:
                                       "development split", "greedy decoding"],
         "track_a": {"margin_definition": "z_S[y_T] - z_S[y_S]",
                     "gradient": "d M / d p at the frozen injection rows, Student-only backward",
-                    "oracle": "LOCAL_DECISION_ORACLE_DIAGNOSTIC — deterministic greedy mass transfer, per-head L1 budget matched to the Teacher direction",
+                    "oracle": "LOCAL_DECISION_ORACLE_DIAGNOSTIC — deterministic greedy mass "
+                              "transfer, per-head L1 budget matched to the Teacher direction",
                     "topM_oracle_k": args.oracle_k},
         "track_b": {"representations": ["R0 Teacher attention (current prior)",
                                         "R1 TEACHER_ATTN_VALUE_NORM",
                                         "R2 TEACHER_CONTEXT_CONTRIBUTION"],
-                    "projection": "unchanged frozen Teacher->Student projection (project_teacher_heads_to_student + frozen Adapter)"},
-        "track_c": {"evidence": "HotpotQA supporting_facts mapped to student token spans by character offsets; unmappable rows excluded with reason"},
+                    "projection": "unchanged frozen Teacher->Student projection "
+                                  "(project_teacher_heads_to_student + frozen Adapter)"},
+        "track_c": {"evidence": "HotpotQA supporting_facts mapped to student token spans by "
+                                "character offsets; unmappable rows excluded with reason"},
         "track_d": {"population": "the 496 valid decision positions",
-                    "bins": "S=T/S≠T, feature quartiles, natural answer-position bins, median context split — fixed before looking at outcomes"},
+                    "bins": "S=T/S≠T, feature quartiles, natural answer-position bins, "
+                            "median context split — fixed before looking at outcomes"},
         "bootstrap": {"n": 10000, "seed": 20260830, "label": "DEVELOPMENT diagnostic"},
-        "claim_boundary": "development mechanism diagnostics only; the Oracle is not deployable; no confirmation, no final method superiority, no speedup, no adaptive-K/Repair benefit, and no claim that any new representation works before it is injected and tested",
+        "claim_boundary": "development mechanism diagnostics only; the Oracle is not "
+                          "deployable; no confirmation, no final method superiority, no "
+                          "speedup, no adaptive-K/Repair benefit, and no claim that any new "
+                          "representation works before it is injected and tested",
     }
     cfg["config_hash"] = hashlib.sha256(
         json.dumps(cfg, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
@@ -94,7 +103,8 @@ def main() -> int:
                         json.dumps({"dr_config_hash": dr.get("config_hash"),
                                     "dr_case": dr_sum.get("case", {}).get("case"),
                                     "dr_denominator": dr_sum.get("denominator"),
-                                    "dr_groups": {k: v.get("n") for k, v in dr_sum.get("groups", {}).items()}},
+                                    "dr_groups": {k: v.get("n") for k, v in
+                                                  dr_sum.get("groups", {}).items()}},
                                    ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({"config_hash": cfg["config_hash"],
                       "checkpoint_sha256": cfg["checkpoint_sha256"],

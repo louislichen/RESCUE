@@ -93,7 +93,8 @@ def main() -> int:
             "margin_vs_rest": margin_vs_rest,
             "logp_yT": float(logp[y_T]),
             "logp_yS": float(logp[y_S]),
-            "parent_M_A": float(r["M_A"]), "parent_M_A_recomputed_delta": margin_vs_rest - float(r["M_A"]),
+            "parent_M_A": float(r["M_A"]), "parent_M_A_recomputed_delta":
+                margin_vs_rest - float(r["M_A"]),
             "run_config_hash": cfg["config_hash"],
             "checkpoint_sha256": cfg["checkpoint_sha256"], "shard": args.shard_name,
         })
@@ -103,6 +104,8 @@ def main() -> int:
                 stage="track_d_features", records=records, arms=["decision_position"],
                 sample_ids=sorted({x["canonical_source_id"] for x in records}),
                 config_hash=cfg["config_hash"], checkpoint_sha256=cfg["checkpoint_sha256"])
+        if (n + 1) % 16 == 0:
+            print(json.dumps({"shard": args.shard_name, "n": n}), flush=True)
     H.write_result_envelope(
         body, task_id="RESCUE-GUIDANCE-REPRESENTATION-MECHANISM-SPRINT-001",
         stage="track_d_features", records=records, arms=["decision_position"],

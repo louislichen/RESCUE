@@ -1,0 +1,25 @@
+{
+  "task_id": "RESCUE-GITHUB-DIRECT-SOURCE-FINAL-CLOSURE-001",
+  "generated_at": "2026-09-22",
+  "criterion": "VALID_CURRENT / VALID_DIAGNOSTIC .py and .sh source files enumerated from CODE_MANIFEST.json inside the verified handoff ZIP",
+  "source_of_truth": {
+    "zip": "RESCUE_CODE_HANDOFF_20260922.zip",
+    "sha256": "ffa8da6207a65a784c22e4e2225fe5330dedcdd24c2328918d6941486b81fe37",
+    "internal_sha256sums": "433/433 OK"
+  },
+  "destination_prefix": "handoff/2026-09-22/source",
+  "expected": 84,
+  "present": 84,
+  "missing": [],
+  "mismatch": 0,
+  "status": "FULL_DIRECT_SOURCE_COMPLETE",
+  "statement": "84 / 84 VALID_CURRENT / VALID_DIAGNOSTIC executable source files are directly present in GitHub.",
+  "by_status": {
+    "VALID_CURRENT": 70,
+    "VALID_DIAGNOSTIC": 14
+  },
+  "by_extension": {
+    "py": 74,
+    "sh": 10
+  }
+}

@@ -99,16 +99,19 @@ def grad_smoke(args):
             summary["_all"] = {"norm": float(torch.sqrt(total))}
             per_pos.append({"answer_position": t, "gold_id": int(gold),
                             "ce": float(ce.detach()), "grad": summary})
+            # base weights must not accumulate grads
+        per_pos_after = None
         base_leak = any(p.grad is not None and torch.any(p.grad != 0)
                         for p in backend.student.parameters() if p.requires_grad)
+        per_pos_after = {"any_base_param_requires_grad":
+                         any(p.requires_grad for p in backend.student.parameters())}
         out["records"].append({
             "sample": i, "canonical_source_id": row["canonical_source_id"],
             "answer_token_count": len(target.answer_ids), "positions": per_pos,
             "all_positions_nonzero_task_gradient": all(
                 p["grad"]["_all"]["norm"] > 0 for p in per_pos),
             "student_base_grad_leak": bool(base_leak),
-            "student_base_state": {"any_base_param_requires_grad":
-                                   any(p.requires_grad for p in backend.student.parameters())},
+            "student_base_state": per_pos_after,
         })
         wrap.optimizer.zero_grad(set_to_none=True)
     Path(args.out).mkdir(parents=True, exist_ok=True)
@@ -125,7 +128,9 @@ def train(args):
     _, runner_mod, backend = build(args)
     wrap = PrefixSequenceBackend(backend)
     train_rows = runner_mod.load_rows(Path(args.train_ledger), Path(args.dataset_path))
+    validation_rows = runner_mod.load_rows(Path(args.validation_ledger), Path(args.dataset_path))
     priors = torch.load(Path(args.prior_cache), map_location="cpu", weights_only=True)
+    vpriors = torch.load(Path(args.validation_prior_cache), map_location="cpu", weights_only=True)
     random.seed(SEED)
     torch.manual_seed(SEED)
     if torch.cuda.is_available():
@@ -195,6 +200,7 @@ def validate(args):
         })
         (root / f"validation_partial_{step:03d}.json").write_text(
             json.dumps(selections[-1], indent=2) + "\n", encoding="utf-8")
+        print(json.dumps(selections[-1]))
     (root / f"validation_shard_{args.shard_name}.json").write_text(
         json.dumps(selections, indent=2) + "\n", encoding="utf-8")
     return 0
@@ -209,8 +215,9 @@ def qa(args):
     wrap.adapter.load_state_dict(payload["adapter"])
     validation_rows = runner_mod.load_rows(Path(args.validation_ledger), Path(args.dataset_path))
     vpriors = torch.load(Path(args.validation_prior_cache), map_location="cpu", weights_only=True)
+    lo, hi = args.shard_lo, args.shard_hi
     preds, alpha_rec = [], []
-    for row in validation_rows[args.shard_lo:args.shard_hi]:
+    for row in validation_rows[lo:hi]:
         target = backend.prompt_target(row["prompt"], row["answer"])
         p = vpriors[row["canonical_source_id"]]
         with torch.no_grad():
@@ -233,12 +240,16 @@ def qa(args):
         "\n".join(json.dumps(x, ensure_ascii=False) for x in preds) + "\n", encoding="utf-8")
     (root / f"qa_alpha_shard_{args.shard_name}.jsonl").write_text(
         "\n".join(json.dumps(x, ensure_ascii=False) for x in alpha_rec) + "\n", encoding="utf-8")
+    n = len(preds)
+    print(json.dumps({arm: {"em": sum(x["em"][arm] for x in preds) / n,
+                            "f1": sum(x["f1"][arm] for x in preds) / n} for arm in ARMS}))
     return 0
 
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--mode", required=True, choices=("gradsmoke", "train", "validate", "qa"))
+    p.add_argument("--mode", required=True,
+                   choices=("gradsmoke", "train", "validate", "qa"))
     p.add_argument("--root", default="/tmp/unused")
     p.add_argument("--out", default="/tmp/unused")
     p.add_argument("--source-dir", required=True)

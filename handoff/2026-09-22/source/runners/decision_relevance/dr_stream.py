@@ -6,6 +6,12 @@ development split this walks the BASE greedy trajectory and, at each decision po
 evaluates the same prefix through A (stock Student), C (full-window Teacher), D
 (full-window Null) and T (Target Qwen2-7B), then records the decision-space metrics of
 task §4-§12.
+
+Usage:
+  dr_stream.py --harness-root H --config CFG --k4-dir KD --source-dir S --source-lock SL \
+      --teacher-model TM --student-model SM --dataset-path DS --validation-ledger V \
+      --validation-prior-cache P --checkpoint CK --device cuda:0 \
+      --shard-lo 0 --shard-hi 32 --shard-name d0 --out OUTDIR
 """
 from __future__ import annotations
 
@@ -19,12 +25,12 @@ from pathlib import Path
 import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from dr_common import (DECODE_PHASE, PREFILL_PHASE, build_backend, generate_greedy,
+from dr_common import (DECODE_PHASE, PREFILL_PHASE, build_backend, generate_greedy,  # noqa: E402
                        jsd_rows, l1_rows, load_config, load_harness, load_modules,
                        logprob_of, maps_for, margin_of, cosine, sha256_file,
                        student_positions, target_positions)
 
-M_FIXED = 4096
+M_FIXED = 4096          # §9: top-M vocabulary for the direction cosine is fixed in advance
 
 
 def prefix_sha(prompt_ids, toks) -> str:
@@ -97,6 +103,8 @@ def main() -> int:
 
         base_tokens = generate_greedy(backend, target, args.max_new_tokens)
         if not base_tokens:
+            print(json.dumps({"shard": args.shard_name, "src": row["source_index"],
+                              "skipped": "empty_base_generation"}), flush=True)
             continue
 
         zA, natA, _ = student_positions(backend, steering_cm, target, base_tokens, {}, None,
@@ -126,6 +134,7 @@ def main() -> int:
             prior_dist = None
             cap = caps[t] if t < len(caps) else None
             if cap:
+                key_len = len(prompt_ids) + t
                 tl1, tjsd, nl1, njsd = [], [], [], []
                 per_layer = {}
                 for li in sorted(layers):
@@ -149,9 +158,11 @@ def main() -> int:
                                   "null_l1": sum(nl1) / len(nl1),
                                   "null_jsd": sum(njsd) / len(njsd),
                                   "layers": per_layer,
-                                  "space": "harness pre-mix last-query-row vs _fit_prior(row) at the same key length"}
+                                  "space": "harness pre-mix last-query-row vs _fit_prior(row) "
+                                           "at the same key length"}
 
-            gold = {"available": False, "reason": "generated prefix is not a token-prefix of the gold answer"}
+            gold = {"available": False, "reason": "generated prefix is not a token-prefix of "
+                                                  "the gold answer"}
             if t < len(gold_ids) and list(base_tokens[:t]) == list(gold_ids[:t]):
                 y_g = int(gold_ids[t])
                 gold = {"available": True, "token": y_g,
@@ -203,6 +214,11 @@ def main() -> int:
             arms=["A_base", "C_full_window_teacher", "D_full_window_null", "T_target"],
             sample_ids=sorted({r["canonical_source_id"] for r in records}),
             config_hash=cfg["config_hash"], checkpoint_sha256=cfg["checkpoint_sha256"])
+        print(json.dumps({"shard": args.shard_name, "row": n, "src": row["source_index"],
+                          "positions": len(base_tokens),
+                          "S!=T": sum(1 for r in records
+                                      if r["canonical_source_id"] == sid
+                                      and r["group"] == "S!=T")}), flush=True)
 
     meta = {"shard": args.shard_name, "rows": len(shard_rows), "records": len(records),
             "samples": len({r["canonical_source_id"] for r in records}),
@@ -217,6 +233,9 @@ def main() -> int:
                                       expected_checkpoint_sha256=cfg["checkpoint_sha256"])}
     H.atomic_write_text(out / f"dr_shard_{args.shard_name}_meta.json",
                         json.dumps(meta, ensure_ascii=False, indent=2) + "\n")
+    print(json.dumps({"shard": args.shard_name, "done": True, "records": len(records),
+                      "verify": meta["verify"]["status"],
+                      "wall_seconds": meta["wall_seconds"]}, ensure_ascii=False), flush=True)
     return 0 if meta["verify"]["status"] == "PASS" else 1
 
 

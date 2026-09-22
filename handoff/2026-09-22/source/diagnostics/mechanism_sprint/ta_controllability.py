@@ -160,113 +160,118 @@ def main() -> int:
         r = json.loads(line)
         if "__result_header__" in r:
             continue
-        if r.get("group") in set(args.groups.split(",")):
-            dr_rows.append(r)
+        dr_rows.append(r)
+    groups = [g for g in args.groups.split(",") if g]
+    dr_rows = [r for r in dr_rows if r["group"] in groups]
+    dr_rows.sort(key=lambda r: (int(r["source_index"]), r["position"]))
+    shard = dr_rows[args.shard_lo:args.shard_hi] if args.shard_hi else dr_rows
+    print(json.dumps({"shard": args.shard_name, "positions": len(shard), "groups": groups}),
+          flush=True)
 
-    lo = args.shard_lo
-    hi = args.shard_hi if args.shard_hi > 0 else len(dr_rows)
-    shard = dr_rows[lo:hi]
-    total_planned = len(dr_rows)
-    true = out / "aggregate" / "true_positions.jsonl"
-    if true.exists():
-        true_lines = sum(1 for l in true.open(encoding="utf-8") if l.strip())
-        assert true_lines == total_planned,
-            f"dr population {total_planned} != true positions {true_lines}"
-
-    body = out / f"ta_shard_{args.shard_name}.jsoll"
+    body = out / f"ta_shard_{args.shard_name}.jsonl"
     records: list[dict] = []
     t0 = time.time()
     for n, dr in enumerate(shard):
         sid = dr["canonical_source_id"]
         row = by_id[sid]
+        target = backend.prompt_target(row["prompt"], row["answer"])
+        base_tokens = list(map(int, dr["base_tokens"]))
         t = int(dr["position"])
+        prefix = list(map(int, target.input_ids)) + base_tokens[:t]
         y_T, y_S = int(dr["y_target"]), int(dr["y_base"])
-        prompt_ids = backend.student_tokenizer(row["prompt"], add_special_tokens=False)["input_ids"]
-        prefix = prompt_ids + [int(x) for x in dr["prefix_generated_tokens"]]
-        ids = torch.tensor([prefix], device=backend.device, dtype=torch.long)
+        prior = priors[sid]
+        with torch.no_grad():
+            rs = backend._student_rows(target)
+            mask = torch.tensor(target.attention_mask, device=backend.device)
+            mapped, alpha, _ = backend.adapter(prior.to(backend.device), rs, mask)
+            null_map, null_alpha, _ = backend.adapter(prior.roll(1, dims=-1).to(backend.device),
+                                                      rs, mask)
+        lm, la = maps_for(backend, mapped, alpha)
+        nm, na = maps_for(backend, null_map, null_alpha)
+
+        ids = torch.tensor([prefix], device=backend.device)
         amask = torch.ones_like(ids)
 
-         p = priors[sid]
-        t_target = backend.prompt_target(row["prompt"], row["answer"])
-        with torch.no_grad():
-            rows_s = backend._student_rows(t_target)
-            mapped, alpha, _ = backend.adapter(p.to(backend.device), rows_s,
-                                          torch.tensor(t_target.attention_mask, device=backend.device))
-            null_mapped, null_alpha, _ = backend.adapter(p.roll(1, dims=-1).to(backend.device), rows_s,
-                                                torch.tensor(t_target.attention_mask, device=backend.device))
-        lm = maps_for(backend, mapped.detach()) 
-        la = {L: alpha[i].detach() for i, L in enumerate(backend.student_layers)}
-        nm = maps_for(backend, null_mapped.detach())
-        na = {L: null_alpha[i].detach() for i, L in enumerate(backend.student_layers)}
+        # ---- pass A: frozen full forward (no graph) — exact inputs of the first patched layer
+        cap: dict = {}
 
-        # ---- A2/A3/A4: two-pass gradient measurement
-        # Pass A: frozen FULL Student forward from the token ids.  Capture the
-        # exact inputs to the patched deep layers; this is the definitive base logit value.
-        captured: dict[int, tuple] = {}
+        def pre_hook(module, hargs, hkwargs):
+            cap["h"] = hargs[0].detach().clone()
+            for k in ("attention_mask", "position_ids", "cache_position",
+                      "position_embeddings"):
+                cap[k] = hkwargs.get(k)
+            return None
 
-        hooks = []
-        for idx in range(len(deep)):
-            def mk_hook(i):
-                return lambda _m, inps: captured.setdefault(k,  inps)
-            hooks.append(deep[idx].register_forward_pre_hook(mk_hook(idx))
-        with torch.no_grad():
-            base_out = backend.student(input_ids=ids, attention_mask=amask,
-                                       use_cache=False, output_attentions=False)
-            z_a = base_out.logits[0, -1, :vocab].float()
-            M_alt = float(z_a[y_T] - z_a[y_S])
-        for h in hooks:
-            h.remove()
-         del base_out, z_a
+        handle = deep[0].register_forward_pre_hook(pre_hook, with_kwargs=True)
+        try:
+            with torch.no_grad():
+                oA = backend.student(input_ids=ids, attention_mask=amask, use_cache=False,
+                                     output_attentions=False)
+                z_full = oA.logits[0, -1, :vocab].float().cpu()
+        finally:
+            handle.remove()
+        del oA
+
+        # ---- pass B: only the patched layers carry the autograd graph
+        h = cap["h"].requires_grad_(True)
+        with torch.enable_grad():
+            with steering_diag(backend.student, {}, None, eps, selected_layers=set(layers),
+                               phase="TA_GRAD_DIAG", capture_rows={}) as st:
+                for layer in deep:
+                    h = layer(h, attention_mask=cap["attention_mask"],
+                              position_ids=cap["position_ids"], past_key_values=None,
+                              use_cache=False, cache_position=cap["cache_position"],
+                              position_embeddings=cap["position_embeddings"])
+                h = backbone.norm(h)
+                logits = backend.student.lm_head(h)[0, -1, :vocab].float()
+            z_cpu = logits.detach().cpu()
+            M = logits[y_T] - logits[y_S]
+            M_alt = float(z_cpu[y_T]) - float(z_cpu.clone().index_fill(
+                0, torch.tensor([y_T]), float("-inf")).max())
+            logp_S = float(F.log_softmax(z_cpu, dim=-1)[y_T])
+            M.backward()
+            full_rows = [st.capture_rows[L] for L in layers]      # [1,H,1,K], .grad populated
+            grad_connected = [r.grad is not None for r in full_rows]
+            p_base = [r[0, :, 0, :].detach().float().cpu() for r in full_rows]
+            grads = [torch.zeros_like(p_base[i]) if r.grad is None
+                     else r.grad[0, :, 0, :].detach().float().cpu()
+                     for i, r in enumerate(full_rows)]
+        recon_delta = float((z_cpu - z_full).abs().max())
+        recon_argmax_equal = bool(int(torch.argmax(z_cpu)) == int(torch.argmax(z_full)))
+        grad_diag = {
+            "p_requires_grad": [bool(r.requires_grad) for r in full_rows],
+            "p_grad_present": grad_connected,
+            "p_shapes": [list(r.shape) for r in full_rows],
+            "M_requires_grad": bool(M.requires_grad),
+            "h24_requires_grad": bool(cap["h"].requires_grad),
+            "layers_run": list(range(len(backbone.layers) - len(deep), len(backbone.layers))),
+            "captured_layers": sorted(st.capture_rows.keys()),
+        }
+        del h, logits, z_cpu, full_rows, cap
         torch.cuda.empty_cache()
-
-        # Pass B: patched layers only, with graph enabled.  Their inputs are THE
-        # identical captured tensors from the full frozen forward.  No Student
-        # parameter requires_grad, changes.  This computes the EXACT local Jacobian of
-        # the frozen function above the attention row without keeping all lower-layer
-        # activations in the graph.
-        grad_state = steering_diag.__globals_["_STEERING_STATE_CLS"](
-            layer_to_prior={l: lm[l].to(backend.device) for l in layers},
-            layer_to_alpha={l: la[l].to(backend.device) for l in layers},
-            eps=eps, phase="TA_GRAD_LOCAL", selected_layers=set(layers),
-        )
-        grad_state.capture_rows = {}
-        getattr(steering_diag, itname).__set__(backend.student, grad_state)
-        x = captured[0][0].detach()
-        arg3 = captured[0][1]:]                  # mask / position_ids / cache_position
-        hidden = deep[0].input_layernorm(x)
-        logits_grad = None
-        for i, layer in enumerate(deep):
-            hidden = layer(hidden, *arg3)
-            indexed = len(backbone.layers) - len(layers) + i
-            grad_state.capture_rows[indexed].retain_grad()
-        hidden = backbone.norm(hidden)
-        logits_grad = backend.student.lp_head(hidden)[0, -1, :vocab].float()
-        M = logits_grad[y_T] - logits_grad[y_S]
-        M_keep = float(M.detach())
-        M.backward()
-        grads = [grad_state.capture_rows[L].grad.detach().cpu() for L in layers]
-        grad_connected = [grad_state.capture_rows[L].grad is not None
-                        for L in layers]
-        del grad_state, hidden, logits_grad, M
-        torch.cuda.empty_cache()
-
-        # magnitude sanity vs the frozen full forward; different bf16 kernel launches
-        # can move logits slightly, but the decision and margin must be the same to float resolution.
-        recon_delta = abs(M_keep - M_alt)
-        recon_argmax_equal = True   # asserted by the frozen y_S match below on every row
+        if not all(grad_connected):
+            print(json.dumps({"warning": "gradient not connected", "src": dr["source_index"],
+                              "pos": t, "grad_diag": grad_diag}, default=str), flush=True)
 
         per_layer = {}
         V_T = V_N = V_O = 0.0
         d_T_all, d_N_all, d_O_all = {}, {}, {}
-        for L, g in zip(layers, grads):
-            p = diag["pre_rows"][L]
-            predicted_mix = apply_mix(diag["state"], L, p.to(backend.device), int(p.shape[-1]))[0]
-            actual_T = diag["teacher_mix"][L].to(backend.device)
-            actual_N = diag["null_mix"][L].to(backend.device)
-            assert float((predicted_mix - actual_T).abs().max()) < 1e-5, "Teacher mix reproduce mismatch"
-            budgets = (actual_T - p.to(backend.device)).abs().sum(dim=-1).cpu()
-            d_T = (actual_T - p.to(backend.device)).detach().cpu()
-            d_N = (actual_N - p.to(backend.device)).detach().cpu()
+        for i, L in enumerate(layers):
+            p = p_base[i]
+            g = grads[i]
+            K = p.shape[-1]
+            fake = p.unsqueeze(0).unsqueeze(2)                      # [1,H,1,K]
+
+            def mix_with(maps, alphas):
+                s = type("S", (), {})()
+                s.layer_to_prior, s.layer_to_alpha = maps, alphas
+                s.eps, s.mix_log = eps, []
+                out_mixed = apply_mix(s, L, fake.clone(), K)
+                return out_mixed[0, :, 0, :].float().cpu()
+
+            d_T = mix_with(lm, la) - p
+            d_N = mix_with(nm, na) - p
+            budgets = d_T.abs().sum(dim=-1)
             d_O = torch.stack([oracle_delta_per_head(g[h], p[h], float(budgets[h]))
                                for h in range(p.shape[0])])
             vt = float((g * d_T).sum())

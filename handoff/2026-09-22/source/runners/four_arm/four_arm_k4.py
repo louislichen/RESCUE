@@ -157,6 +157,7 @@ def main() -> int:
                 "condition": arm,
                 "arm": arm,
                 "prompt_len": len(prompt_ids),
+                # --- protocol counters (§11/§12) ---
                 "proposed_draft_tokens": c["proposed_draft_tokens"],
                 "accepted_draft_tokens": c["accepted_draft_tokens"],
                 "correction_tokens": c["correction_tokens"],
@@ -186,11 +187,13 @@ def main() -> int:
                 "draft_prefill_mix_calls": draft.prefill_mix_calls,
                 "draft_decode_mix_calls": draft.decode_mix_calls,
                 "draft_decode_steered_steps": draft.decode_steered_steps,
+                # --- correctness (§10) ---
                 "tokens": spec.token_ids,
                 "target_only_tokens": ref,
                 "matches_target_only_greedy": bool(spec.token_ids == ref),
                 "verify_mode": "incremental",
                 "k": args.k,
+                # --- provenance / integrity (§16) ---
                 "window": pol["window"],
                 "prior_kind": pol["prior"],
                 "target_dtype": args.target_dtype,

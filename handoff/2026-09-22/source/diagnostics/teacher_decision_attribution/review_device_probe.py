@@ -77,6 +77,7 @@ def main() -> int:
     report["hooks"] = hooks
     report["any_offload_hook"] = any(v["hook_offload_flag"] for v in hooks.values())
 
+    # ---- ONE short forward (8 tokens) to record live tensor devices ----
     live: dict = {}
     att24 = model.model.layers[24].self_attn
 
@@ -112,6 +113,7 @@ def main() -> int:
     del o, z
     torch.cuda.empty_cache()
 
+    # ---- controlled minimal reproduction of the failing expression ----
     repro: dict = {"expression": "z.clone().index_fill(0, torch.tensor([y]), float('-inf')) "
                                  "where z is the CUDA logits slice and y is a Python int"}
     with torch.no_grad():
@@ -134,6 +136,7 @@ def main() -> int:
     torch.cuda.empty_cache()
     report["minimal_reproduction"] = repro
 
+    # ---- forward-only graph check on a captured last-query attention row ----
     src = None
     sys.path.insert(0, str(args.harness_root))
     from rescue_harness import harness as H

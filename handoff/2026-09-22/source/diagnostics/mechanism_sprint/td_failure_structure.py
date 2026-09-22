@@ -210,6 +210,7 @@ def main() -> int:
     }
     out.joinpath("conditional_signal_analysis.json").write_text(
         json.dumps(analysis, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # per-position feature table (the scatter source for the required Track-D figure)
     with (out / "failure_structure_positions.csv").open("w", encoding="utf-8",
                                                         newline="") as f:
         w = csv.writer(f)

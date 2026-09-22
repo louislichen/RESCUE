@@ -158,162 +158,171 @@ def main() -> int:
     identity = []
     for k in pop:
         d, t = dr[k], ta.get(k)
+        identity.append({"sample_id": k[0], "position": k[1],
+                         "prefix_sha256": d["prefix_sha256"],
+                         "y_target": d["y_target"], "y_base": d["y_base"],
+                         "track_a_present": t is not None,
+                         "track_a_prefix_sha256": None if t is None else t["prefix_sha256"],
+                         "identity_match": bool(t is not None
+                                                and t["prefix_sha256"] == d["prefix_sha256"]
+                                                and int(t["y_target"]) == int(d["y_target"])
+                                                and int(t["y_base"]) == int(d["y_base"]))})
+    mismatched = [i for i in identity if not i["identity_match"]]
+    shard = pop[args.shard_lo:args.shard_hi] if args.shard_hi else pop
+    samples = []
+    for k in shard:
+        if k[0] not in samples:
+            samples.append(k[0])
+    if args.limit_samples:
+        samples = samples[:args.limit_samples]
+        shard = [k for k in shard if k[0] in samples]
+    print(json.dumps({"shard": args.shard_name, "planned_positions": len(pop),
+                      "shard_positions": len(shard), "samples": len(samples),
+                      "identity_mismatches": len(mismatched)}), flush=True)
 
-        ok = t is not None
-        if ok:
-            ok = (t["prefix_sha256"] == d["prefix_sha256"] and
-                  int(t["y_target"]) == int(d["y_target"]) and
-                  int(t["y_base"]) == int(d["y_base"]))
-        identity.append({"local": k, "matched": bool(ok)})
-    mismatched = [x for x in identity if not x["matched"]]
-    if mismatched:
-        raise RuntimeError(f"Track-A identity mismatches: {mismatched[:5]}")
-    if args.limit_samples > 0:
-        pop = pop[:args.limit_samples]
+    rows_src = runner_mod.load_rows(Path(args.validation_ledger), Path(args.dataset_path))
+    by_id = {r["canonical_source_id"]: r for r in rows_src}
 
-    # build teacher attn  ||V|| priors and instrument the Student
-    r1_priors = {}
-    records = []
+    body = out / f"r1_shard_{args.shard_name}.jsonl"
+    records: list[dict] = []
+    r1_priors: dict = {}
     t0 = time.time()
-    for n, k in enumerate(pop):
-        d = dr[k]
-        sid, t = k
-        row = {r ["canonical_source_id"]: r for r in runner_mod.load_rows(
-            Path(args.validation_ledger), Path(args.dataset_path))}[sid]
-        prompt_ids = backend.student_tokenizer(row["prompt"], add_special_tokens=False)["input_ids"]
-        prefix = prompt_ids + [int(x) for x in d["prefix_generated_tokens"]]
-        ids = torch.tensor([prefix], device=backend.device, dtype=torch.long)
-        amask = torch.ones_like(ids)
-        y_T, y_S = int(d["y_target"]), int(d["y_base"])
-        key = f"{sid}|{t}"
-
-        # frozen student rows, R0 and null priors
-        t_target = backend.prompt_target(row["prompt"], row["answer"])
-        with torch.no_grad():
-            rows_s = backend._student_rows(t_target)
-            p = prior_cache[sid].to(backend.device)
-            mapped, alpha, _ = backend.adapter(p, rows_s,
-                                         torch.tensor(t_target.attention_mask, device=backend.device))
-            nm, na, _ = backend.adapter(p.roll(1, dims=-1), rows_s,
-                                torch.tensor(t_target.attention_mask, device=backend.device))
-
-        # R1 prior from Teacher attention × ||V||, then the unchanged frozen projection + Adapter
-        vnorms = {}
-        hooks = []
-        for lyr in model.model.layers:
-            if int(lyr.self_attn.layer_idx) in teacher_layers:
-                hooks.append(lyr.self_attn.register_forward_hook(v_hook(vnorms), with_kwargs=True))
-        t_text = backend.student_tokenizer.decode(prefix, skip_special_tokens=False)
-        with qwen2_teacher_row_observer(model, teacher_layers) as t_cap:
-            with torch.inference_mode():
-                enc = teacher_tok(t_text, return_tensors="pt", add_special_tokens=False)
-                enc = {kk: vv.to(device) for kk, vv in enc.items()}
-                _out = model(**enc, use_cache=False, output_attentions=False)
-        for h in hooks:
-            h.remove()
-        if set(v_horms) != set(teacher_layers):
-            raise RuntimeError(f"missing vnorm layers {set(teacher_layers) - set(v_horms)}")
-        teacher_explicit = []
-        student_offsets = RHT._tokenize_with_offsets(student_tok, t_text)[2]
-        student_len = len(student_offsets)
-        for L in teacher_layers:
-            pre_t = t_cap["attn"][L].to(torch.float32)
-            vm = vnorms[L].to(torch.float32)
-            if pre_t.shape != vm.shape:
-                raise RuntimeError(f"vnorm shape {vm.shape} != attn shape {pre_t.shape}")
-            raw_r1 = pre_t * vm
-            # The Teacher observer row is already projected onto Student keys; vnorm
-            # is on the Teacher support, so project the reweighted row explicitly.
-            # No new projection rule is introduced — this uses the same frozen code.
-            # The observer does not expose the Teacher offsets, so compute them once as the
-            # frozen projection does.
-            _, t_offsets, _ = RHT._tokenize_with_offsets(teacher_tok, t_text)
-            projected = RHT.project_teacher_heads_to_student(
-                raw_r1, t_offsets, student_offsets, backend.eps[form())
-            projected = fit_prior(projected, student_len, backend.eps)
-            teacher_explicit.append(projected)
-        projected_r1 = torch.stack(teacher_explicit, dim=0).to(backend.device)
-        with torch.no_grad():
-            m1, a1, _ = backend.adapter(projected_r1, rows_s,
-                                       torch.tensor(t_target.attention_mask, device=backend.device))
-        save_key = f"{sid}|{t}"
-        r1_priors[save_key] = m1.detach().cpu()
-
-        # single Student base forward + captured deep layer inputs
-        captured = {}
-        hooks = []
-        for idx in range(len(deep)):
-            def mk(i):
-                return lambda _m, inps: captured.setdefault(i, inps)
-            hooks.append(deep[idx].register_forward_pre_hook(mkh(idx))
-        with torch.no_grad():
-            obj = backend.student(input_ids=ids, attention_mask=amask, use_cache=False,
-                                  output_attentions=False)
-            z = obj.logits[0, -1, :vocab].float().cpu()
-        for h in hooks:
-            h.remove()
-        del obj, z
-
-        grad_state = steering_diag.__globals_["_STEERING_STATE_CLS"](
-            layer_to_prior={l: maps_for(backend, mapped.detach())[l].to(backend.device)
-                         for l in layers},
-            layer_to_alpha={l: alpha[i].to(backend.device) for i, l in enumerate(layers)},
-            eps=eps, phase="R1_GRAD_LOCAL", selected_layers=set(layers))
-        grad_state.capture_rows = {}
-        getattr(steering_diag, mname).__set__(backend.student, grad_state)
-        x = captured[0][0].detach()
-        args_dest = captured[0][1:]
-        hidden = deep[0].input_layernorm(x)
-        for i, layer in enumerate(deep):
-            hidden = layer(hidden, *args_dest)
-            idx = len(backbone.layers) - len(layers) + i
-            grad_state.capture_rows[idx].retain_grad()
-        hidden = backbone.norm(hidden)
-        logits_grad = backend.student.lm_head(hidden)[0, -1, :vocab].float()
-        M = logits_grad[y_T] - logits_grad[y_S]
-        M_keep = float(M.detach())
-        M.backward()
-        grads = [grad_state.capture_rows[L].grad.detach().cpu() for L in layers]
-        grad_ok = [grad_state.capture_rows[L].grad is not None for L in layers]
-        del grad_state, hidden, logits_grad, M
+    for si, sid in enumerate(samples):
+        row = by_id[sid]
+        prompt = row["prompt"]
+        target = backend.prompt_target(prompt, row["answer"])
+        # ---- build the R1 mapped prior for this sample (one frozen teacher pass) ----
+        t_enc, t_off = RHT.encode_with_offsets(teacher_tok, prompt, device=None)
+        _, s_off = RHT.encode_with_offsets(student_tok, prompt, device=None)
+        acaps, vstore = {}, {}
+        handles = [model.model.layers[L].self_attn.register_forward_hook(v_hook(vstore),
+                                                                        with_kwargs=True)
+                   for L in teacher_layers]
+        try:
+            t_ids = t_enc["input_ids"].to(device)
+            with torch.no_grad():
+                with qwen2_teacher_row_observer(model.model, teacher_layers, acaps):
+                    _ = model(input_ids=t_ids, attention_mask=torch.ones_like(t_ids),
+                              use_cache=False)
+            del _
+        finally:
+            for h in handles:
+                h.remove()
         torch.cuda.empty_cache()
-
-        # Reconstruction check vs the base logits is the same diagnostic structure as the mechanism sprint.
-        stock_was_training = backend.student.training
-        backend.student.eval()
+        r1_layers = []
+        for L in teacher_layers:
+            a, v = acaps.get(L), vstore.get(L)
+            if a is None or v is None:
+                continue
+            a = a.float()
+            n = min(a.shape[-1], v.shape[-1])
+            r1 = a[:, :n] * v[:, :n]
+            r1 = r1 / r1.sum(dim=-1, keepdim=True).clamp_min(eps)
+            r1_layers.append(r1)
+        R1 = torch.stack(r1_layers, 0)
+        proj1 = torch.stack([RHT.project_teacher_heads_to_student(R1[li], t_off, s_off, eps)
+                             for li in range(R1.shape[0])], 0)
         with torch.no_grad():
-            x0 = captured[0][0].detach()
-            h1 = deep[0].input_layernorm(x0)
-            for layer in deep:
-                h1 = layer(h1, *args_dest)
-            h1 = backbone.norm(h1)
-            z_rec = backend.student.lm_head(h1)[0, -1, :vocab].float().cpu()
-        recon = float(1z_rec - z_base).abs().max())
-        backend.student.train(stock_was_training)
+            rs_rows = backend._student_rows(target)
+            smask = torch.tensor(target.attention_mask, device=backend.device)
+            prior = prior_cache[sid]
+            mapped_R0, alpha, _ = backend.adapter(prior.to(backend.device), rs_rows, smask)
+            null_R0, null_alpha, _ = backend.adapter(prior.roll(1, dims=-1).to(backend.device),
+                                                     rs_rows, smask)
+            mapped_R1, alpha_R1, _ = backend.adapter(proj1.to(backend.device), rs_rows, smask)
+        lm0, la0 = maps_for(backend, mapped_R0, alpha)
+        lm1, la1 = maps_for(backend, mapped_R1, alpha_R1)
+        nm, na = maps_for(backend, null_R0, null_alpha)
+        if args.save_r1_priors:
+            r1_priors[sid] = {str(L): mapped_R1[i].detach().float().cpu()
+                              for i, L in enumerate(layers)}
+        print(json.dumps({"shard": args.shard_name, "sample": si, "src": row["source_index"],
+                          "alpha_equal": bool(torch.allclose(alpha, alpha_R1, atol=1e-6))}),
+              flush=True)
 
-        lm0 = maps_for(backend, mapped.detach())
-        la0 = {L: alpha[i].detach() for i, L in enumerate(layerr)}
-        lm1 = maps_for(backend, m1.detach())
-        la1 = {L: a1[i].detach() for i, L in enumerate(layers)}
-        nm = maps_for(backend, nm.detach())
-        na = {L: na[i].detach() for i, L in enumerate(layerr)}
+        for k in [x for x in shard if x[0] == sid]:
+            d = dr[k]
+            t = int(k[1])
+            base_tokens = list(map(int, d["base_tokens"]))
+            prefix = list(map(int, target.input_ids)) + base_tokens[:t]
+            y_T, y_S = int(d["y_target"]), int(d["y_base"])
+            ids = torch.tensor([prefix], device=backend.device)
+            amask = torch.ones_like(ids)
 
-        per_layer = {}
-        dirs = {}
-        for L, g in zip(layers, grads):
-            p = diag["pre_rows"][L]
-            def mix_with(maps, the_alpha):
-                st = steering_diag.__globals_["_STEERING_STATE_CLS"](
-                    layer_to_prior={L: maps[L].to(backend.device)},
-                    layer_to_alpha={L: the_alpha[L].to(backend.device)}, eps=eps,
-                    phase="R1_MIX_PROBE", selected_layers={L}, mix_log=[])
-                out_mixed = apply_mix(st, L, p.to(backend.device).unsqueeze(0), int(p.shape[-1]))
-                return out_mixed[0, :, 0, :].float().cpu()
+            # pass A: frozen full forward (no graph)
+            cap: dict = {}
+
+            def pre_hook(module, hargs, hkwargs):
+                cap["h"] = hargs[0].detach().clone()
+                for kk in ("attention_mask", "position_ids", "cache_position",
+                           "position_embeddings"):
+                    cap[kk] = hkwargs.get(kk)
+                return None
+
+            handle = deep[0].register_forward_pre_hook(pre_hook, with_kwargs=True)
+            try:
+                with torch.no_grad():
+                    oA = backend.student(input_ids=ids, attention_mask=amask, use_cache=False,
+                                         output_attentions=False)
+                    z_full = oA.logits[0, -1, :vocab].float().cpu()
+            finally:
+                handle.remove()
+            del oA
+
+            # pass B: patched layers only, with graph
+            h = cap["h"].requires_grad_(True)
+            with torch.enable_grad():
+                with steering_diag(backend.student, {}, None, eps,
+                                   selected_layers=set(layers), phase="R1_GRAD",
+                                   capture_rows={}) as st:
+                    for layer in deep:
+                        h = layer(h, attention_mask=cap["attention_mask"],
+                                  position_ids=cap["position_ids"], past_key_values=None,
+                                  use_cache=False, cache_position=cap["cache_position"],
+                                  position_embeddings=cap["position_embeddings"])
+                    h = backbone.norm(h)
+                    logits = backend.student.lm_head(h)[0, -1, :vocab].float()
+                z_base = logits.detach().cpu()
+                M = float(logits[y_T] - logits[y_S])
+                logp_base = logprob_of(logits.detach(), y_T)
+                (logits[y_T] - logits[y_S]).backward()
+                full_rows = [st.capture_rows[L] for L in layers]
+                grad_ok = [r.grad is not None for r in full_rows]
+                p_base = [r[0, :, 0, :].detach().float().cpu() for r in full_rows]
+                grads = [torch.zeros_like(p_base[i]) if r.grad is None
+                         else r.grad[0, :, 0, :].detach().float().cpu()
+                         for i, r in enumerate(full_rows)]
+            recon = float((z_base - z_full).abs().max())
+            del h, logits, full_rows, cap
+            torch.cuda.empty_cache()
+
+            # the frozen parent definition of the Target correction direction
+            with torch.no_grad():
+                oT = model(input_ids=ids, attention_mask=amask, use_cache=False)
+                z_target = oT.logits[0, -1, :vocab].float().cpu()
+            del oT
+            torch.cuda.empty_cache()
+            d_target = z_target - z_base
+            y_T_recomputed = int(torch.argmax(z_target).item())
+            del z_target
+
+            per_layer, dirs = {}, {}
+            for i, L in enumerate(layers):
+                p, g = p_base[i], grads[i]
+                K = p.shape[-1]
+                fake = p.unsqueeze(0).unsqueeze(2)
+
+                def mix_with(maps, alphas):
+                    s = type("S", (), {})()
+                    s.layer_to_prior, s.layer_to_alpha = maps, alphas
+                    s.eps, s.mix_log = eps, []
+                    out_mixed = apply_mix(s, L, fake.clone(), K)
+                    return out_mixed[0, :, 0, :].float().cpu()
 
                 d0 = mix_with(lm0, la0) - p
                 d1 = mix_with(lm1, la1) - p
                 dn = mix_with(nm, na) - p
-                dirs[L] = {"R1": d1, "R0": d0, "NULL": dn}
+                dirs[L] = {"R0": d0, "R1": d1, "NULL": dn}
                 per_layer[str(L)] = {
                     "d1_R0_l1": float(d0.abs().sum()), "d1_R1_l1": float(d1.abs().sum()),
                     "d1_Null_l1": float(dn.abs().sum()),
@@ -327,7 +336,7 @@ def main() -> int:
                 delta = {L: dirs[L][arm] for L in layers}
                 with torch.no_grad():
                     with steering_delta(backend.student, delta, None, eps,
-                                       selected_layers=set(layers), phase=f"R1_{arm}") as st2:
+                                        selected_layers=set(layers), phase=f"R1_{arm}") as st2:
                         o2 = backend.student(input_ids=ids, attention_mask=amask,
                                              use_cache=True, output_attentions=False)
                     z_a = o2.logits[0, -1, :vocab].float().cpu()
@@ -360,37 +369,67 @@ def main() -> int:
                 "framework": "single full-prefix forward, intervention at the last query row "
                              "(same framing as the Track-A Oracle baseline)",
                 "arms": arm_out,
-                "V_first_order": {a: sum(per_layer[str(L)][f"V_{a}"] for L in layers)for a in ("R0", "R1", "Null")},
-                "l1_first_order": {a: sum(per_layer[str(L)][f"d1_{a}_l1"] for L in layers) for a in ("R0", "R1", "Null")},
+                "V_first_order": {a: sum(per_layer[str(L)][f"V_{a}"] for L in layers)
+                                  for a in ("R0", "R1", "Null")},
+                "l1_first_order": {a: sum(per_layer[str(L)][f"d1_{a}_l1"] for L in layers)
+                                   for a in ("R0", "R1", "Null")},
                 "layers": per_layer,
                 "track_a": {"present": bool(k in ta),
                             "M_base": None if k not in ta else ta[k]["M_base"],
-                           "V_teacher": None if k not in ta else ta[k]["V_teacher"],
+                            "V_teacher": None if k not in ta else ta[k]["V_teacher"],
                             "V_null": None if k not in ta else ta[k]["V_null"],
-                           "V_oracle": None if k not in ta else ta[k]["V_oracle"],
-                            "teacher_efficiency": None if k not in ta else ta[k]["teacher_efficiency"],
-                            "null_efficiency": None if k not in ta else ta[k]["N_efficiency"],
-                           "oracle_l1_total": None if k not in ta else ta[k]["oracle_l1_total"],
+                            "V_oracle": None if k not in ta else ta[k]["V_oracle"],
+                            "teacher_efficiency": None if k not in ta
+                            else ta[k]["teacher_efficiency"],
+                            "null_efficiency": None if k not in ta else ta[k]["null_efficiency"],
+                            "oracle_l1_total": None if k not in ta else ta[k]["oracle_l1_total"],
                             "prefix_sha256": None if k not in ta else ta[k]["prefix_sha256"]},
-                "dr_reference": {"dM_teacher_R0_incremental": d["hdM"],
-                                 "dlogp_T_teacher_R0_incremental": d["dlogp_teacher"],
-                                 "cos_teacher_R0_incremental": d["cos_dt"],
-                                   "dM_null_incremental": d["dM_null"],
-                                   "cos_null_incremental": d["cos_null"],
-                                 "note": "parent diagnostic framing (prefill + steered decode); reused as an external cross-check, not as the paired baseline"},
-                "alpha_R0_mean": float(alpha.mean()), "alpha_R1_mean": float(a1_mean),
-                "run_config_hash": cfg["config_hash"], "checkpoint_sha256": cfg["checkpoint_sha256"], "shard": args.shard_name}
+                "dr_reference": {"dM_teacher_R0_incremental": d["dM_teacher"],
+                                 "dlogp_T_teacher_R0_incremental": d["dlogp_T_teacher"],
+                                 "cos_teacher_R0_incremental": d["cos_teacher"],
+                                 "dM_null_incremental": d["dM_null"],
+                                 "cos_null_incremental": d["cos_null"],
+                                 "note": "parent diagnostic framing (prefill + steered decode); "
+                                         "reused as an external cross-check, not as the paired "
+                                         "baseline"},
+                "alpha_R0_mean": float(alpha.mean()), "alpha_R1_mean": float(alpha_R1.mean()),
+                "run_config_hash": cfg["config_hash"],
+                "checkpoint_sha256": cfg["checkpoint_sha256"], "shard": args.shard_name,
+            }
             records.append(rec)
-            H.write_result_envelope(body, task_id="RESCUE-R1-VALUE-NORM-DECISION-ALIGNMENT-PILOT-001", stage="r1_decision_alignment", records=records, arms=["decision_position"], sample_ids=sorted({r["canonical_source_id"] for r in records}), config_hash=cfg["config_hash"], checkpoint_sha256=cfg["checkpoint_sha256"])
-            print(json.dumps({"shard": args.shard_name, "pos": len(records), "src": d["source_index"], "t": t, "dM_R0": round(arm_out["R1"]["M"] - M, 5), "dM_R1": round(arm_out["R1"]["M"] - M, 5), "dM_Null": round(arm_out["NULL"]["M"] - M, 5), "V_R1": round(rec["V_first_order"]["R1"], 5), "flip1": arm_out("R1")["flip_to_target"]}), flush=True)
+            H.write_result_envelope(
+                body, task_id="RESCUE-R1-VALUE-NORM-DECISION-ALIGNMENT-PILOT-001",
+                stage="r1_decision_alignment", records=records, arms=["decision_position"],
+                sample_ids=sorted({r["canonical_source_id"] for r in records}),
+                config_hash=cfg["config_hash"], checkpoint_sha256=cfg["checkpoint_sha256"])
+            print(json.dumps({"shard": args.shard_name, "pos": len(records), "src": d["source_index"],
+                              "t": t, "dM_R0": round(arm_out["R0"]["M"] - M, 5),
+                              "dM_R1": round(arm_out["R1"]["M"] - M, 5),
+                              "dM_Null": round(arm_out["NULL"]["M"] - M, 5),
+                              "V_R1": round(rec["V_first_order"]["R1"], 5),
+                              "flip1": arm_out["R1"]["flip_to_target"]}), flush=True)
             del p_base, grads, dirs, st
 
-    H.write_result_envelope(body, task_id="RESCUE-R1-VALUE-NORM-DECISION-ALIGNMENT-PILOT-001", stage="r1_decision_alignment", records=records, arms=["decision_position"], sample_ids=sorted({r["canonical_source_id"] for r in records}), config_hash=cfg["config_hash"], checkpoint_sha256=cfg["checkpoint_sha256"])
+    H.write_result_envelope(
+        body, task_id="RESCUE-R1-VALUE-NORM-DECISION-ALIGNMENT-PILOT-001",
+        stage="r1_decision_alignment", records=records, arms=["decision_position"],
+        sample_ids=sorted({r["canonical_source_id"] for r in records}),
+        config_hash=cfg["config_hash"], checkpoint_sha256=cfg["checkpoint_sha256"])
     if args.save_r1_priors and r1_priors:
         torch.save(r1_priors, args.save_r1_priors)
-    meta = {"shard": args.shard_name, "planned_positions": len(pop), "positions": len(records), "samples": len(samples), "identity_mismatches": len(mismatched), "identity": identity, "teacher_layers": teacher_layers, "target_device_map": dmap, "wall_seconds": round(time.time() - t0, 1), "body": str(body), "body_sha256": sha256_file(body), "verify": H.verify_result(body, expected_config_hash=cfg["config_hash"], expected_checkpoint_sha256=cfg["checkpoint_sha256"])}
-    H.atomic_write_text(out / f"r1_shard_{args.shard_name}_meta.json", json.dumps(meta, ensure_ascii=False, indent=2, default=str) + "\n")
-    print(json.dumps({"shard": args.shard_name, "done": True, "positions": len(records), "verify": meta["verify"]["status"], "wall_seconds": meta["wall_seconds"]}, ensure_ascii=False), flush=True)
+    meta = {"shard": args.shard_name, "planned_positions": len(pop),
+            "positions": len(records), "samples": len(samples),
+            "identity_mismatches": len(mismatched), "identity": identity,
+            "teacher_layers": teacher_layers, "target_device_map": dmap,
+            "wall_seconds": round(time.time() - t0, 1), "body": str(body),
+            "body_sha256": sha256_file(body),
+            "verify": H.verify_result(body, expected_config_hash=cfg["config_hash"],
+                                      expected_checkpoint_sha256=cfg["checkpoint_sha256"])}
+    H.atomic_write_text(out / f"r1_shard_{args.shard_name}_meta.json",
+                        json.dumps(meta, ensure_ascii=False, indent=2, default=str) + "\n")
+    print(json.dumps({"shard": args.shard_name, "done": True, "positions": len(records),
+                      "verify": meta["verify"]["status"],
+                      "wall_seconds": meta["wall_seconds"]}, ensure_ascii=False), flush=True)
     return 0 if meta["verify"]["status"] == "PASS" else 1
 
 

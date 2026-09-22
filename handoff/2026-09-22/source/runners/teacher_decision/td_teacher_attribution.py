@@ -162,8 +162,11 @@ def main() -> int:
     ap.add_argument("--shard-lo", type=int, default=0)
     ap.add_argument("--shard-hi", type=int, default=0)
     ap.add_argument("--shard-name", default="t0")
-    ap.add_argument("--gpu-total-mib", type=float, default=11264.0)
+    ap.add_argument("--smoke", action="store_true")
+    ap.add_argument("--framing-check", action="store_true")
+    ap.add_argument("--observer-check", action="store_true")
     ap.add_argument("--abort-vram-fraction", type=float, default=0.90)
+    ap.add_argument("--gpu-total-mib", type=int, default=11264)
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
@@ -174,23 +177,50 @@ def main() -> int:
     backend_mod, runner_mod, steering = load_modules(H, args.source_dir, args.source_lock)
     sys.path.insert(0, str(Path(args.k4_dir).resolve()))
     sys.path.insert(0, str(args.source_lock))
-    import run_hotpot_attn_transfer as RHT  # noqa: E402
-    import real_k4_runner
-    from transformers import AutoTokenizer
-    from transformers.models.qwen2.modeling_qwen2 import repeat_kv
+    import run_hotpot_attn_transfer as RHT
     from steering import qwen2_teacher_row_observer
 
-    # instrumented steering source -- capture only; prior map stays empty
+    backend = build_backend(backend_mod, args, steering)
+    eps = backend.eps
+    vocab = int(backend.student.config.vocab_size)
+    model, tdev, dmap = __import__("real_k4_runner").build_target(args)
+    vocab = min(vocab, int(model.config.vocab_size))
+    tlayers = list(RHT.selected_layer_indices(int(model.config.num_hidden_layers),
+                                              TEACHER_LAYER_SCOPE))
+    tblocks = model.model.layers
+    deep = tblocks[len(tblocks) - len(tlayers):]
+    if [int(i) for i in range(len(tblocks) - len(tlayers), len(tblocks))] != tlayers:
+        raise SystemExit("teacher layer scope is not the frozen last_4_layers")
+
+    pop_all = json.loads(Path(args.population).read_text(encoding="utf-8"))
+    pop_rows = pop_all["rows"]
+    sel, set_spec = select_positions(pop_rows, args.set_name, args.positions_set)
+    if args.shard_hi:
+        sel = sel[args.shard_lo:args.shard_hi]
+    elif args.shard_lo:
+        sel = sel[args.shard_lo:]
+
+    # ---- in-memory diagnostic source diffs (frozen tree untouched)
     src = H.STEERING_SOURCE
     if src.count(DETACH_LINE) != 1:
-        raise RuntimeError("steering capture line missing/duplicated")
-    diag_src = src.replace(DETACH_LINE, GRAQH_LINES)
+        raise RuntimeError("steering source no longer contains the expected capture line")
+    diag_src = src.replace(DETACH_LINE, GRAPH_LINES)
     if diag_src.count(MIX_CALL) != 1:
-        raise RuntimeError("steering mix call missing/duplicated")
+        raise RuntimeError("steering source no longer contains the expected mix call")
     delta_src = diag_src.replace(MIX_CALL, DELTA_CALL) + DELTA_HELPER
-    diff = {"capture": {"from": DETACH_LINE, "to": GRAPH_LINES.replace("\n", "\\n")},
-            "diagnostic_delta": {"from": MIX_CALL, "to": DELTA_CALL},
-            "frozen_file_modified": False, "frozen_steering_sha256": sha256_file(Path(args.source_lock) / "steering.py")}
+    diff = {
+        "capture": {"from": DETACH_LINE, "to": GRAPH_LINES.replace("\n", "\\n"),
+                    "why": "autograd.grad on the indexed view returns None in this graph; "
+                           "retain_grad()+backward() on the full row tensor is the working "
+                           "mechanism (verified earlier in this project)"},
+        "teacher_oracle_application": {"from": MIX_CALL, "to": DELTA_CALL,
+                                       "helper": "_apply_delta"},
+        "capture_mode_prior_map": "empty ({}) -> _apply_mix is never reached; the attention "
+                                  "value path is the frozen one, only the row is captured",
+        "frozen_file_modified": False,
+        "frozen_steering_sha256": sha256_file(Path(args.source_lock) / "steering.py"),
+        "note": "in-memory only; every numeric operation of the accepted steering is unchanged",
+    }
 
     def build(text):
         return H.build_steering_context(text, {"contextlib": __import__("contextlib"),
@@ -201,187 +231,322 @@ def main() -> int:
     steering_diag = build(diag_src)
     steering_delta = build(delta_src)
 
-    backend = build_backend(backend_mod, args, steering)
-    layers = sorted(backend.student_layers)
-    eps = backend.eps
-    vocab_s = int(backend.student.config.vocab_size)
-    backbone = backend.student.model
-    deep = backbone.layers[len(backbone.layers) - len(layers):]
-
-    # target/Teacher on all 4 cards, the accepted bf16 policy
-    t_args = argparse.Namespace(teacher_model=args.teacher_model,
-                                target_dtype="bfloat16",
-                                target_max_memory=args.target_max_memory)
-    model, t_device, dmap = real_k4_runner.build_target(t_args)
-    vocab = min(vocab_s, int(model.config.vocab_size))
-    t_layers: list[int] = list(RHT.selected_layer_indices(int(model.config.num_hidden_layers),
-                                                  TEATHER_LAYER_SCOPE))
-    t_tok = AutoTokenizer.from_pretrained(args.teacher_model, local_files_only=True, use_fast=True)
-    s_tok = backend.student_tokenizer
-
-    # rows / priors / population
-    rows_src = runner_mod.load_rows(Path(args.validation_ledger), Path(args.dataset_path))
-    by_sid = {r["canonical_source_id"]: r for r in rows_src}
-    prior_cache = torch.load(Path(args.validation_prior_cache), map_location="cpu", weights_only=True)
-
-    pop_all = []
-    for line in Path(args.population).read_text(encoding="utf-8").splitlines():
-        if line.strip():
-            r = json.loads(line)
-            if "__result_header__" not in r and r["group"] == "S!=T":
-                pop_all.append(r)
-    sel, set_spec = select_positions(pop_all, args.set_name, args.positions_set)
-    lo = args.shard_lo
-    hi = args.shard_hi if args.shard_hi > 0 else len(sel)
-    sel = sel[lo:hi]
-
-    scores_path = out / f"td_scores_{args.shard_name}.pt"
     body = out / f"td_teacher_rows_{args.shard_name}.jsonl"
-    records = []
-    raw = {}
+    scores_path = out / f"td_scores_{args.shard_name}.pt"
+    raw: dict = {}
+    if scores_path.exists():
+        raw = torch.load(scores_path, map_location="cpu", weights_only=False)
+    records: list[dict] = []
     t_shard = time.time()
 
     def peak_mib():
-        return {str(i): round(torch.cuda.max_memory_allocated(i) / (1024 * 1024), 1)
+        return {i: round(torch.cuda.max_memory_allocated(i) / (1024 * 1024), 1)
                 for i in range(torch.cuda.device_count())}
 
     for n, r in enumerate(sel):
-        sid, t = r["sample_id"], int(r["position"])
-        row = by_sid[sid]
-        p_ids = s_tok(row["prompt"], add_special_tokens=False)["input_ids"]
-        prefix = p_ids + [int(x) for x in r["prefix_generated_tokens"]]
-        L = len(prefix)
-        sha = prefix_sha(p_ids, r["prefix_generated_tokens"])
-        if L != int(r["prefix_len"]) or sha != r["prefix_sha256"]:
-            raise RuntimeError(f"prefix identity drift {sid} {t}")
-        y_T, y_S = int(r["y_target"]), int(r["y_base"])
-        if y_T == y_S:
-            raisYIS = RuntimeError("selection included an S=T position")
-        t_text = s_tok.decode(prefix, skip_special_tokens=False)
+        sid = r["sample_id"]
+        t = int(r["position"])
+        ids = [int(x) for x in r["prefix_token_ids"]]
+        L = len(ids)
+        pt = L - t
+        sha = prefix_sha(ids[:pt], ids[pt:])
+        if sha != r["prefix_sha256"]:
+            raise SystemExit(f"prefix identity failed for {sid} pos {t}: {sha}")
+        y_T, y_S = int(r["y_T"]), int(r["y_S"])
+        froz = r["student_local_oracle_identity"]
+        budgets = {int(k): [float(x) for x in v]
+                   for k, v in froz["per_layer_budget_l1"].items()}
+        budget_T = {lay: (sum(budgets[lay]) / len(budgets[lay])) for lay in tlayers}
 
-        # The frozen Teacher top-1 must be recomputed and exactly match y_T before any attribution.
-        with torch.inference_mode():
-            enc = t_tok(t_text, return_tensors="pt", add_special_tokens=False)
-            enc = {k: v.to(t_device) for k, v in enc.items()}
-            z_full = model(**enc, use_cache=False, output_attentions=False).logits[0, -1, :vocab].float().detach()
-            t_top1 = int(torch.argmax(z_full¤¹¥Ñ•´ ¤¤(€€€€€€€€€€€5}Q}™Õ±°€ô™±½…Ð¡é}™Õ±±må}Qt€´é}™Õ±±må}Mt¤(€€€€€€€¥˜Ñ}Ñ½ÀÄ€„ôå}Pè(€€€€€€€€€€€É…¥Í”IÕ¹Ñ¥µ•ÉÉ½È¡˜‰ÍÑ½¬Q•…¡•ÈÑ½À´ÄíÑ}Ñ½ÀÅô€„ô™É½é•¸å}Píå}Qô…ÐíÍ¥‘ôíÑôˆ¤(€€€€€€€±½Á}‰…Í”€ô™±½…Ð¡¹±½}Í½™Ñµ…à¡é}™Õ±°¹ÁÔ ¤°‘¥´ô´Ä¥må}Qt¤(€€€€€€€‘•°é}™Õ°(€€€€€€€Ñ½É ¹Õ‘„¹•µÁÑå}…¡” ¤((€€€€€€€ÁÉ”€ôÁÉ¥½É}…¡•mÍ¥‘t¹Ñ¼¡Ñ½É ¹™±½…ÐÌÈ¤€€ŒmP°!Ð°-tÁÉ½©•Ñ•Q•…¡•ÈÁÉ½ˆÉ½ÝÌ(€€€€€€€€ŒUMP€ôÁÉ”¥Ì…±É•…‘äÁÉ½©•Ñ•Ñ¼MÑÕ‘•¹Ð­•åÌ°‰ÕÐ…ÑÑÉ¥‰ÕÑ¥½¸µÕÍÐ‰”½µÁÕÑ•(€€€€€€€€Œ½¸Q•…¡•ÈÁÉ½‰Ì‰•™½É”Ñ¡”¡…¹”½˜Ñ½­•¹¥é•ÈÍÁ…”¸€A•Èµ!•…0Ä‰Õ‘•ÑÌ½µ”™É½´Ñ¡”(€€€€€€€€ŒÁÉ½©•Ñ•É½ÝÌ°Ý¡¥ Ý…Ì…±Í¼¡½ÜÑ¡”MÑÕ‘•¹Ð=É…±”‰Õ‘•ÐÝ…Ì‘•™¥¹•¸(€€€€€€€Ñ}ÁÉ½¨€ôÁÉ”(€€€€€€€P€ôÑ}ÁÉ½¨¹Í¡…Á•lÁt(€€€€€€€!Ð€ôÑ}ÁÉ½¨¹Í¡…Á•lÅt(€€€€€€€,€ôÑ}ÁÉ½¨¹Í¡…Á•lÉt(€€€€€€€Í½É•}É½ÝÌ€ômt(€€€€€€€Ñ±…å•ÉÌ€ômt(€€€€€€€™É••}‰•™½É”€ôíÍÑÈ¡¤¤èÉ½Õ¹¡Ñ½É ¹Õ‘„¹µ•µ}•Ñ}¥¹™¼¡¤¥lÁt€¼€ ÄÀÈÐ€¨€ÄÀÈÐ¤°€Ä¤(€€€€€€€€€€€€€€€€€€€€€€€€™½È¤¥¸É…¹”¡Ñ½É ¹Õ‘„¹‘•Ù¥•}½Õ¹Ð ¤¥ô(€€€€€€€™½È¤¥¸É…¹”¡Ñ½É ¹Õ‘„¹‘•Ù¥•}½Õ¹Ð ¤¤è(€€€€€€€€€€€Ñ½É ¹Õ‘„¹É•Í•Ñ}Á•…­}µ•µ½Éå}ÍÑ…ÑÌ9¤¤((€€€€€€€€ŒA…ÍÌ€´´™É½é•¸™Õ±°Q•…¡•È™½ÉÝ…ÉÕ¹‘•È¹½}É…€¬•á…Ð…ÁÑÕÉ”¥¹ÁÕÑÌÑ¼±…å•È´ÈÐ¸(€€€€€€€Ñ}„€ôÑ¥µ”¹Ñ¥µ” ¤(€€€€€€€…ÁÑÕÉ•€ôíô(€€€€€€€‘•˜…ÁÑÕÉ•}ÁÉ”¡µ½‘Õ±”°¥¹ÁÕÑÌ¤è(€€€€€€€€€€€…ÁÑÕÉ•‘l‰…ÉÌ‰t€ôÑÕÁ±”¡à¹‘•Ñ…  ¤¥˜Ñ½É ¹¥Í}Ñ•¹Í½È¡à¤•±Í”à™½Èà¥¸¥¹ÁÕÑÌ¤(€€€€€€€¡½½­}¡…¹‘±”€ôµ½‘•°¹µ½‘•°¹±…å•ÉÍmÑ±…å•ÉÍlÁut¹É•¥ÍÑ•É}™½ÉÝ…É‘}ÁÉ•}¡½½¬¡…ÁÑÕÉ•}ÁÉ”¤(€€€€€€€Ý¥Ñ Ñ½É ¹¹½}É… ¤è(€€€€€€€€€€€•¹Œ€ôÑ}Ñ½¬¡Ñ}Ñ•áÐ°É•ÑÕÉ¹}Ñ•¹Í½ÉÌô‰ÁÐˆ°…‘‘}ÍÁ•¥…±}Ñ½­•¹Ìõ…±Í”¤(€€€€€€€€€€€•¹Œ€ôìè¤¹Ñ¼¡Ñ}‘•Ù¥”¤™½È¬°¤¥¸•¹Œ¹¥Ñ•µÌ ¥ô(€€€€€€€€€€€|€ôµ½‘•°  ¨©•¹Œ°ÕÍ•}…¡”õ…±Í”°½ÕÑÁÕÑ}…ÑÑ•¹Ñ¥½¹Ìõ…±Í”¤(€€€€€€€¡½½­}¡…¹‘±”¹É•µ½Ù” ¤(€€€€€€€Ñ}Á…ÍÍ}„€ôÑ¥µ”¹Ñ¥µ” ¤€´Ñ}„(€€€€€€€¥˜€‰…ÉÌˆ¹½Ð¥¸…ÁÑÕÉ•è(€€€€€€€€€€€É…¥Í”IÕ¹Ñ¥µ•ÉÉ½È ‰™…¥±•Ñ¼…ÁÑÕÉ”Ñ•…¡•È±…å•È´ÈÐ¥¹ÁÕÑÌˆ¤((€€€€€€€€ŒA…ÍÌ€´´•á…Ð™É½é•¸±…å•ÉÌ€ÈÐ´ÈÜ°É…Á µ•¹…‰±•°5AQdÁÉ¥½Èµ…À¸(€€€€€€€Ñ}ˆ€ôÑ¥µ”¹Ñ¥µ” ¤(€€€€€€€•µÁÑå}ÍÑ…Ñ”€ôÍÑ••É¥¹}‘¥…œ¹}}±½‰…±Í}l‰}MQI%9}MQQ}1L‰t (€€€€€€€€€€€±…å•É}Ñ½}ÁÉ¥½Èõíô°±…å•É}Ñ½}…±Á¡„õíô°•ÁÌõ‰…­•¹¹•ÁÌ°(€€€€€€€€€€€Á¡…Í”ô‰Q}AQUI}=91dˆ°Í•±•Ñ•‘}±…å•ÉÌõÍ•Ð¡Ñ±…å•ÉÌ¤¤(€€€€€€€•µÁÑå}ÍÑ…Ñ”¹…ÁÑÕÉ•}É½ÝÌ€ôíô(€€€€€€€•Ñ…ÑÑÈ¡ÍÑ••É¥¹}‘¥…œ°ÍÑ••É¥¹}‘¥…œ¹}}¹…µ•}|¤¹}}Í•Ñ}|¡µ½‘•°°•µÁÑå}ÍÑ…Ñ”¤(€€€€€€€…ÉœÁ}…ÁÑÕÉ•€ô…ÁÑÕÉ•‘l‰…ÉÌ‰t(€€€€€€€à€ô…ÉœÁ}…ÁÑÕÉ•‘lÁt¹Ñ¼¡µ¥‘‘±•}‘•Ù¥”¤€¥˜Ñ½É ¹¥Í}Ñ•¹Í½È¡…ÉœÁ}…ÁÑÕÉ•‘lÁt¤•±Í”…ÉœÁ}…ÁÑÕÉ•‘lÁt(€€€€€€€•áÑÉ…}…ÉÌ€ôl¡„¹Ñ¼¡µ¥‘‘±•}‘•Ù¥”¤€¥˜Ñ½É ¹¥Í}Ñ•¹Í½È¡„¤•±Í”„¤™½È„¥¸…ÉœÁ}…ÁÑÕÉ•‘lÄéut(€€€€€€€¡¥‘‘•¸€ôµ½‘•°¹µ½‘•°¹±…å•ÉÍmÑ±…å•ÉÍlÁut¹¥¹ÁÕÑ}±…å•É¹½É´¡à¤(€€€€€€€™½È¥‘à¥¸É…¹”¡±•¸¡±…å•ÉÌ¤¤è(€€€€€€€€€€€±…å•É}¥‘à€ôÑ±…å•ÉÍm¥‘át(€€€€€€€€€€€±…å•È€ôµ½‘•°¹µ½‘•°¹±…å•ÉÍm±…å•É}¥‘át(€€€€€€€€€€€¥˜¡¥‘‘•¸¹‘•Ù¥”€„ô¹•áÐ¡±…å•È¹Á…É…µ•Ñ•ÉÌ ¤¤¹‘•Ù¥”è(€€€€€€€€€€€€€€€¡¥‘‘•¸€ô¡¥‘‘•¸¹Ñ¼¡¹•áÐ¡±…å•È¹Á…É…µ•Ñ•ÉÌ ¤¤¹‘•Ù¥”¤(€€€€€€€€€€€±…å•É}…ÉÌ€ôm„¹Ñ¼¡¡¥‘‘•¸¹‘•Ù¥”¤¥˜Ñ½É ¹¥Í}Ñ•¹Í½È¡„¤•±Í”„™½È„¥¸•áÑÉ…}…ÉÍt(€€€€€€€€€€€¡¥‘‘•¸€ô±…å•È¡¡¥‘‘•¸°€©±…å•É}…ÉÌ¤(€€€€€€€€€€€¥˜±…å•É}¥‘à¹½Ð¥¸•µÁÑå}ÍÑ…Ñ”¹…ÁÑÕÉ•}É½ÝÌè(€€€€€€€€€€€€€€€É…¥Í”IÕ¹Ñ¥µ•ÉÉ½È¡˜‰¹¼Q•…¡•È…ÁÑÕÉ”™½È±…å•Èí±…å•É}¥‘áôˆ¤(€€€€€€€€€€€ÁÉ½‰Ì€ô•µÁÑå}ÍÑ…Ñ”¹…ÁÑÕÉ•}É½ÝÍm±…å•É}¥‘át(€€€€€€€€€€€¥˜ÁÉ½‰Ì¹É•ÅÕ¥É•Í}É…¥Ì…±Í”è(€€€€€€€€€€€€€€€É…¥Í”IÕ¹Ñ¥µ•ÉÉ½È¡˜‰…ÁÑÕÉ•Q•…¡•ÈÉ½Ü±½ÍÐÉ……Ð±…å•Èí±…å•É}¥‘áôˆ¤(€€€€€€€€€€€ÁÉ½‰Ì¹É•Ñ…¥¹}É… ¤(€€€€€€€¡´Ð€ôµ½‘•°¹µ½‘•°¹¹½É´¡¡¥‘‘•¸¤(€€€€€€€±…ÍÑ}‘•Ù¥”€ô¹•áÐ¡µ½‘•°¹±µ}¡•…¹Á…É…µ•Ñ•ÉÌ ¤¤¹‘•Ù¥”(€€€€€€€¥˜¡´Ð¹‘•Ù¥”€„ô±…ÍÑ}‘•Ù¥”è(€€€€€€€€€€€¡´Ð€ô¡´Ð¹Ñ¼¡±…ÍÑ}‘•Ù¥”¤(€€€€€€€é}É•½¸€ôµ½‘•°¹±µ}¡•…‘¡´Ð¥lÀ°€´Ä°€éÙ½…‰t¹™±½…Ð ¤(€€€€€€€Ñ}Ñ½ÀÅ}É•½¸€ô¥¹Ð¡Ñ½É ¹…Éµ…à¡é}É•½¸¤¹¥Ñ•´ ¤¤(€€€€€€€5}P€ôé}É•½¹må}Qt€´é}É•½¹må}Mt(€€€€€€€5}Q}­••À€ô™±½…Ð¡5}P¹‘•Ñ…  ¤¤(€€€€€€€5}P¹‰…­Ý…É ¤(€€€€€€€Ð_pass_b = time.time() - t_b
-        score_rows = [empty_state.capture_rows[L].grad[0, :, 0, :].detach().torch.float32).cpu()
-                     for L in tlayers]
-        if not all(torch.isfinite(x).all() for x in score_rows):
-            raise RuntimeError ("non-finite Teacher attribution")
+        for i in range(torch.cuda.device_count()):
+            torch.cuda.reset_peak_memory_stats(i)
+        free_before = {i: round(torch.cuda.mem_get_info(i)[0] / (1024 * 1024), 1)
+                       for i in range(torch.cuda.device_count())}
+        ids_t = torch.tensor([ids], device=tdev)
+        amask = torch.ones_like(ids_t)
+        t0 = time.time()
 
-        # reconstruction check vs the frozen full Teacher forward
-        recon = float((z_recon.detach().cpu() - z_full).abs().max())
-        recon_argmax_equal = bool(t_top1_recon == t_top1)
-        del x_recon, hm4, hidden, z_recon, M_T
+        # ---------- pass A: frozen full forward under no_grad, capture layer-24 inputs
+        cap: dict = {}
+
+        def pre_hook(module, hargs, hkwargs):
+            cap["h"] = hargs[0].detach().clone()
+            for k in ("attention_mask", "position_ids", "cache_position",
+                      "position_embeddings"):
+                cap[k] = hkwargs.get(k)
+            return None
+
+        handle = deep[0].register_forward_pre_hook(pre_hook, with_kwargs=True)
+        try:
+            with torch.no_grad():
+                oA = model(input_ids=ids_t, attention_mask=amask, use_cache=False)
+                z_full = oA.logits[0, -1, :vocab].float().cpu()
+        finally:
+            handle.remove()
+        del oA
+        M_T_full = float(z_full[y_T]) - float(z_full[y_S])
+        t_top1 = int(torch.argmax(z_full).item())
+        t_pass_a = time.time() - t0
+
+        # ---------- pass B: only the four frozen layers carry the graph
+        t1 = time.time()
+        h = cap["h"].requires_grad_(True)
+        with torch.enable_grad():
+            with steering_diag(model, {}, None, eps, selected_layers=set(tlayers),
+                               phase="TD_GRAD_CAPTURE", capture_rows={}) as st:
+                for layer in deep:
+                    h = layer(h, attention_mask=cap["attention_mask"],
+                              position_ids=cap["position_ids"], past_key_values=None,
+                              use_cache=False, cache_position=cap["cache_position"],
+                              position_embeddings=cap["position_embeddings"])
+                h = model.model.norm(h)
+                logits = model.lm_head(h)[0, -1, :vocab].float()
+            z_b = logits.detach().cpu()
+            M_T = logits[y_T] - logits[y_S]
+            M_T.backward()
+            full_rows = [st.capture_rows[lay] for lay in tlayers]
+            grad_connected = [row.grad is not None for row in full_rows]
+            p_teacher = [row[0, :, 0, :].detach().float().cpu() for row in full_rows]
+            score_rows = [torch.zeros_like(p_teacher[i]) if row.grad is None
+                          else row.grad[0, :, 0, :].detach().float().cpu()
+                          for i, row in enumerate(full_rows)]
+        recon = float((z_b - z_full).abs().max())
+        recon_argmax_equal = bool(int(torch.argmax(z_b)) == int(torch.argmax(z_full)))
+        t_pass_b = time.time() - t1
+        no_param_grad = all(p.grad is None for p in model.parameters())
+        grad_diag = {
+            "p_requires_grad": [bool(row.requires_grad) for row in full_rows],
+            "p_grad_present": grad_connected,
+            "p_shape": [list(row.shape) for row in full_rows],
+            "p_device": [str(row.device) for row in full_rows],
+            "M_T_requires_grad": bool(M_T.requires_grad),
+            "h_entry_requires_grad": bool(cap["h"].requires_grad),
+            "h_entry_device": str(cap["h"].device),
+            "mask_device": str(cap["attention_mask"].device),
+            "position_ids_device": str(getattr(cap["position_ids"], "device", None)),
+            "position_embeddings_devices": [str(x.device) for x in cap["position_embeddings"]],
+            "captured_layers": sorted(int(x) for x in st.capture_rows.keys()),
+            "layers_run": tlayers,
+            "logits_device": str(z_b.device),
+            "no_parameter_grad": bool(no_param_grad),
+        }
+        del h, logits, z_b, full_rows
         torch.cuda.empty_cache()
+        if not all(grad_connected) or not no_param_grad:
+            raise SystemExit(f"gradient contract violated at {sid} pos {t}: "
+                             f"connected={grad_connected} no_param_grad={no_param_grad}")
 
-        # observer cross-check for the same prefix (MUST be exact -- cap signature)
-        t_c = time.time()
-        with qwen2_teacher_row_observer(model, tlayers) as cap:
-            with torch.inference_mode():
-                enc = t_tok(t_text, return_tensors="pt", add_special_tokens=False)
-                enc = {k: v.to(t_device) for k, v in enc.items()}
-                _ = model(**enc, use_cache=False, output_attentions=False)
-        t_pass_c = time.time() - t_c
-        observer = {}
-        for L inlayers :
-            obs = cap["attn"][L].to(torch.float32)
-            sc = score_rows[tlayers.index(L)]
-            observer[str(L)] = {
-                "max_abs_delta": float((obs - sc).abs().max()),
-                "exact": bool(torch.equal(obs, sc)),
-                "len": int(obs.shape[-1]),
-            }
-
-        # Teacher-space question 1 diagnostic: deterministic greedy mass transfer of signed scores.
-        p_teacher = prior_cache[sid].to(torch.float32)
-        per_layer = {}
+        # ---------- teacher-space check (question 1): does the Teacher have the signal?
+        t2 = time.time()
         d_teacher = {}
+        per_layer = {}
         v_td_teacher = 0.0
-        t_direction = {}
-        for li, L in enumerate(tlayers):
-            p = p_teacher[li]
-          sc = score_rows[li]
-          budget_head_mean = float(budgets[L]|raise if false else 0])
-            d_list = []
-            v_list = []
-            for h in range(p.shape[0]):
-                budget = budget_head:
-                d_h = greedy_transfer(sc[h].cpu().numpy(), p[h].cpu().numpy(), budget)
-                d_list.append(d_h)
-                v_list.append(float((sc[h].cpu() * d_h).sum())
-            d = torch.stack(d_list, 0)
-            d_teacher[L] = d
-            v_td_teacher += sum(v_list)
-            p_new = p + d
-            p_new = p_new.clamp_min(0.0)
-            p_new = p_new / p_new.sum(dim=-1, keepdim=True).clamp_min(1e-12)
-            t_direction[L] = p_new
-            per_layer[str(L)] = {
-                "score_abs_max": float(sc.abs().max()),
-                "score_nonzero_fraction": float((sc != 0).float().mean()),
-                "budget_l1_per_head": [float(b) for b in budgets[L]},
-                "V_TD_teacher_per_head": v_list,
-                "V_TD_teacher": sum(v_list),
-                "direction_min": float(p_new.min()),
-                "direction_sum_dev_max": float(obs(p_new.sum(dim=-1) - 1).max()),
+        for i, lay in enumerate(tlayers):
+            sc, p = score_rows[i], p_teacher[i]
+            b = budget_T[lay]
+            d = torch.stack([greedy_transfer(sc[hh], p[hh], b) for hh in range(sc.shape[0])])
+            d_teacher[lay] = d
+            v_td_teacher += float((sc * d).sum())
+            per_layer[str(lay)] = {
+                "K": int(sc.shape[-1]),
+                "budget_l1_per_head": [round(b, 8) for _ in range(sc.shape[0])],
+                "student_side_budget_mean_l1": round(b, 8),
+                "score_l1_per_head": [round(float(sc[hh].abs().sum()), 6)
+                                      for hh in range(sc.shape[0])],
+                "score_absmax_per_head": [round(float(sc[hh].abs().max()), 8)
+                                          for hh in range(sc.shape[0])],
+                "score_pos_frac": round(float((sc > 0).float().mean()), 8),
+                "score_neg_frac": round(float((sc < 0).float().mean()), 8),
+                "score_zero_frac": round(float((sc == 0).float().mean()), 8),
+                "score_top_pos_keys": [int(x) for x in torch.topk(sc.flatten(), 5).indices],
+                "score_top_neg_keys": [int(x) for x in torch.topk(-sc.flatten(), 5).indices],
+                "dTD_teacher_l1_per_head": [round(float(d[hh].abs().sum()), 8)
+                                            for hh in range(d.shape[0])],
+                "V_TD_teacher_per_head": [round(float((sc[hh] * d[hh]).sum()), 8)
+                                          for hh in range(d.shape[0])],
+                "p_teacher_row_sum_dev": round(
+                    abs(float(p.sum(dim=-1).mean()) - 1.0), 8),
             }
+        with torch.no_grad():
+            with steering_delta(model, {lay: d_teacher[lay] for lay in tlayers}, None, eps,
+                               selected_layers=set(tlayers), phase="TD_TEACHER_ORACLE") as st2:
+                o2 = model(input_ids=ids_t, attention_mask=amask, use_cache=True)
+            z_o = o2.logits[0, -1, :vocab].float().cpu()
+        M_T_act = float(z_o[y_T]) - float(z_o[y_S])
+        logp_base = float(F.log_softmax(z_full, dim=-1)[y_T])
+        logp_act = float(F.log_softmax(z_o, dim=-1)[y_T])
+        top1_act = int(torch.argmax(z_o).item())
+        n_inter = len(st2.mix_log)
+        del o2, z_o
+        torch.cuda.empty_cache()
+        t_pass_c = time.time() - t2
 
-        # apply same-budget Telecher-space direction and measure actual Teacher decision
-        with torch.inference_mode():
-            with qwen2_teacher_row_observer(model, tlayers) as cap_act:
-                enc = t_tok(t_text, return_tensors="pt", add_special_tokens=False)
-                enc = {k: v.to(t_device) for k, v in enc.items()}
-                st = steering_diag.__globals_["_STEERING_STATE_CLS"](
-                    layer_to_prior={L: t_direction[L].to(next(model.model.layers[L].parameters()).device) for L in tlayers},
-                    layer_to_alpha={}, eps=1e-12, phase="TD_TEACHER_SPACE", selected_layers=set(layers))
-                with steering_diag.__globals_["qwen2_adapter_steering"](model, st.layer_to_prior, {}, 1e-12, selected_layers=set(layers), phase="TD_TEACHER_SPACE"):
-                    o_act = model(**enc, use_cache=False, output_attentions=False)
-                    z_act = o_act.logits[0, -1, :vocab].float().detach()
-        t_top1_act = int(torch.argmax(z_act).item())
-        M_T_act = float(z_act[y_T] - z_act[y_S])
-        logp_act = float(F.log_softmax(z_act.cpu(), dim=-1)[y_T])
-        n_inter = len(st.mix_log)
+        # ---------- optional smoke-only cross-checks
+        observer = None
+        if args.observer_check:
+            caps: dict = {}
+            with torch.no_grad():
+                with qwen2_teacher_row_observer(model.model, tlayers, caps):
+                    _ = model(input_ids=ids_t, attention_mask=amask, use_cache=False)
+            del _
+            torch.cuda.empty_cache()
+            obs = {}
+            for i, lay in enumerate(tlayers):
+                if lay in caps:
+                    a = caps[lay].float()
+                    b = p_teacher[i][:, :a.shape[-1]]
+                    obs[str(lay)] = {"max_abs_diff": float((a - b).abs().max()),
+                                     "shape": list(a.shape)}
+            observer = {"max_abs_diff": max(v["max_abs_diff"] for v in obs.values()),
+                        "per_layer": obs,
+                        "note": "captured pass-B row vs the frozen qwen2_teacher_row_observer "
+                                "row on the same prefix"}
+        framing = None
+        if args.framing_check:
+            with torch.no_grad():
+                pre = torch.tensor([ids[:pt]], device=tdev)
+                o = model(input_ids=pre,
+                          attention_mask=torch.ones((1, pt), device=tdev, dtype=torch.long),
+                          use_cache=True)
+                cache = o.past_key_values
+                for step in range(t):
+                    o = model(input_ids=torch.tensor([[ids[pt + step]]], device=tdev),
+                              attention_mask=torch.ones((1, pt + step + 1), device=tdev,
+                                                        dtype=torch.long),
+                              past_key_values=cache, use_cache=True)
+                    cache = o.past_key_values
+                z_inc = o.logits[0, -1, :vocab].float().cpu()
+            del o, cache, pre
+            torch.cuda.empty_cache()
+            framing = {"M_T_full_prefix": M_T_full,
+                       "M_T_incremental": float(z_inc[y_T]) - float(z_inc[y_S]),
+                       "prompt_len": pt, "decode_steps": t,
+                       "M_T_diff": (float(z_inc[y_T]) - float(z_inc[y_S])) - M_T_full,
+                       "max_abs_logit_diff": float((z_inc - z_full).abs().max()),
+                       "incremental_top1": int(torch.argmax(z_inc).item()),
+                       "top1_agrees_across_framings": bool(
+                           int(torch.argmax(z_inc).item()) == t_top1),
+                       "framing_provenance": "the parent decision-relevance diagnostic produced "
+                                             "the frozen y_T through this prefill + cached-decode "
+                                             "path; TD captures the attribution in the single "
+                                             "full-prefix framing (mechanism sprint framing)"}
+            del z_inc
 
-        # construct record
-        rec = {"canonical_source_id": sid, "source_index": r["source_index"],
-               "position": t, "prefix_len": L, "prefix_sha256": sha,
-               "y_target": y_T, "y_base": y_S, "M_T_base": M_T_full,
-               "V_TD_teacher_first_order": v_td_teacher,
-               "dST_T_actual": M_T_act - M_T_full,
-               "dlogp_yT_actual": logp_act - logp_base,
-               "top1_under_TD_teacher": t_top1_act,
-               "reconstruction_max_abs_logit_delta": recon,
-               "teacher_interventions": n_inter, "per_layer": per_layer,
-                "observer_cross_check": observer,
-               "harness_manifest_sha256": cfg["harness_manifest_sha256"],
-               "run_config_hash": cfg["config_hash"], "checkpoint_sha256": cfg["checkpoint_sha256"]}
+        pk = peak_mib()
+        rec = {
+            "canonical_source_id": sid, "source_index": r["source_index"],
+            "condition": "decision_position", "arm": "decision_position",
+            "position": t, "group": r["group"], "prefix_len": L, "prompt_len": pt,
+            "prefix_sha256": sha, "prefix_identity_ok": True,
+            "y_target": y_T, "y_base": y_S,
+            "M_T_base": M_T_full, "M_T_definition": "z_T[y_T] - z_T[y_S]",
+            "M_T_framing": "single full-prefix forward (frozen teacher, no intervention)",
+            "M_T_reconstruction": float(M_T.detach()),
+            "teacher_top1_full_prefix": t_top1,
+            "teacher_top1_matches_frozen_y_target": bool(t_top1 == y_T),
+            "teacher_top1_matches_frozen_y_base": bool(t_top1 == y_S),
+            "M_T_alt_margin_of_yT": float(z_full[y_T])
+            - float(z_full.clone().index_fill(
+                0, torch.tensor([y_T], device=z_full.device), float("-inf")).max()),
+            "score_shape": [len(tlayers), int(score_rows[0].shape[0]), L],
+            "score_layer_scope": tlayers,
+            "score_finite": bool(all(torch.isfinite(x).all() for x in score_rows)),
+            "score_nonzero_fraction": round(
+                float(sum((x != 0).float().mean() for x in score_rows) / len(score_rows)), 8),
+            "teacher_space_budget_rule": "mean over the 12 Student heads of the frozen "
+                                         "per-head L1 budget of the same layer",
+            "V_TD_teacher_first_order": v_td_teacher,
+            "M_T_under_TD_teacher": M_T_act,
+            "dM_T_actual": M_T_act - M_T_full,
+            "logp_yT_base": logp_base, "logp_yT_under_TD_teacher": logp_act,
+            "dlogp_yT_actual": logp_act - logp_base,
+            "top1_under_TD_teacher": top1_act,
+            "top1_flip_teacher": bool(top1_act != t_top1),
+            "target_token_is_top1_under_TD_teacher": bool(top1_act == y_T),
+            "teacher_interventions": n_inter,
+            "per_layer": per_layer,
+            "grad_diagnostics": grad_diag,
+            "reconstruction_vs_full_forward_max_abs_logit_delta": recon,
+            "reconstruction_argmax_equal": recon_argmax_equal,
+            "observer_cross_check": observer,
+            "framing_check": framing,
+            "vram": {"peak_allocated_mib": pk, "free_mib_before": free_before,
+                     "gpu_total_mib": args.gpu_total_mib,
+                     "peak_fraction": {str(k): round(v / args.gpu_total_mib, 4)
+                                       for k, v in pk.items()}},
+            "wall_seconds": {"pass_a_frozen_forward": round(t_pass_a, 2),
+                             "pass_b_grad_capture": round(t_pass_b, 2),
+                             "teacher_space_probe": round(t_pass_c, 2),
+                             "total": round(time.time() - t0, 2)},
+            "device_map": {str(k): str(v) for k, v in dmap.items()},
+            "method": "TEACHER_DECISION_ATTRIBUTION_ORACLE_DIAGNOSTIC_NON_DEPLOYABLE",
+            "run_config_hash": cfg["config_hash"],
+            "checkpoint_sha256": cfg["checkpoint_sha256"],
+            "shard": args.shard_name,
+        }
         records.append(rec)
-        raw[f"{sid}|{t}"] = {"score": torch.stack(score_rows, 0), "prefix_sha256": sha,
-                          "y_T": y_T, "y_S": y_S, "layers": layers}
+        key = f"{sid}|{t}"
+        raw[key] = {"score": torch.stack(score_rows, 0).to(torch.float32),
+                    "p_teacher": torch.stack(p_teacher, 0).to(torch.float32),
+                    "layers": list(tlayers), "y_T": y_T, "y_S": y_S,
+                    "prefix_sha256": sha, "prefix_len": L, "position": t,
+                    "source_index": int(r["source_index"])}
         if (n + 1) % 8 == 0 or n == len(sel) - 1:
             torch.save(raw, scores_path)
-        H.write_result_envelope(body, task_id=TASK_ID, stage="teacher_decision_attribution",
-                records=records, arms=["decision_position"],
-                sample_ids=sorted({r["canonical_source_id"] for r in records}),
-                config_hash=cfg["config_hash"], checkpoint_sha256=cfg["checkpoint_sha256"])
+        del p_teacher, score_rows, d_teacher, st, cap, M_T
+        torch.cuda.empty_cache()
+        H.write_result_envelope(
+            body, task_id=TASK_ID, stage="teacher_decision_attribution", records=records,
+            arms=["decision_position"], sample_ids=sorted({x["canonical_source_id"]
+                                                           for x in records}),
+            config_hash=cfg["config_hash"], checkpoint_sha256=cfg["checkpoint_sha256"])
+        print(json.dumps({"shard": args.shard_name, "n": n, "src": r["source_index"], "pos": t,
+                          "K": L, "M_T": round(M_T_full, 4),
+                          "dM_T_actual": round(rec["dM_T_actual"], 5),
+                          "V_TD_teacher": round(v_td_teacher, 5),
+                          "score_absmax": max(round(float(x.abs().max()), 5)
+                                              for x in raw[key]["score"]),
+                          "recon": round(recon, 5),
+                          "peak_mib": max(pk.values()),
+                          "sec": round(rec["wall_seconds"]["total"], 1)}), flush=True)
 
-    # finalize
-    torch.save(raw, scores_path)
-    H.write_result_envelope(body, task_id=TASK_ID, stage="teacher_decision_attribution",
-                        records=records, arms=["decision_position"],
-                        sample_ids=sorted({r["canonical_source_id"] for r in records}),
-                        config_hash=cfg["config_hash"], checkpoint_sha256=cfg["checkpoint_sha256"])
-    meta = {"shard": args.shard_name, "set": args.set_name, "positions": len(records),
-            "scores_sha256": sha256_file(scores_path), "body_sha256": sha256_file(body),
+    H.write_result_envelope(
+        body, task_id=TASK_ID, stage="teacher_decision_attribution", records=records,
+        arms=["decision_position"], sample_ids=sorted({x["canonical_source_id"]
+                                                       for x in records}),
+        config_hash=cfg["config_hash"], checkpoint_sha256=cfg["checkpoint_sha256"])
+    if raw:
+        torch.save(raw, scores_path)
+    peaks = {str(i): round(torch.cuda.max_memory_allocated(i) / (1024 * 1024), 1)
+             for i in range(torch.cuda.device_count())}
+    risk = max(peaks.values()) / args.gpu_total_mib if peaks else 0.0
+    meta = {"shard": args.shard_name, "set_name": args.set_name, "positions": len(records),
+            "selection": {"set_name": args.set_name,
+                          "selection_sha256": (set_spec or {}).get("selection_sha256"),
+                          "population": args.population,
+                          "selected": [{"sample_id": x["canonical_source_id"],
+                                        "position": x["position"],
+                                        "prefix_len": x["prefix_len"],
+                                        "prefix_sha256": x["prefix_sha256"]}
+                                       for x in records]},
+            "teacher_layers": tlayers, "device_map": {str(k): str(v) for k, v in dmap.items()},
+            "diagnostic_source_diff": diff, "scores_path": str(scores_path),
+            "scores_sha256": (sha256_file(scores_path) if scores_path.exists() else None),
+            "peak_allocated_mib": peaks, "peak_fraction_of_total": round(risk, 4),
+            "vram_risk": bool(risk > args.abort_vram_fraction),
+            "wall_seconds": round(time.time() - t_shard, 1), "body": str(body),
+            "body_sha256": sha256_file(body),
             "verify": H.verify_result(body, expected_config_hash=cfg["config_hash"],
                                       expected_checkpoint_sha256=cfg["checkpoint_sha256"])}
     H.atomic_write_text(out / f"td_teacher_rows_{args.shard_name}_meta.json",
-                        json.dumps(meta, ensure_ascii=False, indent=2) + "\n")
-    print(json.dumps({"shard": args.shard_name, "positions": len(records),
-                      "verify": meta["verify"]["status"]}, ensure_ascii=False), flush=True)
-    return 0
+                        json.dumps(meta, ensure_ascii=False, indent=2, default=str) + "\n")
+    print(json.dumps({"shard": args.shard_name, "done": True, "positions": len(records),
+                      "verify": meta["verify"]["status"], "peak_mib": max(peaks.values()),
+                      "vram_risk": meta["vram_risk"],
+                      "wall_seconds": meta["wall_seconds"]}, ensure_ascii=False), flush=True)
+    if meta["verify"]["status"] != "PASS":
+        return 1
+    return 3 if meta["vram_risk"] else 0
 
 
 if __name__ == "__main__":

@@ -227,7 +227,7 @@ def main() -> int:
             student_rows = backend._student_rows(target).detach().float().cpu()
             rs_mask_t = torch.tensor(target.attention_mask)
 
-        r0 = prep(prior_cache[sid].float())
+        r0 = prep(prior_cache[sid].float())                       # [4,28,K_s]
         r0_null = prep(prior_cache[sid].float().roll(1, dims=-1))
         rec = {"canonical_source_id": sid, "condition": "decision_position",
                "arm": "decision_position", "source_index": lrow.get("source_index"),

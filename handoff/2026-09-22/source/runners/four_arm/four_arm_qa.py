@@ -40,7 +40,8 @@ def generate(backend, steering_cm, target, prior, alpha, window, layers, max_new
         nxt = int(torch.argmax(pf.logits[:, -1, :], dim=-1).item())
         toks = []
         for _ in range(max_new_tokens):
-            if backend.student_tokenizer.eos_token_id is not None and                     nxt == backend.student_tokenizer.eos_token_id:
+            if backend.student_tokenizer.eos_token_id is not None and \
+                    nxt == backend.student_tokenizer.eos_token_id:
                 break
             toks.append(nxt)
             ids = torch.tensor([[nxt]], device=backend.device, dtype=torch.long)

@@ -31,13 +31,13 @@ from rescue_harness import training_identity as TI  # noqa: E402
 def adapter_config_from_checkpoint(ckpt: Path, source_lock: Path) -> tuple[dict, dict]:
     payload = torch.load(ckpt, map_location="cpu", weights_only=False)
     sd = payload["adapter"]
-    mix = tuple(int(x) for x in sd["base.mix_logits"].shape)
+    mix = tuple(int(x) for x in sd["base.mix_logits"].shape)      # S, Hs, T, Ht
     if len(mix) != 4:
         raise SystemExit(f"unexpected mix_logits shape {mix}")
     cfg = {"num_student_layers": mix[0], "num_student_heads": mix[1],
            "num_teacher_layers": mix[2], "num_teacher_heads": mix[3]}
     sys.path.insert(0, str(Path(source_lock).resolve()))
-    from adapter import AttentionAdapterConfig
+    from adapter import AttentionAdapterConfig                    # frozen dataclass
     fields = AttentionAdapterConfig.__dataclass_fields__
     cfg["max_alpha"] = fields["max_alpha"].default
     cfg["eps"] = fields["eps"].default
@@ -88,6 +88,7 @@ def main() -> int:
         "dtype": args.dtype,
     }
 
+    # ---- FIX-E: observe independently, then compare -----------------------
     payload = torch.load(ckpt, map_location="cpu", weights_only=False)
     observed = TI.observe_training_facts(
         source_lock=source_lock, run_source_dirs=source_dirs, checkpoint_payload=payload,
@@ -125,8 +126,8 @@ def main() -> int:
         "supervised_token_count": training_result.get("supervised_token_count"),
         "checkpoint_step": ck_meta.get("checkpoint_payload_step"),
     }
-    canonical = TI.canonical_training_config(raw, source_lock=source_lock)
-    records = TI.verify_declared_vs_observed(canonical, observed)
+    canonical = TI.canonical_training_config(raw, source_lock=source_lock)   # FIX-D
+    records = TI.verify_declared_vs_observed(canonical, observed)            # FIX-E
 
     payload_out = {
         "generated_at": datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S %z"),
@@ -136,8 +137,8 @@ def main() -> int:
         "canonical_training_config": canonical,
         "canonical_training_config_sha256": hashlib.sha256(
             json.dumps(canonical, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
-        "source_verification": records,
-        "schema_contract": TI.schema_contract(source_lock),
+        "source_verification": records,                      # FIX-E: MATCH records
+        "schema_contract": TI.schema_contract(source_lock),  # FIX-D
         "provenance_contract": TI.provenance_verification_contract(),
         "field_sources": {
             "frozen_values": f"{source_lock}/frozen_training_config.json + "

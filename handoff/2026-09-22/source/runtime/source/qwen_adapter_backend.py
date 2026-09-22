@@ -159,29 +159,58 @@ class QwenAdapterBackend:
         return {"input_ids": torch.tensor([target.input_ids], device=self.device, dtype=torch.long),
                 "attention_mask": torch.tensor([target.attention_mask], device=self.device, dtype=torch.long)}
 
-    def _collect_teacher_prior(self, target: PromptTarget) -> torch.Tensor:
+    def frozen_teacher_prior(self, target: PromptTarget) -> tuple[torch.Tensor, dict[str, Any]]:
         if self.teacher is None:
-            raise RealQwenRuntimeError("teacher not loaded; prior collection requires load_teacher=True")
+            raise RealQwenRuntimeError("Teacher prior requested after Teacher release")
         with torch.no_grad():
-            return self._collect_teacher(
-                self.teacher, self.teacher_tokenizer, self.student_tokenizer, target.prompt,
-                self.teacher_layers, device=str(self.device), eps=self.eps,
-            )
+            projected = self._collect_teacher(
+                self.teacher, self.teacher_tokenizer, self.student_tokenizer,
+                target.prompt, self.teacher_layers, str(self.device), self.eps,
+            ).float().detach().cpu()
+        if not torch.isfinite(projected).all():
+            raise RealQwenRuntimeError("Teacher prior contains non-finite values")
+        meta = {"prompt_sha256": hashlib.sha256(target.prompt.encode()).hexdigest(),
+                "input_ids_sha256": hashlib.sha256(bytes(target.input_ids)).hexdigest(),
+                "shape": list(projected.shape), "dtype": str(projected.dtype),
+                "content_sha256": hashlib.sha256(projected.numpy().tobytes()).hexdigest(),
+                "teacher_identity": self.teacher_identity, "tokenizer_identity": self.teacher_identity.get("tokenizer_sha256"),
+                "target_position": target.target_position}
+        return projected, meta
 
     def _student_rows(self, target: PromptTarget) -> torch.Tensor:
+        captured: dict[int, torch.Tensor] = {}
         with torch.no_grad():
-            out = self.student(**self._ids(target), use_cache=False, output_attentions=True)
-        if out.attentions is None:
-            raise RealQwenRuntimeError("Student did not return attentions")
-        rows = []
-        n = len(out.attentions)
-        for idx in self.student_layers:
-            real = idx if idx >= 0 else n + idx
-            rows.append(out.attentions[real][0, :, -1, :].float().detach())
-        return torch.stack(rows, dim=0)
+            with self._steering(self.student, {}, {}, self.eps, capture_rows=captured,
+                                selected_layers=set(self.student_layers), phase="TRAIN_PREFILL"):
+                self.student(**self._ids(target), use_cache=False, output_attentions=False)
+        if set(captured) != set(self.student_layers):
+            raise RealQwenRuntimeError(f"Student row capture mismatch: {sorted(captured)}")
+        return torch.stack([captured[i] for i in self.student_layers]).to(self.device).detach()
 
-    def first_token_treatment(self, target: PromptTarget, teacher_prior: torch.Tensor,
-                            student_rows: torch.Tensor | None = None) -> dict[str, Any]:
+    def treatment_step(self, target: PromptTarget, teacher_prior: torch.Tensor,
+                       student_rows: torch.Tensor | None = None) -> dict[str, Any]:
+        rows = self._student_rows(target) if student_rows is None else student_rows.detach()
+        prior, alpha, entropy = self.adapter(
+            teacher_prior.to(self.device), rows, torch.tensor(target.attention_mask, device=self.device)
+        )
+        maps = {l: prior[i] for i, l in enumerate(self.student_layers)}
+        gates = {l: alpha[i] for i, l in enumerate(self.student_layers)}
+        # Training needs the adapter graph; validation selection calls this
+        # method under no_grad to avoid retaining long-context graphs.
+        grad_context = torch.enable_grad() if torch.is_grad_enabled() else torch.no_grad()
+        with torch.inference_mode(False), grad_context:
+            with self._steering(self.student, maps, gates, self.eps, phase="TRAIN_PREFILL"):
+                output = self.student(**self._ids(target), use_cache=False, output_attentions=False)
+        logits = output.logits[:, target.target_position, :].float()
+        loss = F.cross_entropy(logits, torch.tensor([target.target_id], device=self.device))
+        if not torch.isfinite(loss):
+            raise RealQwenRuntimeError("gold CE is non-finite")
+        return {"loss": loss, "prior": prior, "alpha": alpha, "output": output,
+                "target": target, "rows": rows, "entropy": entropy}
+
+    def sequence_treatment_step(self, target: PromptTarget, teacher_prior: torch.Tensor,
+                                student_rows: torch.Tensor | None = None) -> dict[str, Any]:
+        """Full-answer CE with one prompt-only Adapter prefill and gold-prefix decode."""
         rows = self._student_rows(target) if student_rows is None else student_rows.detach()
         prior, alpha, entropy = self.adapter(
             teacher_prior.to(self.device), rows, torch.tensor(target.attention_mask, device=self.device)
@@ -198,7 +227,7 @@ class QwenAdapterBackend:
                 ids = torch.tensor([[int(previous_id)]], device=self.device, dtype=torch.long)
                 mask = torch.ones((1, len(target.input_ids) + index + 1), device=self.device, dtype=torch.long)
                 decoded = self.student(input_ids=ids, attention_mask=mask, past_key_values=past,
-                                        use_cache=True, output_attentions=False)
+                                       use_cache=True, output_attentions=False)
                 past = decoded.past_key_values
                 logits.append(decoded.logits[:, -1, :].float())
             losses = [F.cross_entropy(output, torch.tensor([int(gold)], device=self.device))
@@ -229,7 +258,7 @@ class QwenAdapterBackend:
             raise RealQwenRuntimeError("All Adapter gradients are zero")
         w_grad = self.adapter.entropy_gate_weight.grad
         if w_grad is None or not torch.isfinite(w_grad).all():
-            raise RealQwenRuntimeError,"Entropy gate w gradient is missing or non-finite")
+            raise RealQwenRuntimeError("Entropy gate w gradient is missing or non-finite")
         self.optimizer.step()
         changed = any(not torch.equal(before[n], p.detach()) for n, p in self.adapter.named_parameters())
         if not changed:

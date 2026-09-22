@@ -11,10 +11,11 @@ Frozen prerequisites (never changed here):
   * decoding     : greedy, max_new_tokens 16, identical for every arm
 
 Four arms, exactly:
-  A  BASE
-  B  PREFILL_ONLY_TEACHER
-  C  FULL_WINDOW_TEACHER
-  D  FULL_WINDOW_NULL
+  A  BASE                  Student, no Adapter steering at all
+  B  PREFILL_ONLY_TEACHER  step80 + Teacher prior, prefill (last query row) only
+  C  FULL_WINDOW_TEACHER   step80 + Teacher prior, prefill + every cached-decode query
+  D  FULL_WINDOW_NULL      same as C with the frozen Position-Alignment-Null prior
+                           (prior.roll(1, dims=-1) through the same Adapter)
 """
 from __future__ import annotations
 
@@ -28,14 +29,19 @@ from pathlib import Path
 import torch
 
 ARMS = ("A_base", "B_prefill_only_teacher", "C_full_window_teacher", "D_full_window_null")
+
+#: arm -> (which prior, which window)
 ARM_POLICY = {
     "A_base": {"prior": None, "window": "none"},
     "B_prefill_only_teacher": {"prior": "teacher", "window": "prefill"},
     "C_full_window_teacher": {"prior": "teacher", "window": "full"},
     "D_full_window_null": {"prior": "null", "window": "full"},
 }
+
 PREFILL_PHASE = "ADAPTER_STEERED_PREFILL"
 DECODE_PHASE = "ADAPTER_STEERED_CACHED_DECODE"
+
+#: fields every QA record must carry (frozen integrity contract, §16)
 QA_REQUIRED_FIELDS = ("canonical_source_id", "condition", "arm", "tokens", "text", "em",
                       "f1", "n_tokens", "run_config_hash", "checkpoint_sha256", "shard")
 K4_REQUIRED_FIELDS = ("canonical_source_id", "condition", "arm", "proposed_draft_tokens",
@@ -60,6 +66,7 @@ def load_harness(harness_root):
 
 
 def load_modules(H, source_dir, source_lock):
+    """Import the frozen run source and install the accepted harness hook in memory."""
     sys.path.insert(0, str(Path(source_dir).resolve()))
     sys.path.insert(0, str(Path(source_lock).resolve()))
     backend_mod = importlib.import_module("qwen_adapter_backend")
@@ -89,12 +96,15 @@ def maps_for(backend, prior, alpha):
 
 
 def cm_for(steering_cm, backend, maps, alpha, layers, phase):
+    """A fresh context manager (the harness CM is single-use) or a no-op."""
     if not maps:
         return contextlib.nullcontext()
     return steering_cm(backend.student, maps, alpha, backend.eps,
                        selected_layers=layers, phase=phase)
 
 
+# --------------------------------------------------------------------------- scorer
+# frozen scorer, copied verbatim from window_qa.py so the numbers stay comparable
 def norm(t):
     return " ".join(str(t).lower().strip().split())
 
@@ -114,7 +124,9 @@ def em_score(pred, gold):
     return int(norm(pred) == norm(gold))
 
 
+# --------------------------------------------------------------------------- data
 def dataset_identity(ledger: Path, dataset_path: Path, contract: dict) -> dict:
+    """Dataset + split identity and the ORDERED sample id list (§4)."""
     import csv
     with Path(ledger).open(encoding="utf-8-sig", newline="") as f:
         rows = list(csv.DictReader(f))
@@ -135,6 +147,7 @@ def dataset_identity(ledger: Path, dataset_path: Path, contract: dict) -> dict:
 
 
 def experiment_config(args, manifest_sha256: str) -> dict:
+    """The frozen experiment configuration for this rerun; its sha256 is the config hash."""
     cfg = {
         "task_id": "RESCUE-MINIMAL-FOUR-ARM-VALID-RERUN-001",
         "harness": "HARNESS_FREEZE_V3",

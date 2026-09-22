@@ -79,6 +79,9 @@ def main() -> int:
         lrow = ledger[li]
         srow = ds[int(lrow["source_index"])]
         prompt = str(srow["question"]) if False else None
+        # the prompt string is not stored in the ledger; rebuild it exactly as the frozen runs did
+        # by taking it from the parent diagnostic's own row (it stored base_tokens, not the prompt),
+        # so use the dataset row the same way sequence_loss_runner.make_row does.
         from sequence_loss_runner import make_row
         row_src = make_row(lrow, srow)
         prompt = row_src["prompt"]

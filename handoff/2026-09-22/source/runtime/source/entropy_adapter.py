@@ -12,6 +12,12 @@ def normalized_attention_entropy(
     attention_mask: torch.Tensor,
     eps: float = 1e-8,
 ) -> torch.Tensor:
+    """Return [layers, heads] entropy on valid context tokens only.
+
+    ``student_rows`` is captured before intervention and ``attention_mask`` is
+    the prompt mask for the same observation. Zero-probability entries have a
+    zero contribution and the result is detached from the Student graph.
+    """
     if student_rows.dim() != 3:
         raise ValueError(f"student_rows must be [layers, heads, key_len], got {tuple(student_rows.shape)}")
     mask = torch.as_tensor(attention_mask, device=student_rows.device).bool().reshape(-1)
@@ -29,6 +35,8 @@ def normalized_attention_entropy(
 
 
 class EntropyConditionedAttentionAdapter(nn.Module):
+    """Preserve the locked adapter and add exactly one w per student head."""
+
     def __init__(self, base_adapter: nn.Module):
         super().__init__()
         self.base = base_adapter
@@ -57,3 +65,4 @@ class EntropyConditionedAttentionAdapter(nn.Module):
         logits = self.base.gate_logits + self.entropy_gate_weight * entropy
         alpha = torch.sigmoid(logits) * self.config.max_alpha
         return prior, alpha, entropy
+
