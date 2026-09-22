@@ -31,6 +31,7 @@ ARMS_PARENT = ("A_base", "B_prefill_only_teacher", "C_full_window_teacher",
 PREFILL_PHASE = "DR_PREFILL_STEERED"
 DECODE_PHASE = "DR_CACHED_DECODE_STEERED"
 
+#: decision-space metric fields every row must carry (§16 integrity)
 ROW_REQUIRED_FIELDS = ("canonical_source_id", "condition", "position", "prefix_sha256",
                        "group", "y_base", "y_target", "logp_A_yT", "logp_C_yT", "logp_D_yT",
                        "dlogp_T_teacher", "dlogp_T_null", "M_A", "M_C", "M_D",
@@ -85,6 +86,7 @@ def maps_for(backend, prior, alpha):
 
 
 def ctx(steering_cm, backend, maps, alpha, layers, phase, capture_rows=None):
+    """Harness steering CM (fresh instance) or a no-op when there is no prior."""
     if not maps:
         return _null()
     return steering_cm(backend.student, maps, alpha, backend.eps,
@@ -100,13 +102,15 @@ class _null:
 
 
 def generate_greedy(backend, target, max_new_tokens: int) -> list[int]:
+    """Stock greedy trajectory — identical code path to the parent run's arm A."""
     with torch.no_grad():
         o = backend.student(**backend._ids(target), use_cache=True, output_attentions=False)
         past = o.past_key_values
         nxt = int(torch.argmax(o.logits[:, -1, :], dim=-1).item())
         toks: list[int] = []
         for _ in range(max_new_tokens):
-            if backend.student_tokenizer.eos_token_id is not None and nxt == backend.student_tokenizer.eos_token_id:
+            if backend.student_tokenizer.eos_token_id is not None and \
+                    nxt == backend.student_tokenizer.eos_token_id:
                 break
             toks.append(nxt)
             ids = torch.tensor([[nxt]], device=backend.device, dtype=torch.long)
@@ -121,6 +125,11 @@ def generate_greedy(backend, target, max_new_tokens: int) -> list[int]:
 
 def student_positions(backend, steering_cm, target, base_tokens, maps, alpha, window,
                       layers, vocab, capture_rows=False):
+    """Feed prompt + base_tokens[:t] and return (logits list, natural top1 list, captures).
+
+    window = "none" -> stock, "full" -> hook on prefill and on every cached-decode query.
+    Returns logits at decision positions 0..T-1 where T = len(base_tokens).
+    """
     hook = bool(maps) and window == "full"
     logits_out, natural, caps = [], [], []
     with torch.no_grad():
@@ -153,6 +162,7 @@ def student_positions(backend, steering_cm, target, base_tokens, maps, alpha, wi
 
 
 def target_positions(model, device, vocab, prompt_ids, base_tokens):
+    """Target logits at the same decision positions (incremental, one forward per position)."""
     zs = []
     with torch.no_grad():
         ids = torch.tensor([prompt_ids], device=device)
@@ -171,11 +181,13 @@ def target_positions(model, device, vocab, prompt_ids, base_tokens):
     return zs
 
 
+# ------------------------------------------------------------------ metrics
 def logprob_of(z: torch.Tensor, token: int) -> float:
     return float(F.log_softmax(z, dim=-1)[token])
 
 
 def margin_of(z: torch.Tensor, token: int) -> float:
+    """z[token] - max over j != token of z[j]  (§6)."""
     zz = z.clone()
     best = float(zz[token])
     zz[token] = -float("inf")
@@ -190,16 +202,18 @@ def cosine(a: torch.Tensor, b: torch.Tensor) -> float:
 
 
 def l1_rows(p: torch.Tensor, q: torch.Tensor) -> float:
+    """Mean over heads of the L1 distance between two attention rows [heads, keys]."""
     return float((p - q).abs().sum(dim=-1).mean())
 
 
 def jsd_rows(p: torch.Tensor, q: torch.Tensor, eps: float = 1e-12) -> float:
+    """Mean over heads of the Jensen-Shannon divergence (log base 2)."""
     p = p.clamp_min(eps)
     q = q.clamp_min(eps)
     p = p / p.sum(dim=-1, keepdim=True)
     q = q / q.sum(dim=-1, keepdim=True)
     m = 0.5 * (p + q)
-    kl = lambda a, b: (a * (a / b).log2()).sum(dim=-1)
+    kl = lambda a, b: (a * (a / b).log2()).sum(dim=-1)  # noqa: E731
     return float((0.5 * kl(p, m) + 0.5 * kl(q, m)).mean())
 
 
@@ -224,6 +238,7 @@ def paired_delta_ci(high, low, n=10000, seed=20260830):
 
 
 def spearman(xs, ys):
+    """Rank correlation; reported as a diagnostic association, never as causation."""
     def rank(v):
         order = sorted(range(len(v)), key=lambda i: v[i])
         r = [0.0] * len(v)
