@@ -1,0 +1,30 @@
+{
+  "adapter_config": {
+    "eps": 1e-08,
+    "max_alpha": 0.35,
+    "num_student_heads": 12,
+    "num_student_layers": 4,
+    "num_teacher_heads": 28,
+    "num_teacher_layers": 4
+  },
+  "dtype": "bfloat16",
+  "initialization": "from_scratch_no_warm_start",
+  "layer_scope": "last_4_layers",
+  "learning_rate": 0.003,
+  "method_variant": "attention_prior_adapter+entropy_conditioned_alpha+per_prefix_sequence_supervision",
+  "optimizer": "AdamW",
+  "regularization": {"beta_kl": 0.0, "delta_sharpness": 0.0, "gamma_alpha": 0.0},
+  "seed": 20260830,
+  "supervised_target_mode": "per_prefix_full_answer_CE",
+  "train_split_identity": {
+    "name": "train.csv",
+    "row_count": 128,
+    "sha256": "785adf5a76a6acdf2174bf9f4e4bf4abd1c7303610cb81e7191f1218534eb508"
+  },
+  "training_steps": 128,
+  "validation_split_identity": {
+    "name": "validation.csv",
+    "row_count": 128,
+    "sha256": "d4686c26f50cbaaf3788eef79a3a12af49a5224671e1d3b5a02195f299627ae7"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "task_id": "RESCUE-TEACHER-PRIOR-DECISION-RELEVANCE-DIAGNOSTIC-001",
+  "status_as_received": "PROPOSED_FOR_USER_EXECUTION",
+  "mode": "DIAGNOSTIC_ONLY / NO TRAINING / NO METHOD CHANGE",
+  "parent_task": "RESCUE-MINIMAL-FOUR-ARM-VALID-RERUN-001",
+  "parent_primary_case": "CASE 3",
+  "parent_config_hash": "d311230d8696d388b240b08e195ec11fed350d2c3dbd8011fb94a1456d7eab97",
+  "harness": "HARNESS_FREEZE_V3",
+  "harness_manifest_sha256": "0e569ea84d36ae91d7ad73dd7299b60c9dcab1ff0abb14e270f447449ff43788",
+  "checkpoint_sha256": "6532daad4e3ae54a7e76063e6aef3fef9b59ba6ef709394bf361c30228f19ace",
+  "null_control": "prior.roll(1, dims=-1) through the same frozen Adapter",
+  "intervention": "full window (prefill + every cached-decode query)",
+  "decision_positions": "every decision position visited by BASE greedy trajectory",
+  "pairing": "A/C/D/T evaluated on identical prefix and position",
+  "topM_fixed_in_advance": 4096,
+  "bootstrap": {"n": 10000, "seed": 20260830, "label": "DEVELOPMENT diagnostic"},
+  "decoding": {"mode": "greedy", "max_new_tokens": 16},
+  "dataset": {
+    "split_sha256": "d4686c26f50cbaaf3788eef79a3a12af49a5224671e1d3b5a02195f299627ae7",
+    "row_count": 128
+  },
+  "planned_n": 128,
+  "claim_boundary": "development decision-level diagnostic",
+  "config_hash": "db8f6dfc436b2084330684ccaef1d858913b4d0f5b78ce24536e12187f75cbcb"
+}
