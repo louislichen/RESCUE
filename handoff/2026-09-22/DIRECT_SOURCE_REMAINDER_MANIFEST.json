@@ -1,0 +1,170 @@
+{
+  "task_id": "RESCUE-GITHUB-DIRECT-SOURCE-FINAL-CLOSURE-001",
+  "generated_at": "2026-09-22",
+  "source_of_truth": {
+    "zip": "RESCUE_CODE_HANDOFF_20260922.zip",
+    "sha256": "ffa8da6207a65a784c22e4e2225fe5330dedcdd24c2328918d6941486b81fe37",
+    "internal_sha256sums": "433/433 OK"
+  },
+  "destination_prefix": "handoff/2026-09-22/source",
+  "mode": "17",
+  "missing_file_count": 17,
+  "copied": [
+    {
+      "relative_path": "diagnostics/adapter_path_diagnostic.py",
+      "github_path": "handoff/2026-09-22/source/diagnostics/adapter_path_diagnostic.py",
+      "source_zip_sha256": "461399ab5cc356658fa6f50270a088a2540bba6dec4fa3029ea0c4b9f5e1b0f4",
+      "copied_sha256": "461399ab5cc356658fa6f50270a088a2540bba6dec4fa3029ea0c4b9f5e1b0f4",
+      "match": "MATCH",
+      "size_bytes": 19912,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "diagnostics/assemble_evidence.py",
+      "github_path": "handoff/2026-09-22/source/diagnostics/assemble_evidence.py",
+      "source_zip_sha256": "1de1003543b9802282a8c76180f256aae5e7404dbb49a512e775535021a0749e",
+      "copied_sha256": "1de1003543b9802282a8c76180f256aae5e7404dbb49a512e775535021a0749e",
+      "match": "MATCH",
+      "size_bytes": 12430,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "diagnostics/mechanism_sprint/mech_summarize.py",
+      "github_path": "handoff/2026-09-22/source/diagnostics/mechanism_sprint/mech_summarize.py",
+      "source_zip_sha256": "5d3cfd74216a2047fc741e4feb2eb18d2bb514ac36ea6c2f0103fb9f52065c0b",
+      "copied_sha256": "5d3cfd74216a2047fc741e4feb2eb18d2bb514ac36ea6c2f0103fb9f52065c0b",
+      "match": "MATCH",
+      "size_bytes": 13860,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "harness/patched_sources/q3_teacher_prior_worker.py",
+      "github_path": "handoff/2026-09-22/source/harness/patched_sources/q3_teacher_prior_worker.py",
+      "source_zip_sha256": "a4423db26d5a30c1e9b94cbc805e64693020ac3b166452aec197996f17590d4e",
+      "copied_sha256": "a4423db26d5a30c1e9b94cbc805e64693020ac3b166452aec197996f17590d4e",
+      "match": "MATCH",
+      "size_bytes": 12458,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "harness/rescue_harness/gpu_smokes.py",
+      "github_path": "handoff/2026-09-22/source/harness/rescue_harness/gpu_smokes.py",
+      "source_zip_sha256": "a2f04468a1f29e9058727d2f6683875c43122dc919f79bb6f6119b765e44d10d",
+      "copied_sha256": "a2f04468a1f29e9058727d2f6683875c43122dc919f79bb6f6119b765e44d10d",
+      "match": "MATCH",
+      "size_bytes": 36880,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "harness/rescue_harness/regression_scenarios.py",
+      "github_path": "handoff/2026-09-22/source/harness/rescue_harness/regression_scenarios.py",
+      "source_zip_sha256": "45d6e8cfed32b101b7869d611e85f2cf64d68b6b682efa9dbed001d83131fe45",
+      "copied_sha256": "45d6e8cfed32b101b7869d611e85f2cf64d68b6b682efa9dbed001d83131fe45",
+      "match": "MATCH",
+      "size_bytes": 28148,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "harness/rescue_harness/test_harness.py",
+      "github_path": "handoff/2026-09-22/source/harness/rescue_harness/test_harness.py",
+      "source_zip_sha256": "d5fc5130de62c1b371df41c9b105cb9a1c5753b45547144f6af763ccf7ed7eb7",
+      "copied_sha256": "d5fc5130de62c1b371df41c9b105cb9a1c5753b45547144f6af763ccf7ed7eb7",
+      "match": "MATCH",
+      "size_bytes": 23924,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "harness/rescue_harness/training_identity.py",
+      "github_path": "handoff/2026-09-22/source/harness/rescue_harness/training_identity.py",
+      "source_zip_sha256": "039d3467858c68c9502ed78d259f298c574ec99d0a1e1ec704bdaa524ebd97d8",
+      "copied_sha256": "039d3467858c68c9502ed78d259f298c574ec99d0a1e1ec704bdaa524ebd97d8",
+      "match": "MATCH",
+      "size_bytes": 22669,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "runners/four_arm/four_arm_aggregate.py",
+      "github_path": "handoff/2026-09-22/source/runners/four_arm/four_arm_aggregate.py",
+      "source_zip_sha256": "aa019476c6a9195ebd14e03cc494589b5c8855adcade8fe67b2b3716011c4514",
+      "copied_sha256": "aa019476c6a9195ebd14e03cc494589b5c8855adcade8fe67b2b3716011c4514",
+      "match": "MATCH",
+      "size_bytes": 20567,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "runners/four_arm/four_arm_mechanism.py",
+      "github_path": "handoff/2026-09-22/source/runners/four_arm/four_arm_mechanism.py",
+      "source_zip_sha256": "a34e2121cf7f3a8567fdd23a80d4ceba3591f90648d71e89932de7e5054374b2",
+      "copied_sha256": "a34e2121cf7f3a8567fdd23a80d4ceba3591f90648d71e89932de7e5054374b2",
+      "match": "MATCH",
+      "size_bytes": 12624,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "runners/r1_pilot/r1_aggregate.py",
+      "github_path": "handoff/2026-09-22/source/runners/r1_pilot/r1_aggregate.py",
+      "source_zip_sha256": "28d5fec7b83c6f800fd7263d76aa9b2e829c9e900f65b5b4d6b1365a80fba54d",
+      "copied_sha256": "28d5fec7b83c6f800fd7263d76aa9b2e829c9e900f65b5b4d6b1365a80fba54d",
+      "match": "MATCH",
+      "size_bytes": 16609,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "runners/teacher_decision/td_aggregate.py",
+      "github_path": "handoff/2026-09-22/source/runners/teacher_decision/td_aggregate.py",
+      "source_zip_sha256": "1062c18e1e89c1549761e6838efb6d44892b8eb69d2ca2732c166269fee28852",
+      "copied_sha256": "1062c18e1e89c1549761e6838efb6d44892b8eb69d2ca2732c166269fee28852",
+      "match": "MATCH",
+      "size_bytes": 22430,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "runners/teacher_decision/td_student_alignment.py",
+      "github_path": "handoff/2026-09-22/source/runners/teacher_decision/td_student_alignment.py",
+      "source_zip_sha256": "ebbb1c0078d403b2de569e88d923003c9063deed38837f6f1f7cdf0921b1f2ed",
+      "copied_sha256": "ebbb1c0078d403b2de569e88d923003c9063deed38837f6f1f7cdf0921b1f2ed",
+      "match": "MATCH",
+      "size_bytes": 30663,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "runtime/prefix_fix/real_k4_runner.py",
+      "github_path": "handoff/2026-09-22/source/runtime/prefix_fix/real_k4_runner.py",
+      "source_zip_sha256": "50a06c234ba169887c03811812526f3cae8e131d4870cd2a55a2b63ac19584e7",
+      "copied_sha256": "50a06c234ba169887c03811812526f3cae8e131d4870cd2a55a2b63ac19584e7",
+      "match": "MATCH",
+      "size_bytes": 22180,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "runtime/source/sequence_loss_runner.py",
+      "github_path": "handoff/2026-09-22/source/runtime/source/sequence_loss_runner.py",
+      "source_zip_sha256": "98f8f0a48d15ebcd5a4e8db0930955fe9c7d7945fb09a0e7f948089a1f799cf6",
+      "copied_sha256": "98f8f0a48d15ebcd5a4e8db0930955fe9c7d7945fb09a0e7f948089a1f799cf6",
+      "match": "MATCH",
+      "size_bytes": 19687,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "runtime/source_lock/run_adapter_protocol.py",
+      "github_path": "handoff/2026-09-22/source/runtime/source_lock/run_adapter_protocol.py",
+      "source_zip_sha256": "4e2420d8fb39be953bc49de56ef6a7e45adafada39fe338e3950cb911b9136ce",
+      "copied_sha256": "4e2420d8fb39be953bc49de56ef6a7e45adafada39fe338e3950cb911b9136ce",
+      "match": "MATCH",
+      "size_bytes": 13812,
+      "kind": "absent"
+    },
+    {
+      "relative_path": "tests/v3_gate/v3_gate_ext.py",
+      "github_path": "handoff/2026-09-22/source/tests/v3_gate/v3_gate_ext.py",
+      "source_zip_sha256": "8fcce38d363d6a64c58a62523aa385e7b7b9b8dd3f22e0efba323c64afc4a0f4",
+      "copied_sha256": "8fcce38d363d6a64c58a62523aa385e7b7b9b8dd3f22e0efba323c64afc4a0f4",
+      "match": "MATCH",
+      "size_bytes": 20509,
+      "kind": "absent"
+    }
+  ],
+  "match_count": 17,
+  "mismatch_count": 0,
+  "status": "ALL_MATCH"
+}
