@@ -17,7 +17,7 @@ ATTN_TRANSFER_DIR = ROOT / "exp" / "attn_transfer"
 if str(ATTN_TRANSFER_DIR) not in sys.path:
     sys.path.insert(0, str(ATTN_TRANSFER_DIR))
 
-from run_hotpot_attn_transfer import (
+from run_hotpot_attn_transfer import (  # noqa: E402
     build_docs_and_query,
     encode_with_offsets,
     load_model_and_tokenizer,
@@ -47,21 +47,11 @@ def append_jsonl(path: str, record: Dict[str, Any]) -> None:
         f.write("\n")
 
 
-def sample_to_prompt(
-    sample: Dict[str, Any], doc_mode: str = "all"
-) -> Tuple[str, str, str]:
+def sample_to_prompt(sample: Dict[str, Any], doc_mode: str = "all") -> Tuple[str, str, str]:
     if "prompt" in sample and "gold" in sample:
-        return (
-            str(sample["prompt"]),
-            str(sample["gold"]),
-            str(sample.get("question", "")),
-        )
+        return str(sample["prompt"]), str(sample["gold"]), str(sample.get("question", ""))
     doc_texts, query = build_docs_and_query(sample, doc_mode)
-    return (
-        make_prompt(doc_texts, query),
-        str(sample.get("answer", "")).strip(),
-        str(sample.get("question", "")),
-    )
+    return make_prompt(doc_texts, query), str(sample.get("answer", "")).strip(), str(sample.get("question", ""))
 
 
 def tensor_ids(ids: Sequence[int], device: str) -> torch.Tensor:
@@ -70,20 +60,46 @@ def tensor_ids(ids: Sequence[int], device: str) -> torch.Tensor:
 
 @torch.no_grad()
 def next_token_id(model, ids: Sequence[int], device: str) -> int:
-    out = model(
-        input_ids=tensor_ids(ids, device),
-        use_cache=False,
-        output_attentions=False,
-    )
+    out = model(input_ids=tensor_ids(ids, device), use_cache=False, output_attentions=False)
     return int(torch.argmax(out.logits[:, -1, :], dim=-1).item())
 
 
-def gold_target_ids(tokenizer, prompt: str, gold: str) -> List[int]:
+@torch.no_grad()
+def greedy_text(
+    model,
+    tokenizer,
+    prompt: str,
+    max_new_tokens: int,
+    device: str,
+    stop_on_question: bool = True,
+) -> str:
     prompt_ids = tokenizer(prompt, add_special_tokens=False)["input_ids"]
-    full_ids = tokenizer(prompt + " " + gold, add_special_tokens=False)["input_ids"]
+    generated: List[int] = []
+    eos_id = tokenizer.eos_token_id
+    for _ in range(max_new_tokens):
+        next_id = next_token_id(model, list(prompt_ids) + generated, device)
+        if eos_id is not None and next_id == eos_id:
+            break
+        generated.append(next_id)
+        text = tokenizer.decode(generated, skip_special_tokens=True)
+        if stop_on_question and ("\nQuestion:" in text or "\nQ:" in text):
+            break
+    text = tokenizer.decode(generated, skip_special_tokens=True)
+    if stop_on_question:
+        text = text.split("\nQuestion:", 1)[0].split("\nQ:", 1)[0].rstrip()
+    return text
+
+
+def suffix_token_ids(tokenizer, prompt: str, suffix_text: str) -> List[int]:
+    prompt_ids = tokenizer(prompt, add_special_tokens=False)["input_ids"]
+    full_ids = tokenizer(prompt + suffix_text, add_special_tokens=False)["input_ids"]
     if len(full_ids) > len(prompt_ids) and full_ids[: len(prompt_ids)] == prompt_ids:
         return full_ids[len(prompt_ids) :]
-    return tokenizer(" " + gold, add_special_tokens=False)["input_ids"]
+    return tokenizer(suffix_text, add_special_tokens=False)["input_ids"]
+
+
+def gold_target_ids(tokenizer, prompt: str, gold: str) -> List[int]:
+    return suffix_token_ids(tokenizer, prompt, " " + gold)
 
 
 @torch.no_grad()
@@ -96,9 +112,7 @@ def collect_projected_teacher_heads(
     device: str,
     eps: float,
 ) -> torch.Tensor:
-    t_enc, t_offsets = encode_with_offsets(
-        teacher_tokenizer, text, device=device
-    )
+    t_enc, t_offsets = encode_with_offsets(teacher_tokenizer, text, device=device)
     _, s_offsets = encode_with_offsets(student_tokenizer, text, device=None)
     from steering import qwen2_teacher_row_observer
 
@@ -106,34 +120,22 @@ def collect_projected_teacher_heads(
     with qwen2_teacher_row_observer(
         teacher_model, teacher_layer_indices, captured_rows
     ):
+        # Prior collection needs Qwen2Model hidden states only; calling the
+        # CausalLM wrapper would perform an unrelated full-vocabulary lm_head.
         teacher_model(
             **t_enc,
             use_cache=False,
             output_attentions=False,
             output_hidden_states=False,
         )
-    expected = {
-        idx
-        if idx >= 0
-        else int(teacher_model.config.num_hidden_layers) + idx
-        for idx in teacher_layer_indices
-    }
+    expected = {idx if idx >= 0 else int(teacher_model.config.num_hidden_layers) + idx for idx in teacher_layer_indices}
     if set(captured_rows) != expected:
-        raise RuntimeError(
-            f"Teacher streaming observer captured {sorted(captured_rows)}, "
-            f"expected {sorted(expected)}"
-        )
+        raise RuntimeError(f"Teacher streaming observer captured {sorted(captured_rows)}, expected {sorted(expected)}")
     projected: List[torch.Tensor] = []
     for idx in teacher_layer_indices:
-        real_idx = (
-            idx
-            if idx >= 0
-            else int(teacher_model.config.num_hidden_layers) + idx
-        )
+        real_idx = idx if idx >= 0 else int(teacher_model.config.num_hidden_layers) + idx
         rows = captured_rows[real_idx].float()
-        projected.append(
-            project_teacher_heads_to_student(rows, t_offsets, s_offsets, eps)
-        )
+        projected.append(project_teacher_heads_to_student(rows, t_offsets, s_offsets, eps))
     return torch.stack(projected, dim=0)
 
 
@@ -143,16 +145,9 @@ def collect_student_rows(
     input_ids: torch.Tensor,
     student_layer_indices: Sequence[int],
 ) -> torch.Tensor:
-    out = student_model(
-        input_ids=input_ids,
-        use_cache=False,
-        output_attentions=True,
-        output_hidden_states=False,
-    )
+    out = student_model(input_ids=input_ids, use_cache=False, output_attentions=True, output_hidden_states=False)
     if out.attentions is None:
-        raise RuntimeError(
-            "Student did not return attentions. Check eager attention mode."
-        )
+        raise RuntimeError("Student did not return attentions. Check eager attention mode.")
     n_layers = len(out.attentions)
     rows = []
     for idx in student_layer_indices:
