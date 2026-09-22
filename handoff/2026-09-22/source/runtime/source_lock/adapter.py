@@ -32,11 +32,21 @@ class AttentionAdapterConfig:
 
 
 class AttentionPriorAdapter(nn.Module):
-    """Map projected teacher heads into per-student-head attention priors."""
+    """Map projected teacher heads into per-student-head attention priors.
+
+    Inputs:
+      teacher_projected: [T, Ht, K]
+      student_rows:      [S, Hs, K]
+
+    Outputs:
+      prior: [S, Hs, K]
+      alpha: [S, Hs]
+    """
 
     def __init__(self, config: AttentionAdapterConfig):
         super().__init__()
         self.config = config
+
         self.mix_logits = nn.Parameter(
             torch.zeros(
                 config.num_student_layers,
@@ -45,53 +55,32 @@ class AttentionPriorAdapter(nn.Module):
                 config.num_teacher_heads,
             )
         )
-        self.residual_logits = nn.Parameter(
-            torch.full((config.num_student_layers, config.num_student_heads), -1.5)
-        )
-        self.gate_logits = nn.Parameter(
-            torch.full((config.num_student_layers, config.num_student_heads), -2.0)
-        )
-        self.log_temperature = nn.Parameter(
-            torch.zeros(config.num_student_layers, config.num_student_heads)
-        )
+        self.residual_logits = nn.Parameter(torch.full((config.num_student_layers, config.num_student_heads), -1.5))
+        self.gate_logits = nn.Parameter(torch.full((config.num_student_layers, config.num_student_heads), -2.0))
+        self.log_temperature = nn.Parameter(torch.zeros(config.num_student_layers, config.num_student_heads))
 
-    def forward(
-        self,
-        teacher_projected: torch.Tensor,
-        student_rows: torch.Tensor,
-    ) -> Tuple[torch.Tensor, torch.Tensor]:
+    def forward(self, teacher_projected: torch.Tensor, student_rows: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
         cfg = self.config
         if teacher_projected.dim() != 3:
-            raise ValueError(
-                f"teacher_projected must be [T,H,K], got {tuple(teacher_projected.shape)}"
-            )
+            raise ValueError(f"teacher_projected must be [T,H,K], got {tuple(teacher_projected.shape)}")
         if student_rows.dim() != 3:
+            raise ValueError(f"student_rows must be [S,H,K], got {tuple(student_rows.shape)}")
+        if teacher_projected.shape[:2] != (cfg.num_teacher_layers, cfg.num_teacher_heads):
             raise ValueError(
-                f"student_rows must be [S,H,K], got {tuple(student_rows.shape)}"
+                "teacher_projected shape mismatch: "
+                f"expected {(cfg.num_teacher_layers, cfg.num_teacher_heads)}, got {tuple(teacher_projected.shape[:2])}"
             )
-        if teacher_projected.shape[:2] != (
-            cfg.num_teacher_layers,
-            cfg.num_teacher_heads,
-        ):
-            raise ValueError("teacher_projected shape mismatch")
-        if student_rows.shape[:2] != (
-            cfg.num_student_layers,
-            cfg.num_student_heads,
-        ):
-            raise ValueError("student_rows shape mismatch")
+        if student_rows.shape[:2] != (cfg.num_student_layers, cfg.num_student_heads):
+            raise ValueError(
+                "student_rows shape mismatch: "
+                f"expected {(cfg.num_student_layers, cfg.num_student_heads)}, got {tuple(student_rows.shape[:2])}"
+            )
 
         teacher = normalize_rows(teacher_projected, cfg.eps)
         student = normalize_rows(student_rows, cfg.eps)
-        flat_teacher = teacher.reshape(
-            cfg.num_teacher_layers * cfg.num_teacher_heads,
-            teacher.shape[-1],
-        )
-        weights = F.softmax(
-            self.mix_logits.reshape(
-                cfg.num_student_layers, cfg.num_student_heads, -1
-            ),
-            dim=-1,
-        )
+
+        flat_teacher = teacher.reshape(cfg.num_teacher_layers * cfg.num_teacher_heads, teacher.shape[-1])
+        weights = F.softmax(self.mix_logits.reshape(cfg.num_student_layers, cfg.num_student_heads, -1), dim=-1)
         teacher_mix = torch.einsum("sgx,xk->sgk", weights, flat_teacher)
         teacher_mix = normalize_rows(teacher_mix, cfg.eps)
 
@@ -100,10 +89,7 @@ class AttentionPriorAdapter(nn.Module):
         base = normalize_rows(base, cfg.eps)
 
         temperature = self.log_temperature.exp().clamp(0.25, 4.0).unsqueeze(-1)
-        prior = F.softmax(
-            torch.log(base.clamp_min(cfg.eps)) / temperature,
-            dim=-1,
-        )
+        prior = F.softmax(torch.log(base.clamp_min(cfg.eps)) / temperature, dim=-1)
         alpha = torch.sigmoid(self.gate_logits) * cfg.max_alpha
         return prior, alpha
 
@@ -128,17 +114,9 @@ def adapter_regularization(
     delta_sharpness: float,
     eps: float = 1e-8,
 ) -> Tuple[torch.Tensor, Dict[str, float]]:
-    teacher_mean = normalize_rows(
-        teacher_projected.mean(dim=(0, 1), keepdim=False), eps
-    )
+    teacher_mean = normalize_rows(teacher_projected.mean(dim=(0, 1), keepdim=False), eps)
     prior_mean = normalize_rows(prior.mean(dim=(0, 1), keepdim=False), eps)
-    kl = (
-        prior_mean
-        * (
-            prior_mean.clamp_min(eps).log()
-            - teacher_mean.clamp_min(eps).log()
-        )
-    ).sum()
+    kl = (prior_mean * (prior_mean.clamp_min(eps).log() - teacher_mean.clamp_min(eps).log())).sum()
     alpha_mean = alpha.mean()
     max_entropy = math.log(max(2, int(prior.shape[-1])))
     entropy = entropy_rows(prior, eps).mean()
@@ -152,9 +130,7 @@ def adapter_regularization(
     return reg, stats
 
 
-def checkpoint_payload(
-    adapter: AttentionPriorAdapter, extra: Dict[str, Any]
-) -> Dict[str, Any]:
+def checkpoint_payload(adapter: AttentionPriorAdapter, extra: Dict[str, Any]) -> Dict[str, Any]:
     return {
         "config": adapter.config.to_json(),
         "state_dict": adapter.state_dict(),
@@ -162,9 +138,7 @@ def checkpoint_payload(
     }
 
 
-def load_adapter_checkpoint(
-    path: str, map_location: str | torch.device = "cpu"
-) -> Tuple[AttentionPriorAdapter, Dict[str, Any]]:
+def load_adapter_checkpoint(path: str, map_location: str | torch.device = "cpu") -> Tuple[AttentionPriorAdapter, Dict[str, Any]]:
     payload = torch.load(path, map_location=map_location)
     config = AttentionAdapterConfig.from_json(payload["config"])
     adapter = AttentionPriorAdapter(config)

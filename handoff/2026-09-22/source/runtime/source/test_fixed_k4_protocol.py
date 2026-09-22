@@ -82,6 +82,16 @@ class FixedK4Tests(unittest.TestCase):
         result = self.run_case([99, 1], [99, 1], max_new=1)
         self.assertEqual(result.token_ids, [1])
 
+    def test_empty_proposal_after_verified_block_counts_as_block(self):
+        result = self.run_case(
+            [99, 1, 2, 3, 4, 5, 98],
+            [99, 1, 2, 3, 4, 5, 6, 7],
+            max_new=6,
+        )
+        self.assertEqual(result.token_ids, [1, 2, 3, 4, 5, 6])
+        self.assertEqual(result.counters.target_verify_calls, 1)
+        self.assertEqual(result.counters.blocks, 2)
+
     def test_multiround_rollback(self):
         result = self.run_case([99, 1, 2, 8, 4, 5, 6, 7], [99, 1, 2, 3, 4, 5, 6, 7], max_new=7)
         self.assertEqual(result.token_ids, [1, 2, 3, 4, 5, 6, 7])
