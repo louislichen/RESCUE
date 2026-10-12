@@ -1,1 +1,11 @@
 **/**.pyc
+**/__pycache__/
+**/.DS_Store
+exp/specextend_bridgekv/specextend/data/
+exp/specextend_bridgekv/results/
+exp/specextend_bridgekv/checkpoints/
+exp/specextend_bridgekv/**/*.log
+exp/specextend_bridgekv/**/*.pid
+exp/specextend_bridgekv/**/*.pt
+exp/specextend_bridgekv/**/*.pth
+exp/specextend_bridgekv/**/*.safetensors
