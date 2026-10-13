@@ -9,3 +9,11 @@ exp/specextend_bridgekv/**/*.pid
 exp/specextend_bridgekv/**/*.pt
 exp/specextend_bridgekv/**/*.pth
 exp/specextend_bridgekv/**/*.safetensors
+
+# Local experiment weights, tensor caches, and process logs.
+/exp/**/*.pt
+/exp/**/*.pth
+/exp/**/*.safetensors
+/exp/**/*.log
+/exp/**/*.pid
+.pytest_cache/

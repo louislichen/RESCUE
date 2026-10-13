@@ -1,0 +1,6 @@
+# Keep trained matrices available locally without adding large binary artifacts.
+out*/*.pt
+
+# Keep pilot runs local; retain formal configurations and readable results.
+out*_pilot/
+out_pilot_checked/
