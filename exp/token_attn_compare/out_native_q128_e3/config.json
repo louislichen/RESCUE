@@ -1,0 +1,30 @@
+{
+  "output": "exp/token_attn_compare/out_native_q128_e3",
+  "samples": "/home/wanghl/cl/RESCUE/exp/attn_transfer/data/hotpot_stream_300_maxL2048.jsonl",
+  "teacher": "/mnt/8T/cl/models/Qwen2-7B-Instruct",
+  "student": "/mnt/8T/cl/models/Qwen2-1.5B-Instruct",
+  "train_count": 128,
+  "cal_count": 32,
+  "test_count": 50,
+  "cal_start": 128,
+  "test_start": 200,
+  "train_tokens": 16,
+  "max_new_tokens": 32,
+  "draft_k": 4,
+  "epochs": 3,
+  "adapter_lr": 0.005,
+  "q_lr": 3e-05,
+  "attention_weight": 0.05,
+  "max_alpha": 0.5,
+  "max_prompt_tokens": 2048,
+  "seed": 42,
+  "device": "cuda:0",
+  "eval_only": false,
+  "methods": [
+    "q_native_attention",
+    "q_native_output_only"
+  ],
+  "data_sha256": "223ef0652383915f9a5c968635c1c105568ce4713b311bbc8f2335bf1e512438",
+  "torch": "2.7.1+cu128",
+  "gpu": "NVIDIA H100"
+}

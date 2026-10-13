@@ -1,0 +1,32 @@
+{
+  "baseline": {
+    "match": 0.7179878048780488,
+    "ce": 1.4995361025013574,
+    "hits": 471,
+    "tokens": 656,
+    "repaired": 0,
+    "broken": 0,
+    "baseline_mismatches": 185,
+    "baseline_matches": 471
+  },
+  "q_native_attention": {
+    "match": 0.7591463414634146,
+    "ce": 1.1123700525339058,
+    "hits": 498,
+    "tokens": 656,
+    "repaired": 40,
+    "broken": 13,
+    "baseline_mismatches": 185,
+    "baseline_matches": 471
+  },
+  "q_native_output_only": {
+    "match": 0.7621951219512195,
+    "ce": 1.106714799545887,
+    "hits": 500,
+    "tokens": 656,
+    "repaired": 42,
+    "broken": 13,
+    "baseline_mismatches": 185,
+    "baseline_matches": 471
+  }
+}

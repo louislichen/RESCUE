@@ -1,0 +1,6 @@
+{"state_index": 11, "source_index": 12, "reason": "Student reconstructed argmax 7524 differs from draft 28715"}
+{"state_index": 14, "source_index": 16, "reason": "Student reconstructed argmax 5159 differs from draft 34639"}
+{"state_index": 28, "source_index": 32, "reason": "Student reconstructed argmax 271 differs from draft 13"}
+{"state_index": 30, "source_index": 34, "reason": "Verifier/cached teacher argmax differs: 81698 vs 576"}
+{"state_index": 44, "source_index": 53, "reason": "Verifier/cached teacher argmax differs: 43843 vs 576"}
+{"state_index": 62, "source_index": 73, "reason": "Student reconstructed argmax 13 differs from draft 271"}

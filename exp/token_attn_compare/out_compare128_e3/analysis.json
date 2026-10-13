@@ -1,0 +1,74 @@
+{
+  "paired_controls": {
+    "adapter_vs_adapter_uniform": {
+      "delta_accept_rate": 0.004338740397721641,
+      "paired_95pct_delta_interval": [
+        -0.005955083989166254,
+        0.015278674500488854
+      ]
+    },
+    "q_attention_vs_q_output_only": {
+      "delta_accept_rate": 0.0033060749760548402,
+      "paired_95pct_delta_interval": [
+        0.0,
+        0.009554872643515637
+      ]
+    }
+  },
+  "teacher_output_differences": {
+    "adapter": [],
+    "bias": [],
+    "q_attention": [
+      {
+        "cursor": 212,
+        "first_difference_position": 22,
+        "method_text": " The Øresund Bridge, which spans the strait at its southern end, connects the Øresund Region, where is the Nordic countries' largest metropolitan area",
+        "baseline_text": " The Øresund Bridge, which spans the strait at its southern end, connects the Øresund Region. The bridge runs nearly 8 km from the"
+      },
+      {
+        "cursor": 223,
+        "first_difference_position": 6,
+        "method_text": " Ehretia has more species. The genus Ehretia contains about 50 species, while the genus Xanthoceras contains only 1 species.",
+        "baseline_text": " Ehretia has more species than Xanthoceras. While Xanthoceras has only 1 species, Ehretia contains about 50 species"
+      }
+    ],
+    "adapter_uniform": [
+      {
+        "cursor": 215,
+        "first_difference_position": 27,
+        "method_text": " The material that a hairdresser from Yorkshire, England, invented and that was named by his granddaughter is Starlite. Maurice Ward, the inventor, created Star",
+        "baseline_text": " The material that a hairdresser from Yorkshire, England, invented and that was named by his granddaughter is Starlite. Maurice Ward, an English inventor and former"
+      },
+      {
+        "cursor": 237,
+        "first_difference_position": 15,
+        "method_text": " Roy Rogers and his third wife, Dale Evans, starred in the film \"My Pal Trigger\" directed by Frank McDonald in 1946.",
+        "baseline_text": " Roy Rogers and his third wife, Dale Evans, starred in the film \"Song of Arizona\" directed by Frank McDonald in 1946."
+      }
+    ],
+    "q_output_only": [
+      {
+        "cursor": 212,
+        "first_difference_position": 22,
+        "method_text": " The Øresund Bridge, which spans the strait at its southern end, connects the Øresund Region, where is the Nordic countries' largest metropolitan area",
+        "baseline_text": " The Øresund Bridge, which spans the strait at its southern end, connects the Øresund Region. The bridge runs nearly 8 km from the"
+      },
+      {
+        "cursor": 223,
+        "first_difference_position": 6,
+        "method_text": " Ehretia has more species. The genus Ehretia contains about 50 species, while the genus Xanthoceras contains only 1 species.",
+        "baseline_text": " Ehretia has more species than Xanthoceras. While Xanthoceras has only 1 species, Ehretia contains about 50 species"
+      }
+    ]
+  },
+  "token_counts": {
+    "train": {
+      "questions": 128,
+      "tokens": 1798
+    },
+    "calibration": {
+      "questions": 32,
+      "tokens": 418
+    }
+  }
+}

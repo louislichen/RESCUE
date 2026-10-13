@@ -1,0 +1,10 @@
+{
+  "fast_window_full_max_logit_error": 0.0,
+  "adapter_zero_max_logit_error": 0.0,
+  "adapter_gradient_norm": 0.0066770995035767555,
+  "adapter_fast_full_gradient_max_error": 0.0,
+  "bias_zero_max_logit_error": 0.0,
+  "q_attention_zero_max_logit_error": 0.0,
+  "q_attention_gradient_norm": 2.375096559524536,
+  "q_attention_fast_full_gradient_max_error": 0.0
+}

@@ -65,6 +65,10 @@ def _apply_adapter_prob_mix(module, attn_probs: torch.Tensor) -> torch.Tensor:
     row = attn_probs[:, :, -1, :].float()
     mixed = (1.0 - alpha.view(1, -1, 1)) * row + alpha.view(1, -1, 1) * prior.view(1, prior.shape[0], -1)
     mixed = mixed / mixed.sum(dim=-1, keepdim=True).clamp_min(state.eps)
+    # A BF16 softmax row need not sum to exactly one in FP32. Renormalizing
+    # even at alpha=0 can change its rounded values; zero intervention must
+    # preserve the original row exactly.
+    mixed = torch.where(alpha.view(1, -1, 1) == 0, row, mixed)
     out = attn_probs.clone()
     out[:, :, -1, :] = mixed.to(attn_probs.dtype)
     return out

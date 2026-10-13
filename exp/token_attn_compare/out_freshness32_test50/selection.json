@@ -1,0 +1,65 @@
+{
+  "baseline": {
+    "source": "static",
+    "scope": "document",
+    "strength": 0
+  },
+  "static_selected": {
+    "source": "static",
+    "scope": "document",
+    "strength": 0.5
+  },
+  "dynamic_selected": {
+    "source": "dynamic",
+    "scope": "document",
+    "strength": 0.125
+  },
+  "static_at_dynamic_strength": {
+    "source": "static",
+    "scope": "document",
+    "strength": 0.125
+  },
+  "dynamic_at_static_strength": {
+    "source": "dynamic",
+    "scope": "document",
+    "strength": 0.5
+  },
+  "dynamic_shuffled_selected": {
+    "source": "dynamic",
+    "scope": "document",
+    "strength": 0.125,
+    "shuffle": true
+  },
+  "static_unit": {
+    "source": "static",
+    "scope": "document",
+    "strength": 1
+  },
+  "dynamic_unit": {
+    "source": "dynamic",
+    "scope": "document",
+    "strength": 1
+  },
+  "dynamic_shuffled_unit": {
+    "source": "dynamic",
+    "scope": "document",
+    "strength": 1,
+    "shuffle": true
+  },
+  "dynamic_full_selected": {
+    "source": "dynamic",
+    "scope": "full",
+    "strength": 0.25
+  },
+  "dynamic_full_unit": {
+    "source": "dynamic",
+    "scope": "full",
+    "strength": 1
+  },
+  "dynamic_full_shuffled_selected": {
+    "source": "dynamic",
+    "scope": "full",
+    "strength": 0.25,
+    "shuffle": true
+  }
+}

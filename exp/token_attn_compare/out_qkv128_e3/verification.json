@@ -1,0 +1,17 @@
+{
+  "all_outputs_match_frozen_reference": true,
+  "full_prefix_recomputed_for_every_projection_set": true,
+  "test_labels_not_used_for_checkpoint_selection": true,
+  "checkpoint_first_question_replay": {
+    "baseline": true,
+    "q_output": true,
+    "q_relations": true,
+    "qk_output": true,
+    "qk_relations": true,
+    "qv_output": true,
+    "qv_relations": true,
+    "qkv_output": true,
+    "qkv_relations": true
+  },
+  "previous_baseline_exact": true
+}

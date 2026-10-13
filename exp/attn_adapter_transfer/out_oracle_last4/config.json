@@ -1,0 +1,19 @@
+{
+  "samples_path": "/home/wanghl/cl/RESCUE/exp/attn_transfer/data/hotpot_stream_300_maxL2048.jsonl",
+  "samples_sha256": "223ef0652383915f9a5c968635c1c105568ce4713b311bbc8f2335bf1e512438",
+  "teacher_model_path": "/mnt/8T/cl/models/Qwen2-7B-Instruct",
+  "student_model_path": "/mnt/8T/cl/models/Qwen2-1.5B-Instruct",
+  "last_layers": 4,
+  "max_prompt_tokens": 2048,
+  "max_new_tokens": 32,
+  "draft_k": 4,
+  "steps_per_restart": 100,
+  "restarts": 2,
+  "lr": 0.1,
+  "seed": 42,
+  "dtype": "bfloat16",
+  "shuffle": "same permutation for all teacher heads, document positions only; first token/question/generated suffix fixed",
+  "stop_rule": "stop mode after first argmax match; otherwise exhaust all restarts",
+  "teacher_projection": "identity after checking equal token vocabularies and prompt token IDs",
+  "torch": "2.7.1+cu128"
+}

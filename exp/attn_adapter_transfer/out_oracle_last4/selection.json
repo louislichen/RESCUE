@@ -1,0 +1,9 @@
+{
+  "scanned": 73,
+  "kept": 70,
+  "skipped": {
+    "too_long": 0,
+    "tokenization_mismatch": 0,
+    "no_rejection": 3
+  }
+}

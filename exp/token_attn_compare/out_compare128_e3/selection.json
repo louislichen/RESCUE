@@ -1,0 +1,85 @@
+{
+  "baseline_calibration": {
+    "match": 0.6985645933014354,
+    "ce": 1.5740312720029548,
+    "hits": 292,
+    "tokens": 418,
+    "repaired": 0,
+    "broken": 0,
+    "baseline_mismatches": 126,
+    "baseline_matches": 292
+  },
+  "methods": {
+    "bias": {
+      "strength": 0.5,
+      "match": 0.6985645933014354,
+      "ce": 1.5692832361568103,
+      "hits": 292,
+      "tokens": 418,
+      "repaired": 2,
+      "broken": 2,
+      "baseline_mismatches": 126,
+      "baseline_matches": 292
+    },
+    "adapter": {
+      "method": "adapter",
+      "selected_epoch": 3,
+      "calibration": {
+        "match": 0.7081339712918661,
+        "ce": 1.4811158767727572,
+        "hits": 296,
+        "tokens": 418,
+        "repaired": 5,
+        "broken": 1,
+        "baseline_mismatches": 126,
+        "baseline_matches": 292
+      },
+      "parameter_count": 55004
+    },
+    "adapter_uniform": {
+      "method": "adapter_uniform",
+      "selected_epoch": 3,
+      "calibration": {
+        "match": 0.7081339712918661,
+        "ce": 1.5153939880822833,
+        "hits": 296,
+        "tokens": 418,
+        "repaired": 6,
+        "broken": 2,
+        "baseline_mismatches": 126,
+        "baseline_matches": 292
+      },
+      "parameter_count": 55004
+    },
+    "q_attention": {
+      "method": "q_attention",
+      "selected_epoch": 3,
+      "calibration": {
+        "match": 0.7392344497607656,
+        "ce": 1.1552591985492615,
+        "hits": 309,
+        "tokens": 418,
+        "repaired": 23,
+        "broken": 6,
+        "baseline_mismatches": 126,
+        "baseline_matches": 292
+      },
+      "parameter_count": 9437184
+    },
+    "q_output_only": {
+      "method": "q_output_only",
+      "selected_epoch": 3,
+      "calibration": {
+        "match": 0.7320574162679426,
+        "ce": 1.150730473573128,
+        "hits": 306,
+        "tokens": 418,
+        "repaired": 22,
+        "broken": 8,
+        "baseline_mismatches": 126,
+        "baseline_matches": 292
+      },
+      "parameter_count": 9437184
+    }
+  }
+}

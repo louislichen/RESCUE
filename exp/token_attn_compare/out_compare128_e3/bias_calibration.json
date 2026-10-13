@@ -1,0 +1,46 @@
+[
+  {
+    "strength": 0.0,
+    "match": 0.6985645933014354,
+    "ce": 1.5740312720029548,
+    "hits": 292,
+    "tokens": 418,
+    "repaired": 0,
+    "broken": 0,
+    "baseline_mismatches": 126,
+    "baseline_matches": 292
+  },
+  {
+    "strength": 0.125,
+    "match": 0.6985645933014354,
+    "ce": 1.5722627611251538,
+    "hits": 292,
+    "tokens": 418,
+    "repaired": 0,
+    "broken": 0,
+    "baseline_mismatches": 126,
+    "baseline_matches": 292
+  },
+  {
+    "strength": 0.5,
+    "match": 0.6985645933014354,
+    "ce": 1.5692832361568103,
+    "hits": 292,
+    "tokens": 418,
+    "repaired": 2,
+    "broken": 2,
+    "baseline_mismatches": 126,
+    "baseline_matches": 292
+  },
+  {
+    "strength": 1.0,
+    "match": 0.6961722488038278,
+    "ce": 1.55926414083636,
+    "hits": 291,
+    "tokens": 418,
+    "repaired": 3,
+    "broken": 4,
+    "baseline_mismatches": 126,
+    "baseline_matches": 292
+  }
+]

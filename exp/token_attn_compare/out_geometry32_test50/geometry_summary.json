@@ -1,0 +1,58 @@
+{
+  "current_teacher_full": {
+    "layer_query_rows": 516,
+    "states": 129,
+    "mean": {
+      "reachable_score_energy_fraction": 0.7838750404904364,
+      "residual_score_energy_fraction": 0.21612495950956254,
+      "baseline_attention_kl": 1.3822168188150181,
+      "projected_attention_kl": 0.8514159377223957,
+      "complemented_attention_kl": 1.5121239582179416e-17,
+      "complemented_probability_max_error": 1.4148754304255795e-16,
+      "score_reconstruction_max_error": 0.0,
+      "residual_orthogonality_error": 7.0525541728469704e-15,
+      "projected_query_delta_relative_norm": 0.8570097102791024,
+      "teacher_document_prior_drift_kl": 1.2757914535824082
+    },
+    "max": {
+      "reachable_score_energy_fraction": 0.8906442152148679,
+      "residual_score_energy_fraction": 0.5011075890006786,
+      "baseline_attention_kl": 2.7956785479479747,
+      "projected_attention_kl": 2.339591268186581,
+      "complemented_attention_kl": 4.653390790877101e-16,
+      "complemented_probability_max_error": 4.440892098500626e-16,
+      "score_reconstruction_max_error": 0.0,
+      "residual_orthogonality_error": 2.1640931631879045e-14,
+      "projected_query_delta_relative_norm": 1.1174315762298501,
+      "teacher_document_prior_drift_kl": 6.193093429216536
+    }
+  },
+  "prompt_teacher_document": {
+    "layer_query_rows": 516,
+    "states": 129,
+    "mean": {
+      "reachable_score_energy_fraction": 0.8147255009241862,
+      "residual_score_energy_fraction": 0.18527449907581506,
+      "baseline_attention_kl": 0.7838732795479871,
+      "projected_attention_kl": 1.1717205761143672,
+      "complemented_attention_kl": 1.4873073151150138e-17,
+      "complemented_probability_max_error": 2.2449204424772725e-16,
+      "score_reconstruction_max_error": 0.0,
+      "residual_orthogonality_error": 7.77851720697529e-15,
+      "projected_query_delta_relative_norm": 0.8659232662510089,
+      "teacher_document_prior_drift_kl": 1.2757914535824082
+    },
+    "max": {
+      "reachable_score_energy_fraction": 0.9049299524846295,
+      "residual_score_energy_fraction": 0.3903768658708292,
+      "baseline_attention_kl": 2.524568359027885,
+      "projected_attention_kl": 3.139819956700768,
+      "complemented_attention_kl": 1.7688050942928042e-16,
+      "complemented_probability_max_error": 6.661338147750939e-16,
+      "score_reconstruction_max_error": 0.0,
+      "residual_orthogonality_error": 2.206523639435958e-14,
+      "projected_query_delta_relative_norm": 1.1023340340572374,
+      "teacher_document_prior_drift_kl": 6.193093429216536
+    }
+  }
+}

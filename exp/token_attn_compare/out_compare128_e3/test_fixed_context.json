@@ -1,0 +1,62 @@
+{
+  "baseline": {
+    "match": 0.7179878048780488,
+    "ce": 1.4995361025013574,
+    "hits": 471,
+    "tokens": 656,
+    "repaired": 0,
+    "broken": 0,
+    "baseline_mismatches": 185,
+    "baseline_matches": 471
+  },
+  "adapter": {
+    "match": 0.7149390243902439,
+    "ce": 1.431584153142644,
+    "hits": 469,
+    "tokens": 656,
+    "repaired": 5,
+    "broken": 7,
+    "baseline_mismatches": 185,
+    "baseline_matches": 471
+  },
+  "bias": {
+    "match": 0.7134146341463414,
+    "ce": 1.5034369329308592,
+    "hits": 468,
+    "tokens": 656,
+    "repaired": 2,
+    "broken": 5,
+    "baseline_mismatches": 185,
+    "baseline_matches": 471
+  },
+  "q_attention": {
+    "match": 0.7621951219512195,
+    "ce": 1.1109653800362493,
+    "hits": 500,
+    "tokens": 656,
+    "repaired": 42,
+    "broken": 13,
+    "baseline_mismatches": 185,
+    "baseline_matches": 471
+  },
+  "adapter_uniform": {
+    "match": 0.7179878048780488,
+    "ce": 1.4654028321184762,
+    "hits": 471,
+    "tokens": 656,
+    "repaired": 5,
+    "broken": 5,
+    "baseline_mismatches": 185,
+    "baseline_matches": 471
+  },
+  "q_output_only": {
+    "match": 0.760670731707317,
+    "ce": 1.1088801126291112,
+    "hits": 499,
+    "tokens": 656,
+    "repaired": 41,
+    "broken": 13,
+    "baseline_mismatches": 185,
+    "baseline_matches": 471
+  }
+}

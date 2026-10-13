@@ -1,0 +1,18 @@
+{
+  "baseline_checkpoint_replay": true,
+  "adapter_trained_logit_max_error": 0.0,
+  "adapter_trained_gradient_max_error": 0.0,
+  "adapter_checkpoint_replay": true,
+  "bias_checkpoint_replay": true,
+  "q_attention_trained_logit_max_error": 0.0,
+  "q_attention_trained_gradient_max_error": 0.0,
+  "q_attention_checkpoint_replay": true,
+  "adapter_uniform_checkpoint_replay": true,
+  "q_output_only_checkpoint_replay": true,
+  "replayed_test_cursor": 200,
+  "source_sha256": {
+    "verify_checkpoints.py": "27116ea9d5b01fc1b9e81170105aa426d3b0f2d2687e0d5349bcfcff230a68e7",
+    "run_compare.py": "5cb4bb11beffccc75b89723bb891d607d3b2298134f82e492d8a071e1a1a226a",
+    "methods.py": "91c34ded4d452e7079be5cea41b2d44dcbc4253e6755996ac08d0b8d0e8ae8d5"
+  }
+}

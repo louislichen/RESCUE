@@ -1,0 +1,63 @@
+{
+  "diagnostic": "per-state optimization on first rejected greedy draft tokens; not held-out SD acceptance",
+  "completed_states": 64,
+  "requested_states": 64,
+  "config": {
+    "samples_path": "/home/wanghl/cl/RESCUE/exp/attn_transfer/data/hotpot_stream_300_maxL2048.jsonl",
+    "samples_sha256": "223ef0652383915f9a5c968635c1c105568ce4713b311bbc8f2335bf1e512438",
+    "teacher_model_path": "/mnt/8T/cl/models/Qwen2-7B-Instruct",
+    "student_model_path": "/mnt/8T/cl/models/Qwen2-1.5B-Instruct",
+    "last_layers": 4,
+    "max_prompt_tokens": 2048,
+    "max_new_tokens": 32,
+    "draft_k": 4,
+    "steps_per_restart": 100,
+    "restarts": 2,
+    "lr": 0.1,
+    "seed": 42,
+    "dtype": "bfloat16",
+    "shuffle": "same permutation for all teacher heads, document positions only; first token/question/generated suffix fixed",
+    "stop_rule": "stop mode after first argmax match; otherwise exhaust all restarts",
+    "teacher_projection": "identity after checking equal token vocabularies and prompt token IDs",
+    "torch": "2.7.1+cu128"
+  },
+  "validation": {
+    "checked_states": 8,
+    "zero_gate_max_logit_error": 0.0,
+    "steered_fast_full_max_logit_error": 0.0,
+    "fast_full_gradient_max_error": 0.0,
+    "plain_cached_full_argmax_matches": 6
+  },
+  "discarded_numerically_unstable_states": 6,
+  "baseline": {
+    "hits": 0,
+    "mean_target_prob": 0.10171487133662183,
+    "mean_target_rank": 15.609375
+  },
+  "teacher": {
+    "repaired": 61,
+    "repair_fraction": 0.953125,
+    "mean_target_prob": 0.36846204043831676,
+    "mean_target_rank": 1.03125,
+    "mean_target_margin": 0.1083984375,
+    "mean_alpha": 0.4163264622911811,
+    "optimizer_updates": 1800,
+    "total_seconds": 34.12558625598467
+  },
+  "shuffled": {
+    "repaired": 61,
+    "repair_fraction": 0.953125,
+    "mean_target_prob": 0.35830193560104817,
+    "mean_target_rank": 1.03125,
+    "mean_target_margin": 0.0625,
+    "mean_alpha": 0.4307451213244349,
+    "optimizer_updates": 2063,
+    "total_seconds": 36.070808520024
+  },
+  "paired_repair": {
+    "both": 61,
+    "teacher_only": 0,
+    "shuffled_only": 0,
+    "neither": 3
+  }
+}

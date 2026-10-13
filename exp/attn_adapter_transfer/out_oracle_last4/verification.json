@@ -1,0 +1,38 @@
+{
+  "artifact_integrity": {
+    "passed": true,
+    "completed_states": 64,
+    "unique_questions": 64,
+    "original_baseline_hits": 0,
+    "selected_candidates": 70,
+    "discarded_unstable_candidates": 6
+  },
+  "numerical_and_gradient_checks": {
+    "checked_states": 8,
+    "zero_gate_max_logit_error": 0.0,
+    "steered_fast_full_max_logit_error": 0.0,
+    "fast_full_gradient_max_error": 0.0,
+    "plain_cached_full_argmax_matches": 6
+  },
+  "saved_checkpoint_replay": {
+    "passed": true,
+    "state_indices": [
+      0,
+      12,
+      40
+    ],
+    "conditions": [
+      "teacher",
+      "shuffled"
+    ],
+    "checks": 6,
+    "argmax_equality": true,
+    "ce_and_target_probability_absolute_tolerance": 1e-05,
+    "covers": [
+      "successful initial-prefix state",
+      "failed state",
+      "successful later-prefix state"
+    ]
+  },
+  "syntax_and_git_diff_checks": "passed"
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "target": "current_teacher_full",
+    "generated_position": 0,
+    "states": 32,
+    "layer_query_rows": 128,
+    "reachable_score_energy_fraction": 0.7869215668756874,
+    "residual_score_energy_fraction": 0.21307843312431266,
+    "baseline_attention_kl": 1.4705796882232642,
+    "projected_attention_kl": 0.7488806859071165,
+    "teacher_document_prior_drift_kl": 4.8369793187957636e-08
+  },
+  {
+    "target": "current_teacher_full",
+    "generated_position": 8,
+    "states": 28,
+    "layer_query_rows": 112,
+    "reachable_score_energy_fraction": 0.7823588915566162,
+    "residual_score_energy_fraction": 0.21764110844338333,
+    "baseline_attention_kl": 1.3654992607252034,
+    "projected_attention_kl": 0.9051662188807665,
+    "teacher_document_prior_drift_kl": 1.522295230692453
+  },
+  {
+    "target": "current_teacher_full",
+    "generated_position": 16,
+    "states": 26,
+    "layer_query_rows": 104,
+    "reachable_score_energy_fraction": 0.7835259555388951,
+    "residual_score_energy_fraction": 0.21647404446110424,
+    "baseline_attention_kl": 1.4310801712330403,
+    "projected_attention_kl": 0.8742089625520397,
+    "teacher_document_prior_drift_kl": 1.7400116900537994
+  },
+  {
+    "target": "current_teacher_full",
+    "generated_position": 24,
+    "states": 23,
+    "layer_query_rows": 92,
+    "reachable_score_energy_fraction": 0.7836858642824522,
+    "residual_score_energy_fraction": 0.21631413571754834,
+    "baseline_attention_kl": 1.330875675181182,
+    "projected_attention_kl": 0.8486548978924909,
+    "teacher_document_prior_drift_kl": 1.715106733489108
+  },
+  {
+    "target": "current_teacher_full",
+    "generated_position": 31,
+    "states": 20,
+    "layer_query_rows": 80,
+    "reachable_score_energy_fraction": 0.7817945698575732,
+    "residual_score_energy_fraction": 0.2182054301424264,
+    "baseline_attention_kl": 1.2597607661230397,
+    "projected_attention_kl": 0.9137662105309777,
+    "teacher_document_prior_drift_kl": 1.8632535346630206
+  },
+  {
+    "target": "prompt_teacher_document",
+    "generated_position": 0,
+    "states": 32,
+    "layer_query_rows": 128,
+    "reachable_score_energy_fraction": 0.7767009094800683,
+    "residual_score_energy_fraction": 0.22329909051993213,
+    "baseline_attention_kl": 0.813779321316703,
+    "projected_attention_kl": 0.8303802683313436,
+    "teacher_document_prior_drift_kl": 4.8369793187957636e-08
+  },
+  {
+    "target": "prompt_teacher_document",
+    "generated_position": 8,
+    "states": 28,
+    "layer_query_rows": 112,
+    "reachable_score_energy_fraction": 0.8271429421837849,
+    "residual_score_energy_fraction": 0.17285705781621533,
+    "baseline_attention_kl": 0.750378601220537,
+    "projected_attention_kl": 1.3032475977814268,
+    "teacher_document_prior_drift_kl": 1.522295230692453
+  },
+  {
+    "target": "prompt_teacher_document",
+    "generated_position": 16,
+    "states": 26,
+    "layer_query_rows": 104,
+    "reachable_score_energy_fraction": 0.8353267746168793,
+    "residual_score_energy_fraction": 0.1646732253831204,
+    "baseline_attention_kl": 0.8308208659547661,
+    "projected_attention_kl": 1.2890698934312281,
+    "teacher_document_prior_drift_kl": 1.7400116900537994
+  },
+  {
+    "target": "prompt_teacher_document",
+    "generated_position": 24,
+    "states": 23,
+    "layer_query_rows": 92,
+    "reachable_score_energy_fraction": 0.8227884185825319,
+    "residual_score_energy_fraction": 0.17721158141746846,
+    "baseline_attention_kl": 0.8119517513210566,
+    "projected_attention_kl": 1.2828355013635568,
+    "teacher_document_prior_drift_kl": 1.715106733489108
+  },
+  {
+    "target": "prompt_teacher_document",
+    "generated_position": 31,
+    "states": 20,
+    "layer_query_rows": 80,
+    "reachable_score_energy_fraction": 0.8221264183637315,
+    "residual_score_energy_fraction": 0.17787358163626882,
+    "baseline_attention_kl": 0.689594057508631,
+    "projected_attention_kl": 1.2533909616848273,
+    "teacher_document_prior_drift_kl": 1.8632535346630206
+  }
+]

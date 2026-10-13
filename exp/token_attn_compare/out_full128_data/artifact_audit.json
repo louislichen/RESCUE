@@ -1,0 +1,23 @@
+{
+  "split_cursors_disjoint": true,
+  "prompts_and_nonempty_questions_disjoint": true,
+  "data_and_prepare_source_sha256_match": true,
+  "experiments": {
+    "freshness": {
+      "methods": 12,
+      "questions_per_method": 50,
+      "source_sha256_match": true,
+      "record_aggregates_exact": true,
+      "all_outputs_match_frozen_reference": true,
+      "baseline_matches_previous_audit": true
+    },
+    "qkv": {
+      "methods": 9,
+      "questions_per_method": 50,
+      "source_sha256_match": true,
+      "record_aggregates_exact": true,
+      "all_outputs_match_frozen_reference": true,
+      "baseline_matches_previous_audit": true
+    }
+  }
+}

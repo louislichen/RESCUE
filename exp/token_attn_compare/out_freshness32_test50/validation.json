@@ -1,0 +1,6 @@
+{
+  "current_query_rows_equal_prepared_teacher_rows": true,
+  "cached_fresh_attention_max_error": 0.0,
+  "first_query_static_dynamic_max_logit_error": 0.0,
+  "teacher_queries_checked": 5
+}

@@ -1,0 +1,216 @@
+{
+  "freshness": {
+    "baseline": {
+      "delta_total_blocks": 0,
+      "paired_95pct_total_blocks_interval": [
+        0.0,
+        0.0
+      ],
+      "fewer_blocks_questions": 0,
+      "more_blocks_questions": 0,
+      "tied_blocks_questions": 50
+    },
+    "static_selected": {
+      "delta_total_blocks": 5,
+      "paired_95pct_total_blocks_interval": [
+        -1.0,
+        12.0
+      ],
+      "fewer_blocks_questions": 3,
+      "more_blocks_questions": 7,
+      "tied_blocks_questions": 40
+    },
+    "dynamic_selected": {
+      "delta_total_blocks": -1,
+      "paired_95pct_total_blocks_interval": [
+        -4.0,
+        2.0
+      ],
+      "fewer_blocks_questions": 2,
+      "more_blocks_questions": 1,
+      "tied_blocks_questions": 47
+    },
+    "static_at_dynamic_strength": {
+      "delta_total_blocks": 0,
+      "paired_95pct_total_blocks_interval": [
+        -4.0,
+        4.0
+      ],
+      "fewer_blocks_questions": 2,
+      "more_blocks_questions": 2,
+      "tied_blocks_questions": 46
+    },
+    "dynamic_at_static_strength": {
+      "delta_total_blocks": 0,
+      "paired_95pct_total_blocks_interval": [
+        -6.0,
+        6.0
+      ],
+      "fewer_blocks_questions": 3,
+      "more_blocks_questions": 4,
+      "tied_blocks_questions": 43
+    },
+    "dynamic_shuffled_selected": {
+      "delta_total_blocks": 4,
+      "paired_95pct_total_blocks_interval": [
+        -1.0,
+        9.0
+      ],
+      "fewer_blocks_questions": 1,
+      "more_blocks_questions": 5,
+      "tied_blocks_questions": 44
+    },
+    "static_unit": {
+      "delta_total_blocks": 7,
+      "paired_95pct_total_blocks_interval": [
+        0.0,
+        15.0
+      ],
+      "fewer_blocks_questions": 4,
+      "more_blocks_questions": 11,
+      "tied_blocks_questions": 35
+    },
+    "dynamic_unit": {
+      "delta_total_blocks": 3,
+      "paired_95pct_total_blocks_interval": [
+        -6.0,
+        13.0
+      ],
+      "fewer_blocks_questions": 7,
+      "more_blocks_questions": 10,
+      "tied_blocks_questions": 33
+    },
+    "dynamic_shuffled_unit": {
+      "delta_total_blocks": 7,
+      "paired_95pct_total_blocks_interval": [
+        -3.0,
+        18.0
+      ],
+      "fewer_blocks_questions": 6,
+      "more_blocks_questions": 12,
+      "tied_blocks_questions": 32
+    },
+    "dynamic_full_selected": {
+      "delta_total_blocks": -4,
+      "paired_95pct_total_blocks_interval": [
+        -9.0,
+        0.0
+      ],
+      "fewer_blocks_questions": 5,
+      "more_blocks_questions": 1,
+      "tied_blocks_questions": 44
+    },
+    "dynamic_full_unit": {
+      "delta_total_blocks": 20,
+      "paired_95pct_total_blocks_interval": [
+        9.0,
+        31.0
+      ],
+      "fewer_blocks_questions": 5,
+      "more_blocks_questions": 21,
+      "tied_blocks_questions": 24
+    },
+    "dynamic_full_shuffled_selected": {
+      "delta_total_blocks": 2,
+      "paired_95pct_total_blocks_interval": [
+        -5.0,
+        9.0
+      ],
+      "fewer_blocks_questions": 5,
+      "more_blocks_questions": 7,
+      "tied_blocks_questions": 38
+    }
+  },
+  "qkv": {
+    "baseline": {
+      "delta_total_blocks": 0,
+      "paired_95pct_total_blocks_interval": [
+        0.0,
+        0.0
+      ],
+      "fewer_blocks_questions": 0,
+      "more_blocks_questions": 0,
+      "tied_blocks_questions": 50
+    },
+    "q_output": {
+      "delta_total_blocks": 3,
+      "paired_95pct_total_blocks_interval": [
+        -3.0,
+        9.0
+      ],
+      "fewer_blocks_questions": 4,
+      "more_blocks_questions": 7,
+      "tied_blocks_questions": 39
+    },
+    "q_relations": {
+      "delta_total_blocks": 2,
+      "paired_95pct_total_blocks_interval": [
+        -3.0,
+        7.0
+      ],
+      "fewer_blocks_questions": 2,
+      "more_blocks_questions": 4,
+      "tied_blocks_questions": 44
+    },
+    "qk_output": {
+      "delta_total_blocks": -5,
+      "paired_95pct_total_blocks_interval": [
+        -15.0,
+        5.0
+      ],
+      "fewer_blocks_questions": 10,
+      "more_blocks_questions": 7,
+      "tied_blocks_questions": 33
+    },
+    "qk_relations": {
+      "delta_total_blocks": -1,
+      "paired_95pct_total_blocks_interval": [
+        -11.0,
+        9.0
+      ],
+      "fewer_blocks_questions": 9,
+      "more_blocks_questions": 10,
+      "tied_blocks_questions": 31
+    },
+    "qv_output": {
+      "delta_total_blocks": 0,
+      "paired_95pct_total_blocks_interval": [
+        -8.0,
+        8.0
+      ],
+      "fewer_blocks_questions": 6,
+      "more_blocks_questions": 7,
+      "tied_blocks_questions": 37
+    },
+    "qv_relations": {
+      "delta_total_blocks": -2,
+      "paired_95pct_total_blocks_interval": [
+        -13.0,
+        9.0
+      ],
+      "fewer_blocks_questions": 10,
+      "more_blocks_questions": 10,
+      "tied_blocks_questions": 30
+    },
+    "qkv_output": {
+      "delta_total_blocks": -3,
+      "paired_95pct_total_blocks_interval": [
+        -13.0,
+        7.0
+      ],
+      "fewer_blocks_questions": 9,
+      "more_blocks_questions": 7,
+      "tied_blocks_questions": 34
+    },
+    "qkv_relations": {
+      "delta_total_blocks": -6,
+      "paired_95pct_total_blocks_interval": [
+        -15.024999999999999,
+        3.0
+      ],
+      "fewer_blocks_questions": 10,
+      "more_blocks_questions": 6,
+      "tied_blocks_questions": 34
+    }
+  }
+}

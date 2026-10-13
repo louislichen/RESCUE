@@ -1,0 +1,186 @@
+{
+  "q_output": {
+    "method": "q_output",
+    "selected_epoch": 2,
+    "calibration": {
+      "accept_rate": 0.5817641228939544,
+      "accepted": 587,
+      "proposed": 1009,
+      "questions": 32,
+      "blocks": 270,
+      "mean_accept_length": 2.174074074074074,
+      "full_accept_rate": 0.46296296296296297,
+      "first_token_match": 0.7333333333333333,
+      "verifier_call_reduction_proxy": 3.1074074074074076,
+      "prototype_student_seconds": 23.156423727996298,
+      "fixed_context": {
+        "tokens": 839,
+        "hits": 678,
+        "match": 0.8081048867699643,
+        "output_kl": 0.5205102054595379
+      }
+    },
+    "parameter_count": 9437184
+  },
+  "q_relations": {
+    "method": "q_relations",
+    "selected_epoch": 1,
+    "calibration": {
+      "accept_rate": 0.5823412698412699,
+      "accepted": 587,
+      "proposed": 1008,
+      "questions": 32,
+      "blocks": 269,
+      "mean_accept_length": 2.1821561338289963,
+      "full_accept_rate": 0.4684014869888476,
+      "first_token_match": 0.7211895910780669,
+      "verifier_call_reduction_proxy": 3.1189591078066914,
+      "prototype_student_seconds": 22.410826323000947,
+      "fixed_context": {
+        "tokens": 839,
+        "hits": 677,
+        "match": 0.8069129916567342,
+        "output_kl": 0.5462840247601803
+      }
+    },
+    "parameter_count": 9437184
+  },
+  "qk_output": {
+    "method": "qk_output",
+    "selected_epoch": 3,
+    "calibration": {
+      "accept_rate": 0.5831683168316831,
+      "accepted": 589,
+      "proposed": 1010,
+      "questions": 32,
+      "blocks": 269,
+      "mean_accept_length": 2.1895910780669143,
+      "full_accept_rate": 0.4646840148698885,
+      "first_token_match": 0.724907063197026,
+      "verifier_call_reduction_proxy": 3.1189591078066914,
+      "prototype_student_seconds": 33.820170103004784,
+      "fixed_context": {
+        "tokens": 839,
+        "hits": 680,
+        "match": 0.8104886769964244,
+        "output_kl": 0.5105323027175572
+      }
+    },
+    "parameter_count": 11010048
+  },
+  "qk_relations": {
+    "method": "qk_relations",
+    "selected_epoch": 3,
+    "calibration": {
+      "accept_rate": 0.582591493570722,
+      "accepted": 589,
+      "proposed": 1011,
+      "questions": 32,
+      "blocks": 268,
+      "mean_accept_length": 2.1977611940298507,
+      "full_accept_rate": 0.47388059701492535,
+      "first_token_match": 0.7201492537313433,
+      "verifier_call_reduction_proxy": 3.1305970149253732,
+      "prototype_student_seconds": 33.59512909100158,
+      "fixed_context": {
+        "tokens": 839,
+        "hits": 676,
+        "match": 0.8057210965435042,
+        "output_kl": 0.5119135898312596
+      }
+    },
+    "parameter_count": 11010048
+  },
+  "qv_output": {
+    "method": "qv_output",
+    "selected_epoch": 2,
+    "calibration": {
+      "accept_rate": 0.593,
+      "accepted": 593,
+      "proposed": 1000,
+      "questions": 32,
+      "blocks": 266,
+      "mean_accept_length": 2.2293233082706765,
+      "full_accept_rate": 0.47368421052631576,
+      "first_token_match": 0.7556390977443609,
+      "verifier_call_reduction_proxy": 3.154135338345865,
+      "prototype_student_seconds": 33.942360240005655,
+      "fixed_context": {
+        "tokens": 839,
+        "hits": 681,
+        "match": 0.8116805721096544,
+        "output_kl": 0.49607356405940184
+      }
+    },
+    "parameter_count": 11010048
+  },
+  "qv_relations": {
+    "method": "qv_relations",
+    "selected_epoch": 3,
+    "calibration": {
+      "accept_rate": 0.5886454183266933,
+      "accepted": 591,
+      "proposed": 1004,
+      "questions": 32,
+      "blocks": 268,
+      "mean_accept_length": 2.205223880597015,
+      "full_accept_rate": 0.47388059701492535,
+      "first_token_match": 0.7425373134328358,
+      "verifier_call_reduction_proxy": 3.1305970149253732,
+      "prototype_student_seconds": 33.48795332100417,
+      "fixed_context": {
+        "tokens": 839,
+        "hits": 677,
+        "match": 0.8069129916567342,
+        "output_kl": 0.4912785909563765
+      }
+    },
+    "parameter_count": 11010048
+  },
+  "qkv_output": {
+    "method": "qkv_output",
+    "selected_epoch": 2,
+    "calibration": {
+      "accept_rate": 0.60262891809909,
+      "accepted": 596,
+      "proposed": 989,
+      "questions": 32,
+      "blocks": 262,
+      "mean_accept_length": 2.2748091603053435,
+      "full_accept_rate": 0.49236641221374045,
+      "first_token_match": 0.7557251908396947,
+      "verifier_call_reduction_proxy": 3.2022900763358777,
+      "prototype_student_seconds": 33.006097097997554,
+      "fixed_context": {
+        "tokens": 839,
+        "hits": 684,
+        "match": 0.8152562574493445,
+        "output_kl": 0.48788777888886836
+      }
+    },
+    "parameter_count": 12582912
+  },
+  "qkv_relations": {
+    "method": "qkv_relations",
+    "selected_epoch": 2,
+    "calibration": {
+      "accept_rate": 0.5951903807615231,
+      "accepted": 594,
+      "proposed": 998,
+      "questions": 32,
+      "blocks": 264,
+      "mean_accept_length": 2.25,
+      "full_accept_rate": 0.4810606060606061,
+      "first_token_match": 0.75,
+      "verifier_call_reduction_proxy": 3.178030303030303,
+      "prototype_student_seconds": 33.436428978006006,
+      "fixed_context": {
+        "tokens": 839,
+        "hits": 682,
+        "match": 0.8128724672228844,
+        "output_kl": 0.4894348336061789
+      }
+    },
+    "parameter_count": 12582912
+  }
+}

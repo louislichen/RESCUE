@@ -1,0 +1,7 @@
+{
+  "all_routes_all_questions_reference_identical": true,
+  "test_labels_not_used_for_strength_selection": true,
+  "frozen_previous_teacher_test_reference": true,
+  "baseline_previous_replay_exact": true,
+  "trained_q_previous_replay_exact": true
+}

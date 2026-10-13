@@ -1,0 +1,12 @@
+{
+  "frozen_lower_full_model_max_logit_error": 0.0,
+  "nonzero_fast_full_max_logit_error": 0.0,
+  "nonzero_fast_full_max_gradient_error": 0.0,
+  "gradient_norms": {
+    "weights.k": 3.520519495010376,
+    "weights.q": 2.555420160293579,
+    "weights.v": 2.180661916732788
+  },
+  "first_updated_layer_prompt_key_change": 1.8359375,
+  "first_updated_layer_prompt_value_change": 2.6875
+}

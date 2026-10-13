@@ -1,0 +1,7 @@
+{
+  "all_50_questions_in_all_routes": true,
+  "all_draft_replays_end_at_identical_teacher_reference": true,
+  "aggregate_counts_verified": true,
+  "actual_block_baseline_reference_identical_outputs": 42,
+  "identical_training_calibration_across_q_implementations": true
+}

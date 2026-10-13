@@ -1,0 +1,577 @@
+{
+  "config": {
+    "output": "exp/token_attn_compare/out_qkv128_e3",
+    "samples": "/home/wanghl/cl/RESCUE/exp/attn_transfer/data/hotpot_stream_300_maxL2048.jsonl",
+    "teacher": "/mnt/8T/cl/models/Qwen2-7B-Instruct",
+    "student": "/mnt/8T/cl/models/Qwen2-1.5B-Instruct",
+    "train_count": 128,
+    "cal_count": 32,
+    "test_count": 50,
+    "cal_start": 128,
+    "test_start": 200,
+    "train_tokens": 32,
+    "max_new_tokens": 32,
+    "draft_k": 4,
+    "epochs": 3,
+    "adapter_lr": 0.005,
+    "q_lr": 3e-05,
+    "attention_weight": 0.05,
+    "max_alpha": 0.5,
+    "max_prompt_tokens": 2048,
+    "seed": 42,
+    "device": "cuda:0",
+    "eval_only": false,
+    "methods": [
+      "q_output",
+      "q_relations",
+      "qk_output",
+      "qk_relations",
+      "qv_output",
+      "qv_relations",
+      "qkv_output",
+      "qkv_relations"
+    ],
+    "data_sha256": "223ef0652383915f9a5c968635c1c105568ce4713b311bbc8f2335bf1e512438",
+    "torch": "2.7.1+cu128",
+    "gpu": "NVIDIA H100",
+    "cache_dir": "/mnt/8T/cl/rescue_experiment_cache/full128_data",
+    "output_loss": "KL(teacher||student), shared tokenizer vocabulary, T=1",
+    "relation_weights": {
+      "attention": 0.05,
+      "value": 0.05
+    },
+    "prefix_scope": "all prompt and generation tokens",
+    "train_policy": "single-query teacher greedy trajectories",
+    "projection_sets": [
+      "q",
+      "qk",
+      "qv",
+      "qkv"
+    ],
+    "supervision": [
+      "output",
+      "relations"
+    ],
+    "prepare_source_sha256": "3fe9705ff1af728e644eda773db81789103e47f9c74ae3273c4740ad8638ed63",
+    "vocab_size": 151646,
+    "eos_id": 151645,
+    "prepared": "exp/token_attn_compare/out_full128_data",
+    "validate_only": false,
+    "source_sha256": {
+      "run_qkv.py": "d50cb770f3f214eef0aef59a6d9f158784131013ccdefa7f6acd33d9bead3e4d",
+      "qkv_methods.py": "a358a8cf863fdb4b7f3d183840f8b2e39ca4a83bf881b039ceb60e6d75babc7c"
+    }
+  },
+  "methods": {
+    "baseline": {
+      "accept_rate": 0.6252518468770987,
+      "accepted": 931,
+      "proposed": 1489,
+      "questions": 50,
+      "blocks": 390,
+      "mean_accept_length": 2.387179487179487,
+      "full_accept_rate": 0.5230769230769231,
+      "first_token_match": 0.7435897435897436,
+      "verifier_call_reduction_proxy": 3.317948717948718,
+      "prototype_student_seconds": 50.5907472819963
+    },
+    "q_output": {
+      "accept_rate": 0.6256720430107527,
+      "accepted": 931,
+      "proposed": 1488,
+      "questions": 50,
+      "blocks": 393,
+      "mean_accept_length": 2.3689567430025447,
+      "full_accept_rate": 0.5190839694656488,
+      "first_token_match": 0.7455470737913485,
+      "verifier_call_reduction_proxy": 3.292620865139949,
+      "prototype_student_seconds": 36.19511924299877,
+      "delta_accept_rate": 0.0004201961336540716,
+      "paired_95pct_delta_interval": [
+        -0.016033600793999753,
+        0.01837485037346661
+      ],
+      "selected_epoch": 2,
+      "parameter_count": 9437184
+    },
+    "q_relations": {
+      "accept_rate": 0.6263440860215054,
+      "accepted": 932,
+      "proposed": 1488,
+      "questions": 50,
+      "blocks": 392,
+      "mean_accept_length": 2.377551020408163,
+      "full_accept_rate": 0.5255102040816326,
+      "first_token_match": 0.7423469387755102,
+      "verifier_call_reduction_proxy": 3.3010204081632653,
+      "prototype_student_seconds": 35.820701238990296,
+      "delta_accept_rate": 0.0010922391444067037,
+      "paired_95pct_delta_interval": [
+        -0.01214679858093264,
+        0.016481018150254746
+      ],
+      "selected_epoch": 1,
+      "parameter_count": 9437184
+    },
+    "qk_output": {
+      "accept_rate": 0.6460481099656358,
+      "accepted": 940,
+      "proposed": 1455,
+      "questions": 50,
+      "blocks": 385,
+      "mean_accept_length": 2.4415584415584415,
+      "full_accept_rate": 0.548051948051948,
+      "first_token_match": 0.7558441558441559,
+      "verifier_call_reduction_proxy": 3.361038961038961,
+      "prototype_student_seconds": 35.199502596005914,
+      "delta_accept_rate": 0.020796263088537104,
+      "paired_95pct_delta_interval": [
+        -0.00520707946440449,
+        0.04756863197981774
+      ],
+      "selected_epoch": 3,
+      "parameter_count": 11010048
+    },
+    "qk_relations": {
+      "accept_rate": 0.6363018354860639,
+      "accepted": 936,
+      "proposed": 1471,
+      "questions": 50,
+      "blocks": 389,
+      "mean_accept_length": 2.4061696658097684,
+      "full_accept_rate": 0.5269922879177378,
+      "first_token_match": 0.7583547557840618,
+      "verifier_call_reduction_proxy": 3.326478149100257,
+      "prototype_student_seconds": 35.34596045600483,
+      "delta_accept_rate": 0.011049988608965222,
+      "paired_95pct_delta_interval": [
+        -0.014857301317883851,
+        0.03928904723122502
+      ],
+      "selected_epoch": 3,
+      "parameter_count": 11010048
+    },
+    "qv_output": {
+      "accept_rate": 0.6387184730743013,
+      "accepted": 937,
+      "proposed": 1467,
+      "questions": 50,
+      "blocks": 390,
+      "mean_accept_length": 2.4025641025641025,
+      "full_accept_rate": 0.5435897435897435,
+      "first_token_match": 0.7487179487179487,
+      "verifier_call_reduction_proxy": 3.317948717948718,
+      "prototype_student_seconds": 35.30647922299977,
+      "delta_accept_rate": 0.013466626197202625,
+      "paired_95pct_delta_interval": [
+        -0.006828713683725615,
+        0.03666397007126672
+      ],
+      "selected_epoch": 2,
+      "parameter_count": 11010048
+    },
+    "qv_relations": {
+      "accept_rate": 0.6464924346629987,
+      "accepted": 940,
+      "proposed": 1454,
+      "questions": 50,
+      "blocks": 388,
+      "mean_accept_length": 2.422680412371134,
+      "full_accept_rate": 0.5463917525773195,
+      "first_token_match": 0.7628865979381443,
+      "verifier_call_reduction_proxy": 3.3350515463917527,
+      "prototype_student_seconds": 35.37432443999569,
+      "delta_accept_rate": 0.02124058778589999,
+      "paired_95pct_delta_interval": [
+        -0.0067467262720394385,
+        0.05069228834007533
+      ],
+      "selected_epoch": 3,
+      "parameter_count": 11010048
+    },
+    "qkv_output": {
+      "accept_rate": 0.6438356164383562,
+      "accepted": 940,
+      "proposed": 1460,
+      "questions": 50,
+      "blocks": 387,
+      "mean_accept_length": 2.4289405684754524,
+      "full_accept_rate": 0.5426356589147286,
+      "first_token_match": 0.7700258397932817,
+      "verifier_call_reduction_proxy": 3.343669250645995,
+      "prototype_student_seconds": 35.55945786599477,
+      "delta_accept_rate": 0.018583769561257513,
+      "paired_95pct_delta_interval": [
+        -0.00580751395228489,
+        0.04377567988179142
+      ],
+      "selected_epoch": 2,
+      "parameter_count": 12582912
+    },
+    "qkv_relations": {
+      "accept_rate": 0.6546463245492372,
+      "accepted": 944,
+      "proposed": 1442,
+      "questions": 50,
+      "blocks": 384,
+      "mean_accept_length": 2.4583333333333335,
+      "full_accept_rate": 0.5520833333333334,
+      "first_token_match": 0.7760416666666666,
+      "verifier_call_reduction_proxy": 3.3697916666666665,
+      "prototype_student_seconds": 35.19485240099311,
+      "delta_accept_rate": 0.02939447767213854,
+      "paired_95pct_delta_interval": [
+        0.005322093966402946,
+        0.05287378171117106
+      ],
+      "selected_epoch": 2,
+      "parameter_count": 12582912
+    }
+  },
+  "selection": {
+    "q_output": {
+      "method": "q_output",
+      "selected_epoch": 2,
+      "calibration": {
+        "accept_rate": 0.5817641228939544,
+        "accepted": 587,
+        "proposed": 1009,
+        "questions": 32,
+        "blocks": 270,
+        "mean_accept_length": 2.174074074074074,
+        "full_accept_rate": 0.46296296296296297,
+        "first_token_match": 0.7333333333333333,
+        "verifier_call_reduction_proxy": 3.1074074074074076,
+        "prototype_student_seconds": 23.156423727996298,
+        "fixed_context": {
+          "tokens": 839,
+          "hits": 678,
+          "match": 0.8081048867699643,
+          "output_kl": 0.5205102054595379
+        }
+      },
+      "parameter_count": 9437184
+    },
+    "q_relations": {
+      "method": "q_relations",
+      "selected_epoch": 1,
+      "calibration": {
+        "accept_rate": 0.5823412698412699,
+        "accepted": 587,
+        "proposed": 1008,
+        "questions": 32,
+        "blocks": 269,
+        "mean_accept_length": 2.1821561338289963,
+        "full_accept_rate": 0.4684014869888476,
+        "first_token_match": 0.7211895910780669,
+        "verifier_call_reduction_proxy": 3.1189591078066914,
+        "prototype_student_seconds": 22.410826323000947,
+        "fixed_context": {
+          "tokens": 839,
+          "hits": 677,
+          "match": 0.8069129916567342,
+          "output_kl": 0.5462840247601803
+        }
+      },
+      "parameter_count": 9437184
+    },
+    "qk_output": {
+      "method": "qk_output",
+      "selected_epoch": 3,
+      "calibration": {
+        "accept_rate": 0.5831683168316831,
+        "accepted": 589,
+        "proposed": 1010,
+        "questions": 32,
+        "blocks": 269,
+        "mean_accept_length": 2.1895910780669143,
+        "full_accept_rate": 0.4646840148698885,
+        "first_token_match": 0.724907063197026,
+        "verifier_call_reduction_proxy": 3.1189591078066914,
+        "prototype_student_seconds": 33.820170103004784,
+        "fixed_context": {
+          "tokens": 839,
+          "hits": 680,
+          "match": 0.8104886769964244,
+          "output_kl": 0.5105323027175572
+        }
+      },
+      "parameter_count": 11010048
+    },
+    "qk_relations": {
+      "method": "qk_relations",
+      "selected_epoch": 3,
+      "calibration": {
+        "accept_rate": 0.582591493570722,
+        "accepted": 589,
+        "proposed": 1011,
+        "questions": 32,
+        "blocks": 268,
+        "mean_accept_length": 2.1977611940298507,
+        "full_accept_rate": 0.47388059701492535,
+        "first_token_match": 0.7201492537313433,
+        "verifier_call_reduction_proxy": 3.1305970149253732,
+        "prototype_student_seconds": 33.59512909100158,
+        "fixed_context": {
+          "tokens": 839,
+          "hits": 676,
+          "match": 0.8057210965435042,
+          "output_kl": 0.5119135898312596
+        }
+      },
+      "parameter_count": 11010048
+    },
+    "qv_output": {
+      "method": "qv_output",
+      "selected_epoch": 2,
+      "calibration": {
+        "accept_rate": 0.593,
+        "accepted": 593,
+        "proposed": 1000,
+        "questions": 32,
+        "blocks": 266,
+        "mean_accept_length": 2.2293233082706765,
+        "full_accept_rate": 0.47368421052631576,
+        "first_token_match": 0.7556390977443609,
+        "verifier_call_reduction_proxy": 3.154135338345865,
+        "prototype_student_seconds": 33.942360240005655,
+        "fixed_context": {
+          "tokens": 839,
+          "hits": 681,
+          "match": 0.8116805721096544,
+          "output_kl": 0.49607356405940184
+        }
+      },
+      "parameter_count": 11010048
+    },
+    "qv_relations": {
+      "method": "qv_relations",
+      "selected_epoch": 3,
+      "calibration": {
+        "accept_rate": 0.5886454183266933,
+        "accepted": 591,
+        "proposed": 1004,
+        "questions": 32,
+        "blocks": 268,
+        "mean_accept_length": 2.205223880597015,
+        "full_accept_rate": 0.47388059701492535,
+        "first_token_match": 0.7425373134328358,
+        "verifier_call_reduction_proxy": 3.1305970149253732,
+        "prototype_student_seconds": 33.48795332100417,
+        "fixed_context": {
+          "tokens": 839,
+          "hits": 677,
+          "match": 0.8069129916567342,
+          "output_kl": 0.4912785909563765
+        }
+      },
+      "parameter_count": 11010048
+    },
+    "qkv_output": {
+      "method": "qkv_output",
+      "selected_epoch": 2,
+      "calibration": {
+        "accept_rate": 0.60262891809909,
+        "accepted": 596,
+        "proposed": 989,
+        "questions": 32,
+        "blocks": 262,
+        "mean_accept_length": 2.2748091603053435,
+        "full_accept_rate": 0.49236641221374045,
+        "first_token_match": 0.7557251908396947,
+        "verifier_call_reduction_proxy": 3.2022900763358777,
+        "prototype_student_seconds": 33.006097097997554,
+        "fixed_context": {
+          "tokens": 839,
+          "hits": 684,
+          "match": 0.8152562574493445,
+          "output_kl": 0.48788777888886836
+        }
+      },
+      "parameter_count": 12582912
+    },
+    "qkv_relations": {
+      "method": "qkv_relations",
+      "selected_epoch": 2,
+      "calibration": {
+        "accept_rate": 0.5951903807615231,
+        "accepted": 594,
+        "proposed": 998,
+        "questions": 32,
+        "blocks": 264,
+        "mean_accept_length": 2.25,
+        "full_accept_rate": 0.4810606060606061,
+        "first_token_match": 0.75,
+        "verifier_call_reduction_proxy": 3.178030303030303,
+        "prototype_student_seconds": 33.436428978006006,
+        "fixed_context": {
+          "tokens": 839,
+          "hits": 682,
+          "match": 0.8128724672228844,
+          "output_kl": 0.4894348336061789
+        }
+      },
+      "parameter_count": 12582912
+    }
+  },
+  "fixed_context": {
+    "baseline": {
+      "tokens": 1294,
+      "hits": 1081,
+      "match": 0.8353941267387944,
+      "output_kl": 0.5499544407844175
+    },
+    "q_output": {
+      "tokens": 1294,
+      "hits": 1086,
+      "match": 0.839258114374034,
+      "output_kl": 0.4632690744431347
+    },
+    "q_relations": {
+      "tokens": 1294,
+      "hits": 1090,
+      "match": 0.8423493044822257,
+      "output_kl": 0.4930806694756704
+    },
+    "qk_output": {
+      "tokens": 1294,
+      "hits": 1098,
+      "match": 0.848531684698609,
+      "output_kl": 0.43585336539992225
+    },
+    "qk_relations": {
+      "tokens": 1294,
+      "hits": 1098,
+      "match": 0.848531684698609,
+      "output_kl": 0.43607294094249305
+    },
+    "qv_output": {
+      "tokens": 1294,
+      "hits": 1104,
+      "match": 0.8531684698608965,
+      "output_kl": 0.4307730528864278
+    },
+    "qv_relations": {
+      "tokens": 1294,
+      "hits": 1102,
+      "match": 0.8516228748068007,
+      "output_kl": 0.42485463794269
+    },
+    "qkv_output": {
+      "tokens": 1294,
+      "hits": 1101,
+      "match": 0.8508500772797527,
+      "output_kl": 0.4154395531097188
+    },
+    "qkv_relations": {
+      "tokens": 1294,
+      "hits": 1104,
+      "match": 0.8531684698608965,
+      "output_kl": 0.41861511163494136
+    }
+  },
+  "paired_controls": {
+    "q_relations_vs_q_output": {
+      "delta_accept_rate": 0.0006720430107526321,
+      "paired_95pct_delta_interval": [
+        -0.008805278019148594,
+        0.009172402600585506
+      ]
+    },
+    "qk_relations_vs_qk_output": {
+      "delta_accept_rate": -0.009746274479571881,
+      "paired_95pct_delta_interval": [
+        -0.022239781503790544,
+        0.001037716432576371
+      ]
+    },
+    "qv_relations_vs_qv_output": {
+      "delta_accept_rate": 0.0077739615886973645,
+      "paired_95pct_delta_interval": [
+        -0.008743167203193819,
+        0.02611590641676891
+      ]
+    },
+    "qkv_relations_vs_qkv_output": {
+      "delta_accept_rate": 0.010810708110881029,
+      "paired_95pct_delta_interval": [
+        0.003019042337125777,
+        0.019707378971085203
+      ]
+    },
+    "qk_output_vs_q_output": {
+      "delta_accept_rate": 0.020376066954883032,
+      "paired_95pct_delta_interval": [
+        0.0003647430688015072,
+        0.04182935221703143
+      ]
+    },
+    "qk_relations_vs_q_relations": {
+      "delta_accept_rate": 0.009957749464558519,
+      "paired_95pct_delta_interval": [
+        -0.012621123214092386,
+        0.034253642354117035
+      ]
+    },
+    "qv_output_vs_q_output": {
+      "delta_accept_rate": 0.013046430063548553,
+      "paired_95pct_delta_interval": [
+        -0.0019410474458265241,
+        0.029478790268827243
+      ]
+    },
+    "qv_relations_vs_q_relations": {
+      "delta_accept_rate": 0.020148348641493286,
+      "paired_95pct_delta_interval": [
+        -0.002386907883061076,
+        0.0438529205947334
+      ]
+    },
+    "qkv_output_vs_q_output": {
+      "delta_accept_rate": 0.01816357342760344,
+      "paired_95pct_delta_interval": [
+        -0.001626931840933607,
+        0.037330022026828655
+      ]
+    },
+    "qkv_relations_vs_q_relations": {
+      "delta_accept_rate": 0.028302238527731838,
+      "paired_95pct_delta_interval": [
+        0.006931543490619774,
+        0.04992984288651808
+      ]
+    },
+    "qv_output_vs_qk_output": {
+      "delta_accept_rate": -0.007329636891334479,
+      "paired_95pct_delta_interval": [
+        -0.02576109999177906,
+        0.01016140070915739
+      ]
+    },
+    "qv_relations_vs_qk_relations": {
+      "delta_accept_rate": 0.010190599176934767,
+      "paired_95pct_delta_interval": [
+        -0.006634587921825805,
+        0.026799555592938798
+      ]
+    }
+  },
+  "verification": {
+    "all_outputs_match_frozen_reference": true,
+    "full_prefix_recomputed_for_every_projection_set": true,
+    "test_labels_not_used_for_checkpoint_selection": true,
+    "checkpoint_first_question_replay": {
+      "baseline": true,
+      "q_output": true,
+      "q_relations": true,
+      "qk_output": true,
+      "qk_relations": true,
+      "qv_output": true,
+      "qv_relations": true,
+      "qkv_output": true,
+      "qkv_relations": true
+    },
+    "previous_baseline_exact": true
+  },
+  "peak_allocated_gb": 6.139874304
+}

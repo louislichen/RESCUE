@@ -1,0 +1,10 @@
+{
+  "frames": 210,
+  "tokens": {
+    "train": 3411,
+    "calibration": 839,
+    "test": 1294
+  },
+  "all_test_references_reused": true,
+  "peak_allocated_gb": 20.729084416
+}

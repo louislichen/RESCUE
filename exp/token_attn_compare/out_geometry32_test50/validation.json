@@ -1,0 +1,15 @@
+{
+  "zero_intervention_max_logit_error": 0.0,
+  "prefix_statistics_dense_svd_max_error": 7.460698725481052e-13,
+  "query_change_score_projection_max_error": 7.993605777301127e-15,
+  "full_completion_probability_max_error": 2.220446049250313e-16,
+  "score_reconstruction_max_error": 0.0,
+  "smallest_key_singular_value": 6.456431903965058,
+  "projected_finite": true,
+  "residual_finite": true,
+  "hybrid_finite": true,
+  "intervened_generated_queries_checked": 17,
+  "frozen_prefix_keys_exact": true,
+  "generated_keys_dense_svd_max_error": 1.191047260817868e-12,
+  "generated_keys_residual_orthogonality_error": 1.404674869674493e-15
+}
