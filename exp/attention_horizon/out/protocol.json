@@ -1,0 +1,48 @@
+{
+  "phase": "verify",
+  "data": "exp/attention_horizon/data",
+  "output": "exp/attention_horizon/out",
+  "teacher": "/mnt/8T/cl/models/Qwen2-7B-Instruct",
+  "student": "/mnt/8T/cl/models/Qwen2-1.5B-Instruct",
+  "device": "cuda:0",
+  "budget": 512,
+  "recent": 64,
+  "swaps": 4,
+  "max_new_tokens": 64,
+  "seed": 42,
+  "manifest": {
+    "counts": {
+      "train": 48,
+      "validation": 16,
+      "test": 30
+    },
+    "skip": 1500,
+    "source": "hf://datasets/hotpotqa/hotpot_qa/distractor/train-*.parquet",
+    "exclusion": "Prior 300 questions and all attention-selection/selective-V documents, including their test titles",
+    "previous_hashes": {
+      "exp/attn_transfer/data/hotpot_stream_300_maxL2048.jsonl": "223ef0652383915f9a5c968635c1c105568ce4713b311bbc8f2335bf1e512438",
+      "exp/attention_selection/data_fresh/test.jsonl": "b75e86f12481b947311447a60003dff6de9e49c0e58a2cdc38c4d66889f5e004",
+      "exp/attention_selection/data_fresh/validation.jsonl": "32edbd427c36c2d794a10afc8727e83ffa613327a9a20e5b340d743785a8742c",
+      "exp/attention_selection/data_fresh/train.jsonl": "54e68f5d0408bc2a7d9ffc9ca5796dc0f6db033e05452bcd15cae2594ee09064",
+      "exp/selective_kv/data/test.jsonl": "1074b73ab2d9389748277cfb221f060f138cd8fd65a4c23f07093d5efaa7308c",
+      "exp/selective_kv/data/validation.jsonl": "32edbd427c36c2d794a10afc8727e83ffa613327a9a20e5b340d743785a8742c",
+      "exp/selective_kv/data/train.jsonl": "54e68f5d0408bc2a7d9ffc9ca5796dc0f6db033e05452bcd15cae2594ee09064"
+    },
+    "hashes": {
+      "train": "52feac1e86d9b4a0532691e50310467747f77f7fc8ce13306018680ec2d98e14",
+      "validation": "45fbb7127704bf5f1140d49afc73bbf04242a09775904347c82e401c73248b45",
+      "test": "ddfb331708f39308b67ab5fb0ffe41b928f0763dee24c8fe8b930f74887246e3"
+    }
+  },
+  "teacher_dtype": "float32",
+  "student_dtype": "bfloat16",
+  "probe": "Actual last-layer Q; full native student K; no extra model forward; charged to timing",
+  "source_sha256": {
+    "experiment.py": "aa831b85fffa867eb7880f584f44457a428297ca0432bbfdaad06d13dceaee09",
+    "prepare_data.py": "2f95cf78fa849e5bc1173eeae9fc711f2c7083d845d230d3fd987470d067bf4f",
+    "run.py": "60645743ef31c65573d168b0101390c02f49d9cdf4a7ef91a17ca5bd2b73469f",
+    "runtime.py": "a115fce7d78e34627520954e539ed2c0e769670cb52c03328cb4d6642a5cd9be",
+    "selection.py": "d5a96f86a1633ceab195dc9c0d7b06ea2aeb4d2571879df966810b457251929a",
+    "risk.py": "6921fa2e4fae277c3ca2887528a6991fffe13215820a1509507038b724d021b3"
+  }
+}

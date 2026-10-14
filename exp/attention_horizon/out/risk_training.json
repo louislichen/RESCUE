@@ -1,0 +1,102 @@
+[
+  {
+    "group": "structural",
+    "trials": [
+      {
+        "seed": 42,
+        "path": "risk_structural_42.pt",
+        "validation_nll": 0.5792534351348877
+      },
+      {
+        "seed": 43,
+        "path": "risk_structural_43.pt",
+        "validation_nll": 0.5699000954627991
+      },
+      {
+        "seed": 44,
+        "path": "risk_structural_44.pt",
+        "validation_nll": 0.5839321613311768
+      }
+    ]
+  },
+  {
+    "group": "confidence",
+    "trials": [
+      {
+        "seed": 42,
+        "path": "risk_confidence_42.pt",
+        "validation_nll": 0.5720758438110352
+      },
+      {
+        "seed": 43,
+        "path": "risk_confidence_43.pt",
+        "validation_nll": 0.5694004893302917
+      },
+      {
+        "seed": 44,
+        "path": "risk_confidence_44.pt",
+        "validation_nll": 0.5675655007362366
+      }
+    ]
+  },
+  {
+    "group": "attention",
+    "trials": [
+      {
+        "seed": 42,
+        "path": "risk_attention_42.pt",
+        "validation_nll": 0.6125466227531433
+      },
+      {
+        "seed": 43,
+        "path": "risk_attention_43.pt",
+        "validation_nll": 0.6009939312934875
+      },
+      {
+        "seed": 44,
+        "path": "risk_attention_44.pt",
+        "validation_nll": 0.6047829389572144
+      }
+    ]
+  },
+  {
+    "group": "attention_read",
+    "trials": [
+      {
+        "seed": 42,
+        "path": "risk_attention_read_42.pt",
+        "validation_nll": 0.5820351243019104
+      },
+      {
+        "seed": 43,
+        "path": "risk_attention_read_43.pt",
+        "validation_nll": 0.6058899760246277
+      },
+      {
+        "seed": 44,
+        "path": "risk_attention_read_44.pt",
+        "validation_nll": 0.6032107472419739
+      }
+    ]
+  },
+  {
+    "group": "combined",
+    "trials": [
+      {
+        "seed": 42,
+        "path": "risk_combined_42.pt",
+        "validation_nll": 0.6036170125007629
+      },
+      {
+        "seed": 43,
+        "path": "risk_combined_43.pt",
+        "validation_nll": 0.5887516140937805
+      },
+      {
+        "seed": 44,
+        "path": "risk_combined_44.pt",
+        "validation_nll": 0.6035317182540894
+      }
+    ]
+  }
+]

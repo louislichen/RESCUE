@@ -1,0 +1,32 @@
+{
+  "method": "B_attention_read",
+  "comparison": {
+    "acceptance": {
+      "documents": 30,
+      "estimate": -1.859634721937209,
+      "ci95": [
+        -4.700830842547968,
+        0.5266198854678398
+      ],
+      "units": "percentage points"
+    },
+    "decode": {
+      "documents": 30,
+      "estimate": -8.687965721195724,
+      "ci95": [
+        -10.160068779161849,
+        -7.319101236032963
+      ],
+      "units": "relative percent"
+    },
+    "total": {
+      "documents": 30,
+      "estimate": -5.771630996329757,
+      "ci95": [
+        -6.652309971074384,
+        -4.860892107667902
+      ],
+      "units": "relative percent"
+    }
+  }
+}

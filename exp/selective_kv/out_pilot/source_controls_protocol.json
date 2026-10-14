@@ -1,0 +1,16 @@
+{
+  "purpose": "Frozen exploratory follow-up after primary shuffled content retained gains",
+  "changes": "Mean or zero teacher V for BOTH mapper and gate; teacher-attention selection unchanged",
+  "checkpoint": "performance_gated.pt",
+  "alpha": 0.5,
+  "tuning": "None",
+  "timing": "All three methods rerun in shuffled per-document order in this supplementary session",
+  "source_sha256": {
+    "source_controls.py": "f5abddf33703c6d9f76d6b1f11b7ef7977d6fedaf018521e3be42c742a92203c",
+    "prepare_data.py": "5dc4b82a4d975a0e037599d20329961323276ffd3366ff8b31b8b201b8b47ba5",
+    "bridge.py": "04148446ea2f2307b5e70d0db55add34444c784ad6388fa28af0b62466c807d0",
+    "run.py": "e295ec3b8f0a971f9095acd4e77ceb2ae3114d1009f4a1fb7676dd7ac0c21d8e",
+    "analyze.py": "bd151c5241f85736293046d2ce06b14572057a18ae9b50444ef5c6a8c6993744",
+    "evaluate.py": "4ca06d7936419a7f86dcf6f685cc8089b5ce3551ddd51be0e3b462d9fc17b3a1"
+  }
+}

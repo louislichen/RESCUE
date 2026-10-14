@@ -1,0 +1,121 @@
+{
+  "methods": [
+    [
+      "native_full",
+      0
+    ],
+    [
+      "bias_full",
+      0
+    ],
+    [
+      "recent",
+      256
+    ],
+    [
+      "random",
+      256
+    ],
+    [
+      "student_chunk",
+      256
+    ],
+    [
+      "teacher_chunk",
+      256
+    ],
+    [
+      "student_token_available",
+      256
+    ],
+    [
+      "teacher_token",
+      256
+    ],
+    [
+      "union_available",
+      256
+    ],
+    [
+      "layer_depth",
+      256
+    ],
+    [
+      "layer_pairing",
+      256
+    ],
+    [
+      "layer_random",
+      256
+    ],
+    [
+      "learned_global",
+      256
+    ],
+    [
+      "bias_teacher",
+      256
+    ],
+    [
+      "recent",
+      512
+    ],
+    [
+      "random",
+      512
+    ],
+    [
+      "student_chunk",
+      512
+    ],
+    [
+      "teacher_chunk",
+      512
+    ],
+    [
+      "student_token_available",
+      512
+    ],
+    [
+      "teacher_token",
+      512
+    ],
+    [
+      "union_available",
+      512
+    ],
+    [
+      "layer_depth",
+      512
+    ],
+    [
+      "layer_pairing",
+      512
+    ],
+    [
+      "layer_random",
+      512
+    ],
+    [
+      "learned_global",
+      512
+    ],
+    [
+      "bias_teacher",
+      512
+    ]
+  ],
+  "test_docs": 30,
+  "acceptance": "accepted draft tokens / all proposed tokens; mean accepted draft tokens per verification block",
+  "prior": "completed prefill/verification query; fresh current-query teacher is offline-only",
+  "unavailable_student": "masked availability; no zero imputation in disagreement rules",
+  "timing": "CUDA synchronization around stages; selection, full prefill, attention extraction and cache updates included",
+  "profiles": "Separate instrumented reruns; gather CUDA events not included in primary throughput runs",
+  "numerical": "BF16 eager block verification; output agreement checked against sequential teacher reference",
+  "bias_validation": {
+    "native_kl": 1.440537001053599,
+    "active_kl": 1.38842612031057,
+    "forced_strength": 0.5,
+    "selected_strength": 0.5
+  }
+}

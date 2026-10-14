@@ -1,0 +1,68 @@
+{
+  "reconstruction": {
+    "forced": {
+      "name": "reconstruction",
+      "mode": "fixed",
+      "alpha": 0.05,
+      "objective": 1.3248520017241894,
+      "kl": 1.00370392205438,
+      "ce": 1.2845923214371295,
+      "match": 0.8055555555555555,
+      "gate_mean": 0.05000000074505806
+    },
+    "guarded": {
+      "name": "reconstruction",
+      "mode": "fixed",
+      "alpha": 0,
+      "objective": 1.3173428075055604,
+      "kl": 0.9977134368881605,
+      "ce": 1.2785174898004292,
+      "match": 0.8055555555555555,
+      "gate_mean": 0.0
+    }
+  },
+  "performance_fixed": {
+    "forced": {
+      "name": "performance_fixed",
+      "mode": "fixed",
+      "alpha": 0.5,
+      "objective": 1.2592754198465426,
+      "kl": 0.9526081291182891,
+      "ce": 1.2266691888695125,
+      "match": 0.8333333333333334,
+      "gate_mean": 0.5
+    },
+    "guarded": {
+      "name": "performance_fixed",
+      "mode": "fixed",
+      "alpha": 0.5,
+      "objective": 1.2592754198465426,
+      "kl": 0.9526081291182891,
+      "ce": 1.2266691888695125,
+      "match": 0.8333333333333334,
+      "gate_mean": 0.5
+    }
+  },
+  "performance_gated": {
+    "forced": {
+      "name": "performance_gated",
+      "mode": "gated",
+      "alpha": 0.5,
+      "objective": 1.2477814129431155,
+      "kl": 0.9448145740420083,
+      "ce": 1.2118674243224128,
+      "match": 0.8541666666666666,
+      "gate_mean": 0.29724491814461845
+    },
+    "guarded": {
+      "name": "performance_gated",
+      "mode": "gated",
+      "alpha": 0.5,
+      "objective": 1.2477814129431155,
+      "kl": 0.9448145740420083,
+      "ce": 1.2118674243224128,
+      "match": 0.8541666666666666,
+      "gate_mean": 0.29724491814461845
+    }
+  }
+}

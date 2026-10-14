@@ -1,0 +1,37 @@
+{
+  "ratios": {
+    "union_256": 0.75,
+    "difference_core_256": 0.5,
+    "union_512": 0.75,
+    "difference_core_512": 0.75
+  },
+  "bias": {
+    "depth": [
+      0,
+      0,
+      0.5,
+      false
+    ],
+    "pairing": [
+      0,
+      0,
+      0.5,
+      false
+    ],
+    "random": [
+      0,
+      22,
+      0.5,
+      false
+    ],
+    "shuffled": [
+      0,
+      0,
+      1.0,
+      true
+    ]
+  },
+  "paired_common_layer": 0,
+  "paired_common_strength": 0.5,
+  "selection_metric": "mean validation output KL; no test tuning"
+}

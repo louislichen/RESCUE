@@ -1,0 +1,64 @@
+{
+  "runtime_records": 750,
+  "sd_runs": 720,
+  "output_matches": 720,
+  "test_methods": 24,
+  "fresh_counts": {
+    "train": 48,
+    "validation": 16,
+    "test": 30
+  },
+  "duplicate_runtime_keys": false,
+  "current_source_sha256": {
+    "exp/attention_horizon/experiment.py": "cb89cfb93b8c9e2e616eb0d90065959eef2178b228836c61b10dd992af185234",
+    "exp/attention_horizon/report.py": "339bfdd0c5e57e64e29e98964bd9544a6e5fc2ecf761d9d9b10943e9012a6065",
+    "exp/attention_horizon/prepare_data.py": "2f95cf78fa849e5bc1173eeae9fc711f2c7083d845d230d3fd987470d067bf4f",
+    "exp/attention_horizon/plot.py": "e79b6b1ee7c08000b019159fe0f1510002bdbf0782c360e8df2a31a7150ddec9",
+    "exp/attention_horizon/checks.py": "47f5344eb459500a6a0c4e66a3a438ef801febc2b2eeb81e3650907523f92a89",
+    "exp/attention_horizon/run.py": "6c3d3ebdbad8db281c817a36a14f401c4f5f1ebb476042598913f84896b62a24",
+    "exp/attention_horizon/runtime.py": "ddc3d0a1f32bbf61adb4b9cb5459c6c09c6f7fc28c61bc1fd72694fd64239b8c",
+    "exp/attention_horizon/selection.py": "d5a96f86a1633ceab195dc9c0d7b06ea2aeb4d2571879df966810b457251929a",
+    "exp/attention_horizon/risk.py": "4af99a6eab7842a225a88b2401bf9cd0eb99c1d325596aee2f1b592c1b78dc97",
+    "exp/attention_selection/attention.py": "462923a5b9f6343ea9bf61933d12fdd9a2aa4d2156205776fec38b1b08451614",
+    "exp/attn_adapter_transfer/run_attention_oracle.py": "3a5f4910d9f324f0e2eaa2e0b4c618637f638fbf0c63499579e2180d8657459c",
+    "exp/attn_adapter_transfer/common.py": "cbabe679004c44a378235f85c9e0da750be90abf58fecbab16832521728b1b4c",
+    "exp/selective_kv/bridge.py": "04148446ea2f2307b5e70d0db55add34444c784ad6388fa28af0b62466c807d0"
+  },
+  "terminal_and_budget_checks": {
+    "eos_separate_from_rejection": true,
+    "unobserved_tail_censored": true,
+    "output_budget_expectation_matches_event_tree": true,
+    "bonus_catchup_omitted_at_budget": true
+  },
+  "lean_probe_decisions_identical": true,
+  "environment": {
+    "torch": "2.7.1+cu128",
+    "cuda": "12.8"
+  },
+  "split_hashes_match": true,
+  "questions_and_titles_disjoint": true,
+  "input_length_range": [
+    600,
+    2048
+  ],
+  "phase_output_counts": {
+    "adaptive_validation": 208,
+    "joint_validation": 32,
+    "selection_validation": 128,
+    "lean_validation": 160,
+    "collection_validation": 80,
+    "static_validation": 176,
+    "collection_train": 240,
+    "collection_test": 120
+  },
+  "offline_records": {
+    "train": 819,
+    "validation": 301,
+    "test": 511
+  },
+  "branch_records": {
+    "train": 1295,
+    "validation": 663,
+    "test": 674
+  }
+}

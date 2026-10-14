@@ -1,0 +1,108 @@
+{
+  "A_teacher": {
+    "rule": "teacher",
+    "k": 4
+  },
+  "A_student": {
+    "rule": "student",
+    "k": 4
+  },
+  "A_union": {
+    "rule": "union",
+    "k": 4
+  },
+  "A_read_teacher": {
+    "rule": "read_teacher",
+    "k": 4
+  },
+  "A_read_joint025": {
+    "rule": "read_joint025",
+    "k": 4
+  },
+  "A_read_joint1": {
+    "rule": "read_joint1",
+    "k": 4
+  },
+  "A_native_full": {
+    "rule": "native_full",
+    "k": 4
+  },
+  "B_best_static": {
+    "rule": "teacher",
+    "k": 1
+  },
+  "B_structural": {
+    "rule": "teacher",
+    "risk": "structural"
+  },
+  "B_confidence": {
+    "rule": "teacher",
+    "risk": "confidence"
+  },
+  "B_attention": {
+    "rule": "teacher",
+    "risk": "attention"
+  },
+  "B_attention_read": {
+    "rule": "teacher",
+    "risk": "attention_read"
+  },
+  "B_combined": {
+    "rule": "teacher",
+    "risk": "combined"
+  },
+  "B_attention_online": {
+    "rule": "teacher",
+    "risk": "attention",
+    "online": true
+  },
+  "C_jointworkset_static": {
+    "rule": "read_joint1",
+    "k": 2
+  },
+  "C_sequential": {
+    "rule": "read_joint1",
+    "risk": "attention_read"
+  },
+  "C_joint": {
+    "rule": "read_joint1",
+    "risk": "attention_read",
+    "joint": true
+  },
+  "C_sequential_V": {
+    "rule": "read_joint1",
+    "risk": "attention_read",
+    "inject": true
+  },
+  "C_joint_V": {
+    "rule": "read_joint1",
+    "risk": "attention_read",
+    "joint": true,
+    "inject": true
+  },
+  "O_teacher_k4": {
+    "rule": "teacher",
+    "k": 4,
+    "probe": false
+  },
+  "O_teacher_static": {
+    "rule": "teacher",
+    "k": 2,
+    "probe": false
+  },
+  "O_native_full": {
+    "rule": "native_full",
+    "k": 4,
+    "probe": false
+  },
+  "O_history": {
+    "rule": "teacher",
+    "history": 0.3,
+    "probe": false
+  },
+  "O_confidence": {
+    "rule": "teacher",
+    "risk": "confidence",
+    "probe": false
+  }
+}

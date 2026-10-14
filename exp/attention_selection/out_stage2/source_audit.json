@@ -1,0 +1,22 @@
+{
+  "files": {
+    "numerical_audit.py": "f55a3a6835528210ccab9ceb2be175155ac80248bc879a046f7d4c21c08bad02",
+    "prepare_data.py": "7f03f608c8a7e432b7881c994fa90cbade59d776dd11425da2a1e6057740d730",
+    "attention.py": "385f989b1ad7a392beb85f97f8154e61345f5b26d90f1d168e6095a6e3575aab",
+    "supplement.py": "1230c54f755cf25b3171de1c703a3b5625d89abc97a145b317c0e46a6d8daad3",
+    "run.py": "9c0cef32ed97b16e15e8bc7ec212642d6c4a7aea4a6e45db3f1cee667064bd90",
+    "analyze.py": "12a62a33827e2b129c14a5dcb07c3d1d01f7aab0a2dabbb3532799b6d52f5802",
+    "runtime.py": "3388054ae595c171db8f9bfb4dd6f80e1e6408cc74b69a75fde81cb4bc069efd",
+    "selection.py": "04abb8438d327494ee6bfc9f2c9f56f38f4a9d23acb71c15f1c71a99aa147416",
+    "verify.py": "9e5d8566f308d2c2332e3d7fd3aa64afcbb9a787ae7beacb99b74eb6f28d66c8"
+  },
+  "initial_sources": {
+    "prepare_data.py": "bb5fabd88f18f9c2d773269ab0a48576e84402df0fa24dd30e4b99396b8a69d3",
+    "attention.py": "385f989b1ad7a392beb85f97f8154e61345f5b26d90f1d168e6095a6e3575aab",
+    "run.py": "9c0cef32ed97b16e15e8bc7ec212642d6c4a7aea4a6e45db3f1cee667064bd90",
+    "runtime.py": "22b1215fdad048aa753ef3e2ef93e9672a4098461b09a42aca8dbfb0fcf99fac",
+    "selection.py": "04abb8438d327494ee6bfc9f2c9f56f38f4a9d23acb71c15f1c71a99aa147416",
+    "verify.py": "9e5d8566f308d2c2332e3d7fd3aa64afcbb9a787ae7beacb99b74eb6f28d66c8"
+  },
+  "note": "Core run/attention/selection/verification hashes unchanged after main start. runtime.py finalized before late import by --phase all. prepare_data.py reader repaired afterwards; all split hashes reproduced identically. Supplement/numerical audit/analysis run after primary experiments."
+}

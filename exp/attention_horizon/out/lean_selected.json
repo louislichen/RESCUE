@@ -1,0 +1,5 @@
+{
+  "best_static": 2,
+  "history_rate": 0.3,
+  "criterion": "validation pooled decode TPS"
+}

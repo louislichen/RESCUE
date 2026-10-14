@@ -1,0 +1,92 @@
+{
+  "attention vs structural": {
+    "nll": {
+      "estimate": 0.0022076962687682666,
+      "ci95": [
+        -0.02178149028328341,
+        0.02641002245066039
+      ],
+      "lower_is_better": true
+    },
+    "k4_brier": {
+      "estimate": 0.0066716409089300766,
+      "ci95": [
+        -0.011374331794474701,
+        0.024615943767444196
+      ],
+      "lower_is_better": true
+    }
+  },
+  "attention vs confidence": {
+    "nll": {
+      "estimate": -0.04823087391185232,
+      "ci95": [
+        -0.0793306889222395,
+        -0.014430135774837788
+      ],
+      "lower_is_better": true
+    },
+    "k4_brier": {
+      "estimate": -0.0356783080806746,
+      "ci95": [
+        -0.06453728302652813,
+        -0.00728461759687835
+      ],
+      "lower_is_better": true
+    }
+  },
+  "attention_read vs structural": {
+    "nll": {
+      "estimate": -0.010247647086943368,
+      "ci95": [
+        -0.036161936550176306,
+        0.016378290485514715
+      ],
+      "lower_is_better": true
+    },
+    "k4_brier": {
+      "estimate": 0.010589783751150383,
+      "ci95": [
+        -0.005970947820860224,
+        0.027407043240569803
+      ],
+      "lower_is_better": true
+    }
+  },
+  "attention_read vs confidence": {
+    "nll": {
+      "estimate": -0.06068621726756396,
+      "ci95": [
+        -0.09123712427344814,
+        -0.026807212879408574
+      ],
+      "lower_is_better": true
+    },
+    "k4_brier": {
+      "estimate": -0.03176016523845429,
+      "ci95": [
+        -0.06224006939521815,
+        -0.0012934615369977168
+      ],
+      "lower_is_better": true
+    }
+  },
+  "combined vs confidence": {
+    "nll": {
+      "estimate": -0.015466875623506238,
+      "ci95": [
+        -0.041599095544673975,
+        0.013382820200346241
+      ],
+      "lower_is_better": true
+    },
+    "k4_brier": {
+      "estimate": -0.011574665432911246,
+      "ci95": [
+        -0.0312806583688093,
+        0.006327341134188133
+      ],
+      "lower_is_better": true
+    }
+  }
+}

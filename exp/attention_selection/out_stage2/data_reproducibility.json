@@ -1,0 +1,18 @@
+{
+  "clean_exit": true,
+  "reader": "Single-thread ParquetFile streaming, same source and source indices",
+  "splits": {
+    "train": {
+      "sha256": "54e68f5d0408bc2a7d9ffc9ca5796dc0f6db033e05452bcd15cae2594ee09064",
+      "reproduced": true
+    },
+    "validation": {
+      "sha256": "32edbd427c36c2d794a10afc8727e83ffa613327a9a20e5b340d743785a8742c",
+      "reproduced": true
+    },
+    "test": {
+      "sha256": "b75e86f12481b947311447a60003dff6de9e49c0e58a2cdc38c4d66889f5e004",
+      "reproduced": true
+    }
+  }
+}

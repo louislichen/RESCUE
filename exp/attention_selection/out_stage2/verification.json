@@ -1,0 +1,15 @@
+{
+  "fp32_gather_vs_dense_mask_max_error": 2.384185791015625e-07,
+  "real_full_native_max_error": 0.0,
+  "full_gather_native_equal": true,
+  "exact_budget_cases": 54,
+  "features_finite": true,
+  "draft_suffix_preserved": true,
+  "cache_rollback_equal": true,
+  "title_disjoint": true,
+  "counts": {
+    "train": 24,
+    "validation": 12,
+    "test": 30
+  }
+}

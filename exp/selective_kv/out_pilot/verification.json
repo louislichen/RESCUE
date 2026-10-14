@@ -1,0 +1,9 @@
+{
+  "zero_gate_exact": true,
+  "native_backing_unchanged": true,
+  "k_unchanged_by_identity": true,
+  "remote_positions_only": true,
+  "active_logit_max_change": 0.1328125,
+  "gate_derivative": -0.1421825885772705,
+  "finite_difference": -0.14218688011169434
+}

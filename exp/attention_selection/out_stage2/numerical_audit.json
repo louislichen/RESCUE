@@ -1,0 +1,105 @@
+{
+  "bf16": [
+    {
+      "source_index": 1046,
+      "position": 29,
+      "dtype": "torch.bfloat16",
+      "sequential_argmax": 20,
+      "block_argmax": 17,
+      "block_vs_sequential_max_error": 0.328125,
+      "sequential_top_margin": 0.125,
+      "same_shape_future_change_max_error": 0.0,
+      "same_shape_future_change_argmax_equal": true,
+      "canonical_prefix_tokens": 1525
+    },
+    {
+      "source_index": 1050,
+      "position": 1,
+      "dtype": "torch.bfloat16",
+      "sequential_argmax": 8544,
+      "block_argmax": 61093,
+      "block_vs_sequential_max_error": 0.484375,
+      "sequential_top_margin": 0.125,
+      "same_shape_future_change_max_error": 0.0,
+      "same_shape_future_change_argmax_equal": true,
+      "canonical_prefix_tokens": 1413
+    },
+    {
+      "source_index": 1075,
+      "position": 0,
+      "dtype": "torch.bfloat16",
+      "sequential_argmax": 27586,
+      "block_argmax": 576,
+      "block_vs_sequential_max_error": 0.53125,
+      "sequential_top_margin": 0.125,
+      "same_shape_future_change_max_error": 0.0,
+      "same_shape_future_change_argmax_equal": true,
+      "canonical_prefix_tokens": 1662
+    },
+    {
+      "source_index": 1076,
+      "position": 17,
+      "dtype": "torch.bfloat16",
+      "sequential_argmax": 374,
+      "block_argmax": 572,
+      "block_vs_sequential_max_error": 0.75,
+      "sequential_top_margin": 0.0,
+      "same_shape_future_change_max_error": 0.0,
+      "same_shape_future_change_argmax_equal": true,
+      "canonical_prefix_tokens": 1298
+    }
+  ],
+  "fp32": [
+    {
+      "source_index": 1046,
+      "position": 29,
+      "dtype": "torch.float32",
+      "sequential_argmax": 20,
+      "block_argmax": 20,
+      "block_vs_sequential_max_error": 1.1920928955078125e-05,
+      "sequential_top_margin": 14.775081634521484,
+      "same_shape_future_change_max_error": 0.0,
+      "same_shape_future_change_argmax_equal": true,
+      "canonical_prefix_tokens": 1525
+    },
+    {
+      "source_index": 1050,
+      "position": 1,
+      "dtype": "torch.float32",
+      "sequential_argmax": 61093,
+      "block_argmax": 61093,
+      "block_vs_sequential_max_error": 1.5735626220703125e-05,
+      "sequential_top_margin": 0.3170280456542969,
+      "same_shape_future_change_max_error": 0.0,
+      "same_shape_future_change_argmax_equal": true,
+      "canonical_prefix_tokens": 1413
+    },
+    {
+      "source_index": 1075,
+      "position": 0,
+      "dtype": "torch.float32",
+      "sequential_argmax": 576,
+      "block_argmax": 576,
+      "block_vs_sequential_max_error": 1.4543533325195312e-05,
+      "sequential_top_margin": 0.8839435577392578,
+      "same_shape_future_change_max_error": 0.0,
+      "same_shape_future_change_argmax_equal": true,
+      "canonical_prefix_tokens": 1662
+    },
+    {
+      "source_index": 1076,
+      "position": 17,
+      "dtype": "torch.float32",
+      "sequential_argmax": 572,
+      "block_argmax": 572,
+      "block_vs_sequential_max_error": 2.1457672119140625e-05,
+      "sequential_top_margin": 2.4954605102539062,
+      "same_shape_future_change_max_error": 0.0,
+      "same_shape_future_change_argmax_equal": true,
+      "canonical_prefix_tokens": 1298
+    }
+  ],
+  "native_divergent_docs": 4,
+  "method": "Same canonical prefix and current query; compare one-query and multi-query shapes. Change only future masked input to test causality. FP32 uses forced same prefix, not a new algorithm.",
+  "source_sha256": "f55a3a6835528210ccab9ceb2be175155ac80248bc879a046f7d4c21c08bad02"
+}

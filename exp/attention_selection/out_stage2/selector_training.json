@@ -1,0 +1,111 @@
+{
+  "history": [
+    {
+      "epoch": 10,
+      "train_mse": 0.007723445072770119,
+      "validation_mse": 0.010378661565482616
+    },
+    {
+      "epoch": 20,
+      "train_mse": 0.005647527985274792,
+      "validation_mse": 0.00834296178072691
+    },
+    {
+      "epoch": 30,
+      "train_mse": 0.003934167325496674,
+      "validation_mse": 0.007664053235203028
+    },
+    {
+      "epoch": 40,
+      "train_mse": 0.0036654705181717873,
+      "validation_mse": 0.007807462010532618
+    },
+    {
+      "epoch": 50,
+      "train_mse": 0.003423198126256466,
+      "validation_mse": 0.0075715756975114346
+    },
+    {
+      "epoch": 60,
+      "train_mse": 0.003294622991234064,
+      "validation_mse": 0.007553968112915754
+    },
+    {
+      "epoch": 70,
+      "train_mse": 0.0032161797862499952,
+      "validation_mse": 0.007468204479664564
+    },
+    {
+      "epoch": 80,
+      "train_mse": 0.003152231452986598,
+      "validation_mse": 0.00739477900788188
+    },
+    {
+      "epoch": 90,
+      "train_mse": 0.003104293951764703,
+      "validation_mse": 0.007449542637914419
+    },
+    {
+      "epoch": 100,
+      "train_mse": 0.00306498515419662,
+      "validation_mse": 0.007498097140341997
+    },
+    {
+      "epoch": 110,
+      "train_mse": 0.0030312011949718,
+      "validation_mse": 0.007518037222325802
+    },
+    {
+      "epoch": 120,
+      "train_mse": 0.003001648234203458,
+      "validation_mse": 0.007577387150377035
+    },
+    {
+      "epoch": 130,
+      "train_mse": 0.0029752154368907213,
+      "validation_mse": 0.007612556219100952
+    },
+    {
+      "epoch": 140,
+      "train_mse": 0.0029510105960071087,
+      "validation_mse": 0.007645271718502045
+    },
+    {
+      "epoch": 150,
+      "train_mse": 0.0029284467454999685,
+      "validation_mse": 0.00768177630379796
+    },
+    {
+      "epoch": 160,
+      "train_mse": 0.0029071159660816193,
+      "validation_mse": 0.007719352841377258
+    },
+    {
+      "epoch": 170,
+      "train_mse": 0.002886748407036066,
+      "validation_mse": 0.007759195286780596
+    },
+    {
+      "epoch": 180,
+      "train_mse": 0.0028671680483967066,
+      "validation_mse": 0.0077997553162276745
+    },
+    {
+      "epoch": 190,
+      "train_mse": 0.002848254283890128,
+      "validation_mse": 0.007842005230486393
+    },
+    {
+      "epoch": 200,
+      "train_mse": 0.0028299172408878803,
+      "validation_mse": 0.007887139916419983
+    }
+  ],
+  "selected_epoch": 81,
+  "validation_mse": 0.0073944018222391605,
+  "zero_predictor_mse": 0.005059333052486181,
+  "validation_correlation": -0.06917915118353526,
+  "parameters": 1921,
+  "labels": 2304,
+  "features": "Teacher attention across layers plus frozen current-query summaries; candidate and anchor feature difference"
+}

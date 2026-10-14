@@ -1,0 +1,22 @@
+{
+  "joint_rule": "read_joint1",
+  "best_static": {
+    "teacher": 1,
+    "read_joint1": 2
+  },
+  "attention_policy": "attention_read",
+  "sequential_config": {
+    "rule": "read_joint1",
+    "risk": "attention_read"
+  },
+  "joint_config": {
+    "rule": "read_joint1",
+    "risk": "attention_read",
+    "joint": true
+  },
+  "selection_criterion": "Fixed-k=4 validation acceptance; static/adaptive validation pooled decode TPS",
+  "adaptive_best_validation": {
+    "teacher": "teacher_combined",
+    "read_joint1": "read_joint1_combined"
+  }
+}

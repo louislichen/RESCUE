@@ -1,0 +1,155 @@
+{
+  "kind": "synthetic selector microbenchmark",
+  "gpu": "NVIDIA H100",
+  "dtype": "float32",
+  "tf32": false,
+  "torch": "2.7.1+cu128",
+  "repeats": 3,
+  "notes": [
+    "No models loaded, no acceptance/quality measurements.",
+    "Includes cosine-matrix preparation and selection; excludes attention acquisition and model execution.",
+    "Batch=1 evaluates exact marginal gains within the fixed pool.",
+    "Batch>1 is an approximation: within-batch redundancy is not recomputed.",
+    "All 447 iterations remain on GPU, without per-iteration CPU argmax synchronization."
+  ],
+  "measurements": [
+    {
+      "n": 2048,
+      "candidates": 1024,
+      "additional_tokens": 447,
+      "teacher_dim": 512,
+      "student_dim": 256,
+      "batch": 1,
+      "rounds": 447,
+      "prepare_ms": [
+        0.7008570246398449,
+        0.4673349903896451,
+        0.44693402014672756
+      ],
+      "selection_ms": [
+        51.80542601738125,
+        52.18283401336521,
+        51.767928001936525
+      ],
+      "prepare_median_ms": 0.4673349903896451,
+      "selection_median_ms": 51.80542601738125,
+      "two_similarity_matrices_mib": 16.0,
+      "total_median_ms": 52.272761007770896
+    },
+    {
+      "n": 2048,
+      "candidates": 1024,
+      "additional_tokens": 447,
+      "teacher_dim": 512,
+      "student_dim": 256,
+      "batch": 16,
+      "rounds": 28,
+      "prepare_ms": [
+        0.7008570246398449,
+        0.4673349903896451,
+        0.44693402014672756
+      ],
+      "selection_ms": [
+        3.6172459949739277,
+        3.6171250394545496,
+        3.6155040143057704
+      ],
+      "prepare_median_ms": 0.4673349903896451,
+      "selection_median_ms": 3.6171250394545496,
+      "two_similarity_matrices_mib": 16.0,
+      "total_median_ms": 4.084460029844195
+    },
+    {
+      "n": 2048,
+      "candidates": 1024,
+      "additional_tokens": 447,
+      "teacher_dim": 512,
+      "student_dim": 256,
+      "batch": 32,
+      "rounds": 14,
+      "prepare_ms": [
+        0.7008570246398449,
+        0.4673349903896451,
+        0.44693402014672756
+      ],
+      "selection_ms": [
+        1.7306699883192778,
+        1.7072950140573084,
+        1.718772982712835
+      ],
+      "prepare_median_ms": 0.4673349903896451,
+      "selection_median_ms": 1.718772982712835,
+      "two_similarity_matrices_mib": 16.0,
+      "total_median_ms": 2.18610797310248
+    },
+    {
+      "n": 16384,
+      "candidates": 1024,
+      "additional_tokens": 447,
+      "teacher_dim": 512,
+      "student_dim": 256,
+      "batch": 1,
+      "rounds": 447,
+      "prepare_ms": [
+        1.578169991262257,
+        1.321052957791835,
+        1.3242170098237693
+      ],
+      "selection_ms": [
+        296.91532102879137,
+        297.332739981357,
+        296.7196659883484
+      ],
+      "prepare_median_ms": 1.3242170098237693,
+      "selection_median_ms": 296.91532102879137,
+      "two_similarity_matrices_mib": 128.0,
+      "total_median_ms": 298.23953803861514
+    },
+    {
+      "n": 16384,
+      "candidates": 1024,
+      "additional_tokens": 447,
+      "teacher_dim": 512,
+      "student_dim": 256,
+      "batch": 16,
+      "rounds": 28,
+      "prepare_ms": [
+        1.578169991262257,
+        1.321052957791835,
+        1.3242170098237693
+      ],
+      "selection_ms": [
+        19.132265995722264,
+        19.11600201856345,
+        19.13708302890882
+      ],
+      "prepare_median_ms": 1.3242170098237693,
+      "selection_median_ms": 19.132265995722264,
+      "two_similarity_matrices_mib": 128.0,
+      "total_median_ms": 20.456483005546033
+    },
+    {
+      "n": 16384,
+      "candidates": 1024,
+      "additional_tokens": 447,
+      "teacher_dim": 512,
+      "student_dim": 256,
+      "batch": 32,
+      "rounds": 14,
+      "prepare_ms": [
+        1.578169991262257,
+        1.321052957791835,
+        1.3242170098237693
+      ],
+      "selection_ms": [
+        9.587401000317186,
+        9.59819700801745,
+        9.593038004823029
+      ],
+      "prepare_median_ms": 1.3242170098237693,
+      "selection_median_ms": 9.593038004823029,
+      "two_similarity_matrices_mib": 128.0,
+      "total_median_ms": 10.917255014646798
+    }
+  ]
+}

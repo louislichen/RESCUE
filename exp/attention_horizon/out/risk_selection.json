@@ -1,0 +1,27 @@
+{
+  "structural": {
+    "seed": 43,
+    "path": "risk_structural_43.pt",
+    "validation_nll": 0.5699000954627991
+  },
+  "confidence": {
+    "seed": 44,
+    "path": "risk_confidence_44.pt",
+    "validation_nll": 0.5675655007362366
+  },
+  "attention": {
+    "seed": 43,
+    "path": "risk_attention_43.pt",
+    "validation_nll": 0.6009939312934875
+  },
+  "attention_read": {
+    "seed": 42,
+    "path": "risk_attention_read_42.pt",
+    "validation_nll": 0.5820351243019104
+  },
+  "combined": {
+    "seed": 43,
+    "path": "risk_combined_43.pt",
+    "validation_nll": 0.5887516140937805
+  }
+}

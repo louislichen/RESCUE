@@ -1,0 +1,563 @@
+{
+  "expected": {
+    "offline": 4060,
+    "runtime": 810,
+    "utility_joint": 600,
+    "union_ablations": 464
+  },
+  "actual": {
+    "offline": 4060,
+    "runtime": 810,
+    "utility_joint": 600,
+    "union_ablations": 464
+  },
+  "tensor_cache_documents": 66,
+  "offline_states": 116,
+  "all_records_unique": true,
+  "all_selection_budgets_equal": true,
+  "runtime_output_agreement": 706,
+  "runtime_runs": 810,
+  "output_failures": [
+    {
+      "source_index": 1046,
+      "budget": 256,
+      "method": "teacher_token"
+    },
+    {
+      "source_index": 1046,
+      "budget": 512,
+      "method": "layer_pairing"
+    },
+    {
+      "source_index": 1046,
+      "budget": 512,
+      "method": "union_available"
+    },
+    {
+      "source_index": 1046,
+      "budget": 512,
+      "method": "recent"
+    },
+    {
+      "source_index": 1046,
+      "budget": 256,
+      "method": "student_token_available"
+    },
+    {
+      "source_index": 1046,
+      "budget": 256,
+      "method": "layer_depth"
+    },
+    {
+      "source_index": 1046,
+      "budget": 0,
+      "method": "native_full"
+    },
+    {
+      "source_index": 1046,
+      "budget": 256,
+      "method": "recent"
+    },
+    {
+      "source_index": 1046,
+      "budget": 256,
+      "method": "random"
+    },
+    {
+      "source_index": 1046,
+      "budget": 256,
+      "method": "teacher_chunk"
+    },
+    {
+      "source_index": 1046,
+      "budget": 0,
+      "method": "bias_full"
+    },
+    {
+      "source_index": 1046,
+      "budget": 512,
+      "method": "teacher_token"
+    },
+    {
+      "source_index": 1046,
+      "budget": 512,
+      "method": "bias_teacher"
+    },
+    {
+      "source_index": 1046,
+      "budget": 512,
+      "method": "layer_random"
+    },
+    {
+      "source_index": 1046,
+      "budget": 256,
+      "method": "layer_random"
+    },
+    {
+      "source_index": 1046,
+      "budget": 256,
+      "method": "union_available"
+    },
+    {
+      "source_index": 1046,
+      "budget": 256,
+      "method": "student_chunk"
+    },
+    {
+      "source_index": 1046,
+      "budget": 256,
+      "method": "bias_teacher"
+    },
+    {
+      "source_index": 1046,
+      "budget": 256,
+      "method": "layer_pairing"
+    },
+    {
+      "source_index": 1046,
+      "budget": 512,
+      "method": "student_chunk"
+    },
+    {
+      "source_index": 1046,
+      "budget": 512,
+      "method": "layer_depth"
+    },
+    {
+      "source_index": 1046,
+      "budget": 512,
+      "method": "teacher_chunk"
+    },
+    {
+      "source_index": 1050,
+      "budget": 256,
+      "method": "teacher_chunk"
+    },
+    {
+      "source_index": 1050,
+      "budget": 256,
+      "method": "random"
+    },
+    {
+      "source_index": 1050,
+      "budget": 256,
+      "method": "layer_pairing"
+    },
+    {
+      "source_index": 1050,
+      "budget": 256,
+      "method": "layer_random"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "teacher_chunk"
+    },
+    {
+      "source_index": 1050,
+      "budget": 0,
+      "method": "bias_full"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "layer_depth"
+    },
+    {
+      "source_index": 1050,
+      "budget": 256,
+      "method": "learned_global"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "bias_teacher"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "learned_global"
+    },
+    {
+      "source_index": 1050,
+      "budget": 256,
+      "method": "student_token_available"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "union_available"
+    },
+    {
+      "source_index": 1050,
+      "budget": 0,
+      "method": "native_full"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "layer_random"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "recent"
+    },
+    {
+      "source_index": 1050,
+      "budget": 256,
+      "method": "bias_teacher"
+    },
+    {
+      "source_index": 1050,
+      "budget": 256,
+      "method": "layer_depth"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "student_token_available"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "layer_pairing"
+    },
+    {
+      "source_index": 1050,
+      "budget": 256,
+      "method": "student_chunk"
+    },
+    {
+      "source_index": 1050,
+      "budget": 256,
+      "method": "teacher_token"
+    },
+    {
+      "source_index": 1050,
+      "budget": 256,
+      "method": "union_available"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "random"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "student_chunk"
+    },
+    {
+      "source_index": 1050,
+      "budget": 512,
+      "method": "teacher_token"
+    },
+    {
+      "source_index": 1069,
+      "budget": 256,
+      "method": "random"
+    },
+    {
+      "source_index": 1069,
+      "budget": 256,
+      "method": "layer_depth"
+    },
+    {
+      "source_index": 1069,
+      "budget": 256,
+      "method": "recent"
+    },
+    {
+      "source_index": 1069,
+      "budget": 512,
+      "method": "layer_random"
+    },
+    {
+      "source_index": 1069,
+      "budget": 256,
+      "method": "layer_random"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "union_available"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "teacher_token"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "recent"
+    },
+    {
+      "source_index": 1075,
+      "budget": 0,
+      "method": "native_full"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "union_available"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "layer_random"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "bias_teacher"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "teacher_token"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "student_chunk"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "student_token_available"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "teacher_chunk"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "random"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "student_token_available"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "learned_global"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "random"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "student_chunk"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "layer_pairing"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "bias_teacher"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "layer_random"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "learned_global"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "layer_pairing"
+    },
+    {
+      "source_index": 1075,
+      "budget": 256,
+      "method": "layer_depth"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "layer_depth"
+    },
+    {
+      "source_index": 1075,
+      "budget": 0,
+      "method": "bias_full"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "teacher_chunk"
+    },
+    {
+      "source_index": 1075,
+      "budget": 512,
+      "method": "recent"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "recent"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "layer_depth"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "bias_teacher"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "recent"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "learned_global"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "layer_random"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "union_available"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "layer_pairing"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "learned_global"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "random"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "layer_random"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "student_chunk"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "layer_depth"
+    },
+    {
+      "source_index": 1076,
+      "budget": 0,
+      "method": "native_full"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "bias_teacher"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "student_token_available"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "teacher_token"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "random"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "student_chunk"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "teacher_chunk"
+    },
+    {
+      "source_index": 1076,
+      "budget": 0,
+      "method": "bias_full"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "union_available"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "teacher_chunk"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "student_token_available"
+    },
+    {
+      "source_index": 1076,
+      "budget": 512,
+      "method": "layer_pairing"
+    },
+    {
+      "source_index": 1076,
+      "budget": 256,
+      "method": "teacher_token"
+    }
+  ],
+  "verification": {
+    "fp32_gather_vs_dense_mask_max_error": 2.384185791015625e-07,
+    "real_full_native_max_error": 0.0,
+    "full_gather_native_equal": true,
+    "exact_budget_cases": 54,
+    "features_finite": true,
+    "draft_suffix_preserved": true,
+    "cache_rollback_equal": true,
+    "title_disjoint": true,
+    "counts": {
+      "train": 24,
+      "validation": 12,
+      "test": 30
+    }
+  },
+  "fp32_runtime_expected": 450,
+  "fp32_runtime_actual": 450,
+  "fp32_output_agreement": 450,
+  "fp32_sd_runs": 420,
+  "fp32_sd_output_agreement": 420,
+  "fp32_output_failures": []
+}

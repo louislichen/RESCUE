@@ -1,0 +1,39 @@
+{
+  "native_full": {
+    "name": null,
+    "full": true
+  },
+  "teacher_token": {
+    "name": null,
+    "full": false
+  },
+  "reconstruction": {
+    "name": "reconstruction",
+    "mode": "fixed",
+    "alpha": 0.05,
+    "full": false
+  },
+  "performance_fixed": {
+    "name": "performance_fixed",
+    "mode": "fixed",
+    "alpha": 0.5,
+    "full": false
+  },
+  "performance_gated": {
+    "name": "performance_gated",
+    "mode": "gated",
+    "alpha": 0.5,
+    "full": false
+  },
+  "gated_shuffled": {
+    "name": "performance_gated",
+    "mode": "gated",
+    "alpha": 0.5,
+    "shuffle": true
+  },
+  "gated_constant": {
+    "name": "performance_gated",
+    "mode": "fixed",
+    "alpha": 0.29724491814461845
+  }
+}

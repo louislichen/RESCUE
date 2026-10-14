@@ -1,0 +1,13 @@
+{
+  "verify_beta": [
+    0.023608246721916307,
+    0.004337921319167886,
+    0.00026693974727164777,
+    4.139909645327894e-05
+  ],
+  "student_step": 0.023649663955438882,
+  "cache_update": 0.0004468990082386881,
+  "training_verify_mae": 0.0011063770465948475,
+  "samples": 3129,
+  "formula": "verify=b0+b1*N/2048+b2*k+b3*k*N/2048; expected tokens=1+sum P(first j accepted non-EOS)"
+}

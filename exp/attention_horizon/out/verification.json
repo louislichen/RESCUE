@@ -1,0 +1,19 @@
+{
+  "gqa_matches_manual": true,
+  "swap_objective_matches_recompute": true,
+  "read_objective_nonincreasing": true,
+  "native_probe_logits_identical": true,
+  "backing_unchanged": true,
+  "greedy_matches": [
+    {
+      "method": "full",
+      "tokens": 58,
+      "output_agrees": true
+    },
+    {
+      "method": "sparse",
+      "tokens": 58,
+      "output_agrees": true
+    }
+  ]
+}

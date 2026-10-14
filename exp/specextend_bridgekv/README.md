@@ -1,5 +1,9 @@
 # SpecExtend BridgeKV experiments
 
+The newer Qwen2 selective-value pilot uses performance supervision and a
+query-dependent token/layer gate. Its independent results and content-source
+controls are documented in [selective_kv](../selective_kv/README.md).
+
 This directory is a source snapshot of the current SpecExtend/BridgeKV research implementation used for the RTX 4090 experiments. The base implementation is derived from [jycha98/SpecExtend](https://github.com/jycha98/SpecExtend); the local additions and modifications implement the BridgeKV experiments described below.
 
 The implementation includes:
@@ -22,6 +26,8 @@ The implementation includes:
 - `analyze_bridge_compute_bypass.py`: semantic-shadow and compute-bypass analysis.
 - `analyze_native_v_retention_sweep.py`: Native-V retention curve analysis.
 - `design/attnbridge_method_and_exactness.md`: method and exactness notes.
+- [`design/attention_selection_diagnostics.md`](design/attention_selection_diagnostics.md): planned selection baselines, union/difference rules, layer correspondence, attention interventions, learned selectors, and deployment checks.
+- [`../attention_selection/`](../attention_selection/README.md): stage-two E1–E9 implementation and Qwen2/H100 result artifacts.
 - `design/bridgekv_exact_speculative_decoding.drawio`: editable method diagram.
 
 ## Environment

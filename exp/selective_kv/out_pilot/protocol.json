@@ -1,0 +1,65 @@
+{
+  "phase": "all",
+  "data": "exp/selective_kv/data",
+  "output": "exp/selective_kv/out_pilot",
+  "cache": "/mnt/8T/cl/rescue_experiment_cache/selective_kv_pilot",
+  "teacher": "/mnt/8T/cl/models/Qwen2-7B-Instruct",
+  "student": "/mnt/8T/cl/models/Qwen2-1.5B-Instruct",
+  "device": "cuda:0",
+  "budget": 512,
+  "inject_tokens": 128,
+  "recent": 64,
+  "query_steps": [
+    0,
+    2,
+    4,
+    6
+  ],
+  "max_new_tokens": 32,
+  "draft_k": 4,
+  "rank": 64,
+  "epochs": 8,
+  "reconstruction_epochs": 12,
+  "seed": 42,
+  "layers": [
+    24,
+    25,
+    26,
+    27
+  ],
+  "teacher_layers": [
+    24,
+    26,
+    26,
+    27
+  ],
+  "teacher_dtype": "float32",
+  "student_dtype": "bfloat16",
+  "source_storage": "bfloat16",
+  "source": "Only completed prefix KV; teacher-attention prior from previous completed query",
+  "intervention": "Read-only bounded V residual on remote selected tokens; K unchanged",
+  "labels": "FP32 teacher output KL and teacher argmax CE; no direct greedy acceptance gradient",
+  "manifest": {
+    "counts": {
+      "train": 24,
+      "validation": 12,
+      "test": 30
+    },
+    "train_validation": "Reused stage-two training/validation; no new test documents previously examined",
+    "exclusion": "Prior 300 and all 66 stage-two documents/questions; title-disjoint across all splits",
+    "source": "hf://datasets/hotpotqa/hotpot_qa/distractor/train-*.parquet",
+    "skip": 1200,
+    "hashes": {
+      "train": "54e68f5d0408bc2a7d9ffc9ca5796dc0f6db033e05452bcd15cae2594ee09064",
+      "validation": "32edbd427c36c2d794a10afc8727e83ffa613327a9a20e5b340d743785a8742c",
+      "test": "1074b73ab2d9389748277cfb221f060f138cd8fd65a4c23f07093d5efaa7308c"
+    }
+  },
+  "source_sha256": {
+    "exp/selective_kv/prepare_data.py": "5dc4b82a4d975a0e037599d20329961323276ffd3366ff8b31b8b201b8b47ba5",
+    "exp/selective_kv/bridge.py": "04148446ea2f2307b5e70d0db55add34444c784ad6388fa28af0b62466c807d0",
+    "exp/selective_kv/run.py": "c286f7e656ccc8b46f04466800e0e1c044f1f00ad7912cd8a2781c91887cabd0",
+    "exp/selective_kv/evaluate.py": "e901d09beb4537c73e1b7a261bfdc94526b84d787a25f2761a89358e9965868e",
+    "exp/attention_selection/attention.py": "0db6b41561e35f6fc57c3e636c82d0557db844c1875255f0634528c5a72de518"
+  }
+}

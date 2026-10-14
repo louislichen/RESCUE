@@ -1,0 +1,2522 @@
+[
+  {
+    "source_index": 1045,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.11760691525999964
+  },
+  {
+    "source_index": 1045,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.16114201940452297
+  },
+  {
+    "source_index": 1045,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.024770483574901338
+  },
+  {
+    "source_index": 1045,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.07522623057634867
+  },
+  {
+    "source_index": 1045,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.10489151766995569
+  },
+  {
+    "source_index": 1045,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.12386742839569036
+  },
+  {
+    "source_index": 1045,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.2069052395302851
+  },
+  {
+    "source_index": 1045,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.2088489957536798
+  },
+  {
+    "source_index": 1045,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.22445495668563528
+  },
+  {
+    "source_index": 1045,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.2197084188445063
+  },
+  {
+    "source_index": 1045,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.16184848793539744
+  },
+  {
+    "source_index": 1045,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.21577151583458734
+  },
+  {
+    "source_index": 1046,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.2821515300736715
+  },
+  {
+    "source_index": 1046,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.006030192250766858
+  },
+  {
+    "source_index": 1046,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.42075515033967603
+  },
+  {
+    "source_index": 1046,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.154175693356995
+  },
+  {
+    "source_index": 1046,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.17143296599095878
+  },
+  {
+    "source_index": 1046,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.21513711793532064
+  },
+  {
+    "source_index": 1046,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.37172787597583046
+  },
+  {
+    "source_index": 1046,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.19843124987883315
+  },
+  {
+    "source_index": 1046,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.3292601478207829
+  },
+  {
+    "source_index": 1046,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.047344964710665495
+  },
+  {
+    "source_index": 1046,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.02711690479056959
+  },
+  {
+    "source_index": 1046,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.06127602218719109
+  },
+  {
+    "source_index": 1047,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.1549895968589344
+  },
+  {
+    "source_index": 1047,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.5751389855553811
+  },
+  {
+    "source_index": 1047,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.14135374112739515
+  },
+  {
+    "source_index": 1047,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.11964848366038185
+  },
+  {
+    "source_index": 1047,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.34773232031461415
+  },
+  {
+    "source_index": 1047,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.1437133191466027
+  },
+  {
+    "source_index": 1047,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.05685547594739189
+  },
+  {
+    "source_index": 1047,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.14883963803610087
+  },
+  {
+    "source_index": 1047,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.24892643480258303
+  },
+  {
+    "source_index": 1047,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.13817921514910403
+  },
+  {
+    "source_index": 1047,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.059679291353716475
+  },
+  {
+    "source_index": 1047,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.10577132764540557
+  },
+  {
+    "source_index": 1048,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.10895666015062294
+  },
+  {
+    "source_index": 1048,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.19621710055464128
+  },
+  {
+    "source_index": 1048,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.07092734867229543
+  },
+  {
+    "source_index": 1048,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.11433323947195168
+  },
+  {
+    "source_index": 1048,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.24732884606897335
+  },
+  {
+    "source_index": 1048,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.3232978719330131
+  },
+  {
+    "source_index": 1048,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.17626535031406554
+  },
+  {
+    "source_index": 1048,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.10003064831473094
+  },
+  {
+    "source_index": 1048,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.2698930963649388
+  },
+  {
+    "source_index": 1048,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.19561938637196807
+  },
+  {
+    "source_index": 1048,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.022665766750789046
+  },
+  {
+    "source_index": 1048,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.3923840909293271
+  },
+  {
+    "source_index": 1049,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.06927011802581608
+  },
+  {
+    "source_index": 1049,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.1924301860193251
+  },
+  {
+    "source_index": 1049,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.200685112353184
+  },
+  {
+    "source_index": 1049,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.04852830222745892
+  },
+  {
+    "source_index": 1049,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.11235303567174816
+  },
+  {
+    "source_index": 1049,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.1235042777557927
+  },
+  {
+    "source_index": 1049,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.37882422882401445
+  },
+  {
+    "source_index": 1049,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.6559754310162755
+  },
+  {
+    "source_index": 1049,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.0
+  },
+  {
+    "source_index": 1049,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.0756681127095444
+  },
+  {
+    "source_index": 1049,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.017849184563762773
+  },
+  {
+    "source_index": 1049,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.09560672445709974
+  },
+  {
+    "source_index": 1050,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.04972786251516042
+  },
+  {
+    "source_index": 1050,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.21011679024312216
+  },
+  {
+    "source_index": 1050,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.16151221385264203
+  },
+  {
+    "source_index": 1050,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.012669659372532048
+  },
+  {
+    "source_index": 1050,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.20304232102950667
+  },
+  {
+    "source_index": 1050,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.282225544742071
+  },
+  {
+    "source_index": 1050,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.24630489043705414
+  },
+  {
+    "source_index": 1050,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.6967007801071711
+  },
+  {
+    "source_index": 1050,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.12934040360761725
+  },
+  {
+    "source_index": 1050,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.039110997198750365
+  },
+  {
+    "source_index": 1050,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.07273775494125828
+  },
+  {
+    "source_index": 1050,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.11713813356303926
+  },
+  {
+    "source_index": 1051,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.11504820765237919
+  },
+  {
+    "source_index": 1051,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.1573040065388815
+  },
+  {
+    "source_index": 1051,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.1261101511100149
+  },
+  {
+    "source_index": 1051,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.22988683562259224
+  },
+  {
+    "source_index": 1051,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.2875385166806581
+  },
+  {
+    "source_index": 1051,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.059861989983058375
+  },
+  {
+    "source_index": 1051,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.24988942574108516
+  },
+  {
+    "source_index": 1051,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.010191325622823818
+  },
+  {
+    "source_index": 1051,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.17104792897500656
+  },
+  {
+    "source_index": 1051,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.44557641752476046
+  },
+  {
+    "source_index": 1051,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.14731944779694242
+  },
+  {
+    "source_index": 1051,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.1853039360664052
+  },
+  {
+    "source_index": 1052,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.14237549719354448
+  },
+  {
+    "source_index": 1052,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.13286219634025875
+  },
+  {
+    "source_index": 1052,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.09607834692884004
+  },
+  {
+    "source_index": 1052,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.2669666014435906
+  },
+  {
+    "source_index": 1052,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.10374573379555815
+  },
+  {
+    "source_index": 1052,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.052070544414012813
+  },
+  {
+    "source_index": 1052,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.26069704321583476
+  },
+  {
+    "source_index": 1052,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.2407426190066381
+  },
+  {
+    "source_index": 1052,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.10165983384843809
+  },
+  {
+    "source_index": 1052,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.3121308720435079
+  },
+  {
+    "source_index": 1052,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.06137312666065109
+  },
+  {
+    "source_index": 1052,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.023335849953273625
+  },
+  {
+    "source_index": 1053,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.054942735422486774
+  },
+  {
+    "source_index": 1053,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.4349676229218785
+  },
+  {
+    "source_index": 1053,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.11663952867306983
+  },
+  {
+    "source_index": 1053,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.02121198169292203
+  },
+  {
+    "source_index": 1053,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.16497050135334226
+  },
+  {
+    "source_index": 1053,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.06330926600647205
+  },
+  {
+    "source_index": 1053,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.40583257836221975
+  },
+  {
+    "source_index": 1053,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.05387429087920671
+  },
+  {
+    "source_index": 1053,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.33645987410680683
+  },
+  {
+    "source_index": 1053,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.0009121617638497456
+  },
+  {
+    "source_index": 1053,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.007870501197824674
+  },
+  {
+    "source_index": 1053,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.049849797941556875
+  },
+  {
+    "source_index": 1054,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.25373746341969877
+  },
+  {
+    "source_index": 1054,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.49658041897646926
+  },
+  {
+    "source_index": 1054,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.33285566672022265
+  },
+  {
+    "source_index": 1054,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.2866644138434572
+  },
+  {
+    "source_index": 1054,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.11639000225438499
+  },
+  {
+    "source_index": 1054,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.09520812032569104
+  },
+  {
+    "source_index": 1054,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.21327826807995404
+  },
+  {
+    "source_index": 1054,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.1506852298529784
+  },
+  {
+    "source_index": 1054,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.18270815852623054
+  },
+  {
+    "source_index": 1054,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.21260491918866964
+  },
+  {
+    "source_index": 1054,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.014477984217288941
+  },
+  {
+    "source_index": 1054,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.17208956492819888
+  },
+  {
+    "source_index": 1057,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.12639163572689946
+  },
+  {
+    "source_index": 1057,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.24561075903683685
+  },
+  {
+    "source_index": 1057,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.05293638722184059
+  },
+  {
+    "source_index": 1057,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.008583898195746634
+  },
+  {
+    "source_index": 1057,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.0581279248569554
+  },
+  {
+    "source_index": 1057,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.15293660600406456
+  },
+  {
+    "source_index": 1057,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.11111168717438669
+  },
+  {
+    "source_index": 1057,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.1530729791824805
+  },
+  {
+    "source_index": 1057,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.22713827039808432
+  },
+  {
+    "source_index": 1057,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.3132867860266105
+  },
+  {
+    "source_index": 1057,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.02545625702358917
+  },
+  {
+    "source_index": 1057,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.10512354964589082
+  },
+  {
+    "source_index": 1058,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.5121367500664626
+  },
+  {
+    "source_index": 1058,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.3329517009322619
+  },
+  {
+    "source_index": 1058,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.429574577537414
+  },
+  {
+    "source_index": 1058,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.20644301897216916
+  },
+  {
+    "source_index": 1058,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.3041567357147928
+  },
+  {
+    "source_index": 1058,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.3758150197045715
+  },
+  {
+    "source_index": 1058,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.3352162186363953
+  },
+  {
+    "source_index": 1058,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.04132915633781965
+  },
+  {
+    "source_index": 1058,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.07315651087590191
+  },
+  {
+    "source_index": 1058,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.12940142532301502
+  },
+  {
+    "source_index": 1058,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.37951836090551744
+  },
+  {
+    "source_index": 1058,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.49254491641722065
+  },
+  {
+    "source_index": 1059,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.003935101717241
+  },
+  {
+    "source_index": 1059,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.07219387745549072
+  },
+  {
+    "source_index": 1059,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.00902244666909472
+  },
+  {
+    "source_index": 1059,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.328964227419402
+  },
+  {
+    "source_index": 1059,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.24866345384384914
+  },
+  {
+    "source_index": 1059,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.011400946575572135
+  },
+  {
+    "source_index": 1059,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.07419921806019313
+  },
+  {
+    "source_index": 1059,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.32768169523901663
+  },
+  {
+    "source_index": 1059,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.005747776483718176
+  },
+  {
+    "source_index": 1059,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.20272269152833033
+  },
+  {
+    "source_index": 1059,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.2184831086266381
+  },
+  {
+    "source_index": 1059,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.04376033369217037
+  },
+  {
+    "source_index": 1060,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.13409266102518716
+  },
+  {
+    "source_index": 1060,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.47046200791428594
+  },
+  {
+    "source_index": 1060,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.05388630170814561
+  },
+  {
+    "source_index": 1060,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.12087735236896267
+  },
+  {
+    "source_index": 1060,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.11246258121491003
+  },
+  {
+    "source_index": 1060,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.11196507141327043
+  },
+  {
+    "source_index": 1060,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.1264655442088076
+  },
+  {
+    "source_index": 1060,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.08233477001781171
+  },
+  {
+    "source_index": 1060,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.2148066028446716
+  },
+  {
+    "source_index": 1060,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.5321016393945468
+  },
+  {
+    "source_index": 1060,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.06940494079967992
+  },
+  {
+    "source_index": 1060,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.1910036350659242
+  },
+  {
+    "source_index": 1061,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.038078059675357906
+  },
+  {
+    "source_index": 1061,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.3035037701581583
+  },
+  {
+    "source_index": 1061,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.08505632284795696
+  },
+  {
+    "source_index": 1061,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.00034886883457883996
+  },
+  {
+    "source_index": 1061,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.11265203434423837
+  },
+  {
+    "source_index": 1061,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.21208358593926388
+  },
+  {
+    "source_index": 1061,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.4813894830066266
+  },
+  {
+    "source_index": 1061,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.2701502094589145
+  },
+  {
+    "source_index": 1061,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.005213091839629929
+  },
+  {
+    "source_index": 1061,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.2636373490720783
+  },
+  {
+    "source_index": 1061,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.04526233013503188
+  },
+  {
+    "source_index": 1061,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.20487986066939526
+  },
+  {
+    "source_index": 1062,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.17976433007432335
+  },
+  {
+    "source_index": 1062,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.042591123906469394
+  },
+  {
+    "source_index": 1062,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.14333387407373901
+  },
+  {
+    "source_index": 1062,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.11154513642691453
+  },
+  {
+    "source_index": 1062,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.12526730370424977
+  },
+  {
+    "source_index": 1062,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.20838183359898843
+  },
+  {
+    "source_index": 1062,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.13370082651853585
+  },
+  {
+    "source_index": 1062,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.08408518403025611
+  },
+  {
+    "source_index": 1062,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.202314804996047
+  },
+  {
+    "source_index": 1062,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.16473896572608637
+  },
+  {
+    "source_index": 1062,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.15906714258814114
+  },
+  {
+    "source_index": 1062,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.29087901325469245
+  },
+  {
+    "source_index": 1063,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.03689060801613471
+  },
+  {
+    "source_index": 1063,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.23953768834433334
+  },
+  {
+    "source_index": 1063,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.07246211838440259
+  },
+  {
+    "source_index": 1063,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.022128110983641376
+  },
+  {
+    "source_index": 1063,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.059183534238561944
+  },
+  {
+    "source_index": 1063,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.06901610147575361
+  },
+  {
+    "source_index": 1063,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.07964389113610076
+  },
+  {
+    "source_index": 1063,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.026717579543259214
+  },
+  {
+    "source_index": 1063,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.23290516377437828
+  },
+  {
+    "source_index": 1063,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.0019407375917459206
+  },
+  {
+    "source_index": 1063,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.008333197117678132
+  },
+  {
+    "source_index": 1063,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.42080911379542246
+  },
+  {
+    "source_index": 1064,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.05595462622409911
+  },
+  {
+    "source_index": 1064,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.3264104211939392
+  },
+  {
+    "source_index": 1064,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.007898654099989535
+  },
+  {
+    "source_index": 1064,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.15292222519054618
+  },
+  {
+    "source_index": 1064,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.2024287455560322
+  },
+  {
+    "source_index": 1064,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.32395789830748384
+  },
+  {
+    "source_index": 1064,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.004368829226868991
+  },
+  {
+    "source_index": 1064,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.17251713212875433
+  },
+  {
+    "source_index": 1064,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.15002896988043127
+  },
+  {
+    "source_index": 1064,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.1510450076904584
+  },
+  {
+    "source_index": 1064,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.2631797640053522
+  },
+  {
+    "source_index": 1064,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.03716092504361403
+  },
+  {
+    "source_index": 1065,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.08311821444798681
+  },
+  {
+    "source_index": 1065,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.09459111029097811
+  },
+  {
+    "source_index": 1065,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.1012705496807316
+  },
+  {
+    "source_index": 1065,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.10336202250794145
+  },
+  {
+    "source_index": 1065,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.04682811262670674
+  },
+  {
+    "source_index": 1065,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.28055302940764254
+  },
+  {
+    "source_index": 1065,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.006602761302711299
+  },
+  {
+    "source_index": 1065,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.26623449678660843
+  },
+  {
+    "source_index": 1065,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.1714431156460795
+  },
+  {
+    "source_index": 1065,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.1659837022143611
+  },
+  {
+    "source_index": 1065,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.0823611644842442
+  },
+  {
+    "source_index": 1065,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.3182056307551643
+  },
+  {
+    "source_index": 1066,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.19748553976561145
+  },
+  {
+    "source_index": 1066,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.004154801236246124
+  },
+  {
+    "source_index": 1066,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.26072110229599743
+  },
+  {
+    "source_index": 1066,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.5468640654590343
+  },
+  {
+    "source_index": 1066,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.132668061987754
+  },
+  {
+    "source_index": 1066,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.32538972592005033
+  },
+  {
+    "source_index": 1066,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.1358312179474839
+  },
+  {
+    "source_index": 1066,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.2777710677482352
+  },
+  {
+    "source_index": 1066,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.012293272419550421
+  },
+  {
+    "source_index": 1066,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.24781215609042437
+  },
+  {
+    "source_index": 1066,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.06731879149916627
+  },
+  {
+    "source_index": 1066,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.05811757855188707
+  },
+  {
+    "source_index": 1068,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.17109960357087514
+  },
+  {
+    "source_index": 1068,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.003634551298142803
+  },
+  {
+    "source_index": 1068,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.21938351941442133
+  },
+  {
+    "source_index": 1068,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.2199353027842376
+  },
+  {
+    "source_index": 1068,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.3688528165136775
+  },
+  {
+    "source_index": 1068,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.05746171326311831
+  },
+  {
+    "source_index": 1068,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.12228537706595405
+  },
+  {
+    "source_index": 1068,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.15730394066794892
+  },
+  {
+    "source_index": 1068,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.1639206964138128
+  },
+  {
+    "source_index": 1068,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.16575696667093412
+  },
+  {
+    "source_index": 1068,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.12306779127525014
+  },
+  {
+    "source_index": 1068,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.013918440088265902
+  },
+  {
+    "source_index": 1069,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.14983967029180564
+  },
+  {
+    "source_index": 1069,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.23187185481897224
+  },
+  {
+    "source_index": 1069,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.07052549209039011
+  },
+  {
+    "source_index": 1069,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.13867874053394807
+  },
+  {
+    "source_index": 1069,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.12665695997602258
+  },
+  {
+    "source_index": 1069,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.12947029244706862
+  },
+  {
+    "source_index": 1069,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.5304021868260229
+  },
+  {
+    "source_index": 1069,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.09645715983357649
+  },
+  {
+    "source_index": 1069,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.3930925566533718
+  },
+  {
+    "source_index": 1069,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.2245945398617397
+  },
+  {
+    "source_index": 1069,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.004210883356309938
+  },
+  {
+    "source_index": 1069,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.3203386608388775
+  },
+  {
+    "source_index": 1070,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.27352492177471277
+  },
+  {
+    "source_index": 1070,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.24938477820944882
+  },
+  {
+    "source_index": 1070,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.10541138509594956
+  },
+  {
+    "source_index": 1070,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.08993932842777382
+  },
+  {
+    "source_index": 1070,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.3031246628369844
+  },
+  {
+    "source_index": 1070,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.02902998443064868
+  },
+  {
+    "source_index": 1070,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.05002359636604133
+  },
+  {
+    "source_index": 1070,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.10008598998930018
+  },
+  {
+    "source_index": 1070,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.1577761115323991
+  },
+  {
+    "source_index": 1070,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.17936792547529246
+  },
+  {
+    "source_index": 1070,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.06911677600628936
+  },
+  {
+    "source_index": 1070,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.07333088879408195
+  },
+  {
+    "source_index": 1071,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.21938946232190665
+  },
+  {
+    "source_index": 1071,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.2238664010814654
+  },
+  {
+    "source_index": 1071,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.21271511368160084
+  },
+  {
+    "source_index": 1071,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.2289807724786606
+  },
+  {
+    "source_index": 1071,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.1432562033141154
+  },
+  {
+    "source_index": 1071,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.0007350937049118198
+  },
+  {
+    "source_index": 1071,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.0439237452499562
+  },
+  {
+    "source_index": 1071,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.17464097751861238
+  },
+  {
+    "source_index": 1071,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.03039851589185249
+  },
+  {
+    "source_index": 1071,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.015510328105594707
+  },
+  {
+    "source_index": 1071,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.35298341974802355
+  },
+  {
+    "source_index": 1071,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.15900545802441424
+  },
+  {
+    "source_index": 1073,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.20585425509599464
+  },
+  {
+    "source_index": 1073,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.34685350115773006
+  },
+  {
+    "source_index": 1073,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.097918656489225
+  },
+  {
+    "source_index": 1073,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.11469241516114201
+  },
+  {
+    "source_index": 1073,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.1756576833347195
+  },
+  {
+    "source_index": 1073,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.24524032213179559
+  },
+  {
+    "source_index": 1073,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.2547365470168943
+  },
+  {
+    "source_index": 1073,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.15455269097501084
+  },
+  {
+    "source_index": 1073,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.2798915040224154
+  },
+  {
+    "source_index": 1073,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.17104206285161447
+  },
+  {
+    "source_index": 1073,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.5903970986184646
+  },
+  {
+    "source_index": 1073,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.031138655017611077
+  },
+  {
+    "source_index": 1074,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.13678652919590922
+  },
+  {
+    "source_index": 1074,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.32592986655655853
+  },
+  {
+    "source_index": 1074,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.3594989825729453
+  },
+  {
+    "source_index": 1074,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.31850750741574363
+  },
+  {
+    "source_index": 1074,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.2710608175886377
+  },
+  {
+    "source_index": 1074,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.2122295623706506
+  },
+  {
+    "source_index": 1074,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.09232178420297285
+  },
+  {
+    "source_index": 1074,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.044690773709690636
+  },
+  {
+    "source_index": 1074,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.17931260032648136
+  },
+  {
+    "source_index": 1074,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.1103144902068258
+  },
+  {
+    "source_index": 1074,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.024019570082915855
+  },
+  {
+    "source_index": 1074,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.15024155174646403
+  },
+  {
+    "source_index": 1075,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.02291706704192934
+  },
+  {
+    "source_index": 1075,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.12402363468068832
+  },
+  {
+    "source_index": 1075,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.32703479857708306
+  },
+  {
+    "source_index": 1075,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.14684617614288734
+  },
+  {
+    "source_index": 1075,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.1592659654363246
+  },
+  {
+    "source_index": 1075,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.6007809746255985
+  },
+  {
+    "source_index": 1075,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.27582691306721724
+  },
+  {
+    "source_index": 1075,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.20803004142531348
+  },
+  {
+    "source_index": 1075,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.036996129290270706
+  },
+  {
+    "source_index": 1075,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.3448734078443841
+  },
+  {
+    "source_index": 1075,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.16008276983167677
+  },
+  {
+    "source_index": 1075,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.1981118897588181
+  },
+  {
+    "source_index": 1076,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.05532497314791092
+  },
+  {
+    "source_index": 1076,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.278691410686156
+  },
+  {
+    "source_index": 1076,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.14121760568319083
+  },
+  {
+    "source_index": 1076,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.08488788355429026
+  },
+  {
+    "source_index": 1076,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.1347366816128857
+  },
+  {
+    "source_index": 1076,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.12176041415798784
+  },
+  {
+    "source_index": 1076,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": -0.22517194939285107
+  },
+  {
+    "source_index": 1076,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.3036158164289601
+  },
+  {
+    "source_index": 1076,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.10703042654064984
+  },
+  {
+    "source_index": 1076,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.16852598541332753
+  },
+  {
+    "source_index": 1076,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.3207526834911985
+  },
+  {
+    "source_index": 1076,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.10275641226761176
+  },
+  {
+    "source_index": 1077,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.005550856390041288
+  },
+  {
+    "source_index": 1077,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.3751514044761503
+  },
+  {
+    "source_index": 1077,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.09234683603674126
+  },
+  {
+    "source_index": 1077,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.078165010617466
+  },
+  {
+    "source_index": 1077,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.07459320308210667
+  },
+  {
+    "source_index": 1077,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.06556929697188991
+  },
+  {
+    "source_index": 1077,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.058391447040598156
+  },
+  {
+    "source_index": 1077,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.21124109851326364
+  },
+  {
+    "source_index": 1077,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.06570007215924219
+  },
+  {
+    "source_index": 1077,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.054980003489734294
+  },
+  {
+    "source_index": 1077,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.25246611088958837
+  },
+  {
+    "source_index": 1077,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": 0.07356815977257135
+  },
+  {
+    "source_index": 1078,
+    "step": 0,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.07183952733307698
+  },
+  {
+    "source_index": 1078,
+    "step": 0,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": -0.16198772303205838
+  },
+  {
+    "source_index": 1078,
+    "step": 0,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": -0.017978101902549948
+  },
+  {
+    "source_index": 1078,
+    "step": 0,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": -0.037886783272125864
+  },
+  {
+    "source_index": 1078,
+    "step": 0,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": -0.4055656069961116
+  },
+  {
+    "source_index": 1078,
+    "step": 0,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.007901099873225941
+  },
+  {
+    "source_index": 1078,
+    "step": 2,
+    "budget": 256,
+    "feature": "teacher",
+    "utility_correlation": 0.38242175234352216
+  },
+  {
+    "source_index": 1078,
+    "step": 2,
+    "budget": 256,
+    "feature": "student",
+    "utility_correlation": 0.10008497966547474
+  },
+  {
+    "source_index": 1078,
+    "step": 2,
+    "budget": 256,
+    "feature": "difference",
+    "utility_correlation": 0.18183566905215445
+  },
+  {
+    "source_index": 1078,
+    "step": 2,
+    "budget": 512,
+    "feature": "teacher",
+    "utility_correlation": 0.010254361356145018
+  },
+  {
+    "source_index": 1078,
+    "step": 2,
+    "budget": 512,
+    "feature": "student",
+    "utility_correlation": 0.1910875408409624
+  },
+  {
+    "source_index": 1078,
+    "step": 2,
+    "budget": 512,
+    "feature": "difference",
+    "utility_correlation": -0.025954232127701836
+  }
+]

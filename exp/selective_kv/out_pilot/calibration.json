@@ -1,0 +1,142 @@
+[
+  {
+    "name": "reconstruction",
+    "mode": "fixed",
+    "alpha": 0,
+    "objective": 1.3173428075055604,
+    "kl": 0.9977134368881605,
+    "ce": 1.2785174898004292,
+    "match": 0.8055555555555555,
+    "gate_mean": 0.0
+  },
+  {
+    "name": "reconstruction",
+    "mode": "fixed",
+    "alpha": 0.05,
+    "objective": 1.3248520017241894,
+    "kl": 1.00370392205438,
+    "ce": 1.2845923214371295,
+    "match": 0.8055555555555555,
+    "gate_mean": 0.05000000074505806
+  },
+  {
+    "name": "reconstruction",
+    "mode": "fixed",
+    "alpha": 0.1,
+    "objective": 1.3251308465352547,
+    "kl": 1.0040042547228343,
+    "ce": 1.2845063789890852,
+    "match": 0.8333333333333334,
+    "gate_mean": 0.10000000149011612
+  },
+  {
+    "name": "reconstruction",
+    "mode": "fixed",
+    "alpha": 0.25,
+    "objective": 1.3468629110544093,
+    "kl": 1.0215143989380522,
+    "ce": 1.3013940531555666,
+    "match": 0.8333333333333334,
+    "gate_mean": 0.25
+  },
+  {
+    "name": "reconstruction",
+    "mode": "fixed",
+    "alpha": 0.5,
+    "objective": 1.390057114955754,
+    "kl": 1.0574778326943537,
+    "ce": 1.3303171924263653,
+    "match": 0.8333333333333334,
+    "gate_mean": 0.5
+  },
+  {
+    "name": "performance_fixed",
+    "mode": "fixed",
+    "alpha": 0,
+    "objective": 1.3173428075055604,
+    "kl": 0.9977134368881605,
+    "ce": 1.2785174898004292,
+    "match": 0.8055555555555555,
+    "gate_mean": 0.0
+  },
+  {
+    "name": "performance_fixed",
+    "mode": "fixed",
+    "alpha": 0.05,
+    "objective": 1.3107314361630718,
+    "kl": 0.9930962690266116,
+    "ce": 1.2705406397812264,
+    "match": 0.8055555555555555,
+    "gate_mean": 0.05000000074505806
+  },
+  {
+    "name": "performance_fixed",
+    "mode": "fixed",
+    "alpha": 0.1,
+    "objective": 1.2956152400656216,
+    "kl": 0.9808788597875567,
+    "ce": 1.258945473677487,
+    "match": 0.8333333333333334,
+    "gate_mean": 0.10000000149011612
+  },
+  {
+    "name": "performance_fixed",
+    "mode": "fixed",
+    "alpha": 0.25,
+    "objective": 1.2665836344528745,
+    "kl": 0.9574399415256619,
+    "ce": 1.2365747659177688,
+    "match": 0.8333333333333334,
+    "gate_mean": 0.25
+  },
+  {
+    "name": "performance_fixed",
+    "mode": "fixed",
+    "alpha": 0.5,
+    "objective": 1.2592754198465426,
+    "kl": 0.9526081291182891,
+    "ce": 1.2266691888695125,
+    "match": 0.8333333333333334,
+    "gate_mean": 0.5
+  },
+  {
+    "name": "performance_gated",
+    "mode": "gated",
+    "alpha": 0,
+    "objective": 1.3173428075055604,
+    "kl": 0.9977134368881605,
+    "ce": 1.2785174898004292,
+    "match": 0.8055555555555555,
+    "gate_mean": 0.0
+  },
+  {
+    "name": "performance_gated",
+    "mode": "gated",
+    "alpha": 0.25,
+    "objective": 1.2601445576091364,
+    "kl": 0.9533658171094177,
+    "ce": 1.2271149273414672,
+    "match": 0.8333333333333334,
+    "gate_mean": 0.14856151213300312
+  },
+  {
+    "name": "performance_gated",
+    "mode": "gated",
+    "alpha": 0.5,
+    "objective": 1.2477814129431155,
+    "kl": 0.9448145740420083,
+    "ce": 1.2118674243224128,
+    "match": 0.8541666666666666,
+    "gate_mean": 0.29724491814461845
+  },
+  {
+    "name": "performance_gated",
+    "mode": "gated",
+    "alpha": 1.0,
+    "objective": 1.3230762819362603,
+    "kl": 1.0111853861202842,
+    "ce": 1.2475636154951595,
+    "match": 0.8333333333333334,
+    "gate_mean": 0.5944524249838045
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "data_reproduction": {
+    "train.jsonl": "54e68f5d0408bc2a7d9ffc9ca5796dc0f6db033e05452bcd15cae2594ee09064",
+    "validation.jsonl": "32edbd427c36c2d794a10afc8727e83ffa613327a9a20e5b340d743785a8742c",
+    "test.jsonl": "1074b73ab2d9389748277cfb221f060f138cd8fd65a4c23f07093d5efaa7308c"
+  },
+  "data_prepare_exit_code": 0,
+  "checkpoints": {
+    "reconstruction": {
+      "epoch": 2,
+      "parameters": 700804,
+      "trained_parameters": 201984,
+      "sha256": "e64e23ead0f536c0adb7dd23daff79d141e9afb0fd87ca1edce9faa93c51c351"
+    },
+    "performance_fixed": {
+      "epoch": 8,
+      "parameters": 700804,
+      "trained_parameters": 201984,
+      "sha256": "1f5ff56827efb1da6ce148811894d312f0de4dfa5268051e72dee1b0e114ba00"
+    },
+    "performance_gated": {
+      "epoch": 8,
+      "parameters": 700804,
+      "trained_parameters": 700804,
+      "sha256": "9e150c272a21b45cf476ce7b2e3dbbfe588bc5c33893c76cad333311d194bf9f"
+    }
+  },
+  "current_source_sha256": {
+    "analyze_source_controls.py": "043b0b55f9db6be9a709e810372ee5de83ced664aef00f33b42cbd13a57414ee",
+    "source_controls.py": "f5abddf33703c6d9f76d6b1f11b7ef7977d6fedaf018521e3be42c742a92203c",
+    "prepare_data.py": "5dc4b82a4d975a0e037599d20329961323276ffd3366ff8b31b8b201b8b47ba5",
+    "bridge.py": "04148446ea2f2307b5e70d0db55add34444c784ad6388fa28af0b62466c807d0",
+    "run.py": "5d5b416c1c95031f151fa4bc887c5eb2d7b19eacd3f10dea3a1ad3f4feb53eef",
+    "analyze.py": "bd151c5241f85736293046d2ce06b14572057a18ae9b50444ef5c6a8c6993744",
+    "evaluate.py": "4ca06d7936419a7f86dcf6f685cc8089b5ce3551ddd51be0e3b462d9fc17b3a1"
+  },
+  "torch_version": "2.7.1+cu128",
+  "note": "Primary executed source hashes are preserved in protocol.json; frozen supplementary hashes in source_controls_protocol.json"
+}

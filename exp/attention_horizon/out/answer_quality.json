@@ -1,0 +1,280 @@
+{
+  "documents": 30,
+  "exact_match": 0.16666666666666666,
+  "token_f1": 0.30242705916277723,
+  "gold_contained": 0.7,
+  "length_capped": 5,
+  "interpretation": "Descriptive answer quality; all exact SD outputs inherit identical scores. Containment is not official QA accuracy.",
+  "records": [
+    {
+      "source_index": 1570,
+      "gold": "Chuck Daly",
+      "output": "Chuck Daly.",
+      "exact_match": 1,
+      "token_f1": 1.0,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1571,
+      "gold": "Wisconsin",
+      "output": "John Flammang Schrank attempted to assassinate Republican president Theodore Roosevelt in Milwaukee, Wisconsin in October 1912.",
+      "exact_match": 0,
+      "token_f1": 0.11764705882352941,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1572,
+      "gold": "El Paso, Texas, United States",
+      "output": "The University of Hagen, also known as the FernUniversität in Hagen, is located in Hagen, North Rhine-Westphalia, Germany. Milton Bruce \"Milt\" Ottey spent several years coaching in various universities throughout the United States, including the University of Texas at El Paso (UTEP",
+      "exact_match": 0,
+      "token_f1": 0.23255813953488372,
+      "gold_contained": 0,
+      "length_capped": true
+    },
+    {
+      "source_index": 1573,
+      "gold": "William Corlett",
+      "output": "The Magician's House is a quartet of children's fantasy books by William Corlett. Jennifer Jane Saunders (born 6 July 1958) is an English comedian, screenwriter, and actress.",
+      "exact_match": 0,
+      "token_f1": 0.15384615384615385,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1574,
+      "gold": "Old Hume Highway",
+      "output": "Harper's Mansion is located in the village of Berrima, which is located on the Old Hume Highway.",
+      "exact_match": 0,
+      "token_f1": 0.33333333333333337,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1575,
+      "gold": "April 2, 1872",
+      "output": "April 2, 1872",
+      "exact_match": 1,
+      "token_f1": 1.0,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1577,
+      "gold": "Virginie Besson-Silla",
+      "output": "Luc Besson produced the movie \"Lucy\" in which Amr Waked played Pierre Del Rio.",
+      "exact_match": 0,
+      "token_f1": 0.0,
+      "gold_contained": 0,
+      "length_capped": false
+    },
+    {
+      "source_index": 1578,
+      "gold": "Béla Viktor János Bartók",
+      "output": "Béla Bartók was born first. Béla Bartók was born on 25 March 1881, while Dmitri Shostakovich was born on 25 September [O.S. 12 September] 1906.",
+      "exact_match": 0,
+      "token_f1": 0.13793103448275865,
+      "gold_contained": 0,
+      "length_capped": false
+    },
+    {
+      "source_index": 1579,
+      "gold": "Lebanon",
+      "output": "The town that holds the Garth School originally was named Georgetown, Kentucky.",
+      "exact_match": 0,
+      "token_f1": 0.0,
+      "gold_contained": 0,
+      "length_capped": false
+    },
+    {
+      "source_index": 1580,
+      "gold": "the Big 12 Conference",
+      "output": "Oklahoma Sooners men's basketball plays in the Big 12 Conference.",
+      "exact_match": 0,
+      "token_f1": 0.5,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1581,
+      "gold": "was written by William H. Macy",
+      "output": "William H. Macy wrote the film Above Suspicion.",
+      "exact_match": 0,
+      "token_f1": 0.4615384615384615,
+      "gold_contained": 0,
+      "length_capped": false
+    },
+    {
+      "source_index": 1582,
+      "gold": "August 30, 2003",
+      "output": "Charles Bronson, the late actor dedicated to in the album Violent Restitution, died on August 30, 2003.",
+      "exact_match": 0,
+      "token_f1": 0.33333333333333337,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1583,
+      "gold": "yes",
+      "output": "No, the magazines Femina and Take a Break do not have a similar readership. Femina is a Danish language weekly magazine for women published by Aller Media in Copenhagen, Denmark, while Take a Break is a weekly magazine aimed at women, currently published in the United Kingdom by H Bauer Publishing. The readership",
+      "exact_match": 0,
+      "token_f1": 0.0,
+      "gold_contained": 0,
+      "length_capped": true
+    },
+    {
+      "source_index": 1584,
+      "gold": "2002",
+      "output": "The Samsung Scholarship, established by the South Korean business magnate and chairman of Samsung Group, was established in 2002.",
+      "exact_match": 0,
+      "token_f1": 0.1111111111111111,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1585,
+      "gold": "five",
+      "output": "The Alliance Theatre staged its first production, \"King Arthur\", a semi-opera, at the Alliance in 1968.",
+      "exact_match": 0,
+      "token_f1": 0.0,
+      "gold_contained": 0,
+      "length_capped": false
+    },
+    {
+      "source_index": 1587,
+      "gold": "Bad Boy Records",
+      "output": "Bad Boy Records released the single \"Coffee Shop\" by Yung Joc.",
+      "exact_match": 0,
+      "token_f1": 0.4615384615384615,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1588,
+      "gold": "Karl Ferdinand Braun",
+      "output": "Karl Ferdinand Braun is sometimes named alongside Henry Louis Le Chatelier for developing Le Chatelier's principle. However, it's important to note that Karl Ferdinand Braun discovered it independently. Therefore, while he is sometimes mentioned in this context, the principle is primarily named after Henry Louis Le Chatelier.",
+      "exact_match": 0,
+      "token_f1": 0.12244897959183672,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1589,
+      "gold": "yes",
+      "output": "Yes, both Robin White and Kevin Ullyett are former professional tennis players. Robin White is from the United States, while Kevin Ullyett is from Zimbabwe. They both had careers in professional tennis, with White being active in the sport and Ullyett having notable success in men's doubles.",
+      "exact_match": 0,
+      "token_f1": 0.04347826086956522,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1590,
+      "gold": "no",
+      "output": "No, Lee Ji-hye and Shim Eun-jin were not in the same band. Lee Ji-hye was a member of the South Korean pop music vocal group Sharp (S#arp), while Shim Eun-jin was a former member of the 1990s girl group Baby V.O.X",
+      "exact_match": 0,
+      "token_f1": 0.05405405405405406,
+      "gold_contained": 1,
+      "length_capped": true
+    },
+    {
+      "source_index": 1591,
+      "gold": "Russell T Davies",
+      "output": "The Sarah Jane Adventures is a British science fiction television programme, that was produced by BBC Cymru Wales for CBBC, created by Russell T Davies, a Welsh screenwriter and television producer whose works include \"Queer as Folk\".",
+      "exact_match": 0,
+      "token_f1": 0.1621621621621622,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1593,
+      "gold": "Fulbright Program",
+      "output": "Fulbright Program",
+      "exact_match": 1,
+      "token_f1": 1.0,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1594,
+      "gold": "yes",
+      "output": "Yes, the Staffordshire Bull Terrier is bigger than the Miniature American Shepherd. The Miniature American Shepherd is a small herding dog breed, while the Staffordshire Bull Terrier is a medium-sized dog. The average height of a male American Pit Bull Terrier, which is a breed within the type commonly called",
+      "exact_match": 0,
+      "token_f1": 0.04878048780487806,
+      "gold_contained": 1,
+      "length_capped": true
+    },
+    {
+      "source_index": 1596,
+      "gold": "Sarath Chand",
+      "output": "As of January 2017, the post of Vice Chief of the Army Staff was held by Sarath Chand succeeding Bipin Rawat.",
+      "exact_match": 0,
+      "token_f1": 0.1904761904761905,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1597,
+      "gold": "Lincoln",
+      "output": "The capital of the only triply landlocked U.S. state, Nebraska, is Lincoln.",
+      "exact_match": 0,
+      "token_f1": 0.18181818181818182,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1598,
+      "gold": "the distribution of potable water, and to provide emergency storage for fire protection",
+      "output": "Adailiya's Water Towers Park likely serves the purposes of providing recreational space for the community, offering a green area for relaxation and enjoyment, and potentially serving as an educational resource about water management and conservation. Public works parks often aim to enhance the quality of life in urban areas by providing accessible green spaces and promoting environmental awareness",
+      "exact_match": 0,
+      "token_f1": 0.15384615384615385,
+      "gold_contained": 0,
+      "length_capped": true
+    },
+    {
+      "source_index": 1599,
+      "gold": "2000",
+      "output": "David Ebershoff released his novel \"The Danish Girl\" in 2000, which was adapted into an Academy Award-winning film in 2015.",
+      "exact_match": 0,
+      "token_f1": 0.10526315789473684,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1600,
+      "gold": "motion picture company",
+      "output": "EuropaCorp is the company headquartered in Saint-Denis that comprises the technological and commercial institutions of filmmaking.",
+      "exact_match": 0,
+      "token_f1": 0.11764705882352941,
+      "gold_contained": 0,
+      "length_capped": false
+    },
+    {
+      "source_index": 1601,
+      "gold": "Bayern Munich",
+      "output": "Bayern Munich",
+      "exact_match": 1,
+      "token_f1": 1.0,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1602,
+      "gold": "entrepreneur",
+      "output": "entrepreneur.",
+      "exact_match": 1,
+      "token_f1": 1.0,
+      "gold_contained": 1,
+      "length_capped": false
+    },
+    {
+      "source_index": 1603,
+      "gold": "yes",
+      "output": "Yes. Both Alexander Hall and Jon Amiel were considered film directors. Alexander Hall was an American film director and theatre actor, while Jon Amiel is an English film director who has worked in film and television in both the UK and the US.",
+      "exact_match": 0,
+      "token_f1": 0.05,
+      "gold_contained": 1,
+      "length_capped": false
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "states_checked": 252,
+  "remote_conditional_attention_mass_positive": true,
+  "minimum_remote_mass": {
+    "teacher": 0.018826037645339966,
+    "student": 0.013800843618810177
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "methods": {
+    "aligned": {
+      "kl": 1.0036850100011785,
+      "match": 0.7083333333333334,
+      "acceptance": 0.6525759577278731,
+      "mean_accepted": 2.494949494949495,
+      "decode_tps": 26.622979891077115,
+      "output_agreements": 30,
+      "gate_mean": 0.24142256279786428
+    },
+    "mean": {
+      "kl": 0.9859425508900029,
+      "match": 0.7,
+      "acceptance": 0.6543535620052771,
+      "mean_accepted": 2.492462311557789,
+      "decode_tps": 26.54819647528117,
+      "output_agreements": 30,
+      "gate_mean": 0.29462628265221913
+    },
+    "zero": {
+      "kl": 1.0650137283404546,
+      "match": 0.7,
+      "acceptance": 0.6435124508519003,
+      "mean_accepted": 2.4797979797979797,
+      "decode_tps": 26.45474261690916,
+      "output_agreements": 30,
+      "gate_mean": 0.2163047989209493
+    }
+  },
+  "comparisons": {
+    "aligned_vs_mean": {
+      "delta_kl": 0.017742459111175557,
+      "delta_kl_ci": [
+        -0.011149491261519795,
+        0.047501242340393594
+      ],
+      "delta_acceptance": -0.0017776042774039214,
+      "delta_acceptance_ci": [
+        -0.013235266327504719,
+        0.00888127573508046
+      ]
+    },
+    "aligned_vs_zero": {
+      "delta_kl": -0.06132871833927611,
+      "delta_kl_ci": [
+        -0.09022397230252523,
+        -0.03421133442367516
+      ],
+      "delta_acceptance": 0.009063506875972793,
+      "delta_acceptance_ci": [
+        0.0016044365628163164,
+        0.019997218420126698
+      ]
+    }
+  },
+  "checks": {
+    "offline_rows": 354,
+    "runtime_rows": 90,
+    "exact_aligned_acceptance_trace_reproduction": true,
+    "sd_output_agreements": 90,
+    "sd_total": 90
+  }
+}

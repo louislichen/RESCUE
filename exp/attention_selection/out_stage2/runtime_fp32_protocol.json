@@ -1,0 +1,68 @@
+{
+  "teacher_dtype": "float32",
+  "student_dtype": "bfloat16",
+  "model_weights": "same checkpoints, cast frozen teacher to FP32",
+  "matmul_allow_tf32": false,
+  "methods": [
+    [
+      "native_full",
+      0
+    ],
+    [
+      "bias_full",
+      0
+    ],
+    [
+      "teacher_chunk",
+      256
+    ],
+    [
+      "teacher_token",
+      256
+    ],
+    [
+      "union_available",
+      256
+    ],
+    [
+      "layer_pairing",
+      256
+    ],
+    [
+      "learned_global",
+      256
+    ],
+    [
+      "bias_teacher",
+      256
+    ],
+    [
+      "teacher_chunk",
+      512
+    ],
+    [
+      "teacher_token",
+      512
+    ],
+    [
+      "union_available",
+      512
+    ],
+    [
+      "layer_pairing",
+      512
+    ],
+    [
+      "learned_global",
+      512
+    ],
+    [
+      "bias_teacher",
+      512
+    ]
+  ],
+  "test_docs": 30,
+  "hyperparameters": "Frozen original BF16 validation choices; no tuning on test or FP32 recheck",
+  "timing": "Same full acquisition/prefill/decode timing as original; teacher-greedy reference separately regenerated and timed in FP32",
+  "purpose": "Numerically consistent E6 recheck; keep separate from original BF16 offline and runtime results"
+}
