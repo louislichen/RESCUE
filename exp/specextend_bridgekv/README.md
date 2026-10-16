@@ -1,5 +1,9 @@
 # SpecExtend BridgeKV experiments
 
+## Archived CSGB acceptance length pilot
+
+The [4K CSGB pilot](csgb_acceptance_pilot_v3/README.md) preserves the executed source, frozen controller parameters, complete raw results, report, separate acceptance/TPS figures and a CPU verification script. Against the fit-selected fixed8 Native baseline, accepted Draft tokens per round increased by 0.3013 (paired-document 95% CI 0.1684 to 0.4070), while whole-request TPS fell by 2.35%. This is a Native-V node-budget experiment on eight historical training-monitor documents, not a Mapper/depth joint result or a net-acceleration claim. Its archived inputs/results are separate from the older source-only snapshot described below.
+
 The newer Qwen2 selective-value pilot uses performance supervision and a
 query-dependent token/layer gate. Its independent results and content-source
 controls are documented in [selective_kv](../selective_kv/README.md).
@@ -65,5 +69,5 @@ Analysis programs live one directory above the package and accept raw JSON bundl
 
 - Upstream SpecExtend base commit: [`a307ace`](https://github.com/jycha98/SpecExtend/commit/a307ace6960a8bcf39f919b2d8fdcac587fa444a).
 - Snapshot date: 2026-10-12.
-- This directory contains code and design documentation only. It excludes datasets, model weights, mapper checkpoints, raw results, logs, caches, and credentials.
+- The October12 base snapshot contains code and design documentation only. It excludes datasets, model weights, mapper checkpoints, raw results, logs, caches, and credentials. The separately labeled CSGB pilot archive above also contains its frozen benchmark inputs and saved result evidence; no model weights or process logs are included.
 - `UPSTREAM_SPECEXTEND_README.md` preserves the upstream project documentation; `REPRODUCTION.md` records the local reproduction workflow and findings.

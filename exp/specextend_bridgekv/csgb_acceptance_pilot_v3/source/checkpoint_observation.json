@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "scope": "Read-only observed model files during training startup; NOT a retroactive cryptographic prelaunch weight proof",
+  "capture_start_utc": "2026-10-16T06:06:35.708921+00:00",
+  "capture_end_utc": "2026-10-16T06:06:48.928249+00:00",
+  "training_root": "/storage/dzj/spec_repro/CSGB_online_allround_20261016_v1",
+  "training_stage_sha256": "a288d1a934d9c3540bca94aca5e02a451f90c4d73f1947598144f17663b19fff",
+  "collection": "All selected file inode/size/mtime/ctime tuples were unchanged before versus after streaming SHA256. Recorded latest selected-file ctime predates this experiment launch; this is filesystem evidence, not a previously captured signed digest.",
+  "latest_observed_selected_file_ctime_ns": 1790060232468629735,
+  "file_sha256": {
+    "/storage/dzj/spec_repro/models/vicuna-68m/config.json": "5494c8542a876014e2df85a7f8a18d798848cad66d7eb5c5930b0b59063afe43",
+    "/storage/dzj/spec_repro/models/vicuna-68m/generation_config.json": "27b6e60f465a0fef2292c2a30e616230cde33abf96267a3ec39fd6d9c37a32b6",
+    "/storage/dzj/spec_repro/models/vicuna-68m/model.safetensors": "049aa4dc91bd8bb0e3009b8408b59512d8e8eb6aced19346570cc82fa657113d",
+    "/storage/dzj/spec_repro/models/vicuna-68m/special_tokens_map.json": "2ea88203b955648951a454e73a73967ff77ba4e79ae8ceb4400d4ab2cb040777",
+    "/storage/dzj/spec_repro/models/vicuna-68m/tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+    "/storage/dzj/spec_repro/models/vicuna-68m/tokenizer_config.json": "09a8aec7f7914be90099d034878e26cb612d8ddf8a6061af75a62ed85c7553a5",
+    "/storage/dzj/spec_repro/models/vicuna-7b-v1.5-16k/config.json": "b3e8535e4bcd17b1d6dc358ffdafd214cd8abb0a7e84d0c036fe2b5a2f1a97ee",
+    "/storage/dzj/spec_repro/models/vicuna-7b-v1.5-16k/generation_config.json": "498aa4b2cc309cb5ed510f92a48436b5ae3617f837a380923a60b3d5a6673edb",
+    "/storage/dzj/spec_repro/models/vicuna-7b-v1.5-16k/pytorch_model-00001-of-00002.bin": "a41f9924b9433362e61846e2d2ed579e0c1180491145cdaf4bf3579333bdb208",
+    "/storage/dzj/spec_repro/models/vicuna-7b-v1.5-16k/pytorch_model-00002-of-00002.bin": "d0ab7db90a3d5fa32b17c09e1ddbd1224e5144c71187aefff0e1fef55d0771dd",
+    "/storage/dzj/spec_repro/models/vicuna-7b-v1.5-16k/pytorch_model.bin.index.json": "aca3c1facc89d12311a667c32e85ac86e625990992ea8a189e3b036ba371b931",
+    "/storage/dzj/spec_repro/models/vicuna-7b-v1.5-16k/special_tokens_map.json": "719833ff26ac897a3ec8ed946028a135de2a351470af59b4008744ab1f0ee9b7",
+    "/storage/dzj/spec_repro/models/vicuna-7b-v1.5-16k/tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+    "/storage/dzj/spec_repro/models/vicuna-7b-v1.5-16k/tokenizer_config.json": "0bf125e79f30c5892c90be470d5ce452eb3e7fa99d09b73c5fa521d4101b35d4"
+  },
+  "versions": {"flash-attn": "2.6.3", "numpy": "1.24.4", "torch": "2.4.0+cu121", "transformers": "4.41.0", "triton": "3.0.0"},
+  "future_evaluation_rule": "Verify the complete same weight/config/tokenizer file set against this observed digest set before and after evaluation; retain the non-retroactive provenance limitation",
+  "no_model_files_modified": true
+}

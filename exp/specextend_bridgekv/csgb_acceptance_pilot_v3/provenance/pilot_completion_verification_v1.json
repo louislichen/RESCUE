@@ -1,0 +1,188 @@
+{
+  "SHA256": {
+    "DONE.json": "64b403a1ba8d24bcbb41cb220b45d9e903812a725c45d01586c187a1f6de10f0",
+    "REPORT.md": "e39800ca50a324928208fc0cd210b831e667dbc9b65ac44b9a088450875f8679",
+    "analysis_manifest.json": "0f94517b1dab293dab67d3a642faabf7918d3d460291a381b64e8c2dff976ca4",
+    "calibration.json": "14751c75f6a556bdb1a49e1d7d3e482ad985a2c754d6e708ac8260400ba40d21",
+    "frozen_policies.json": "486386ca785868325c80bedac8037b6460a0d2280c79efdd34d30d325d84d6b2",
+    "terminal_pipeline.log": "6cf8b6b03522120ba7d72e84f3f9207b5dd46397155c1408e85f8a3d282fb49b"
+  },
+  "all_outputs128_tokens": true,
+  "canonical_exact_requests": 556,
+  "continuation_gate": {
+    "csgb_vs_feature_matched_constant_tps_percent": {
+      "ci95": [
+        -0.5408266404839033,
+        1.329329706740591
+      ],
+      "documents": 8,
+      "mean": 0.2970218703145816
+    },
+    "csgb_vs_fit_best_fixed": {
+      "acceptance": {
+        "ci95": [
+          0.16836167372744082,
+          0.4070442448479723
+        ],
+        "documents": 8,
+        "mean": 0.3012961896061658,
+        "per_document": {
+          "16": -0.10806754221388326,
+          "17": 0.24322061191626432,
+          "18": 0.19185281677682875,
+          "19": 0.37500844309354986,
+          "20": 0.4305071622144794,
+          "21": 0.4556112463089206,
+          "22": 0.44607589888607935,
+          "23": 0.376160879867087
+        }
+      },
+      "tps": {
+        "ci95": [
+          -4.558755295151415,
+          -0.7904468919575567
+        ],
+        "documents": 8,
+        "mean": -2.345947968525769,
+        "per_document": {
+          "16": -9.353318374037812,
+          "17": -3.964407825502203,
+          "18": -0.5281112111930386,
+          "19": -1.4228687316923283,
+          "20": -0.3456063758012773,
+          "21": -1.0753085165281728,
+          "22": -0.4760669238774162,
+          "23": -1.6018957895739039
+        }
+      }
+    },
+    "evaluated": true,
+    "passed": false,
+    "scope": "Internal training-only4K feasibility continuation; NOT full-study success"
+  },
+  "fit_only_best_fixed": "fixed8_native",
+  "full_study_complete": false,
+  "goal_achieved": false,
+  "independent_statistics": {
+    "action_streams": 3,
+    "bootstrap_draws": 10000,
+    "bootstrap_seed": 42,
+    "checked_paired_estimates": 57,
+    "documents": 8,
+    "timing_repeats_per_stream": 2
+  },
+  "independent_trace_review": {
+    "EOS_early_stop_covered_by_real_requests": false,
+    "clipped_overshoot_requests": 258,
+    "done_hash_entries": 584,
+    "final_parameter_versions": {
+      "constant": 32,
+      "csgb": 32,
+      "history_native": 32
+    },
+    "frozen_training_hash_entries": 183,
+    "max_cross_platform_probability_abs_error": 5.551115123125783e-17,
+    "max_gradient_abs_error": 6.661338147750939e-16,
+    "max_sgd_abs_error": 2.168404344971009e-19,
+    "min_sample_to_action_cutpoint_distance": 0.0000069743,
+    "monitor_replay_pairs": 168,
+    "passed": true,
+    "startup_no_draw_fallbacks": 528,
+    "updates": 96,
+    "valid_action_draws": 10504
+  },
+  "limitations": [
+    "Historical training documents are not globally unseen",
+    "One fitted training seed;3streams are not3 independently trained models",
+    "One fixed-arm calibration timing and mode-blocked training can be affected by time drift",
+    "Observed GPU process isolation does not prove host-wide isolation",
+    "Local verification does not independently reconstruct GPU attention tensors or physically remeasure saved time",
+    "Original weight receipt remains non-retroactive; remote frozen auditor verified complete14 runtime files"
+  ],
+  "local_downloaded_analysis_artifacts_SHA_passed": 17,
+  "mechanism_descriptive_only": {
+    "attention_incremental_TPS_vs_constant_CI_crosses_zero": true,
+    "counts_budget8_16_24_32": [
+      237,
+      238,
+      221,
+      254
+    ],
+    "decision_wall_not_full_attention_overhead": true,
+    "document_balanced_probability_entropy_bits": 1.99069,
+    "eligible_csgb_actions_unique_timing_repeat": 950,
+    "expected_budget_observed_range": [
+      19.0725,
+      19.598
+    ],
+    "maximum_entropy_bits": 2
+  },
+  "new_calibration_rho": 30.172456229698152,
+  "no_8K_or_development_or_confirmation_launch": true,
+  "primary_result": {
+    "acceptance": {
+      "ci95": [
+        0.16836167372744082,
+        0.4070442448479723
+      ],
+      "documents": 8,
+      "mean": 0.3012961896061658,
+      "per_document": {
+        "16": -0.10806754221388326,
+        "17": 0.24322061191626432,
+        "18": 0.19185281677682875,
+        "19": 0.37500844309354986,
+        "20": 0.4305071622144794,
+        "21": 0.4556112463089206,
+        "22": 0.44607589888607935,
+        "23": 0.376160879867087
+      }
+    },
+    "tps": {
+      "ci95": [
+        -4.558755295151415,
+        -0.7904468919575567
+      ],
+      "documents": 8,
+      "mean": -2.345947968525769,
+      "per_document": {
+        "16": -9.353318374037812,
+        "17": -3.964407825502203,
+        "18": -0.5281112111930386,
+        "19": -1.4228687316923283,
+        "20": -0.3456063758012773,
+        "21": -1.0753085165281728,
+        "22": -0.4760669238774162,
+        "23": -1.6018957895739039
+      }
+    }
+  },
+  "raw_json_files": 585,
+  "raw_request_counts": {
+    "calibration": 64,
+    "fit_warmup": 4,
+    "monitor": 336,
+    "monitor_warmup": 56,
+    "train": 96
+  },
+  "references": 24,
+  "registered_pilot_phase_complete": true,
+  "rendered_figures_inspected": [
+    "acceptance",
+    "request_tps",
+    "observed_budget_map",
+    "decision_latency",
+    "training_learning_curve",
+    "action_stream_variability"
+  ],
+  "scope": "Actual4096 only, historical fit0..15 and internal training-monitor16..23, one training seed101; eagerFP32 Target/FP16 Draft on server48GB RTX4090; not production speed",
+  "verified_rounds": 23194,
+  "vs_feature_matched_constant_tps_percent": {
+    "ci95": [
+      -0.5408266404839033,
+      1.329329706740591
+    ],
+    "documents": 8,
+    "mean": 0.2970218703145816
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "algorithm_results_present": false,
+  "goal_achieved": false,
+  "hardware_failure_only": true,
+  "kind": "csgb_episode_hardware_failure_v1",
+  "known_starttimes": {
+    "1302918": 53815391,
+    "1310503": 53868188,
+    "1337237": null,
+    "1341898": null
+  },
+  "model_loaded": false,
+  "no_signals_sent": true,
+  "observed_utc": "2026-10-16T12:06:50.792330Z",
+  "old_outputs": {
+    "analysis": {
+      "exists_including_symlink": false
+    },
+    "pilot": {
+      "exists_including_symlink": false
+    },
+    "preflight_never_created": {
+      "exists_including_symlink": false
+    },
+    "smoke": {
+      "exists_including_symlink": false
+    },
+    "smoke_analysis": {
+      "exists_including_symlink": false
+    }
+  },
+  "old_outputs_absent": true,
+  "old_root": "/storage/dzj/spec_repro/CSGB_episode_pilot_20261016_v1",
+  "old_tmux_absent": true,
+  "old_tmux_session": "csgb_episode_pilot_v1",
+  "pipeline_log": "/storage/dzj/spec_repro/CSGB_episode_pilot_20261016_v1/pipeline.log",
+  "pipeline_log_sha256": "0098cbc032fad5923b22a3efd2027a24899d5cf5e4b55232055598609808070f",
+  "predecessor_protocol_sha256": "2a7d1bfde8127d9eac28d88b3805accf8f2914e5d8ffc3f3d5c39c515f24aba1",
+  "predecessor_stage_sha256": "2c8bcee2bee4dbfdb30ef3c4c360906e7629fcf0172cd3ab91f1b08bf5471c89",
+  "proc_absence_snapshots": 2,
+  "queue_exit_code_known": false,
+  "registered_pids_absent": [
+    1302918,
+    1310503,
+    1341898,
+    1337237
+  ],
+  "request_completed": false,
+  "schema": 1,
+  "stage_members_verified": {
+    "/storage/dzj/spec_repro/CSGB_episode_pilot_20261016_v1": 56,
+    "/storage/dzj/spec_repro/CSGB_episode_pilot_20261016_v2": 57
+  },
+  "terminal_error": "Physical GPU contention/identity failure; no process will be interrupted",
+  "unknown_starttimes_not_reconstructed_retrospectively": true,
+  "unused_cancellation_receipt_absent": true,
+  "unused_never_started": true,
+  "unused_outputs": {
+    "analysis": {
+      "exists_including_symlink": false
+    },
+    "pilot": {
+      "exists_including_symlink": false
+    },
+    "preflight_never_created": {
+      "exists_including_symlink": false
+    },
+    "smoke": {
+      "exists_including_symlink": false
+    },
+    "smoke_analysis": {
+      "exists_including_symlink": false
+    }
+  },
+  "unused_outputs_absent": true,
+  "unused_protocol_sha256": "ff4b72015548ff8a4f0462a2d30943ef4408b7049c49b3ff8544bf4aff5e8982",
+  "unused_queue_lock_absent": true,
+  "unused_root": "/storage/dzj/spec_repro/CSGB_episode_pilot_20261016_v2",
+  "unused_stage_sha256": "9b9dec42daaf460da3fc75b4f403d8fa2529bfa82660e2b2c9466f1f9838b6c6",
+  "unused_tmux_absent": true
+}
