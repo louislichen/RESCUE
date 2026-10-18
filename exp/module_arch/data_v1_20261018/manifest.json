@@ -1,0 +1,34 @@
+{
+  "data_sha256": {
+    "fit": "8ef43781c7f2b2a56b98ff5183bce05c7225c949cb29bf0432546a590d10c3d2",
+    "tune": "85b2eb1a81d1617b2d158c069c420c452459a8bdb90da128f257220cc27ded09",
+    "warmup": "d0bf671ea6e54f81533def13a812fb00f4b27d9199fbf2e0b1d2a8623c90d5ad",
+    "confirmation": "007fd9247bf8d77dc53eef51469c84c8a66d29bb2d9577815349c4601ecb29f9"
+  },
+  "source_sha256": "8098b61d7aef5b16de870963a2f074b69e625767715f9c5ce94e2fc860087398",
+  "selection": "First three naturally long validation reports after index600, no generation-dependent selection, excluding old report hashes/nested prefixes",
+  "ids": {
+    "fit": [
+      211,
+      213,
+      220,
+      226,
+      233,
+      236
+    ],
+    "tune": [
+      271,
+      272,
+      288
+    ],
+    "warmup": [
+      246
+    ],
+    "confirmation": [
+      604,
+      613,
+      614
+    ]
+  },
+  "scope": "Three-document fresh development confirmation; not the paused test or broad generalization"
+}

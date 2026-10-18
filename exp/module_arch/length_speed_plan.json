@@ -1,0 +1,15 @@
+{
+  "time_utc": "2026-10-18T02:57:58.131249+00:00",
+  "selection_source": "Training-only length_tune.jsonl",
+  "selection_source_sha256": "a104b3ee50095548c5996d33e2e8b7c1d988a85c0e11ce02d34b247801bfdd1f",
+  "reason": "Fastest training endpoint step0 is +0.953% vs fixed4, but selection constraint chose step5 at -0.469%. Preserve speed endpoint alongside constrained endpoint.",
+  "modes": [
+    "compact_fixed",
+    "length_fast",
+    "length_constrained"
+  ],
+  "mapper": "Frozen primary compact_final (zero direction), not warm mapper",
+  "policy": "Frozen budget_final; prior_weight0.25; margin0 for length_fast, selected margin0.05 for length_constrained",
+  "confirmation": "Same604/613/614,8K/16K,128 output,two randomized repeats,extra36requests in supplementary process",
+  "evidence_boundary": "Primary confirmation is already running but its numeric quality/TPS/count effects have not been inspected; protocol uses training records only. Same cohort, no independent replication or nonzero mapper+length joint success."
+}

@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "scope": "Existing split system benchmark; not a fresh paper confirmation set",
+  "args": {
+    "output": "exp/system_validation/out_validation_v1_20261017",
+    "split": "validation",
+    "documents": 8,
+    "repeats": 2,
+    "max_new_tokens": 64,
+    "calibration_documents": 2,
+    "modes": [
+      "prototype",
+      "compat",
+      "fast",
+      "coverage",
+      "rpc"
+    ]
+  },
+  "config": {
+    "budget": 512,
+    "recent": 64,
+    "selector": "coverage",
+    "chunk_size": 1,
+    "student_weight": 1.0,
+    "coverage_candidates": 1024,
+    "coverage_batch": 16,
+    "refresh_every": 4,
+    "inject_tokens": 128,
+    "injection_strength": 0.5,
+    "attention_backend": "sdpa",
+    "schedule": "auto",
+    "length_policy": "risk",
+    "fixed_k": 4,
+    "max_draft": 12,
+    "max_new_tokens": 64,
+    "length_endpoint": null,
+    "rpc_timeout": 1.0,
+    "fallback_k": 1,
+    "profile": false,
+    "prefill_chunk_size": 0
+  },
+  "source_indices": [
+    1554,
+    1555,
+    1556,
+    1557,
+    1558,
+    1559,
+    1560,
+    1561
+  ],
+  "calibration_sources": [
+    1500,
+    1501
+  ],
+  "source_sha256": {
+    "rescue/__init__.py": "89eba56e38c2689930a5bf1ba4e0221ada1da541dc16e4a759156fa9dd7fe11a",
+    "rescue/__main__.py": "d5a424f2977a89fb2e77aa235315c2e3fc017f85bbc866ddc5c062d1f7c75280",
+    "rescue/attention.py": "1495d6ec5e593f0c1c40b882e90062f47f5bffe7bb0225c4f842217be6639245",
+    "rescue/audit.py": "c7b1379dcce9745f5c2f0033bc67bc1156977becea51ef23b1050908885a83e9",
+    "rescue/benchmark.py": "3c4c844d217e33d6080ea6f1dfa1327852974dc97734c4f680eb81391d973a89",
+    "rescue/cache.py": "6339fadbfe3cca70a5a3864d13c5e81561d277e77630455cbd82543d244e1ff1",
+    "rescue/calibration.py": "427dca78dd30e6ba287aef12694c0db1d2abccdd05807ff7040f1490eb955e94",
+    "rescue/config.py": "467a3ed59dd9e2a778b065434c5d683bee53136dd04a531f44924ec91b59791b",
+    "rescue/engine.py": "e46a96e67386b90bc3caa76575db42d51584d6c60fadc4cbb1b2fff7b262de8f",
+    "rescue/features.py": "f92974279195d0482771a72c8e236a8aa2dbca67eeee87b548d898c55b77c1a4",
+    "rescue/injection.py": "dd78ad4eaf8059b65b374c6de2594cfabd76533469f6f95fe12817c51016ab41",
+    "rescue/length_server.py": "7f0b92be2f7bf0a08b95bb12ad2b3b7f16b21d52fc87b9c4ca16ef815b9e9d13",
+    "rescue/loading.py": "a4ac3d3cded0bfb4b0f649f071ed55ffdea509d8a69a0e9656dddac9015ed7cc",
+    "rescue/messages.py": "b4cf6da4cf2c4f94b9bf93a66c61a1209b0574e7157d06aa23b8e7f42e7b3695",
+    "rescue/policy.py": "45095ff3a6fc87858c7ca29c800d1b17056145f976a6c1f11929ff33e793ff7f",
+    "rescue/scheduler.py": "506025e77ed7d45f97e6d6ef38153e4c541027bffaa483b4882098d4ef7ef1a9",
+    "rescue/selection.py": "8983786171ac40506c67b54a7a2a5bde8c47d37c688f8185231dbb99cb3623cc",
+    "rescue/transport.py": "4a933d006598a8d642f8d19ba13616a85d17dceaee6366185c8cac8ab3d3b4bb",
+    "exp/attention_horizon/selection.py": "d5a96f86a1633ceab195dc9c0d7b06ea2aeb4d2571879df966810b457251929a",
+    "exp/attention_horizon/runtime.py": "ddc3d0a1f32bbf61adb4b9cb5459c6c09c6f7fc28c61bc1fd72694fd64239b8c",
+    "exp/attention_horizon/experiment.py": "cb89cfb93b8c9e2e616eb0d90065959eef2178b228836c61b10dd992af185234",
+    "exp/attention_selection/attention.py": "462923a5b9f6343ea9bf61933d12fdd9a2aa4d2156205776fec38b1b08451614",
+    "exp/selective_kv/bridge.py": "04148446ea2f2307b5e70d0db55add34444c784ad6388fa28af0b62466c807d0",
+    "exp/attention_pipeline/runtime.py": "ccaedecd5f2c9098b40f6ad67c189736377698adddde090c67c2fcbbe0c8bdf7",
+    "exp/attention_pipeline/planner.py": "d10a95d5a23d518ec16b74f5a3872df712e248e488c2984570a5338d68106cde",
+    "exp/attention_pipeline/cached_injection.py": "a0d723bbed714cc453adfd44774628b06dbf4657201ed949d897097c2ceefe74"
+  },
+  "artifact_sha256": {
+    "exp/selective_kv/out_pilot/performance_gated.pt": "9e150c272a21b45cf476ce7b2e3dbbfe588bc5c33893c76cad333311d194bf9f",
+    "exp/attention_horizon/out/risk_attention_read_42.pt": "0e20c1c7d296db0b09cef9a667e7015a19e745becd789524445ce486d818fdf2",
+    "exp/attention_horizon/out/cost_model.json": "2d7154c6f7c29001d3f32e5cc4d936a36678d6f31a199ec669b77ecb3796ea11"
+  },
+  "data_sha256": {
+    "exp/attention_horizon/data/train.jsonl": "52feac1e86d9b4a0532691e50310467747f77f7fc8ce13306018680ec2d98e14",
+    "exp/attention_horizon/data/validation.jsonl": "45fbb7127704bf5f1140d49afc73bbf04242a09775904347c82e401c73248b45"
+  },
+  "gpu": "NVIDIA H100",
+  "torch": "2.7.1+cu128",
+  "target_dtype": "float32",
+  "draft_dtype": "bfloat16",
+  "teacher_layers": 28,
+  "student_layers": 28,
+  "tf32": false,
+  "order_seed": 42
+}

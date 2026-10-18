@@ -1,0 +1,113 @@
+{
+  "compat": {
+    "config": {
+      "budget": 512,
+      "recent": 64,
+      "selector": "read_joint",
+      "chunk_size": 1,
+      "student_weight": 1.0,
+      "coverage_candidates": 1024,
+      "coverage_batch": 16,
+      "refresh_every": 1,
+      "inject_tokens": 128,
+      "injection_strength": 0.5,
+      "attention_backend": "eager",
+      "schedule": "auto",
+      "length_policy": "risk",
+      "fixed_k": 4,
+      "max_draft": 12,
+      "max_new_tokens": 64,
+      "length_endpoint": null,
+      "rpc_timeout": 1.0,
+      "fallback_k": 1,
+      "profile": false,
+      "prefill_chunk_size": 0
+    },
+    "memoize": false,
+    "cost": "legacy frozen"
+  },
+  "fast": {
+    "config": {
+      "budget": 512,
+      "recent": 64,
+      "selector": "read_joint",
+      "chunk_size": 1,
+      "student_weight": 1.0,
+      "coverage_candidates": 1024,
+      "coverage_batch": 16,
+      "refresh_every": 1,
+      "inject_tokens": 128,
+      "injection_strength": 0.5,
+      "attention_backend": "sdpa",
+      "schedule": "auto",
+      "length_policy": "risk",
+      "fixed_k": 4,
+      "max_draft": 12,
+      "max_new_tokens": 64,
+      "length_endpoint": null,
+      "rpc_timeout": 1.0,
+      "fallback_k": 1,
+      "profile": false,
+      "prefill_chunk_size": 0
+    },
+    "memoize": true,
+    "cost": "legacy frozen"
+  },
+  "coverage": {
+    "config": {
+      "budget": 512,
+      "recent": 64,
+      "selector": "coverage",
+      "chunk_size": 1,
+      "student_weight": 1.0,
+      "coverage_candidates": 1024,
+      "coverage_batch": 16,
+      "refresh_every": 4,
+      "inject_tokens": 128,
+      "injection_strength": 0.5,
+      "attention_backend": "sdpa",
+      "schedule": "auto",
+      "length_policy": "risk",
+      "fixed_k": 4,
+      "max_draft": 12,
+      "max_new_tokens": 64,
+      "length_endpoint": null,
+      "rpc_timeout": 1.0,
+      "fallback_k": 1,
+      "profile": false,
+      "prefill_chunk_size": 0
+    },
+    "memoize": true,
+    "cost": "training calibrated"
+  },
+  "rpc": {
+    "config": {
+      "budget": 512,
+      "recent": 64,
+      "selector": "coverage",
+      "chunk_size": 1,
+      "student_weight": 1.0,
+      "coverage_candidates": 1024,
+      "coverage_batch": 16,
+      "refresh_every": 4,
+      "inject_tokens": 128,
+      "injection_strength": 0.5,
+      "attention_backend": "sdpa",
+      "schedule": "auto",
+      "length_policy": "risk",
+      "fixed_k": 4,
+      "max_draft": 12,
+      "max_new_tokens": 64,
+      "length_endpoint": [
+        "127.0.0.1",
+        39519
+      ],
+      "rpc_timeout": 1.0,
+      "fallback_k": 1,
+      "profile": false,
+      "prefill_chunk_size": 0
+    },
+    "memoize": true,
+    "cost": "training calibrated"
+  }
+}

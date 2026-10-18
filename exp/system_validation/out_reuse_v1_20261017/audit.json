@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "frozen_sources": 32,
+  "validation_requests": 192,
+  "execution_training_requests": 20,
+  "route_training_requests": 72,
+  "exact_saved_outputs": 284,
+  "unique_speculative_requests": 268,
+  "paired_trajectory_matches": {
+    "risk": 16,
+    "fixed": 16
+  },
+  "paired_trajectory_total": 16,
+  "scope": "Saved outputs, counters, frozen source hashes and selection/statistical audit, not a GPU rerun"
+}

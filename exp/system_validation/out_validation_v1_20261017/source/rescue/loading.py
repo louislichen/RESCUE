@@ -1,0 +1,34 @@
+"""Explicit local checkpoints; base weights are never downloaded implicitly."""
+from pathlib import Path
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+from exp.selective_kv.bridge import ValueMapper
+from .policy import RiskModel, load_cost
+
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_TEACHER = '/mnt/8T/cl/models/Qwen2-7B-Instruct'
+DEFAULT_STUDENT = '/mnt/8T/cl/models/Qwen2-1.5B-Instruct'
+DEFAULT_MAPPER = ROOT/'exp/selective_kv/out_pilot/performance_gated.pt'
+DEFAULT_RISK = ROOT/'exp/attention_horizon/out/risk_attention_read_42.pt'
+DEFAULT_COST = ROOT/'exp/attention_horizon/out/cost_model.json'
+
+
+def load_models(teacher=DEFAULT_TEACHER, student=DEFAULT_STUDENT, device='cuda:0'):
+    tokenizers, models = [], []
+    for path, dtype in ((teacher, torch.float32), (student, torch.bfloat16)):
+        tokenizer = AutoTokenizer.from_pretrained(path, local_files_only=True)
+        model = AutoModelForCausalLM.from_pretrained(path, torch_dtype=dtype, local_files_only=True,
+                                                   attn_implementation='eager').to(device).eval()
+        tokenizers.append(tokenizer)
+        models.append(model)
+    if tokenizers[0].get_vocab() != tokenizers[1].get_vocab():
+        raise ValueError('Target and Draft must share a token vocabulary')
+    return (*models, tokenizers[0])
+
+
+def load_modules(device, mapper=DEFAULT_MAPPER, risk=DEFAULT_RISK, cost=DEFAULT_COST):
+    payload = torch.load(mapper, map_location='cpu', weights_only=False)
+    network = ValueMapper(**payload['config']).to(device)
+    network.load_state_dict(payload['state_dict'])
+    return network.eval().requires_grad_(False), RiskModel.load(risk, device), load_cost(cost)

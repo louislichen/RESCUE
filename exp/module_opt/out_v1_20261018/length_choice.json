@@ -1,0 +1,20 @@
+{
+  "best_fixed": "fixed4",
+  "chosen_attention": "feedback_surplus",
+  "eligible": [],
+  "rates": {
+    "8192": 24.166408356588203,
+    "16384": 17.481252579556415
+  },
+  "scores": {
+    "fixed2": 0.9620060013574714,
+    "fixed4": 1.0,
+    "fixed8": 0.8239394849396311,
+    "old": 0.9626717236587558,
+    "light": 0.9587698900755564,
+    "feedback_ratio": 0.9695466600790453,
+    "feedback_surplus": 0.9891451020102687,
+    "history_surplus": 0.9920287370350325
+  },
+  "scope": "Tune documents only; positive policy remains separate if fixed wins"
+}

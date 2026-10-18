@@ -1,0 +1,55 @@
+{
+  "chosen": "original",
+  "config": {
+    "budget": 512,
+    "recent": 64,
+    "selector": "hierarchical",
+    "chunk_size": 1,
+    "student_weight": 1.0,
+    "coverage_candidates": 1024,
+    "coverage_batch": 16,
+    "refresh_every": 4,
+    "inject_tokens": 0,
+    "injection_strength": 0.5,
+    "attention_backend": "sdpa",
+    "schedule": "auto",
+    "length_policy": "fixed",
+    "fixed_k": 4,
+    "max_draft": 12,
+    "max_new_tokens": 128,
+    "length_endpoint": null,
+    "rpc_timeout": 1.0,
+    "fallback_k": 1,
+    "profile": false,
+    "prefill_chunk_size": 0,
+    "optimized_execution": true,
+    "deferred_probes": true,
+    "memoized_gate_affine": true,
+    "working_mode": "packed",
+    "injection_layers": [
+      27
+    ],
+    "injection_rule": "teacher",
+    "coverage_rows": 64,
+    "coarse_chunk_size": 32,
+    "refresh_policy": "periodic",
+    "refresh_min": 1,
+    "refresh_max": 16,
+    "attention_drift": 0.15,
+    "coverage_floor": 0.65,
+    "prefill_precision": "bfloat16",
+    "early_length_publish": false,
+    "coverage_anchor_fraction": 0.0,
+    "coverage_attention_weight": 0.0
+  },
+  "baseline_rounds": 253,
+  "eligible": [
+    "original"
+  ],
+  "scores": {
+    "original": 1.0,
+    "anchor50": 0.906287773034531,
+    "anchor75": 0.9281703847625018,
+    "small_anchor75": 0.8877659125364626
+  }
+}

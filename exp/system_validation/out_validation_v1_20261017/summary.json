@@ -1,0 +1,134 @@
+{
+  "modes": {
+    "prototype": {
+      "decode_tps": 23.994515651361514,
+      "total_tps": 18.617729370224176,
+      "acceptance_rate": 0.6716417910447762,
+      "blocks": 348,
+      "proposed": 670,
+      "projected_positions": 0,
+      "working_gather_layers": 0,
+      "length_fallbacks": 0
+    },
+    "compat": {
+      "decode_tps": 27.516772307795115,
+      "total_tps": 20.667328677825054,
+      "acceptance_rate": 0.6716417910447762,
+      "blocks": 348,
+      "proposed": 670,
+      "projected_positions": 44544,
+      "working_gather_layers": 9744,
+      "length_fallbacks": 0
+    },
+    "fast": {
+      "decode_tps": 28.292732437437998,
+      "total_tps": 21.09337635605918,
+      "acceptance_rate": 0.6696428571428571,
+      "blocks": 348,
+      "proposed": 672,
+      "projected_positions": 7034,
+      "working_gather_layers": 9744,
+      "length_fallbacks": 0
+    },
+    "coverage": {
+      "decode_tps": 30.652050136939703,
+      "total_tps": 22.380836478859962,
+      "acceptance_rate": 0.6564245810055865,
+      "blocks": 330,
+      "proposed": 716,
+      "projected_positions": 8328,
+      "working_gather_layers": 9240,
+      "length_fallbacks": 0
+    },
+    "rpc": {
+      "decode_tps": 30.018504217889607,
+      "total_tps": 22.049831082100244,
+      "acceptance_rate": 0.6564245810055865,
+      "blocks": 330,
+      "proposed": 716,
+      "projected_positions": 8328,
+      "working_gather_layers": 9240,
+      "length_fallbacks": 0
+    }
+  },
+  "comparisons": {
+    "compat": {
+      "decode_tps": {
+        "mean_percent": 14.901566378437376,
+        "ci95": [
+          14.47573838826942,
+          15.521184375241981
+        ],
+        "documents": 8
+      },
+      "total_tps": {
+        "mean_percent": 10.685412169056072,
+        "ci95": [
+          9.28730296459896,
+          11.724933973551288
+        ],
+        "documents": 8
+      }
+    },
+    "fast": {
+      "decode_tps": {
+        "mean_percent": 18.296561415564625,
+        "ci95": [
+          17.489039127709656,
+          19.304596609956448
+        ],
+        "documents": 8
+      },
+      "total_tps": {
+        "mean_percent": 12.932400172964256,
+        "ci95": [
+          11.174627935919766,
+          14.25601057372069
+        ],
+        "documents": 8
+      }
+    },
+    "coverage": {
+      "decode_tps": {
+        "mean_percent": 28.930802845019578,
+        "ci95": [
+          25.827218459762364,
+          32.654141812013
+        ],
+        "documents": 8
+      },
+      "total_tps": {
+        "mean_percent": 19.78723814561921,
+        "ci95": [
+          16.88392334671273,
+          22.51653854227526
+        ],
+        "documents": 8
+      }
+    },
+    "rpc": {
+      "decode_tps": {
+        "mean_percent": 26.271025742303447,
+        "ci95": [
+          23.245688265718588,
+          29.788348943959225
+        ],
+        "documents": 8
+      },
+      "total_tps": {
+        "mean_percent": 18.13461505577763,
+        "ci95": [
+          15.584461989976752,
+          20.661328370687094
+        ],
+        "documents": 8
+      }
+    }
+  },
+  "measured_runs": 80,
+  "exact_outputs": 80,
+  "target_ar": {
+    "decode_tps": 47.464663572527876,
+    "total_tps": 31.052665868632282
+  }
+}

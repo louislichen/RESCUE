@@ -1,0 +1,15 @@
+{
+  "time_utc": "2026-10-18T01:17:45.111693+00:00",
+  "motivation": "Direction-only mapper did not improve training monitor; add current Student Q/K-derived per-KV-head read weights and output-projected oracle loss.",
+  "fit_source": "out_v1_20261018 mapper bundles only; monitor236 no oracle generation",
+  "confirmation_ids": [
+    303,
+    306,
+    327
+  ],
+  "epochs": 12,
+  "attention_features": 2,
+  "loss": "margin preservation plus10*attention-output oracle residual MSE plus0.5*normalized value residual MSE",
+  "source_attribution_unproved": true,
+  "scope": "Predefined before opening base confirmation outputs; separate M2-only pilot"
+}

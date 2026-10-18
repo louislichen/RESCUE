@@ -1,0 +1,134 @@
+{
+  "fit_frames": 323,
+  "monitor_frames": 64,
+  "monitor_document": 236,
+  "selected_monitor_nll": 0.6542453765869141,
+  "history": [
+    {
+      "epoch": 1,
+      "training_nll": 1.1307154893875122,
+      "monitor_nll": 1.1294364929199219
+    },
+    {
+      "epoch": 11,
+      "training_nll": 1.0861467123031616,
+      "monitor_nll": 1.084493637084961
+    },
+    {
+      "epoch": 21,
+      "training_nll": 1.0271714925765991,
+      "monitor_nll": 1.0211827754974365
+    },
+    {
+      "epoch": 31,
+      "training_nll": 0.9410160779953003,
+      "monitor_nll": 0.927489697933197
+    },
+    {
+      "epoch": 41,
+      "training_nll": 0.8290966749191284,
+      "monitor_nll": 0.8189888000488281
+    },
+    {
+      "epoch": 51,
+      "training_nll": 0.7235703468322754,
+      "monitor_nll": 0.7585265040397644
+    },
+    {
+      "epoch": 61,
+      "training_nll": 0.6490815281867981,
+      "monitor_nll": 0.7526502013206482
+    },
+    {
+      "epoch": 71,
+      "training_nll": 0.5976424217224121,
+      "monitor_nll": 0.7360910773277283
+    },
+    {
+      "epoch": 81,
+      "training_nll": 0.5609949231147766,
+      "monitor_nll": 0.7038307189941406
+    },
+    {
+      "epoch": 91,
+      "training_nll": 0.5349169969558716,
+      "monitor_nll": 0.6762268543243408
+    },
+    {
+      "epoch": 101,
+      "training_nll": 0.5155994892120361,
+      "monitor_nll": 0.6621915698051453
+    },
+    {
+      "epoch": 111,
+      "training_nll": 0.4999464154243469,
+      "monitor_nll": 0.6573551893234253
+    },
+    {
+      "epoch": 121,
+      "training_nll": 0.4865700900554657,
+      "monitor_nll": 0.6546668410301208
+    },
+    {
+      "epoch": 131,
+      "training_nll": 0.47452312707901,
+      "monitor_nll": 0.6549083590507507
+    },
+    {
+      "epoch": 141,
+      "training_nll": 0.46320322155952454,
+      "monitor_nll": 0.6594788432121277
+    },
+    {
+      "epoch": 151,
+      "training_nll": 0.45221737027168274,
+      "monitor_nll": 0.6680458784103394
+    },
+    {
+      "epoch": 161,
+      "training_nll": 0.4413498342037201,
+      "monitor_nll": 0.679106593132019
+    },
+    {
+      "epoch": 171,
+      "training_nll": 0.4304579198360443,
+      "monitor_nll": 0.6912383437156677
+    },
+    {
+      "epoch": 181,
+      "training_nll": 0.4194493293762207,
+      "monitor_nll": 0.704045832157135
+    },
+    {
+      "epoch": 191,
+      "training_nll": 0.4083022177219391,
+      "monitor_nll": 0.7173667550086975
+    },
+    {
+      "epoch": 201,
+      "training_nll": 0.3970004618167877,
+      "monitor_nll": 0.7312104105949402
+    },
+    {
+      "epoch": 211,
+      "training_nll": 0.3854755461215973,
+      "monitor_nll": 0.7453656792640686
+    },
+    {
+      "epoch": 221,
+      "training_nll": 0.3736377954483032,
+      "monitor_nll": 0.7598808407783508
+    },
+    {
+      "epoch": 231,
+      "training_nll": 0.3614506721496582,
+      "monitor_nll": 0.7751983404159546
+    },
+    {
+      "epoch": 241,
+      "training_nll": 0.34896406531333923,
+      "monitor_nll": 0.7917584776878357
+    }
+  ],
+  "limitation": "Single seed, internal training monitor; controller is not trained after newly fitted mapper rollouts yet"
+}

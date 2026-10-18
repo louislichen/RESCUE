@@ -1,0 +1,4445 @@
+{
+  "scope": "Training-monitor per-query privileged oracle; not learned mapper performance, deployable gating, or system evidence",
+  "source_sha256": "e4f66f37ddea9c4c7e8db429548b66229cf6bfcf6255c5baee41c5a7fcd85e93",
+  "monitor_document": 236,
+  "queries": 48,
+  "native_matches": 37,
+  "bounded_value_oracle_matches": 40,
+  "strengths": {
+    "old": {
+      "0.25": 37,
+      "0.5": 37,
+      "1.0": 37,
+      "2.0": 37
+    },
+    "goal": {
+      "0.25": 37,
+      "0.5": 37,
+      "1.0": 37,
+      "2.0": 36
+    }
+  },
+  "learned_scale_oracle": {
+    "old": 37,
+    "goal": 37
+  },
+  "limits": "Optimistic target-aware local V feasibility only; selected positions and frozen old-rollout entering states are fixed. No historical backprop or content-source attribution.",
+  "rows": [
+    {
+      "query": 0,
+      "query_index": 0,
+      "prefix": 4095,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.7330576777458191,
+        "teacher_argmax_nll": 0.3105308413505554,
+        "teacher_argmax_margin": 2.0,
+        "target_kl": 0.26398348808288574,
+        "distribution_overlap": 0.793951153755188
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.73259037733078,
+            "teacher_argmax_nll": 0.3111685812473297,
+            "teacher_argmax_margin": 2.125,
+            "target_kl": 0.2530665397644043,
+            "distribution_overlap": 0.7995514273643494
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7455374002456665,
+            "teacher_argmax_nll": 0.29364997148513794,
+            "teacher_argmax_margin": 2.25,
+            "target_kl": 0.2476719468832016,
+            "distribution_overlap": 0.80732262134552
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7369168996810913,
+            "teacher_argmax_nll": 0.3052801489830017,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.24749575555324554,
+            "distribution_overlap": 0.8042582869529724
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7431164979934692,
+            "teacher_argmax_nll": 0.29690247774124146,
+            "teacher_argmax_margin": 2.75,
+            "target_kl": 0.24664117395877838,
+            "distribution_overlap": 0.8098992705345154
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7419573068618774,
+            "teacher_argmax_nll": 0.2984635531902313,
+            "teacher_argmax_margin": 2.125,
+            "target_kl": 0.25583401322364807,
+            "distribution_overlap": 0.8029334545135498
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7420127987861633,
+            "teacher_argmax_nll": 0.298388808965683,
+            "teacher_argmax_margin": 2.25,
+            "target_kl": 0.2557494640350342,
+            "distribution_overlap": 0.803021252155304
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7505134344100952,
+            "teacher_argmax_nll": 0.2869977355003357,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.25887757539749146,
+            "distribution_overlap": 0.8102651238441467
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.760063648223877,
+            "teacher_argmax_nll": 0.27435311675071716,
+            "teacher_argmax_margin": 2.75,
+            "target_kl": 0.2710748612880707,
+            "distribution_overlap": 0.8181749582290649
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.7330576777458191,
+        "teacher_argmax_nll": 0.3105308413505554,
+        "teacher_argmax_margin": 2.0,
+        "target_kl": 0.26398348808288574,
+        "distribution_overlap": 0.793951153755188
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 1,
+      "query_index": 1,
+      "prefix": 4095,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.5941819548606873,
+        "teacher_argmax_nll": 0.5205696821212769,
+        "teacher_argmax_margin": 0.75,
+        "target_kl": 0.19745728373527527,
+        "distribution_overlap": 0.7303847670555115
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6013280749320984,
+            "teacher_argmax_nll": 0.5086146593093872,
+            "teacher_argmax_margin": 0.875,
+            "target_kl": 0.18559718132019043,
+            "distribution_overlap": 0.7375526428222656
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5822178721427917,
+            "teacher_argmax_nll": 0.5409106016159058,
+            "teacher_argmax_margin": 0.875,
+            "target_kl": 0.20701520144939423,
+            "distribution_overlap": 0.71845942735672
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5388460159301758,
+            "teacher_argmax_nll": 0.6183254718780518,
+            "teacher_argmax_margin": 1.0,
+            "target_kl": 0.26885566115379333,
+            "distribution_overlap": 0.675100564956665
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.37935325503349304,
+            "teacher_argmax_nll": 0.9692874550819397,
+            "teacher_argmax_margin": 0.25,
+            "target_kl": 0.5801029801368713,
+            "distribution_overlap": 0.5156257748603821
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6068344116210938,
+            "teacher_argmax_nll": 0.4994993507862091,
+            "teacher_argmax_margin": 0.875,
+            "target_kl": 0.18121659755706787,
+            "distribution_overlap": 0.7430496215820312
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5817841291427612,
+            "teacher_argmax_nll": 0.5416558384895325,
+            "teacher_argmax_margin": 0.875,
+            "target_kl": 0.20721736550331116,
+            "distribution_overlap": 0.7180030345916748
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5197776556015015,
+            "teacher_argmax_nll": 0.6543542146682739,
+            "teacher_argmax_margin": 0.875,
+            "target_kl": 0.29208406805992126,
+            "distribution_overlap": 0.6559851765632629
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.2629264295101166,
+            "teacher_argmax_nll": 1.335880994796753,
+            "teacher_argmax_margin": -0.375,
+            "target_kl": 0.88568514585495,
+            "distribution_overlap": 0.3989931643009186
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.5941819548606873,
+        "teacher_argmax_nll": 0.5205696821212769,
+        "teacher_argmax_margin": 0.75,
+        "target_kl": 0.19745728373527527,
+        "distribution_overlap": 0.7303847670555115
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 2,
+      "query_index": 2,
+      "prefix": 4095,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9989921450614929,
+        "teacher_argmax_nll": 0.0010083595989271998,
+        "teacher_argmax_margin": 8.0,
+        "target_kl": 0.0007706035976298153,
+        "distribution_overlap": 0.9990787506103516
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9989914894104004,
+            "teacher_argmax_nll": 0.0010090741561725736,
+            "teacher_argmax_margin": 8.0,
+            "target_kl": 0.0007711937068961561,
+            "distribution_overlap": 0.999078094959259
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9989928007125854,
+            "teacher_argmax_nll": 0.001007764250971377,
+            "teacher_argmax_margin": 8.0,
+            "target_kl": 0.0007699700072407722,
+            "distribution_overlap": 0.9990794062614441
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9989913105964661,
+            "teacher_argmax_nll": 0.0010091932490468025,
+            "teacher_argmax_margin": 8.0,
+            "target_kl": 0.0007714241510257125,
+            "distribution_overlap": 0.9990778565406799
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9989917874336243,
+            "teacher_argmax_nll": 0.0010087168775498867,
+            "teacher_argmax_margin": 8.0,
+            "target_kl": 0.0007708508055657148,
+            "distribution_overlap": 0.9990783333778381
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9989923238754272,
+            "teacher_argmax_nll": 0.0010082405060529709,
+            "teacher_argmax_margin": 8.0,
+            "target_kl": 0.000770494167227298,
+            "distribution_overlap": 0.9990789294242859
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9989923238754272,
+            "teacher_argmax_nll": 0.0010082405060529709,
+            "teacher_argmax_margin": 8.0,
+            "target_kl": 0.0007704945164732635,
+            "distribution_overlap": 0.9990789294242859
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9989917278289795,
+            "teacher_argmax_nll": 0.0010088359704241157,
+            "teacher_argmax_margin": 8.0,
+            "target_kl": 0.0007710134377703071,
+            "distribution_overlap": 0.9990782737731934
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.998908281326294,
+            "teacher_argmax_nll": 0.0010923140216618776,
+            "teacher_argmax_margin": 7.875,
+            "target_kl": 0.00084450573194772,
+            "distribution_overlap": 0.9989951848983765
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9989921450614929,
+        "teacher_argmax_nll": 0.0010083595989271998,
+        "teacher_argmax_margin": 8.0,
+        "target_kl": 0.0007706035976298153,
+        "distribution_overlap": 0.9990787506103516
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 3,
+      "query_index": 3,
+      "prefix": 4095,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9956855773925781,
+        "teacher_argmax_nll": 0.0043237772770226,
+        "teacher_argmax_margin": 6.375,
+        "target_kl": 0.0033229703549295664,
+        "distribution_overlap": 0.9960218071937561
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.995887815952301,
+            "teacher_argmax_nll": 0.0041206697933375835,
+            "teacher_argmax_margin": 6.5,
+            "target_kl": 0.003131361911073327,
+            "distribution_overlap": 0.996224045753479
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9958844184875488,
+            "teacher_argmax_nll": 0.00412411242723465,
+            "teacher_argmax_margin": 6.5,
+            "target_kl": 0.0031348203774541616,
+            "distribution_overlap": 0.9962206482887268
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9959104061126709,
+            "teacher_argmax_nll": 0.004097993951290846,
+            "teacher_argmax_margin": 6.5,
+            "target_kl": 0.003108719363808632,
+            "distribution_overlap": 0.9962465763092041
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9956851005554199,
+            "teacher_argmax_nll": 0.004324252251535654,
+            "teacher_argmax_margin": 6.375,
+            "target_kl": 0.0033234504517167807,
+            "distribution_overlap": 0.9960213303565979
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9958857297897339,
+            "teacher_argmax_nll": 0.004122806712985039,
+            "teacher_argmax_margin": 6.5,
+            "target_kl": 0.003133507678285241,
+            "distribution_overlap": 0.9962219595909119
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9958862662315369,
+            "teacher_argmax_nll": 0.004122212994843721,
+            "teacher_argmax_margin": 6.5,
+            "target_kl": 0.003132917219772935,
+            "distribution_overlap": 0.9962224960327148
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9958862662315369,
+            "teacher_argmax_nll": 0.004122212994843721,
+            "teacher_argmax_margin": 6.5,
+            "target_kl": 0.0031329256016761065,
+            "distribution_overlap": 0.9962224960327148
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9959069490432739,
+            "teacher_argmax_nll": 0.004101437050849199,
+            "teacher_argmax_margin": 6.5,
+            "target_kl": 0.0031124912202358246,
+            "distribution_overlap": 0.9962431788444519
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9956855773925781,
+        "teacher_argmax_nll": 0.0043237772770226,
+        "teacher_argmax_margin": 6.375,
+        "target_kl": 0.0033229703549295664,
+        "distribution_overlap": 0.9960218071937561
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 4,
+      "query_index": 4,
+      "prefix": 4095,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9273891448974609,
+        "teacher_argmax_nll": 0.07538207620382309,
+        "teacher_argmax_margin": 2.75,
+        "target_kl": 0.05929119512438774,
+        "distribution_overlap": 0.9149695634841919
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.927564799785614,
+            "teacher_argmax_nll": 0.07519268244504929,
+            "teacher_argmax_margin": 2.75,
+            "target_kl": 0.059104833751916885,
+            "distribution_overlap": 0.9149808287620544
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9268838763237,
+            "teacher_argmax_nll": 0.07592695951461792,
+            "teacher_argmax_margin": 2.75,
+            "target_kl": 0.05983583629131317,
+            "distribution_overlap": 0.9149373173713684
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9174716472625732,
+            "teacher_argmax_nll": 0.08613365143537521,
+            "teacher_argmax_margin": 2.625,
+            "target_kl": 0.051996368914842606,
+            "distribution_overlap": 0.9221450090408325
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9079887866973877,
+            "teacher_argmax_nll": 0.0965232327580452,
+            "teacher_argmax_margin": 2.5,
+            "target_kl": 0.0443459115922451,
+            "distribution_overlap": 0.9302158355712891
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9278576970100403,
+            "teacher_argmax_nll": 0.07487694174051285,
+            "teacher_argmax_margin": 2.75,
+            "target_kl": 0.05878615751862526,
+            "distribution_overlap": 0.9149995446205139
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9278310537338257,
+            "teacher_argmax_nll": 0.07490558922290802,
+            "teacher_argmax_margin": 2.75,
+            "target_kl": 0.05881479009985924,
+            "distribution_overlap": 0.9149978160858154
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9279335737228394,
+            "teacher_argmax_nll": 0.07479508966207504,
+            "teacher_argmax_margin": 2.75,
+            "target_kl": 0.05870714411139488,
+            "distribution_overlap": 0.9150043725967407
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9275163412094116,
+            "teacher_argmax_nll": 0.07524487376213074,
+            "teacher_argmax_margin": 2.75,
+            "target_kl": 0.059157028794288635,
+            "distribution_overlap": 0.9149777293205261
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9273891448974609,
+        "teacher_argmax_nll": 0.07538207620382309,
+        "teacher_argmax_margin": 2.75,
+        "target_kl": 0.05929119512438774,
+        "distribution_overlap": 0.9149695634841919
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 5,
+      "query_index": 5,
+      "prefix": 4095,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999200701713562,
+        "teacher_argmax_nll": 7.998623186722398e-05,
+        "teacher_argmax_margin": 10.25,
+        "target_kl": 7.544480467913672e-05,
+        "distribution_overlap": 0.999921977519989
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999200701713562,
+            "teacher_argmax_nll": 7.998623186722398e-05,
+            "teacher_argmax_margin": 10.25,
+            "target_kl": 7.544531399616972e-05,
+            "distribution_overlap": 0.999921977519989
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999096393585205,
+            "teacher_argmax_nll": 9.035655966727063e-05,
+            "teacher_argmax_margin": 10.125,
+            "target_kl": 8.555698877898976e-05,
+            "distribution_overlap": 0.9999115467071533
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999096393585205,
+            "teacher_argmax_nll": 9.035655966727063e-05,
+            "teacher_argmax_margin": 10.125,
+            "target_kl": 8.555724343750626e-05,
+            "distribution_overlap": 0.9999115467071533
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999139308929443,
+            "teacher_argmax_nll": 8.606540359323844e-05,
+            "teacher_argmax_margin": 10.25,
+            "target_kl": 8.11615027487278e-05,
+            "distribution_overlap": 0.9999158382415771
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999200701713562,
+            "teacher_argmax_nll": 7.998623186722398e-05,
+            "teacher_argmax_margin": 10.25,
+            "target_kl": 7.544508844148368e-05,
+            "distribution_overlap": 0.999921977519989
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999096393585205,
+            "teacher_argmax_nll": 9.035655966727063e-05,
+            "teacher_argmax_margin": 10.125,
+            "target_kl": 8.555743988836184e-05,
+            "distribution_overlap": 0.9999115467071533
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999203681945801,
+            "teacher_argmax_nll": 7.962863310240209e-05,
+            "teacher_argmax_margin": 10.25,
+            "target_kl": 7.508849375881255e-05,
+            "distribution_overlap": 0.9999222755432129
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999200701713562,
+            "teacher_argmax_nll": 7.998623186722398e-05,
+            "teacher_argmax_margin": 10.25,
+            "target_kl": 7.544590334873646e-05,
+            "distribution_overlap": 0.999921977519989
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999200701713562,
+        "teacher_argmax_nll": 7.998623186722398e-05,
+        "teacher_argmax_margin": 10.25,
+        "target_kl": 7.544480467913672e-05,
+        "distribution_overlap": 0.999921977519989
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 6,
+      "query_index": 6,
+      "prefix": 4095,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999318718910217,
+        "teacher_argmax_nll": 6.818538531661034e-05,
+        "teacher_argmax_margin": 11.3125,
+        "target_kl": 7.792699034325778e-05,
+        "distribution_overlap": 0.9999399781227112
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.999932050704956,
+            "teacher_argmax_nll": 6.794698856538162e-05,
+            "teacher_argmax_margin": 11.3125,
+            "target_kl": 7.779183215461671e-05,
+            "distribution_overlap": 0.9999401569366455
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.999932050704956,
+            "teacher_argmax_nll": 6.794698856538162e-05,
+            "teacher_argmax_margin": 11.3125,
+            "target_kl": 7.778999861329794e-05,
+            "distribution_overlap": 0.9999401569366455
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999318718910217,
+            "teacher_argmax_nll": 6.818538531661034e-05,
+            "teacher_argmax_margin": 11.3125,
+            "target_kl": 7.716552499914542e-05,
+            "distribution_overlap": 0.9999401569366455
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999321699142456,
+            "teacher_argmax_nll": 6.782778655178845e-05,
+            "teacher_argmax_margin": 11.375,
+            "target_kl": 7.69227190176025e-05,
+            "distribution_overlap": 0.9999404549598694
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.999932050704956,
+            "teacher_argmax_nll": 6.794698856538162e-05,
+            "teacher_argmax_margin": 11.3125,
+            "target_kl": 7.778923463774845e-05,
+            "distribution_overlap": 0.9999401569366455
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999319314956665,
+            "teacher_argmax_nll": 6.806619057897478e-05,
+            "teacher_argmax_margin": 11.3125,
+            "target_kl": 7.789101800881326e-05,
+            "distribution_overlap": 0.999940037727356
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999321699142456,
+            "teacher_argmax_nll": 6.782778655178845e-05,
+            "teacher_argmax_margin": 11.3125,
+            "target_kl": 7.76765082264319e-05,
+            "distribution_overlap": 0.9999402761459351
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999321699142456,
+            "teacher_argmax_nll": 6.782778655178845e-05,
+            "teacher_argmax_margin": 11.3125,
+            "target_kl": 7.767206261632964e-05,
+            "distribution_overlap": 0.9999402761459351
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999318718910217,
+        "teacher_argmax_nll": 6.818538531661034e-05,
+        "teacher_argmax_margin": 11.3125,
+        "target_kl": 7.792699034325778e-05,
+        "distribution_overlap": 0.9999399781227112
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 7,
+      "query_index": 7,
+      "prefix": 4095,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9786487221717834,
+        "teacher_argmax_nll": 0.021582501009106636,
+        "teacher_argmax_margin": 3.875,
+        "target_kl": 0.017657360062003136,
+        "distribution_overlap": 0.9808864593505859
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.978650689125061,
+            "teacher_argmax_nll": 0.021580517292022705,
+            "teacher_argmax_margin": 3.875,
+            "target_kl": 0.017655396834015846,
+            "distribution_overlap": 0.9808884263038635
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9786611795425415,
+            "teacher_argmax_nll": 0.021569784730672836,
+            "teacher_argmax_margin": 3.875,
+            "target_kl": 0.017645759508013725,
+            "distribution_overlap": 0.980898916721344
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9786575436592102,
+            "teacher_argmax_nll": 0.021573517471551895,
+            "teacher_argmax_margin": 3.875,
+            "target_kl": 0.01764914207160473,
+            "distribution_overlap": 0.9808952808380127
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9786577224731445,
+            "teacher_argmax_nll": 0.02157328464090824,
+            "teacher_argmax_margin": 3.875,
+            "target_kl": 0.017648927867412567,
+            "distribution_overlap": 0.980895459651947
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9786490201950073,
+            "teacher_argmax_nll": 0.021582268178462982,
+            "teacher_argmax_margin": 3.875,
+            "target_kl": 0.017657125368714333,
+            "distribution_overlap": 0.9808867573738098
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9786498546600342,
+            "teacher_argmax_nll": 0.021581334993243217,
+            "teacher_argmax_margin": 3.875,
+            "target_kl": 0.017656197771430016,
+            "distribution_overlap": 0.9808875918388367
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9786515235900879,
+            "teacher_argmax_nll": 0.021579701453447342,
+            "teacher_argmax_margin": 3.875,
+            "target_kl": 0.017654594033956528,
+            "distribution_overlap": 0.9808892607688904
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9786518812179565,
+            "teacher_argmax_nll": 0.021579233929514885,
+            "teacher_argmax_margin": 3.875,
+            "target_kl": 0.01765480265021324,
+            "distribution_overlap": 0.980889618396759
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9786487221717834,
+        "teacher_argmax_nll": 0.021582501009106636,
+        "teacher_argmax_margin": 3.875,
+        "target_kl": 0.017657360062003136,
+        "distribution_overlap": 0.9808864593505859
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 8,
+      "query_index": 8,
+      "prefix": 4095,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.8136643767356873,
+        "teacher_argmax_nll": 0.2062073051929474,
+        "teacher_argmax_margin": 2.375,
+        "target_kl": 0.5488380193710327,
+        "distribution_overlap": 0.7309439778327942
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8131899237632751,
+            "teacher_argmax_nll": 0.20679056644439697,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.5493885278701782,
+            "distribution_overlap": 0.7309368848800659
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8132624626159668,
+            "teacher_argmax_nll": 0.20670147240161896,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.5493075251579285,
+            "distribution_overlap": 0.7309381365776062
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.813214123249054,
+            "teacher_argmax_nll": 0.20676080882549286,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.5493326187133789,
+            "distribution_overlap": 0.7309379577636719
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8135913610458374,
+            "teacher_argmax_nll": 0.20629702508449554,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.5491815805435181,
+            "distribution_overlap": 0.7309304475784302
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8131492733955383,
+            "teacher_argmax_nll": 0.20684058964252472,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.5494582056999207,
+            "distribution_overlap": 0.7309271097183228
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8313789367675781,
+            "teacher_argmax_nll": 0.18466955423355103,
+            "teacher_argmax_margin": 2.5,
+            "target_kl": 0.5663452744483948,
+            "distribution_overlap": 0.727731466293335
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.813637912273407,
+            "teacher_argmax_nll": 0.20623989403247833,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.5485791563987732,
+            "distribution_overlap": 0.7309556007385254
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8137997388839722,
+            "teacher_argmax_nll": 0.20604094862937927,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.5486796498298645,
+            "distribution_overlap": 0.7309477925300598
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.8136643767356873,
+        "teacher_argmax_nll": 0.2062073051929474,
+        "teacher_argmax_margin": 2.375,
+        "target_kl": 0.5488380193710327,
+        "distribution_overlap": 0.7309439778327942
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 9,
+      "query_index": 9,
+      "prefix": 4095,
+      "native": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.3933902978897095,
+        "teacher_argmax_nll": 0.9329530596733093,
+        "teacher_argmax_margin": -0.375,
+        "target_kl": 0.6450250148773193,
+        "distribution_overlap": 0.47214534878730774
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.3933936059474945,
+            "teacher_argmax_nll": 0.932944655418396,
+            "teacher_argmax_margin": -0.375,
+            "target_kl": 0.6450164318084717,
+            "distribution_overlap": 0.4721490740776062
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.39339467883110046,
+            "teacher_argmax_nll": 0.9329419732093811,
+            "teacher_argmax_margin": -0.375,
+            "target_kl": 0.6450135111808777,
+            "distribution_overlap": 0.47215017676353455
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.3933921456336975,
+            "teacher_argmax_nll": 0.9329483509063721,
+            "teacher_argmax_margin": -0.375,
+            "target_kl": 0.6450197696685791,
+            "distribution_overlap": 0.47214755415916443
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.3944580852985382,
+            "teacher_argmax_nll": 0.9302424192428589,
+            "teacher_argmax_margin": -0.375,
+            "target_kl": 0.6458385586738586,
+            "distribution_overlap": 0.4716636836528778
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.39339467883110046,
+            "teacher_argmax_nll": 0.9329419136047363,
+            "teacher_argmax_margin": -0.375,
+            "target_kl": 0.6450134515762329,
+            "distribution_overlap": 0.47215017676353455
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.3933942914009094,
+            "teacher_argmax_nll": 0.9329429268836975,
+            "teacher_argmax_margin": -0.375,
+            "target_kl": 0.6450145244598389,
+            "distribution_overlap": 0.4721497893333435
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.3933931589126587,
+            "teacher_argmax_nll": 0.9329458475112915,
+            "teacher_argmax_margin": -0.375,
+            "target_kl": 0.6450173854827881,
+            "distribution_overlap": 0.472148597240448
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.3933945298194885,
+            "teacher_argmax_nll": 0.932942271232605,
+            "teacher_argmax_margin": -0.375,
+            "target_kl": 0.6450137495994568,
+            "distribution_overlap": 0.4721500277519226
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.5152280330657959,
+        "teacher_argmax_nll": 0.6631457805633545,
+        "teacher_argmax_margin": 0.125,
+        "target_kl": 0.414712131023407,
+        "distribution_overlap": 0.592639148235321
+      },
+      "oracle_steps": 7
+    },
+    {
+      "query": 10,
+      "query_index": 0,
+      "prefix": 4105,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9195067882537842,
+        "teacher_argmax_nll": 0.08391785621643066,
+        "teacher_argmax_margin": 2.5,
+        "target_kl": 0.06756914407014847,
+        "distribution_overlap": 0.9235532879829407
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9098140001296997,
+            "teacher_argmax_nll": 0.09451508522033691,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.07766073942184448,
+            "distribution_overlap": 0.9138606786727905
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9098001718521118,
+            "teacher_argmax_nll": 0.09453026950359344,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.07767586410045624,
+            "distribution_overlap": 0.9138468503952026
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9097023010253906,
+            "teacher_argmax_nll": 0.09463784843683243,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.0777810737490654,
+            "distribution_overlap": 0.9137492179870605
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8987025618553162,
+            "teacher_argmax_nll": 0.10680319368839264,
+            "teacher_argmax_margin": 2.25,
+            "target_kl": 0.08943698555231094,
+            "distribution_overlap": 0.9027500748634338
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9195064902305603,
+            "teacher_argmax_nll": 0.08391818404197693,
+            "teacher_argmax_margin": 2.5,
+            "target_kl": 0.0675693228840828,
+            "distribution_overlap": 0.9235530495643616
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9099586606025696,
+            "teacher_argmax_nll": 0.09435607492923737,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.07750178873538971,
+            "distribution_overlap": 0.9140053391456604
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9096940755844116,
+            "teacher_argmax_nll": 0.09464696049690247,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.07778986543416977,
+            "distribution_overlap": 0.9137409925460815
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8985729813575745,
+            "teacher_argmax_nll": 0.1069473847746849,
+            "teacher_argmax_margin": 2.25,
+            "target_kl": 0.08958163112401962,
+            "distribution_overlap": 0.9026206731796265
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9195067882537842,
+        "teacher_argmax_nll": 0.08391785621643066,
+        "teacher_argmax_margin": 2.5,
+        "target_kl": 0.06756914407014847,
+        "distribution_overlap": 0.9235532879829407
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 11,
+      "query_index": 1,
+      "prefix": 4105,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9912800192832947,
+        "teacher_argmax_nll": 0.008758226409554482,
+        "teacher_argmax_margin": 5.375,
+        "target_kl": 0.008693397976458073,
+        "distribution_overlap": 0.9912897944450378
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9922982454299927,
+            "teacher_argmax_nll": 0.007731513120234013,
+            "teacher_argmax_margin": 5.5,
+            "target_kl": 0.007667995523661375,
+            "distribution_overlap": 0.9923080205917358
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.992298424243927,
+            "teacher_argmax_nll": 0.0077313948422670364,
+            "teacher_argmax_margin": 5.5,
+            "target_kl": 0.007667873054742813,
+            "distribution_overlap": 0.9923081994056702
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9923003911972046,
+            "teacher_argmax_nll": 0.007729383651167154,
+            "teacher_argmax_margin": 5.5,
+            "target_kl": 0.007665868382900953,
+            "distribution_overlap": 0.9923101663589478
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9912887811660767,
+            "teacher_argmax_nll": 0.00874936394393444,
+            "teacher_argmax_margin": 5.375,
+            "target_kl": 0.008684548549354076,
+            "distribution_overlap": 0.9912985563278198
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9920734763145447,
+            "teacher_argmax_nll": 0.007958133704960346,
+            "teacher_argmax_margin": 5.5,
+            "target_kl": 0.007894564419984818,
+            "distribution_overlap": 0.9920832514762878
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9912819266319275,
+            "teacher_argmax_nll": 0.008756335824728012,
+            "teacher_argmax_margin": 5.375,
+            "target_kl": 0.008691517636179924,
+            "distribution_overlap": 0.9912917017936707
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9922052025794983,
+            "teacher_argmax_nll": 0.007825314067304134,
+            "teacher_argmax_margin": 5.5,
+            "target_kl": 0.007761748507618904,
+            "distribution_overlap": 0.9922149777412415
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9922982454299927,
+            "teacher_argmax_nll": 0.007731513120234013,
+            "teacher_argmax_margin": 5.5,
+            "target_kl": 0.007667990867048502,
+            "distribution_overlap": 0.9923080205917358
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9912800192832947,
+        "teacher_argmax_nll": 0.008758226409554482,
+        "teacher_argmax_margin": 5.375,
+        "target_kl": 0.008693397976458073,
+        "distribution_overlap": 0.9912897944450378
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 12,
+      "query_index": 2,
+      "prefix": 4105,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999292492866516,
+        "teacher_argmax_nll": 7.080780778778717e-05,
+        "teacher_argmax_margin": 9.75,
+        "target_kl": 7.035327143967152e-05,
+        "distribution_overlap": 0.9999293088912964
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999369978904724,
+            "teacher_argmax_nll": 6.305972783593461e-05,
+            "teacher_argmax_margin": 9.875,
+            "target_kl": 6.261473026825115e-05,
+            "distribution_overlap": 0.9999370574951172
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999368190765381,
+            "teacher_argmax_nll": 6.317892984952778e-05,
+            "teacher_argmax_margin": 9.875,
+            "target_kl": 6.273388135014102e-05,
+            "distribution_overlap": 0.9999368786811829
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999289512634277,
+            "teacher_argmax_nll": 7.10462118149735e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 7.059466588543728e-05,
+            "distribution_overlap": 0.9999290108680725
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999207258224487,
+            "teacher_argmax_nll": 7.92710343375802e-05,
+            "teacher_argmax_margin": 9.625,
+            "target_kl": 7.881442434154451e-05,
+            "distribution_overlap": 0.9999207854270935
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999372959136963,
+            "teacher_argmax_nll": 6.270212179515511e-05,
+            "teacher_argmax_margin": 9.875,
+            "target_kl": 6.225702964002267e-05,
+            "distribution_overlap": 0.9999373555183411
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999299049377441,
+            "teacher_argmax_nll": 7.009260298218578e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 6.964000931475312e-05,
+            "distribution_overlap": 0.9999299645423889
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999300241470337,
+            "teacher_argmax_nll": 6.997340824455023e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 6.952207331778482e-05,
+            "distribution_overlap": 0.9999300837516785
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999293088912964,
+            "teacher_argmax_nll": 7.068861305015162e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 7.023572834441438e-05,
+            "distribution_overlap": 0.9999293684959412
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999292492866516,
+        "teacher_argmax_nll": 7.080780778778717e-05,
+        "teacher_argmax_margin": 9.75,
+        "target_kl": 7.035327143967152e-05,
+        "distribution_overlap": 0.9999293088912964
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 13,
+      "query_index": 3,
+      "prefix": 4105,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999797344207764,
+        "teacher_argmax_nll": 2.0265373677830212e-05,
+        "teacher_argmax_margin": 11.25,
+        "target_kl": 2.0200342987664044e-05,
+        "distribution_overlap": 0.9999797344207764
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999796152114868,
+            "teacher_argmax_nll": 2.038458114839159e-05,
+            "teacher_argmax_margin": 11.25,
+            "target_kl": 2.031952317338437e-05,
+            "distribution_overlap": 0.9999796152114868
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.999979555606842,
+            "teacher_argmax_nll": 2.0503786799963564e-05,
+            "teacher_argmax_margin": 11.25,
+            "target_kl": 2.043866516032722e-05,
+            "distribution_overlap": 0.999979555606842
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.999979555606842,
+            "teacher_argmax_nll": 2.0503786799963564e-05,
+            "teacher_argmax_margin": 11.25,
+            "target_kl": 2.0438734281924553e-05,
+            "distribution_overlap": 0.999979555606842
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999796152114868,
+            "teacher_argmax_nll": 2.038458114839159e-05,
+            "teacher_argmax_margin": 11.25,
+            "target_kl": 2.0319605027907528e-05,
+            "distribution_overlap": 0.9999796152114868
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999798536300659,
+            "teacher_argmax_nll": 2.0146166207268834e-05,
+            "teacher_argmax_margin": 11.25,
+            "target_kl": 2.0081160982954316e-05,
+            "distribution_overlap": 0.9999798536300659
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999798536300659,
+            "teacher_argmax_nll": 2.0146166207268834e-05,
+            "teacher_argmax_margin": 11.25,
+            "target_kl": 2.0081160982954316e-05,
+            "distribution_overlap": 0.9999798536300659
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999798536300659,
+            "teacher_argmax_nll": 2.0146166207268834e-05,
+            "teacher_argmax_margin": 11.25,
+            "target_kl": 2.0081233742530458e-05,
+            "distribution_overlap": 0.9999798536300659
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999796152114868,
+            "teacher_argmax_nll": 2.038458114839159e-05,
+            "teacher_argmax_margin": 11.25,
+            "target_kl": 2.0319526811363176e-05,
+            "distribution_overlap": 0.9999796152114868
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999797344207764,
+        "teacher_argmax_nll": 2.0265373677830212e-05,
+        "teacher_argmax_margin": 11.25,
+        "target_kl": 2.0200342987664044e-05,
+        "distribution_overlap": 0.9999797344207764
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 14,
+      "query_index": 4,
+      "prefix": 4105,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9990406632423401,
+        "teacher_argmax_nll": 0.0009597701136954129,
+        "teacher_argmax_margin": 8.25,
+        "target_kl": 0.0009556905715726316,
+        "distribution_overlap": 0.9990411996841431
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9990872144699097,
+            "teacher_argmax_nll": 0.0009132028790190816,
+            "teacher_argmax_margin": 8.25,
+            "target_kl": 0.0009091502288356423,
+            "distribution_overlap": 0.9990877509117126
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9991517066955566,
+            "teacher_argmax_nll": 0.0008486483711749315,
+            "teacher_argmax_margin": 8.375,
+            "target_kl": 0.0008446368156000972,
+            "distribution_overlap": 0.9991522431373596
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9990354180335999,
+            "teacher_argmax_nll": 0.0009651293512433767,
+            "teacher_argmax_margin": 8.25,
+            "target_kl": 0.000961048062890768,
+            "distribution_overlap": 0.9990359544754028
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9990307092666626,
+            "teacher_argmax_nll": 0.0009697740315459669,
+            "teacher_argmax_margin": 8.25,
+            "target_kl": 0.0009656716138124466,
+            "distribution_overlap": 0.9990312457084656
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9991169571876526,
+            "teacher_argmax_nll": 0.0008834273321554065,
+            "teacher_argmax_margin": 8.25,
+            "target_kl": 0.0008794087334536016,
+            "distribution_overlap": 0.9991174936294556
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.99908047914505,
+            "teacher_argmax_nll": 0.0009199915803037584,
+            "teacher_argmax_margin": 8.25,
+            "target_kl": 0.000915917509701103,
+            "distribution_overlap": 0.999081015586853
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9990728497505188,
+            "teacher_argmax_nll": 0.0009276139317080379,
+            "teacher_argmax_margin": 8.25,
+            "target_kl": 0.0009235356701537967,
+            "distribution_overlap": 0.9990733861923218
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.999085009098053,
+            "teacher_argmax_nll": 0.0009154658182524145,
+            "teacher_argmax_margin": 8.25,
+            "target_kl": 0.0009114131680689752,
+            "distribution_overlap": 0.999085545539856
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9990406632423401,
+        "teacher_argmax_nll": 0.0009597701136954129,
+        "teacher_argmax_margin": 8.25,
+        "target_kl": 0.0009556905715726316,
+        "distribution_overlap": 0.9990411996841431
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 15,
+      "query_index": 5,
+      "prefix": 4105,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9994215369224548,
+        "teacher_argmax_nll": 0.0005785936955362558,
+        "teacher_argmax_margin": 8.375,
+        "target_kl": 0.0005773140001110733,
+        "distribution_overlap": 0.9994216561317444
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9994244575500488,
+            "teacher_argmax_nll": 0.0005757343024015427,
+            "teacher_argmax_margin": 8.375,
+            "target_kl": 0.0005744551308453083,
+            "distribution_overlap": 0.9994245767593384
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9994240999221802,
+            "teacher_argmax_nll": 0.0005760917556472123,
+            "teacher_argmax_margin": 8.375,
+            "target_kl": 0.0005748123512603343,
+            "distribution_overlap": 0.9994242191314697
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9994369149208069,
+            "teacher_argmax_nll": 0.000563224486541003,
+            "teacher_argmax_margin": 8.375,
+            "target_kl": 0.0005619542789645493,
+            "distribution_overlap": 0.9994370341300964
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9994096755981445,
+            "teacher_argmax_nll": 0.0005905076395720243,
+            "teacher_argmax_margin": 8.375,
+            "target_kl": 0.0005892270710319281,
+            "distribution_overlap": 0.9994097948074341
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9994189739227295,
+            "teacher_argmax_nll": 0.0005812147865071893,
+            "teacher_argmax_margin": 8.375,
+            "target_kl": 0.0005799350328743458,
+            "distribution_overlap": 0.999419093132019
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9994215369224548,
+            "teacher_argmax_nll": 0.0005785936955362558,
+            "teacher_argmax_margin": 8.375,
+            "target_kl": 0.0005773140583187342,
+            "distribution_overlap": 0.9994216561317444
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9994240999221802,
+            "teacher_argmax_nll": 0.0005760917556472123,
+            "teacher_argmax_margin": 8.375,
+            "target_kl": 0.0005748124676756561,
+            "distribution_overlap": 0.9994242191314697
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9994240999221802,
+            "teacher_argmax_nll": 0.0005760917556472123,
+            "teacher_argmax_margin": 8.375,
+            "target_kl": 0.0005748122930526733,
+            "distribution_overlap": 0.9994242191314697
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9994215369224548,
+        "teacher_argmax_nll": 0.0005785936955362558,
+        "teacher_argmax_margin": 8.375,
+        "target_kl": 0.0005773140001110733,
+        "distribution_overlap": 0.9994216561317444
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 16,
+      "query_index": 6,
+      "prefix": 4105,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.930351972579956,
+        "teacher_argmax_nll": 0.07219228148460388,
+        "teacher_argmax_margin": 3.5,
+        "target_kl": 0.04223726689815521,
+        "distribution_overlap": 0.9480612874031067
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9298202991485596,
+            "teacher_argmax_nll": 0.07276395708322525,
+            "teacher_argmax_margin": 3.5,
+            "target_kl": 0.042743757367134094,
+            "distribution_overlap": 0.9475294351577759
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9215048551559448,
+            "teacher_argmax_nll": 0.08174723386764526,
+            "teacher_argmax_margin": 3.375,
+            "target_kl": 0.049565643072128296,
+            "distribution_overlap": 0.9392157196998596
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9282875061035156,
+            "teacher_argmax_nll": 0.07441382110118866,
+            "teacher_argmax_margin": 3.5,
+            "target_kl": 0.04438718035817146,
+            "distribution_overlap": 0.9459968209266663
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9300166368484497,
+            "teacher_argmax_nll": 0.07255277782678604,
+            "teacher_argmax_margin": 3.5,
+            "target_kl": 0.04258345067501068,
+            "distribution_overlap": 0.9477259516716003
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9303589463233948,
+            "teacher_argmax_nll": 0.0721847414970398,
+            "teacher_argmax_margin": 3.5,
+            "target_kl": 0.04222993180155754,
+            "distribution_overlap": 0.9480682611465454
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9300273656845093,
+            "teacher_argmax_nll": 0.072541244328022,
+            "teacher_argmax_margin": 3.5,
+            "target_kl": 0.04257366433739662,
+            "distribution_overlap": 0.9477366805076599
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9301624894142151,
+            "teacher_argmax_nll": 0.07239599525928497,
+            "teacher_argmax_margin": 3.5,
+            "target_kl": 0.04239029437303543,
+            "distribution_overlap": 0.9478716254234314
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9301543831825256,
+            "teacher_argmax_nll": 0.07240475714206696,
+            "teacher_argmax_margin": 3.5,
+            "target_kl": 0.042398806661367416,
+            "distribution_overlap": 0.9478635191917419
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.930351972579956,
+        "teacher_argmax_nll": 0.07219228148460388,
+        "teacher_argmax_margin": 3.5,
+        "target_kl": 0.04223726689815521,
+        "distribution_overlap": 0.9480612874031067
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 17,
+      "query_index": 7,
+      "prefix": 4105,
+      "native": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.03711972385644913,
+        "teacher_argmax_nll": 3.293606758117676,
+        "teacher_argmax_margin": -2.875,
+        "target_kl": 1.142358422279358,
+        "distribution_overlap": 0.45911306142807007
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.03822114318609238,
+            "teacher_argmax_nll": 3.264366388320923,
+            "teacher_argmax_margin": -2.875,
+            "target_kl": 1.1189866065979004,
+            "distribution_overlap": 0.4607354700565338
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.04191498085856438,
+            "teacher_argmax_nll": 3.172111988067627,
+            "teacher_argmax_margin": -2.75,
+            "target_kl": 1.086918830871582,
+            "distribution_overlap": 0.46408820152282715
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.04170887544751167,
+            "teacher_argmax_nll": 3.1770412921905518,
+            "teacher_argmax_margin": -2.75,
+            "target_kl": 1.0886499881744385,
+            "distribution_overlap": 0.4642868638038635
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.04424554854631424,
+            "teacher_argmax_nll": 3.1180005073547363,
+            "teacher_argmax_margin": -2.625,
+            "target_kl": 1.0655908584594727,
+            "distribution_overlap": 0.46895459294319153
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.04173373430967331,
+            "teacher_argmax_nll": 3.176445484161377,
+            "teacher_argmax_margin": -2.75,
+            "target_kl": 1.0913264751434326,
+            "distribution_overlap": 0.46382787823677063
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.041563309729099274,
+            "teacher_argmax_nll": 3.180537462234497,
+            "teacher_argmax_margin": -2.75,
+            "target_kl": 1.0939269065856934,
+            "distribution_overlap": 0.46381938457489014
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0441298708319664,
+            "teacher_argmax_nll": 3.1206183433532715,
+            "teacher_argmax_margin": -2.625,
+            "target_kl": 1.0716071128845215,
+            "distribution_overlap": 0.4680338501930237
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.05288268253207207,
+            "teacher_argmax_nll": 2.9396793842315674,
+            "teacher_argmax_margin": -2.25,
+            "target_kl": 1.0133460760116577,
+            "distribution_overlap": 0.482544869184494
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.2269342690706253,
+        "teacher_argmax_nll": 1.4830949306488037,
+        "teacher_argmax_margin": -0.5,
+        "target_kl": 0.43929818272590637,
+        "distribution_overlap": 0.6580124497413635
+      },
+      "oracle_steps": 24
+    },
+    {
+      "query": 18,
+      "query_index": 0,
+      "prefix": 4113,
+      "native": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.2850601077079773,
+        "teacher_argmax_nll": 1.2550551891326904,
+        "teacher_argmax_margin": -0.875,
+        "target_kl": 0.1249513328075409,
+        "distribution_overlap": 0.7759878039360046
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.28505781292915344,
+            "teacher_argmax_nll": 1.2550632953643799,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 0.12495401501655579,
+            "distribution_overlap": 0.7759855389595032
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.28501302003860474,
+            "teacher_argmax_nll": 1.2552204132080078,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 0.1251101791858673,
+            "distribution_overlap": 0.7759407162666321
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.2860550880432129,
+            "teacher_argmax_nll": 1.2515709400177002,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 0.1222706288099289,
+            "distribution_overlap": 0.7769536375999451
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.286051481962204,
+            "teacher_argmax_nll": 1.251583456993103,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 0.1222817599773407,
+            "distribution_overlap": 0.7769503593444824
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.2850135564804077,
+            "teacher_argmax_nll": 1.255218505859375,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 0.1251084953546524,
+            "distribution_overlap": 0.7759413123130798
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.28501418232917786,
+            "teacher_argmax_nll": 1.255216360092163,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 0.1251068115234375,
+            "distribution_overlap": 0.7759419083595276
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.2850145697593689,
+            "teacher_argmax_nll": 1.2552149295806885,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 0.12510548532009125,
+            "distribution_overlap": 0.7759422659873962
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.2860579490661621,
+            "teacher_argmax_nll": 1.251560926437378,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 0.12241150438785553,
+            "distribution_overlap": 0.776949942111969
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.5496800541877747,
+        "teacher_argmax_nll": 0.5984188318252563,
+        "teacher_argmax_margin": 0.25,
+        "target_kl": 0.022534603253006935,
+        "distribution_overlap": 0.9392054080963135
+      },
+      "oracle_steps": 9
+    },
+    {
+      "query": 19,
+      "query_index": 0,
+      "prefix": 4114,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9307131171226501,
+        "teacher_argmax_nll": 0.07180414348840714,
+        "teacher_argmax_margin": 2.625,
+        "target_kl": 0.05023864284157753,
+        "distribution_overlap": 0.937099814414978
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.930681586265564,
+            "teacher_argmax_nll": 0.07183809578418732,
+            "teacher_argmax_margin": 2.625,
+            "target_kl": 0.05027147755026817,
+            "distribution_overlap": 0.9370682835578918
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9306789040565491,
+            "teacher_argmax_nll": 0.07184097915887833,
+            "teacher_argmax_margin": 2.625,
+            "target_kl": 0.0502743162214756,
+            "distribution_overlap": 0.937065601348877
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9306790828704834,
+            "teacher_argmax_nll": 0.07184075564146042,
+            "teacher_argmax_margin": 2.625,
+            "target_kl": 0.05027409642934799,
+            "distribution_overlap": 0.9370657801628113
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9306816458702087,
+            "teacher_argmax_nll": 0.07183798402547836,
+            "teacher_argmax_margin": 2.625,
+            "target_kl": 0.050272077322006226,
+            "distribution_overlap": 0.9370682239532471
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9307131171226501,
+            "teacher_argmax_nll": 0.07180414348840714,
+            "teacher_argmax_margin": 2.625,
+            "target_kl": 0.05023864284157753,
+            "distribution_overlap": 0.937099814414978
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9306787252426147,
+            "teacher_argmax_nll": 0.07184109091758728,
+            "teacher_argmax_margin": 2.625,
+            "target_kl": 0.050274379551410675,
+            "distribution_overlap": 0.9370654225349426
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9306793808937073,
+            "teacher_argmax_nll": 0.07184042781591415,
+            "teacher_argmax_margin": 2.625,
+            "target_kl": 0.05027376860380173,
+            "distribution_overlap": 0.9370660781860352
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9306790828704834,
+            "teacher_argmax_nll": 0.07184075564146042,
+            "teacher_argmax_margin": 2.625,
+            "target_kl": 0.050274111330509186,
+            "distribution_overlap": 0.9370657801628113
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9307131171226501,
+        "teacher_argmax_nll": 0.07180414348840714,
+        "teacher_argmax_margin": 2.625,
+        "target_kl": 0.05023864284157753,
+        "distribution_overlap": 0.937099814414978
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 20,
+      "query_index": 1,
+      "prefix": 4114,
+      "native": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.14502939581871033,
+        "teacher_argmax_nll": 1.930818796157837,
+        "teacher_argmax_margin": -1.25,
+        "target_kl": 0.8939087390899658,
+        "distribution_overlap": 0.4041825532913208
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.14502966403961182,
+            "teacher_argmax_nll": 1.9308170080184937,
+            "teacher_argmax_margin": -1.25,
+            "target_kl": 0.8939064741134644,
+            "distribution_overlap": 0.4041834771633148
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.1450347751379013,
+            "teacher_argmax_nll": 1.9307818412780762,
+            "teacher_argmax_margin": -1.25,
+            "target_kl": 0.8938732147216797,
+            "distribution_overlap": 0.40419453382492065
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.14503441751003265,
+            "teacher_argmax_nll": 1.9307842254638672,
+            "teacher_argmax_margin": -1.25,
+            "target_kl": 0.8938732743263245,
+            "distribution_overlap": 0.4041941165924072
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.1325903981924057,
+            "teacher_argmax_nll": 2.0204906463623047,
+            "teacher_argmax_margin": -1.375,
+            "target_kl": 0.9259269833564758,
+            "distribution_overlap": 0.39837706089019775
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.14503426849842072,
+            "teacher_argmax_nll": 1.9307852983474731,
+            "teacher_argmax_margin": -1.25,
+            "target_kl": 0.8938753008842468,
+            "distribution_overlap": 0.4041936993598938
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.14503473043441772,
+            "teacher_argmax_nll": 1.9307820796966553,
+            "teacher_argmax_margin": -1.25,
+            "target_kl": 0.893873393535614,
+            "distribution_overlap": 0.4041944444179535
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.14502985775470734,
+            "teacher_argmax_nll": 1.9308156967163086,
+            "teacher_argmax_margin": -1.25,
+            "target_kl": 0.893905520439148,
+            "distribution_overlap": 0.40418359637260437
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.14504291117191315,
+            "teacher_argmax_nll": 1.9307255744934082,
+            "teacher_argmax_margin": -1.25,
+            "target_kl": 0.8939393758773804,
+            "distribution_overlap": 0.40420493483543396
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.17835935950279236,
+        "teacher_argmax_nll": 1.7239549160003662,
+        "teacher_argmax_margin": -1.0,
+        "target_kl": 0.8164722323417664,
+        "distribution_overlap": 0.43015146255493164
+      },
+      "oracle_steps": 24
+    },
+    {
+      "query": 21,
+      "query_index": 0,
+      "prefix": 4116,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.6357063055038452,
+        "teacher_argmax_nll": 0.45301854610443115,
+        "teacher_argmax_margin": 0.875,
+        "target_kl": 0.13130226731300354,
+        "distribution_overlap": 0.7972204685211182
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6355754137039185,
+            "teacher_argmax_nll": 0.4532245695590973,
+            "teacher_argmax_margin": 0.875,
+            "target_kl": 0.13144522905349731,
+            "distribution_overlap": 0.7971617579460144
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6350691914558411,
+            "teacher_argmax_nll": 0.4540213346481323,
+            "teacher_argmax_margin": 0.875,
+            "target_kl": 0.13185034692287445,
+            "distribution_overlap": 0.7969703078269958
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6351644992828369,
+            "teacher_argmax_nll": 0.4538712501525879,
+            "teacher_argmax_margin": 0.875,
+            "target_kl": 0.1319321244955063,
+            "distribution_overlap": 0.7970165610313416
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6068344116210938,
+            "teacher_argmax_nll": 0.4994993507862091,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.11730437725782394,
+            "distribution_overlap": 0.8201852440834045
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6355406641960144,
+            "teacher_argmax_nll": 0.45327913761138916,
+            "teacher_argmax_margin": 0.875,
+            "target_kl": 0.13147415220737457,
+            "distribution_overlap": 0.7971614599227905
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6351999044418335,
+            "teacher_argmax_nll": 0.4538155198097229,
+            "teacher_argmax_margin": 0.875,
+            "target_kl": 0.13187167048454285,
+            "distribution_overlap": 0.797028124332428
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6058605313301086,
+            "teacher_argmax_nll": 0.5011054277420044,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.11489693820476532,
+            "distribution_overlap": 0.8209899663925171
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.607201874256134,
+            "teacher_argmax_nll": 0.4988939166069031,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.11692683398723602,
+            "distribution_overlap": 0.8203347325325012
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.6357063055038452,
+        "teacher_argmax_nll": 0.45301854610443115,
+        "teacher_argmax_margin": 0.875,
+        "target_kl": 0.13130226731300354,
+        "distribution_overlap": 0.7972204685211182
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 22,
+      "query_index": 1,
+      "prefix": 4116,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.6445676684379578,
+        "teacher_argmax_nll": 0.43917545676231384,
+        "teacher_argmax_margin": 2.125,
+        "target_kl": 0.2555513083934784,
+        "distribution_overlap": 0.7629780769348145
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6456643342971802,
+            "teacher_argmax_nll": 0.4374755024909973,
+            "teacher_argmax_margin": 2.125,
+            "target_kl": 0.26135194301605225,
+            "distribution_overlap": 0.7617985010147095
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6447336673736572,
+            "teacher_argmax_nll": 0.43891802430152893,
+            "teacher_argmax_margin": 2.125,
+            "target_kl": 0.2557465732097626,
+            "distribution_overlap": 0.7628816962242126
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6495875120162964,
+            "teacher_argmax_nll": 0.4314177334308624,
+            "teacher_argmax_margin": 2.125,
+            "target_kl": 0.26381441950798035,
+            "distribution_overlap": 0.7572200298309326
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6527342796325684,
+            "teacher_argmax_nll": 0.42658522725105286,
+            "teacher_argmax_margin": 2.125,
+            "target_kl": 0.27126652002334595,
+            "distribution_overlap": 0.7545989155769348
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6456388235092163,
+            "teacher_argmax_nll": 0.4375150799751282,
+            "teacher_argmax_margin": 2.125,
+            "target_kl": 0.26131993532180786,
+            "distribution_overlap": 0.7618661522865295
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.651980459690094,
+            "teacher_argmax_nll": 0.4277406930923462,
+            "teacher_argmax_margin": 2.125,
+            "target_kl": 0.2723309099674225,
+            "distribution_overlap": 0.7544081211090088
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6520255208015442,
+            "teacher_argmax_nll": 0.4276716113090515,
+            "teacher_argmax_margin": 2.125,
+            "target_kl": 0.272369921207428,
+            "distribution_overlap": 0.7543835043907166
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6633132100105286,
+            "teacher_argmax_nll": 0.4105079472064972,
+            "teacher_argmax_margin": 2.25,
+            "target_kl": 0.28466522693634033,
+            "distribution_overlap": 0.7465481162071228
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.6445676684379578,
+        "teacher_argmax_nll": 0.43917545676231384,
+        "teacher_argmax_margin": 2.125,
+        "target_kl": 0.2555513083934784,
+        "distribution_overlap": 0.7629780769348145
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 23,
+      "query_index": 2,
+      "prefix": 4116,
+      "native": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.0012004519812762737,
+        "teacher_argmax_nll": 6.725057125091553,
+        "teacher_argmax_margin": -6.0,
+        "target_kl": 2.9922878742218018,
+        "distribution_overlap": 0.2884752154350281
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0011999569833278656,
+            "teacher_argmax_nll": 6.725469589233398,
+            "teacher_argmax_margin": -6.0,
+            "target_kl": 2.987557888031006,
+            "distribution_overlap": 0.28866133093833923
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0012007009936496615,
+            "teacher_argmax_nll": 6.724849700927734,
+            "teacher_argmax_margin": -6.0,
+            "target_kl": 2.986938953399658,
+            "distribution_overlap": 0.2886718511581421
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0012011820217594504,
+            "teacher_argmax_nll": 6.724449157714844,
+            "teacher_argmax_margin": -6.0,
+            "target_kl": 2.987776041030884,
+            "distribution_overlap": 0.2884559631347656
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0012007743353024125,
+            "teacher_argmax_nll": 6.724788665771484,
+            "teacher_argmax_margin": -6.0,
+            "target_kl": 2.9852237701416016,
+            "distribution_overlap": 0.288741797208786
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.001200560829602182,
+            "teacher_argmax_nll": 6.724966526031494,
+            "teacher_argmax_margin": -6.0,
+            "target_kl": 2.9842538833618164,
+            "distribution_overlap": 0.28880029916763306
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0012007869081571698,
+            "teacher_argmax_nll": 6.724778175354004,
+            "teacher_argmax_margin": -6.0,
+            "target_kl": 2.9869823455810547,
+            "distribution_overlap": 0.2886723279953003
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0012011235812678933,
+            "teacher_argmax_nll": 6.7244977951049805,
+            "teacher_argmax_margin": -6.0,
+            "target_kl": 2.987130641937256,
+            "distribution_overlap": 0.2885676622390747
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0012554962886497378,
+            "teacher_argmax_nll": 6.680224418640137,
+            "teacher_argmax_margin": -6.0,
+            "target_kl": 2.96246075630188,
+            "distribution_overlap": 0.28981804847717285
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.0025463339406996965,
+        "teacher_argmax_nll": 5.973100662231445,
+        "teacher_argmax_margin": -5.25,
+        "target_kl": 2.6651391983032227,
+        "distribution_overlap": 0.2955875098705292
+      },
+      "oracle_steps": 24
+    },
+    {
+      "query": 24,
+      "query_index": 0,
+      "prefix": 16383,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.33518752455711365,
+        "teacher_argmax_nll": 1.0930651426315308,
+        "teacher_argmax_margin": 0.25,
+        "target_kl": 0.885074257850647,
+        "distribution_overlap": 0.45697125792503357
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.3784630596637726,
+            "teacher_argmax_nll": 0.9716367721557617,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.7606873512268066,
+            "distribution_overlap": 0.5094450116157532
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.41751018166542053,
+            "teacher_argmax_nll": 0.8734463453292847,
+            "teacher_argmax_margin": 1.25,
+            "target_kl": 0.6794391870498657,
+            "distribution_overlap": 0.5475332140922546
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.4307461082935333,
+            "teacher_argmax_nll": 0.8422364592552185,
+            "teacher_argmax_margin": 1.5,
+            "target_kl": 0.6269499659538269,
+            "distribution_overlap": 0.5696861743927002
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.3791349530220032,
+            "teacher_argmax_nll": 0.9698630571365356,
+            "teacher_argmax_margin": 1.5625,
+            "target_kl": 0.7346312999725342,
+            "distribution_overlap": 0.5078637599945068
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.4147702157497406,
+            "teacher_argmax_nll": 0.880030632019043,
+            "teacher_argmax_margin": 1.125,
+            "target_kl": 0.6992359161376953,
+            "distribution_overlap": 0.5392819046974182
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.45399022102355957,
+            "teacher_argmax_nll": 0.7896796464920044,
+            "teacher_argmax_margin": 1.5,
+            "target_kl": 0.6260018348693848,
+            "distribution_overlap": 0.5754429697990417
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5042398571968079,
+            "teacher_argmax_nll": 0.6847032308578491,
+            "teacher_argmax_margin": 1.625,
+            "target_kl": 0.5673508048057556,
+            "distribution_overlap": 0.6167284250259399
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.3176463544368744,
+            "teacher_argmax_nll": 1.146816611289978,
+            "teacher_argmax_margin": 1.625,
+            "target_kl": 1.0047552585601807,
+            "distribution_overlap": 0.4107862710952759
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.33518752455711365,
+        "teacher_argmax_nll": 1.0930651426315308,
+        "teacher_argmax_margin": 0.25,
+        "target_kl": 0.885074257850647,
+        "distribution_overlap": 0.45697125792503357
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 25,
+      "query_index": 1,
+      "prefix": 16383,
+      "native": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.08358587324619293,
+        "teacher_argmax_nll": 2.4818806648254395,
+        "teacher_argmax_margin": -1.0625,
+        "target_kl": 1.8602851629257202,
+        "distribution_overlap": 0.21085317432880402
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09227780997753143,
+            "teacher_argmax_nll": 2.382951498031616,
+            "teacher_argmax_margin": -0.8125,
+            "target_kl": 1.750838041305542,
+            "distribution_overlap": 0.2211814671754837
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.1077381893992424,
+            "teacher_argmax_nll": 2.22805118560791,
+            "teacher_argmax_margin": -0.625,
+            "target_kl": 1.6103099584579468,
+            "distribution_overlap": 0.23790979385375977
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09061896055936813,
+            "teacher_argmax_nll": 2.4010918140411377,
+            "teacher_argmax_margin": -1.375,
+            "target_kl": 1.7274616956710815,
+            "distribution_overlap": 0.217251256108284
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.027584509924054146,
+            "teacher_argmax_nll": 3.590500831604004,
+            "teacher_argmax_margin": -3.25,
+            "target_kl": 2.7321996688842773,
+            "distribution_overlap": 0.1375560164451599
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.11588677763938904,
+            "teacher_argmax_nll": 2.155141592025757,
+            "teacher_argmax_margin": -0.625,
+            "target_kl": 1.6160023212432861,
+            "distribution_overlap": 0.24461890757083893
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.13101501762866974,
+            "teacher_argmax_nll": 2.0324432849884033,
+            "teacher_argmax_margin": -0.375,
+            "target_kl": 1.495351791381836,
+            "distribution_overlap": 0.2618139982223511
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.1271214783191681,
+            "teacher_argmax_nll": 2.0626120567321777,
+            "teacher_argmax_margin": -0.5625,
+            "target_kl": 1.5032610893249512,
+            "distribution_overlap": 0.2561781406402588
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.026171043515205383,
+            "teacher_argmax_nll": 3.643101692199707,
+            "teacher_argmax_margin": -3.0,
+            "target_kl": 2.7762680053710938,
+            "distribution_overlap": 0.13774071633815765
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.25705376267433167,
+        "teacher_argmax_nll": 1.35847008228302,
+        "teacher_argmax_margin": 0.1875,
+        "target_kl": 1.0979256629943848,
+        "distribution_overlap": 0.35725539922714233
+      },
+      "oracle_steps": 3
+    },
+    {
+      "query": 26,
+      "query_index": 0,
+      "prefix": 16385,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9991203546524048,
+        "teacher_argmax_nll": 0.0008800924406386912,
+        "teacher_argmax_margin": 7.75,
+        "target_kl": 0.0007889926200732589,
+        "distribution_overlap": 0.9991481304168701
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9991282820701599,
+            "teacher_argmax_nll": 0.0008721124031580985,
+            "teacher_argmax_margin": 7.75,
+            "target_kl": 0.0007814103737473488,
+            "distribution_overlap": 0.9991560578346252
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9991284012794495,
+            "teacher_argmax_nll": 0.0008719933102838695,
+            "teacher_argmax_margin": 7.75,
+            "target_kl": 0.0007813576376065612,
+            "distribution_overlap": 0.9991561770439148
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9991276860237122,
+            "teacher_argmax_nll": 0.0008727079257369041,
+            "teacher_argmax_margin": 7.75,
+            "target_kl": 0.000781981972977519,
+            "distribution_overlap": 0.9991554617881775
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9991849064826965,
+            "teacher_argmax_nll": 0.0008154166280291975,
+            "teacher_argmax_margin": 7.875,
+            "target_kl": 0.0007263240404427052,
+            "distribution_overlap": 0.9992126822471619
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9991253018379211,
+            "teacher_argmax_nll": 0.0008750900160521269,
+            "teacher_argmax_margin": 7.75,
+            "target_kl": 0.0007840896141715348,
+            "distribution_overlap": 0.9991530776023865
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9991260170936584,
+            "teacher_argmax_nll": 0.0008743754005990922,
+            "teacher_argmax_margin": 7.75,
+            "target_kl": 0.0007834836724214256,
+            "distribution_overlap": 0.9991537928581238
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9991286993026733,
+            "teacher_argmax_nll": 0.0008717550663277507,
+            "teacher_argmax_margin": 7.75,
+            "target_kl": 0.0007810817332938313,
+            "distribution_overlap": 0.9991564750671387
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9991281628608704,
+            "teacher_argmax_nll": 0.0008722314960323274,
+            "teacher_argmax_margin": 7.75,
+            "target_kl": 0.0007815991411916912,
+            "distribution_overlap": 0.9991559386253357
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9991203546524048,
+        "teacher_argmax_nll": 0.0008800924406386912,
+        "teacher_argmax_margin": 7.75,
+        "target_kl": 0.0007889926200732589,
+        "distribution_overlap": 0.9991481304168701
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 27,
+      "query_index": 1,
+      "prefix": 16385,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9970651865005493,
+        "teacher_argmax_nll": 0.002939073368906975,
+        "teacher_argmax_margin": 7.0,
+        "target_kl": 0.002188818994909525,
+        "distribution_overlap": 0.9973459839820862
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9970834851264954,
+            "teacher_argmax_nll": 0.002920768689364195,
+            "teacher_argmax_margin": 7.0,
+            "target_kl": 0.0021705753169953823,
+            "distribution_overlap": 0.9973642826080322
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.997083842754364,
+            "teacher_argmax_nll": 0.002920412225648761,
+            "teacher_argmax_margin": 7.0,
+            "target_kl": 0.0021702118683606386,
+            "distribution_overlap": 0.9973646402359009
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9970845580101013,
+            "teacher_argmax_nll": 0.002919699065387249,
+            "teacher_argmax_margin": 7.0,
+            "target_kl": 0.0021695117466151714,
+            "distribution_overlap": 0.9973653554916382
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9970865249633789,
+            "teacher_argmax_nll": 0.002917678328230977,
+            "teacher_argmax_margin": 7.0,
+            "target_kl": 0.002167494036257267,
+            "distribution_overlap": 0.9973673224449158
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9971905946731567,
+            "teacher_argmax_nll": 0.00281331199221313,
+            "teacher_argmax_margin": 7.125,
+            "target_kl": 0.0020835266914218664,
+            "distribution_overlap": 0.9974713921546936
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9970964193344116,
+            "teacher_argmax_nll": 0.0029078128281980753,
+            "teacher_argmax_margin": 7.125,
+            "target_kl": 0.0021733653265982866,
+            "distribution_overlap": 0.9973772168159485
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.996989905834198,
+            "teacher_argmax_nll": 0.0030146650969982147,
+            "teacher_argmax_margin": 7.0,
+            "target_kl": 0.0022598241921514273,
+            "distribution_overlap": 0.9972707033157349
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9970883727073669,
+            "teacher_argmax_nll": 0.0029158953111618757,
+            "teacher_argmax_margin": 7.0,
+            "target_kl": 0.0021657536271959543,
+            "distribution_overlap": 0.9973691701889038
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9970651865005493,
+        "teacher_argmax_nll": 0.002939073368906975,
+        "teacher_argmax_margin": 7.0,
+        "target_kl": 0.002188818994909525,
+        "distribution_overlap": 0.9973459839820862
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 28,
+      "query_index": 2,
+      "prefix": 16385,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.990013062953949,
+        "teacher_argmax_nll": 0.010037186555564404,
+        "teacher_argmax_margin": 5.375,
+        "target_kl": 0.9588896036148071,
+        "distribution_overlap": 0.7778171300888062
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.988946795463562,
+            "teacher_argmax_nll": 0.011114707216620445,
+            "teacher_argmax_margin": 5.25,
+            "target_kl": 0.9320273399353027,
+            "distribution_overlap": 0.7779926657676697
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.988300085067749,
+            "teacher_argmax_nll": 0.011768910102546215,
+            "teacher_argmax_margin": 5.25,
+            "target_kl": 0.9047420024871826,
+            "distribution_overlap": 0.7781919240951538
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9870941042900085,
+            "teacher_argmax_nll": 0.012989901006221771,
+            "teacher_argmax_margin": 5.125,
+            "target_kl": 0.8780426383018494,
+            "distribution_overlap": 0.7784109115600586
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9845496416091919,
+            "teacher_argmax_nll": 0.015570971183478832,
+            "teacher_argmax_margin": 5.0,
+            "target_kl": 0.8247588276863098,
+            "distribution_overlap": 0.7789444327354431
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9899678230285645,
+            "teacher_argmax_nll": 0.010082859545946121,
+            "teacher_argmax_margin": 5.375,
+            "target_kl": 0.9589354395866394,
+            "distribution_overlap": 0.7778170108795166
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9886854290962219,
+            "teacher_argmax_nll": 0.011379103176295757,
+            "teacher_argmax_margin": 5.25,
+            "target_kl": 0.9322839379310608,
+            "distribution_overlap": 0.7779937982559204
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9886712431907654,
+            "teacher_argmax_nll": 0.01139348279684782,
+            "teacher_argmax_margin": 5.25,
+            "target_kl": 0.9323037266731262,
+            "distribution_overlap": 0.7779922485351562
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9889159202575684,
+            "teacher_argmax_nll": 0.011145948432385921,
+            "teacher_argmax_margin": 5.25,
+            "target_kl": 0.9320648312568665,
+            "distribution_overlap": 0.7779911756515503
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.990013062953949,
+        "teacher_argmax_nll": 0.010037186555564404,
+        "teacher_argmax_margin": 5.375,
+        "target_kl": 0.9588896036148071,
+        "distribution_overlap": 0.7778171300888062
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 29,
+      "query_index": 3,
+      "prefix": 16385,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999083280563354,
+        "teacher_argmax_nll": 9.16677454370074e-05,
+        "teacher_argmax_margin": 9.75,
+        "target_kl": 7.488867413485423e-05,
+        "distribution_overlap": 0.9999198317527771
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999082088470459,
+            "teacher_argmax_nll": 9.178694017464295e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 7.501537766074762e-05,
+            "distribution_overlap": 0.9999197125434875
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999034404754639,
+            "teacher_argmax_nll": 9.655486064730212e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 7.796995487296954e-05,
+            "distribution_overlap": 0.999916136264801
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999079704284668,
+            "teacher_argmax_nll": 9.202533692587167e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 7.525870023528114e-05,
+            "distribution_overlap": 0.9999194741249084
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999017715454102,
+            "teacher_argmax_nll": 9.822363062994555e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 7.810276292730123e-05,
+            "distribution_overlap": 0.9999158382415771
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999083280563354,
+            "teacher_argmax_nll": 9.16677454370074e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 7.489525160053745e-05,
+            "distribution_overlap": 0.9999198317527771
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999083280563354,
+            "teacher_argmax_nll": 9.16677454370074e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 7.489747076760978e-05,
+            "distribution_overlap": 0.9999198317527771
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999083280563354,
+            "teacher_argmax_nll": 9.16677454370074e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 7.488821574952453e-05,
+            "distribution_overlap": 0.9999198317527771
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999083280563354,
+            "teacher_argmax_nll": 9.16677454370074e-05,
+            "teacher_argmax_margin": 9.75,
+            "target_kl": 7.489474955946207e-05,
+            "distribution_overlap": 0.9999198317527771
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999083280563354,
+        "teacher_argmax_nll": 9.16677454370074e-05,
+        "teacher_argmax_margin": 9.75,
+        "target_kl": 7.488867413485423e-05,
+        "distribution_overlap": 0.9999198317527771
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 30,
+      "query_index": 4,
+      "prefix": 16385,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999518394470215,
+        "teacher_argmax_nll": 4.815939246327616e-05,
+        "teacher_argmax_margin": 12.0,
+        "target_kl": 4.186956357443705e-05,
+        "distribution_overlap": 0.9999557733535767
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999526143074036,
+            "teacher_argmax_nll": 4.7444173105759546e-05,
+            "teacher_argmax_margin": 12.0,
+            "target_kl": 4.117100252187811e-05,
+            "distribution_overlap": 0.9999565482139587
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999535083770752,
+            "teacher_argmax_nll": 4.649054244509898e-05,
+            "teacher_argmax_margin": 12.0625,
+            "target_kl": 4.030618947581388e-05,
+            "distribution_overlap": 0.9999574422836304
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999538660049438,
+            "teacher_argmax_nll": 4.6132929128361866e-05,
+            "teacher_argmax_margin": 12.0625,
+            "target_kl": 3.991385892732069e-05,
+            "distribution_overlap": 0.999957799911499
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999538660049438,
+            "teacher_argmax_nll": 4.6132929128361866e-05,
+            "teacher_argmax_margin": 12.0625,
+            "target_kl": 3.9816317439544946e-05,
+            "distribution_overlap": 0.999957799911499
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.999951958656311,
+            "teacher_argmax_nll": 4.8040190449682996e-05,
+            "teacher_argmax_margin": 12.0,
+            "target_kl": 4.178210292593576e-05,
+            "distribution_overlap": 0.9999558925628662
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999526143074036,
+            "teacher_argmax_nll": 4.7444173105759546e-05,
+            "teacher_argmax_margin": 12.0,
+            "target_kl": 4.117122443858534e-05,
+            "distribution_overlap": 0.9999565482139587
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999527931213379,
+            "teacher_argmax_nll": 4.7205765440594405e-05,
+            "teacher_argmax_margin": 12.0,
+            "target_kl": 4.0998471376951784e-05,
+            "distribution_overlap": 0.9999567270278931
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999532103538513,
+            "teacher_argmax_nll": 4.684815212385729e-05,
+            "teacher_argmax_margin": 12.0625,
+            "target_kl": 4.061374784214422e-05,
+            "distribution_overlap": 0.9999571442604065
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999518394470215,
+        "teacher_argmax_nll": 4.815939246327616e-05,
+        "teacher_argmax_margin": 12.0,
+        "target_kl": 4.186956357443705e-05,
+        "distribution_overlap": 0.9999557733535767
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 31,
+      "query_index": 5,
+      "prefix": 16385,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9613654017448425,
+        "teacher_argmax_nll": 0.03940073400735855,
+        "teacher_argmax_margin": 3.25,
+        "target_kl": 0.03227073326706886,
+        "distribution_overlap": 0.9637274742126465
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9656739830970764,
+            "teacher_argmax_nll": 0.034928999841213226,
+            "teacher_argmax_margin": 3.375,
+            "target_kl": 0.02806088887155056,
+            "distribution_overlap": 0.9680370688438416
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9613676071166992,
+            "teacher_argmax_nll": 0.039398442953825,
+            "teacher_argmax_margin": 3.25,
+            "target_kl": 0.032268449664115906,
+            "distribution_overlap": 0.9637296795845032
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9656695127487183,
+            "teacher_argmax_nll": 0.034933604300022125,
+            "teacher_argmax_margin": 3.375,
+            "target_kl": 0.028065446764230728,
+            "distribution_overlap": 0.9680325984954834
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9613195061683655,
+            "teacher_argmax_nll": 0.03944852203130722,
+            "teacher_argmax_margin": 3.25,
+            "target_kl": 0.03212941065430641,
+            "distribution_overlap": 0.9637151956558228
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9613673686981201,
+            "teacher_argmax_nll": 0.0393986739218235,
+            "teacher_argmax_margin": 3.25,
+            "target_kl": 0.03226868808269501,
+            "distribution_overlap": 0.9637294411659241
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9613673686981201,
+            "teacher_argmax_nll": 0.0393986739218235,
+            "teacher_argmax_margin": 3.25,
+            "target_kl": 0.03226868063211441,
+            "distribution_overlap": 0.9637294411659241
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9613580107688904,
+            "teacher_argmax_nll": 0.03940841183066368,
+            "teacher_argmax_margin": 3.25,
+            "target_kl": 0.03227834776043892,
+            "distribution_overlap": 0.9637200832366943
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.965653121471405,
+            "teacher_argmax_nll": 0.03495064377784729,
+            "teacher_argmax_margin": 3.375,
+            "target_kl": 0.028080636635422707,
+            "distribution_overlap": 0.9680162072181702
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9613654017448425,
+        "teacher_argmax_nll": 0.03940073400735855,
+        "teacher_argmax_margin": 3.25,
+        "target_kl": 0.03227073326706886,
+        "distribution_overlap": 0.9637274742126465
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 32,
+      "query_index": 6,
+      "prefix": 16385,
+      "native": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.00621472392231226,
+        "teacher_argmax_nll": 5.080833911895752,
+        "teacher_argmax_margin": -5.0,
+        "target_kl": 3.4779422283172607,
+        "distribution_overlap": 0.21336938440799713
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.007014165166765451,
+            "teacher_argmax_nll": 4.9598236083984375,
+            "teacher_argmax_margin": -4.875,
+            "target_kl": 3.383087635040283,
+            "distribution_overlap": 0.21610933542251587
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.006970762740820646,
+            "teacher_argmax_nll": 4.966030597686768,
+            "teacher_argmax_margin": -4.875,
+            "target_kl": 3.3863465785980225,
+            "distribution_overlap": 0.2159748524427414
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.00619569281116128,
+            "teacher_argmax_nll": 5.0839009284973145,
+            "teacher_argmax_margin": -5.0,
+            "target_kl": 3.4746856689453125,
+            "distribution_overlap": 0.21530716121196747
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0061978530138731,
+            "teacher_argmax_nll": 5.083552360534668,
+            "teacher_argmax_margin": -5.0,
+            "target_kl": 3.472262144088745,
+            "distribution_overlap": 0.21516652405261993
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.006215284578502178,
+            "teacher_argmax_nll": 5.080743789672852,
+            "teacher_argmax_margin": -5.0,
+            "target_kl": 3.4778919219970703,
+            "distribution_overlap": 0.21336819231510162
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.006971071939915419,
+            "teacher_argmax_nll": 4.965986251831055,
+            "teacher_argmax_margin": -4.875,
+            "target_kl": 3.38631272315979,
+            "distribution_overlap": 0.21597260236740112
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.006971065420657396,
+            "teacher_argmax_nll": 4.965987205505371,
+            "teacher_argmax_margin": -4.875,
+            "target_kl": 3.386319160461426,
+            "distribution_overlap": 0.21597221493721008
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.00621517188847065,
+            "teacher_argmax_nll": 5.080761909484863,
+            "teacher_argmax_margin": -5.0,
+            "target_kl": 3.477841854095459,
+            "distribution_overlap": 0.21337497234344482
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.05889299511909485,
+        "teacher_argmax_nll": 2.832033157348633,
+        "teacher_argmax_margin": -2.625,
+        "target_kl": 1.774078607559204,
+        "distribution_overlap": 0.2708456814289093
+      },
+      "oracle_steps": 24
+    },
+    {
+      "query": 33,
+      "query_index": 0,
+      "prefix": 16392,
+      "native": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.06262413412332535,
+        "teacher_argmax_nll": 2.7706046104431152,
+        "teacher_argmax_margin": -2.5,
+        "target_kl": 2.7590653896331787,
+        "distribution_overlap": 0.06459929794073105
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.06262117624282837,
+            "teacher_argmax_nll": 2.7706518173217773,
+            "teacher_argmax_margin": -2.5,
+            "target_kl": 2.759112596511841,
+            "distribution_overlap": 0.06459575146436691
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.06278686225414276,
+            "teacher_argmax_nll": 2.7680094242095947,
+            "teacher_argmax_margin": -2.5,
+            "target_kl": 2.756474733352661,
+            "distribution_overlap": 0.06476379185914993
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.06263452768325806,
+            "teacher_argmax_nll": 2.7704386711120605,
+            "teacher_argmax_margin": -2.5,
+            "target_kl": 2.758923292160034,
+            "distribution_overlap": 0.06460926681756973
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.06902661919593811,
+            "teacher_argmax_nll": 2.6732630729675293,
+            "teacher_argmax_margin": -2.375,
+            "target_kl": 2.662003755569458,
+            "distribution_overlap": 0.0710272416472435
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.06277739256620407,
+            "teacher_argmax_nll": 2.768160343170166,
+            "teacher_argmax_margin": -2.5,
+            "target_kl": 2.7566208839416504,
+            "distribution_overlap": 0.06475406140089035
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.06263089925050735,
+            "teacher_argmax_nll": 2.7704966068267822,
+            "teacher_argmax_margin": -2.5,
+            "target_kl": 2.7589571475982666,
+            "distribution_overlap": 0.06460543721914291
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.07037398219108582,
+            "teacher_argmax_nll": 2.6539316177368164,
+            "teacher_argmax_margin": -2.375,
+            "target_kl": 2.6431477069854736,
+            "distribution_overlap": 0.07234355807304382
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.06264067441225052,
+            "teacher_argmax_nll": 2.7703404426574707,
+            "teacher_argmax_margin": -2.5,
+            "target_kl": 2.758816719055176,
+            "distribution_overlap": 0.06461530178785324
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.1136566549539566,
+        "teacher_argmax_nll": 2.1745731830596924,
+        "teacher_argmax_margin": -1.75,
+        "target_kl": 2.1632096767425537,
+        "distribution_overlap": 0.11621519178152084
+      },
+      "oracle_steps": 24
+    },
+    {
+      "query": 34,
+      "query_index": 0,
+      "prefix": 16393,
+      "native": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 8.269854151876643e-05,
+        "teacher_argmax_nll": 9.400308609008789,
+        "teacher_argmax_margin": -8.03125,
+        "target_kl": 9.354775428771973,
+        "distribution_overlap": 0.0021896949037909508
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 7.705933239776641e-05,
+            "teacher_argmax_nll": 9.470934867858887,
+            "teacher_argmax_margin": -8.09375,
+            "target_kl": 9.42502212524414,
+            "distribution_overlap": 0.0022170618176460266
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 7.427031960105523e-05,
+            "teacher_argmax_nll": 9.50779914855957,
+            "teacher_argmax_margin": -8.125,
+            "target_kl": 9.461613655090332,
+            "distribution_overlap": 0.002250752877444029
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 7.029921835055575e-05,
+            "teacher_argmax_nll": 9.562749862670898,
+            "teacher_argmax_margin": -8.15625,
+            "target_kl": 9.516175270080566,
+            "distribution_overlap": 0.0023183231242001057
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 5.7178047427441925e-05,
+            "teacher_argmax_nll": 9.769340515136719,
+            "teacher_argmax_margin": -8.28125,
+            "target_kl": 9.721385955810547,
+            "distribution_overlap": 0.0024957137648016214
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 7.764875772409141e-05,
+            "teacher_argmax_nll": 9.4633150100708,
+            "teacher_argmax_margin": -8.09375,
+            "target_kl": 9.417444229125977,
+            "distribution_overlap": 0.0022228527814149857
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 7.343025208683684e-05,
+            "teacher_argmax_nll": 9.519174575805664,
+            "teacher_argmax_margin": -8.15625,
+            "target_kl": 9.472926139831543,
+            "distribution_overlap": 0.002263459609821439
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 6.488031795015559e-05,
+            "teacher_argmax_nll": 9.642966270446777,
+            "teacher_argmax_margin": -8.21875,
+            "target_kl": 9.595961570739746,
+            "distribution_overlap": 0.002345664193853736
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 5.256864824332297e-05,
+            "teacher_argmax_nll": 9.85339069366455,
+            "teacher_argmax_margin": -8.40625,
+            "target_kl": 9.805092811584473,
+            "distribution_overlap": 0.0025285123847424984
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.0007305627805180848,
+        "teacher_argmax_nll": 7.221695423126221,
+        "teacher_argmax_margin": -5.6875,
+        "target_kl": 7.184905529022217,
+        "distribution_overlap": 0.002862105378881097
+      },
+      "oracle_steps": 24
+    },
+    {
+      "query": 35,
+      "query_index": 0,
+      "prefix": 16394,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9950909614562988,
+        "teacher_argmax_nll": 0.004921109415590763,
+        "teacher_argmax_margin": 6.6875,
+        "target_kl": 0.004541154485195875,
+        "distribution_overlap": 0.9952520132064819
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9950974583625793,
+            "teacher_argmax_nll": 0.004914585035294294,
+            "teacher_argmax_margin": 6.6875,
+            "target_kl": 0.004541008733212948,
+            "distribution_overlap": 0.9952585697174072
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9950789213180542,
+            "teacher_argmax_nll": 0.004933209158480167,
+            "teacher_argmax_margin": 6.6875,
+            "target_kl": 0.004559088032692671,
+            "distribution_overlap": 0.9952400922775269
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.995120644569397,
+            "teacher_argmax_nll": 0.004891334567219019,
+            "teacher_argmax_margin": 6.6875,
+            "target_kl": 0.004517854191362858,
+            "distribution_overlap": 0.9952818155288696
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9945843815803528,
+            "teacher_argmax_nll": 0.005430351477116346,
+            "teacher_argmax_margin": 6.5625,
+            "target_kl": 0.005042831879109144,
+            "distribution_overlap": 0.9947457313537598
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9950840473175049,
+            "teacher_argmax_nll": 0.004928108304738998,
+            "teacher_argmax_margin": 6.6875,
+            "target_kl": 0.004553660284727812,
+            "distribution_overlap": 0.995245099067688
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9950981736183167,
+            "teacher_argmax_nll": 0.004913873504847288,
+            "teacher_argmax_margin": 6.6875,
+            "target_kl": 0.004540286026895046,
+            "distribution_overlap": 0.9952592849731445
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.995084285736084,
+            "teacher_argmax_nll": 0.0049278708174824715,
+            "teacher_argmax_margin": 6.6875,
+            "target_kl": 0.004553348291665316,
+            "distribution_overlap": 0.9952454566955566
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9943311214447021,
+            "teacher_argmax_nll": 0.005684994161128998,
+            "teacher_argmax_margin": 6.5,
+            "target_kl": 0.005293814931064844,
+            "distribution_overlap": 0.9944924116134644
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9950909614562988,
+        "teacher_argmax_nll": 0.004921109415590763,
+        "teacher_argmax_margin": 6.6875,
+        "target_kl": 0.004541154485195875,
+        "distribution_overlap": 0.9952520132064819
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 36,
+      "query_index": 1,
+      "prefix": 16394,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.6291215419769287,
+        "teacher_argmax_nll": 0.463430792093277,
+        "teacher_argmax_margin": 1.5,
+        "target_kl": 0.30515193939208984,
+        "distribution_overlap": 0.6982353925704956
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6288318634033203,
+            "teacher_argmax_nll": 0.4638913869857788,
+            "teacher_argmax_margin": 1.5,
+            "target_kl": 0.3055994212627411,
+            "distribution_overlap": 0.6981454491615295
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6291214227676392,
+            "teacher_argmax_nll": 0.4634310007095337,
+            "teacher_argmax_margin": 1.5,
+            "target_kl": 0.3051531910896301,
+            "distribution_overlap": 0.698235034942627
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6288778781890869,
+            "teacher_argmax_nll": 0.46381813287734985,
+            "teacher_argmax_margin": 1.5,
+            "target_kl": 0.30554187297821045,
+            "distribution_overlap": 0.6981595754623413
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6291429400444031,
+            "teacher_argmax_nll": 0.463396817445755,
+            "teacher_argmax_margin": 1.5,
+            "target_kl": 0.3051239550113678,
+            "distribution_overlap": 0.6982414126396179
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6282833218574524,
+            "teacher_argmax_nll": 0.4647641181945801,
+            "teacher_argmax_margin": 1.5,
+            "target_kl": 0.3064580261707306,
+            "distribution_overlap": 0.6979759335517883
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6291203498840332,
+            "teacher_argmax_nll": 0.4634326696395874,
+            "teacher_argmax_margin": 1.5,
+            "target_kl": 0.30515509843826294,
+            "distribution_overlap": 0.6982346773147583
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.6291047930717468,
+            "teacher_argmax_nll": 0.4634574055671692,
+            "teacher_argmax_margin": 1.5,
+            "target_kl": 0.30518314242362976,
+            "distribution_overlap": 0.6982298493385315
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5997421741485596,
+            "teacher_argmax_nll": 0.5112554430961609,
+            "teacher_argmax_margin": 1.375,
+            "target_kl": 0.27323344349861145,
+            "distribution_overlap": 0.7138319611549377
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.6291215419769287,
+        "teacher_argmax_nll": 0.463430792093277,
+        "teacher_argmax_margin": 1.5,
+        "target_kl": 0.30515193939208984,
+        "distribution_overlap": 0.6982353925704956
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 37,
+      "query_index": 2,
+      "prefix": 16394,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.851235568523407,
+        "teacher_argmax_nll": 0.16106639802455902,
+        "teacher_argmax_margin": 1.875,
+        "target_kl": 0.053813204169273376,
+        "distribution_overlap": 0.9024239778518677
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.851076602935791,
+            "teacher_argmax_nll": 0.16125309467315674,
+            "teacher_argmax_margin": 1.875,
+            "target_kl": 0.05394769459962845,
+            "distribution_overlap": 0.9022691249847412
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8346984386444092,
+            "teacher_argmax_nll": 0.18068480491638184,
+            "teacher_argmax_margin": 1.75,
+            "target_kl": 0.06702758371829987,
+            "distribution_overlap": 0.885894775390625
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.85121750831604,
+            "teacher_argmax_nll": 0.16108760237693787,
+            "teacher_argmax_margin": 1.875,
+            "target_kl": 0.05382798612117767,
+            "distribution_overlap": 0.9024090766906738
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8510334491729736,
+            "teacher_argmax_nll": 0.1613038182258606,
+            "teacher_argmax_margin": 1.875,
+            "target_kl": 0.05404280126094818,
+            "distribution_overlap": 0.9022259712219238
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.834722101688385,
+            "teacher_argmax_nll": 0.18065644800662994,
+            "teacher_argmax_margin": 1.75,
+            "target_kl": 0.06699986755847931,
+            "distribution_overlap": 0.8859184384346008
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8347062468528748,
+            "teacher_argmax_nll": 0.1806754469871521,
+            "teacher_argmax_margin": 1.75,
+            "target_kl": 0.06701848655939102,
+            "distribution_overlap": 0.8859025835990906
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.835616946220398,
+            "teacher_argmax_nll": 0.17958498001098633,
+            "teacher_argmax_margin": 1.75,
+            "target_kl": 0.06593886762857437,
+            "distribution_overlap": 0.8868133425712585
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8512167930603027,
+            "teacher_argmax_nll": 0.16108842194080353,
+            "teacher_argmax_margin": 1.875,
+            "target_kl": 0.05382852256298065,
+            "distribution_overlap": 0.9024083614349365
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.851235568523407,
+        "teacher_argmax_nll": 0.16106639802455902,
+        "teacher_argmax_margin": 1.875,
+        "target_kl": 0.053813204169273376,
+        "distribution_overlap": 0.9024239778518677
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 38,
+      "query_index": 3,
+      "prefix": 16394,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9094600081443787,
+        "teacher_argmax_nll": 0.09490426629781723,
+        "teacher_argmax_margin": 3.125,
+        "target_kl": 0.08540637791156769,
+        "distribution_overlap": 0.9160284399986267
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9094613790512085,
+            "teacher_argmax_nll": 0.09490274637937546,
+            "teacher_argmax_margin": 3.125,
+            "target_kl": 0.08540485054254532,
+            "distribution_overlap": 0.9160298109054565
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9084137678146362,
+            "teacher_argmax_nll": 0.09605530649423599,
+            "teacher_argmax_margin": 3.125,
+            "target_kl": 0.08575832843780518,
+            "distribution_overlap": 0.9149821996688843
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9085022211074829,
+            "teacher_argmax_nll": 0.09595794975757599,
+            "teacher_argmax_margin": 3.125,
+            "target_kl": 0.08566100150346756,
+            "distribution_overlap": 0.915070652961731
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9094637036323547,
+            "teacher_argmax_nll": 0.09490025043487549,
+            "teacher_argmax_margin": 3.125,
+            "target_kl": 0.08540252596139908,
+            "distribution_overlap": 0.9160321354866028
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9085028171539307,
+            "teacher_argmax_nll": 0.09595730155706406,
+            "teacher_argmax_margin": 3.125,
+            "target_kl": 0.08566037565469742,
+            "distribution_overlap": 0.9150712490081787
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9094653725624084,
+            "teacher_argmax_nll": 0.09489841014146805,
+            "teacher_argmax_margin": 3.125,
+            "target_kl": 0.08540055900812149,
+            "distribution_overlap": 0.9160338044166565
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9084882736206055,
+            "teacher_argmax_nll": 0.09597332775592804,
+            "teacher_argmax_margin": 3.125,
+            "target_kl": 0.08567633479833603,
+            "distribution_overlap": 0.9150567054748535
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9094669818878174,
+            "teacher_argmax_nll": 0.09489656984806061,
+            "teacher_argmax_margin": 3.125,
+            "target_kl": 0.08539876341819763,
+            "distribution_overlap": 0.9160354137420654
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9094600081443787,
+        "teacher_argmax_nll": 0.09490426629781723,
+        "teacher_argmax_margin": 3.125,
+        "target_kl": 0.08540637791156769,
+        "distribution_overlap": 0.9160284399986267
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 39,
+      "query_index": 4,
+      "prefix": 16394,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.5610920786857605,
+        "teacher_argmax_nll": 0.5778703093528748,
+        "teacher_argmax_margin": 0.875,
+        "target_kl": 0.4623846709728241,
+        "distribution_overlap": 0.5914534330368042
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5359288454055786,
+            "teacher_argmax_nll": 0.6237537860870361,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5046522617340088,
+            "distribution_overlap": 0.5662909150123596
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.535941481590271,
+            "teacher_argmax_nll": 0.6237302422523499,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5046287178993225,
+            "distribution_overlap": 0.566303551197052
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5360128879547119,
+            "teacher_argmax_nll": 0.6235970854759216,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5046275854110718,
+            "distribution_overlap": 0.5663754940032959
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5361578464508057,
+            "teacher_argmax_nll": 0.6233266592025757,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5043611526489258,
+            "distribution_overlap": 0.5665199160575867
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5359171032905579,
+            "teacher_argmax_nll": 0.6237757802009583,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.504673957824707,
+            "distribution_overlap": 0.5662791728973389
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5359167456626892,
+            "teacher_argmax_nll": 0.6237764358520508,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5046747326850891,
+            "distribution_overlap": 0.5662788152694702
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.5611068606376648,
+            "teacher_argmax_nll": 0.5778439044952393,
+            "teacher_argmax_margin": 0.875,
+            "target_kl": 0.4623589515686035,
+            "distribution_overlap": 0.5914676785469055
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.535923421382904,
+            "teacher_argmax_nll": 0.6237639784812927,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5046614408493042,
+            "distribution_overlap": 0.566286027431488
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.5610920786857605,
+        "teacher_argmax_nll": 0.5778703093528748,
+        "teacher_argmax_margin": 0.875,
+        "target_kl": 0.4623846709728241,
+        "distribution_overlap": 0.5914534330368042
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 40,
+      "query_index": 5,
+      "prefix": 16394,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.8834397196769714,
+        "teacher_argmax_nll": 0.12393224239349365,
+        "teacher_argmax_margin": 2.375,
+        "target_kl": 0.12646248936653137,
+        "distribution_overlap": 0.8838374614715576
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8834364414215088,
+            "teacher_argmax_nll": 0.12393593043088913,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.12646633386611938,
+            "distribution_overlap": 0.883834183216095
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8833547830581665,
+            "teacher_argmax_nll": 0.12402839213609695,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.1265580654144287,
+            "distribution_overlap": 0.8837525248527527
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8834238052368164,
+            "teacher_argmax_nll": 0.12395025044679642,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.1264806091785431,
+            "distribution_overlap": 0.8838215470314026
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8834100961685181,
+            "teacher_argmax_nll": 0.12396573275327682,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.12649601697921753,
+            "distribution_overlap": 0.8838078379631042
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.883450448513031,
+            "teacher_argmax_nll": 0.1239200308918953,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.12645041942596436,
+            "distribution_overlap": 0.8838481903076172
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8838778138160706,
+            "teacher_argmax_nll": 0.12343640625476837,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.1259671151638031,
+            "distribution_overlap": 0.8842757344245911
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.8838770389556885,
+            "teacher_argmax_nll": 0.12343735247850418,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.1259680688381195,
+            "distribution_overlap": 0.884274959564209
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.883429765701294,
+            "teacher_argmax_nll": 0.12394341081380844,
+            "teacher_argmax_margin": 2.375,
+            "target_kl": 0.1264737993478775,
+            "distribution_overlap": 0.8838275074958801
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.8834397196769714,
+        "teacher_argmax_nll": 0.12393224239349365,
+        "teacher_argmax_margin": 2.375,
+        "target_kl": 0.12646248936653137,
+        "distribution_overlap": 0.8838374614715576
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 41,
+      "query_index": 6,
+      "prefix": 16394,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9980396628379822,
+        "teacher_argmax_nll": 0.0019622850231826305,
+        "teacher_argmax_margin": 6.25,
+        "target_kl": 0.001956694293767214,
+        "distribution_overlap": 0.9980438351631165
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9980399012565613,
+            "teacher_argmax_nll": 0.0019620470702648163,
+            "teacher_argmax_margin": 6.25,
+            "target_kl": 0.001956729218363762,
+            "distribution_overlap": 0.9980438351631165
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9980396628379822,
+            "teacher_argmax_nll": 0.0019622850231826305,
+            "teacher_argmax_margin": 6.25,
+            "target_kl": 0.0019569669384509325,
+            "distribution_overlap": 0.9980435967445374
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9982694387435913,
+            "teacher_argmax_nll": 0.001732040662318468,
+            "teacher_argmax_margin": 6.375,
+            "target_kl": 0.0017270281678065658,
+            "distribution_overlap": 0.9982731342315674
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9980401396751404,
+            "teacher_argmax_nll": 0.001961809117347002,
+            "teacher_argmax_margin": 6.25,
+            "target_kl": 0.001956491032615304,
+            "distribution_overlap": 0.9980440735816956
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9980396628379822,
+            "teacher_argmax_nll": 0.0019622850231826305,
+            "teacher_argmax_margin": 6.25,
+            "target_kl": 0.0019566945265978575,
+            "distribution_overlap": 0.9980438351631165
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9980396628379822,
+            "teacher_argmax_nll": 0.0019622850231826305,
+            "teacher_argmax_margin": 6.25,
+            "target_kl": 0.0019566938281059265,
+            "distribution_overlap": 0.9980438351631165
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9980396628379822,
+            "teacher_argmax_nll": 0.0019622850231826305,
+            "teacher_argmax_margin": 6.25,
+            "target_kl": 0.0019566938281059265,
+            "distribution_overlap": 0.9980438351631165
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9980396628379822,
+            "teacher_argmax_nll": 0.0019622850231826305,
+            "teacher_argmax_margin": 6.25,
+            "target_kl": 0.001956693595275283,
+            "distribution_overlap": 0.9980438351631165
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9980396628379822,
+        "teacher_argmax_nll": 0.0019622850231826305,
+        "teacher_argmax_margin": 6.25,
+        "target_kl": 0.001956694293767214,
+        "distribution_overlap": 0.9980438351631165
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 42,
+      "query_index": 7,
+      "prefix": 16394,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999905824661255,
+        "teacher_argmax_nll": 9.417489309271332e-06,
+        "teacher_argmax_margin": 13.375,
+        "target_kl": 8.70723306434229e-06,
+        "distribution_overlap": 0.9999914765357971
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999904632568359,
+            "teacher_argmax_nll": 9.536697689327411e-06,
+            "teacher_argmax_margin": 13.3125,
+            "target_kl": 8.818758033157792e-06,
+            "distribution_overlap": 0.9999913573265076
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999905824661255,
+            "teacher_argmax_nll": 9.417489309271332e-06,
+            "teacher_argmax_margin": 13.375,
+            "target_kl": 8.709761459613219e-06,
+            "distribution_overlap": 0.9999914765357971
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.999990701675415,
+            "teacher_argmax_nll": 9.298280929215252e-06,
+            "teacher_argmax_margin": 13.375,
+            "target_kl": 8.611004886915907e-06,
+            "distribution_overlap": 0.9999915957450867
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.999990701675415,
+            "teacher_argmax_nll": 9.298280929215252e-06,
+            "teacher_argmax_margin": 13.375,
+            "target_kl": 8.613362297182903e-06,
+            "distribution_overlap": 0.9999915957450867
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999905824661255,
+            "teacher_argmax_nll": 9.417489309271332e-06,
+            "teacher_argmax_margin": 13.375,
+            "target_kl": 8.708737368579023e-06,
+            "distribution_overlap": 0.9999914765357971
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999904632568359,
+            "teacher_argmax_nll": 9.536697689327411e-06,
+            "teacher_argmax_margin": 13.3125,
+            "target_kl": 8.82155291037634e-06,
+            "distribution_overlap": 0.9999913573265076
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999904632568359,
+            "teacher_argmax_nll": 9.536697689327411e-06,
+            "teacher_argmax_margin": 13.3125,
+            "target_kl": 8.81971664057346e-06,
+            "distribution_overlap": 0.9999913573265076
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.9999903440475464,
+            "teacher_argmax_nll": 9.65590606938349e-06,
+            "teacher_argmax_margin": 13.3125,
+            "target_kl": 8.926533155317884e-06,
+            "distribution_overlap": 0.999991238117218
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.9999905824661255,
+        "teacher_argmax_nll": 9.417489309271332e-06,
+        "teacher_argmax_margin": 13.375,
+        "target_kl": 8.70723306434229e-06,
+        "distribution_overlap": 0.9999914765357971
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 43,
+      "query_index": 8,
+      "prefix": 16394,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.7972150444984436,
+        "teacher_argmax_nll": 0.22663086652755737,
+        "teacher_argmax_margin": 1.375,
+        "target_kl": 0.2266208827495575,
+        "distribution_overlap": 0.7972157597541809
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7972151041030884,
+            "teacher_argmax_nll": 0.2266307771205902,
+            "teacher_argmax_margin": 1.375,
+            "target_kl": 0.22662079334259033,
+            "distribution_overlap": 0.7972158193588257
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7972151637077332,
+            "teacher_argmax_nll": 0.22663067281246185,
+            "teacher_argmax_margin": 1.375,
+            "target_kl": 0.22662068903446198,
+            "distribution_overlap": 0.7972158789634705
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.797215461730957,
+            "teacher_argmax_nll": 0.226630300283432,
+            "teacher_argmax_margin": 1.375,
+            "target_kl": 0.22662031650543213,
+            "distribution_overlap": 0.7972161769866943
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7972150444984436,
+            "teacher_argmax_nll": 0.22663086652755737,
+            "teacher_argmax_margin": 1.375,
+            "target_kl": 0.2266208827495575,
+            "distribution_overlap": 0.7972157597541809
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7972151637077332,
+            "teacher_argmax_nll": 0.22663067281246185,
+            "teacher_argmax_margin": 1.375,
+            "target_kl": 0.22662068903446198,
+            "distribution_overlap": 0.7972158789634705
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7972151041030884,
+            "teacher_argmax_nll": 0.2266307771205902,
+            "teacher_argmax_margin": 1.375,
+            "target_kl": 0.22662079334259033,
+            "distribution_overlap": 0.7972158193588257
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7972151041030884,
+            "teacher_argmax_nll": 0.2266307771205902,
+            "teacher_argmax_margin": 1.375,
+            "target_kl": 0.22662079334259033,
+            "distribution_overlap": 0.7972158193588257
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.7972151041030884,
+            "teacher_argmax_nll": 0.2266307771205902,
+            "teacher_argmax_margin": 1.375,
+            "target_kl": 0.22662079334259033,
+            "distribution_overlap": 0.7972158193588257
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.7972150444984436,
+        "teacher_argmax_nll": 0.22663086652755737,
+        "teacher_argmax_margin": 1.375,
+        "target_kl": 0.2266208827495575,
+        "distribution_overlap": 0.7972157597541809
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 44,
+      "query_index": 9,
+      "prefix": 16394,
+      "native": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.0873299166560173,
+        "teacher_argmax_nll": 2.4380621910095215,
+        "teacher_argmax_margin": -1.75,
+        "target_kl": 2.438052177429199,
+        "distribution_overlap": 0.08733051270246506
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09281047433614731,
+            "teacher_argmax_nll": 2.3771958351135254,
+            "teacher_argmax_margin": -1.625,
+            "target_kl": 2.377185583114624,
+            "distribution_overlap": 0.09281107038259506
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0873299166560173,
+            "teacher_argmax_nll": 2.4380621910095215,
+            "teacher_argmax_margin": -1.75,
+            "target_kl": 2.438052177429199,
+            "distribution_overlap": 0.08733051270246506
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0873299166560173,
+            "teacher_argmax_nll": 2.4380621910095215,
+            "teacher_argmax_margin": -1.75,
+            "target_kl": 2.438052177429199,
+            "distribution_overlap": 0.08733051270246506
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0873299166560173,
+            "teacher_argmax_nll": 2.4380621910095215,
+            "teacher_argmax_margin": -1.75,
+            "target_kl": 2.438052177429199,
+            "distribution_overlap": 0.08733051270246506
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09281047433614731,
+            "teacher_argmax_nll": 2.3771958351135254,
+            "teacher_argmax_margin": -1.625,
+            "target_kl": 2.377185583114624,
+            "distribution_overlap": 0.09281107038259506
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09281047433614731,
+            "teacher_argmax_nll": 2.3771958351135254,
+            "teacher_argmax_margin": -1.625,
+            "target_kl": 2.377185583114624,
+            "distribution_overlap": 0.09281107038259506
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09281047433614731,
+            "teacher_argmax_nll": 2.3771958351135254,
+            "teacher_argmax_margin": -1.625,
+            "target_kl": 2.377185583114624,
+            "distribution_overlap": 0.09281107038259506
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09281047433614731,
+            "teacher_argmax_nll": 2.3771958351135254,
+            "teacher_argmax_margin": -1.625,
+            "target_kl": 2.377185583114624,
+            "distribution_overlap": 0.09281107038259506
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.09825192391872406,
+        "teacher_argmax_nll": 2.320220470428467,
+        "teacher_argmax_margin": -1.5,
+        "target_kl": 2.3202104568481445,
+        "distribution_overlap": 0.09825251996517181
+      },
+      "oracle_steps": 24
+    },
+    {
+      "query": 45,
+      "query_index": 0,
+      "prefix": 16404,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.45078423619270325,
+        "teacher_argmax_nll": 0.796766459941864,
+        "teacher_argmax_margin": 0.5,
+        "target_kl": 0.7395898103713989,
+        "distribution_overlap": 0.46351054310798645
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.450785756111145,
+            "teacher_argmax_nll": 0.7967631220817566,
+            "teacher_argmax_margin": 0.5,
+            "target_kl": 0.7395865321159363,
+            "distribution_overlap": 0.4635120630264282
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.45078548789024353,
+            "teacher_argmax_nll": 0.7967636585235596,
+            "teacher_argmax_margin": 0.5,
+            "target_kl": 0.7395870685577393,
+            "distribution_overlap": 0.46351179480552673
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.4508363604545593,
+            "teacher_argmax_nll": 0.7966508865356445,
+            "teacher_argmax_margin": 0.5,
+            "target_kl": 0.7394722104072571,
+            "distribution_overlap": 0.46356266736984253
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.45544132590293884,
+            "teacher_argmax_nll": 0.78648841381073,
+            "teacher_argmax_margin": 0.5,
+            "target_kl": 0.7296658754348755,
+            "distribution_overlap": 0.46816787123680115
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.45078423619270325,
+            "teacher_argmax_nll": 0.796766459941864,
+            "teacher_argmax_margin": 0.5,
+            "target_kl": 0.7395898103713989,
+            "distribution_overlap": 0.46351054310798645
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.45553675293922424,
+            "teacher_argmax_nll": 0.7862789034843445,
+            "teacher_argmax_margin": 0.5,
+            "target_kl": 0.7294635772705078,
+            "distribution_overlap": 0.4682631194591522
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.45553770661354065,
+            "teacher_argmax_nll": 0.7862768173217773,
+            "teacher_argmax_margin": 0.5,
+            "target_kl": 0.7294590473175049,
+            "distribution_overlap": 0.46826407313346863
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.4507846534252167,
+            "teacher_argmax_nll": 0.7967655658721924,
+            "teacher_argmax_margin": 0.5,
+            "target_kl": 0.7395889759063721,
+            "distribution_overlap": 0.4635109603404999
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.45078423619270325,
+        "teacher_argmax_nll": 0.796766459941864,
+        "teacher_argmax_margin": 0.5,
+        "target_kl": 0.7395898103713989,
+        "distribution_overlap": 0.46351054310798645
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 46,
+      "query_index": 1,
+      "prefix": 16404,
+      "native": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.381244957447052,
+        "teacher_argmax_nll": 0.9643131494522095,
+        "teacher_argmax_margin": 0.75,
+        "target_kl": 0.5759822726249695,
+        "distribution_overlap": 0.5201023817062378
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.3783382475376129,
+            "teacher_argmax_nll": 0.9719666242599487,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5820635557174683,
+            "distribution_overlap": 0.5165457725524902
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.37930989265441895,
+            "teacher_argmax_nll": 0.9694017767906189,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5804483294487,
+            "distribution_overlap": 0.5177345871925354
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.37639275193214417,
+            "teacher_argmax_nll": 0.9771221876144409,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5866332054138184,
+            "distribution_overlap": 0.5141652822494507
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.3872785270214081,
+            "teacher_argmax_nll": 0.9486111402511597,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5631633996963501,
+            "distribution_overlap": 0.5252189636230469
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.3782259523868561,
+            "teacher_argmax_nll": 0.9722635746002197,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.582336962223053,
+            "distribution_overlap": 0.5164083242416382
+          },
+          "0.5": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.376435786485672,
+            "teacher_argmax_nll": 0.9770078063011169,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.586525022983551,
+            "distribution_overlap": 0.5142179727554321
+          },
+          "1.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.3795541822910309,
+            "teacher_argmax_nll": 0.9687578678131104,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5799843668937683,
+            "distribution_overlap": 0.518033504486084
+          },
+          "2.0": {
+            "top1_matches_target": true,
+            "teacher_argmax_probability": 0.3774438798427582,
+            "teacher_argmax_nll": 0.9743334054946899,
+            "teacher_argmax_margin": 0.75,
+            "target_kl": 0.5849754214286804,
+            "distribution_overlap": 0.5154513716697693
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": true,
+        "teacher_argmax_probability": 0.381244957447052,
+        "teacher_argmax_nll": 0.9643131494522095,
+        "teacher_argmax_margin": 0.75,
+        "target_kl": 0.5759822726249695,
+        "distribution_overlap": 0.5201023817062378
+      },
+      "oracle_steps": 0
+    },
+    {
+      "query": 47,
+      "query_index": 2,
+      "prefix": 16404,
+      "native": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.08595588058233261,
+        "teacher_argmax_nll": 2.45392107963562,
+        "teacher_argmax_margin": -1.0,
+        "target_kl": 1.1728345155715942,
+        "distribution_overlap": 0.3697945475578308
+      },
+      "scaled_mapper": {
+        "old": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09631793200969696,
+            "teacher_argmax_nll": 2.3401007652282715,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 1.1590323448181152,
+            "distribution_overlap": 0.3775089979171753
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09620912373065948,
+            "teacher_argmax_nll": 2.341231107711792,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 1.1549043655395508,
+            "distribution_overlap": 0.37800729274749756
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09495682269334793,
+            "teacher_argmax_nll": 2.35433292388916,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 1.1621073484420776,
+            "distribution_overlap": 0.3748849332332611
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09405961632728577,
+            "teacher_argmax_nll": 2.3638265132904053,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 1.1501370668411255,
+            "distribution_overlap": 0.3810785114765167
+          }
+        },
+        "goal": {
+          "0.25": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09614675492048264,
+            "teacher_argmax_nll": 2.3418796062469482,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 1.1553804874420166,
+            "distribution_overlap": 0.37783336639404297
+          },
+          "0.5": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09602943807840347,
+            "teacher_argmax_nll": 2.3431005477905273,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 1.1566249132156372,
+            "distribution_overlap": 0.37750962376594543
+          },
+          "1.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.09397879987955093,
+            "teacher_argmax_nll": 2.3646860122680664,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 1.172684907913208,
+            "distribution_overlap": 0.37224337458610535
+          },
+          "2.0": {
+            "top1_matches_target": false,
+            "teacher_argmax_probability": 0.0931183323264122,
+            "teacher_argmax_nll": 2.3738842010498047,
+            "teacher_argmax_margin": -0.875,
+            "target_kl": 1.1605054140090942,
+            "distribution_overlap": 0.37842899560928345
+          }
+        }
+      },
+      "oracle": {
+        "top1_matches_target": false,
+        "teacher_argmax_probability": 0.11988262832164764,
+        "teacher_argmax_nll": 2.121242046356201,
+        "teacher_argmax_margin": -0.625,
+        "target_kl": 1.1270829439163208,
+        "distribution_overlap": 0.39661940932273865
+      },
+      "oracle_steps": 24
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "gpu": "NVIDIA H100",
+  "torch": "2.7.1+cu128",
+  "target_dtype": "torch.float32",
+  "draft_dtype": "torch.bfloat16",
+  "tf32": false,
+  "target_layers": 28,
+  "draft_layers": 28,
+  "input_lengths": {
+    "1554": 1860,
+    "1555": 1114,
+    "1556": 1922,
+    "1557": 920,
+    "1558": 1480,
+    "1559": 1086,
+    "1560": 1254,
+    "1561": 1372
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "time_utc": "2026-10-18T03:05:00.836189+00:00",
+  "scope": "Git code-and-evidence snapshot while authorized module architecture experiments continue",
+  "parent_commit": "9740a041d4cbfa219986b0b3f4edb5af0c048842",
+  "module_metric_study": {
+    "status": "completed",
+    "confirmation_outputs_exact": 180,
+    "report": "exp/module_opt/REPORT.md"
+  },
+  "module_architecture": {
+    "status": "in_progress",
+    "primary_saved_confirmation_requests": 69,
+    "primary_registered": 72,
+    "staged_runtime_sha256": "a42d69205e75746c210ee948b3a396109ce0605d358d5daa3eff71615f69f4a9",
+    "report": "exp/module_arch/REPORT.md",
+    "supplementary": "Queued; warm-gate/full-span M2 and separate train-fast M3 endpoint, no warm-mapper/length joint claim"
+  },
+  "paused_original_test": {
+    "completed": 71,
+    "registered": 320,
+    "status": "paused_by_user"
+  },
+  "cpu_checks": 59,
+  "excluded": "Ignored local checkpoint/tensor/log binaries are not included; source and textual records are included",
+  "limits": "Partial requests and training loss do not establish final performance; frozen source preserves original whitespace and bytes"
+}

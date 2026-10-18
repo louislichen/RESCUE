@@ -1,0 +1,103 @@
+{
+  "scope": "Exploratory training-monitor calibration; not independent test or causal attribution",
+  "monitor_frames": 260,
+  "first_continue_auc": 0.5608108043670654,
+  "depths": [
+    {
+      "depth": 1,
+      "observations": 260,
+      "actual_continue": 0.7153846025466919,
+      "predicted_continue": 0.6292207837104797,
+      "nll": 0.6105116605758667,
+      "training_depth_prior_nll": 0.6100471615791321
+    },
+    {
+      "depth": 2,
+      "observations": 186,
+      "actual_continue": 0.7096773982048035,
+      "predicted_continue": 0.6853646039962769,
+      "nll": 0.6305145621299744,
+      "training_depth_prior_nll": 0.6034519672393799
+    },
+    {
+      "depth": 3,
+      "observations": 129,
+      "actual_continue": 0.7984496355056763,
+      "predicted_continue": 0.6517272591590881,
+      "nll": 0.5745964646339417,
+      "training_depth_prior_nll": 0.5352976322174072
+    },
+    {
+      "depth": 4,
+      "observations": 103,
+      "actual_continue": 0.8737863898277283,
+      "predicted_continue": 0.7098919153213501,
+      "nll": 0.4732423722743988,
+      "training_depth_prior_nll": 0.42307284474372864
+    },
+    {
+      "depth": 5,
+      "observations": 90,
+      "actual_continue": 0.8111110925674438,
+      "predicted_continue": 0.6740366220474243,
+      "nll": 0.5485394597053528,
+      "training_depth_prior_nll": 0.5007149577140808
+    },
+    {
+      "depth": 6,
+      "observations": 73,
+      "actual_continue": 0.6849315166473389,
+      "predicted_continue": 0.7129005789756775,
+      "nll": 0.6457065343856812,
+      "training_depth_prior_nll": 0.6457436084747314
+    },
+    {
+      "depth": 7,
+      "observations": 50,
+      "actual_continue": 0.8199999928474426,
+      "predicted_continue": 0.6799670457839966,
+      "nll": 0.536021888256073,
+      "training_depth_prior_nll": 0.4845789968967438
+    },
+    {
+      "depth": 8,
+      "observations": 41,
+      "actual_continue": 0.7560975551605225,
+      "predicted_continue": 0.7627431750297546,
+      "nll": 0.6563522815704346,
+      "training_depth_prior_nll": 0.5619310140609741
+    },
+    {
+      "depth": 9,
+      "observations": 30,
+      "actual_continue": 0.7333333492279053,
+      "predicted_continue": 0.6485399603843689,
+      "nll": 0.6260135173797607,
+      "training_depth_prior_nll": 0.5885733366012573
+    },
+    {
+      "depth": 10,
+      "observations": 22,
+      "actual_continue": 0.6363636255264282,
+      "predicted_continue": 0.7205867767333984,
+      "nll": 0.9922733306884766,
+      "training_depth_prior_nll": 0.7860981225967407
+    },
+    {
+      "depth": 11,
+      "observations": 14,
+      "actual_continue": 1.0,
+      "predicted_continue": 0.7130556702613831,
+      "nll": 0.35771340131759644,
+      "training_depth_prior_nll": 0.3215835690498352
+    },
+    {
+      "depth": 12,
+      "observations": 14,
+      "actual_continue": 0.8571428656578064,
+      "predicted_continue": 0.3528071939945221,
+      "nll": 1.1640533208847046,
+      "training_depth_prior_nll": 0.511813759803772
+    }
+  ]
+}

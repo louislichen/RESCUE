@@ -1,0 +1,54 @@
+{
+  "scope": "Training-document execution smoke; no inferential CI or held-out quality claim",
+  "artificial_delivery_delay_ms": 10.0,
+  "measured_runs": 24,
+  "exact_outputs": 24,
+  "new_control_trajectories_match": true,
+  "modes": {
+    "legacy_serial": {
+      "pooled_decode_tps": 22.86865709865231,
+      "pooled_total_tps": 16.379907160961263,
+      "median_request_decode_seconds": {
+        "1500": 1.3853905990108615,
+        "1501": 1.194857961992966
+      },
+      "rounds": 72,
+      "decision_wait_seconds": 0.0,
+      "ready_by_first_token": 0
+    },
+    "serial_original": {
+      "pooled_decode_tps": 22.393950415181024,
+      "pooled_total_tps": 16.130079791701437,
+      "median_request_decode_seconds": {
+        "1500": 1.4467780160048278,
+        "1501": 1.1870477899938123
+      },
+      "rounds": 72,
+      "decision_wait_seconds": 0.0,
+      "ready_by_first_token": 0
+    },
+    "serial_cached": {
+      "pooled_decode_tps": 22.94198559210991,
+      "pooled_total_tps": 16.421172735092977,
+      "median_request_decode_seconds": {
+        "1500": 1.4125504949915921,
+        "1501": 1.1591480019997107
+      },
+      "rounds": 72,
+      "decision_wait_seconds": 0.0,
+      "ready_by_first_token": 0
+    },
+    "async_cached": {
+      "pooled_decode_tps": 24.67707063240287,
+      "pooled_total_tps": 17.295465646351143,
+      "median_request_decode_seconds": {
+        "1500": 1.314140069996938,
+        "1501": 1.0774075000081211
+      },
+      "rounds": 72,
+      "decision_wait_seconds": 0.0011333300062688068,
+      "ready_by_first_token": 72
+    }
+  },
+  "async_vs_serial_cached_decode_percent": 7.562924461471554
+}

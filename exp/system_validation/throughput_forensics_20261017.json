@@ -1,0 +1,206 @@
+{
+  "scope": "Saved paired records and inspected implementation; no new GPU evaluation",
+  "output_directory": "exp/system_validation/out_optimization_v1_20261017",
+  "mapper": {
+    "config": {
+      "layers": [
+        24,
+        25,
+        26,
+        27
+      ],
+      "teacher_layers": [
+        24,
+        26,
+        26,
+        27
+      ],
+      "source_dim": 512,
+      "value_dim": 256,
+      "query_dim": 1536,
+      "rank": 64,
+      "seed": 42
+    },
+    "parameters": 700804,
+    "weight_bytes": 2803216,
+    "weight_mib": 2.6733551025390625,
+    "dtypes": [
+      "torch.float32"
+    ],
+    "sha256": "9e150c272a21b45cf476ce7b2e3dbbfe588bc5c33893c76cad333311d194bf9f"
+  },
+  "modes": {
+    "legacy": {
+      "requests": 16,
+      "decode_seconds": 25.87587226300093,
+      "prefill_seconds": 9.662678506996599,
+      "total_seconds": 35.539528034991235,
+      "blocks": 330,
+      "steps": 890,
+      "tokens_per_round": 2.4,
+      "decode_ms_per_round": 78.41173413030585,
+      "length_caps": {
+        "2": 286,
+        "4": 36,
+        "1": 8
+      }
+    },
+    "native": {
+      "requests": 16,
+      "decode_seconds": 21.201514956032042,
+      "prefill_seconds": 9.669982642953983,
+      "total_seconds": 30.872450007955194,
+      "blocks": 258,
+      "steps": 1104,
+      "tokens_per_round": 3.0697674418604652,
+      "decode_ms_per_round": 82.17641455826373,
+      "length_caps": {
+        "4": 252,
+        "2": 2,
+        "1": 4
+      }
+    },
+    "optimized_calibrated": {
+      "requests": 16,
+      "decode_seconds": 25.874894266977208,
+      "prefill_seconds": 9.709947439987445,
+      "total_seconds": 35.58583898296638,
+      "blocks": 266,
+      "steps": 1140,
+      "tokens_per_round": 2.9774436090225564,
+      "decode_ms_per_round": 97.27403859765867,
+      "length_caps": {
+        "4": 170,
+        "8": 34,
+        "2": 60,
+        "1": 2
+      },
+      "cost_replay": {
+        "predicted_seconds": 25.414034326405925,
+        "observed_seconds": 25.874894266977208,
+        "pooled_error_percent": -1.781108497743522,
+        "request_mape_percent": 1.9409948069802723,
+        "request_error_range_percent": [
+          -3.356526479201294,
+          -0.30337908051087936
+        ],
+        "scope": "Uses realized lengths and catchup counts; excludes risk-prediction error and does not validate candidate ranking"
+      },
+      "full_key_decode_probes_now": 1140,
+      "full_key_decode_probes_if_deferred": 250,
+      "deferred_probe_reduction_percent": 78.0701754385965,
+      "query_token_layer_gate_evaluations": 4560
+    },
+    "optimized_fixed": {
+      "requests": 16,
+      "decode_seconds": 24.52889788596076,
+      "prefill_seconds": 9.736503664011252,
+      "total_seconds": 34.266374204991735,
+      "blocks": 260,
+      "steps": 1102,
+      "tokens_per_round": 3.046153846153846,
+      "decode_ms_per_round": 94.34191494600292,
+      "length_caps": {
+        "4": 254,
+        "2": 2,
+        "1": 4
+      },
+      "cost_replay": {
+        "predicted_seconds": 24.6452954881536,
+        "observed_seconds": 24.52889788596076,
+        "pooled_error_percent": 0.4745325400839162,
+        "request_mape_percent": 0.4855536301806983,
+        "request_error_range_percent": [
+          -0.128541410893368,
+          1.538159742142442
+        ],
+        "scope": "Uses realized lengths and catchup counts; excludes risk-prediction error and does not validate candidate ranking"
+      },
+      "full_key_decode_probes_now": 1102,
+      "full_key_decode_probes_if_deferred": 244,
+      "deferred_probe_reduction_percent": 77.8584392014519,
+      "query_token_layer_gate_evaluations": 4408
+    },
+    "optimized_oldrisk": {
+      "requests": 16,
+      "decode_seconds": 24.66870863395161,
+      "prefill_seconds": 9.667282842012355,
+      "total_seconds": 34.33696654898813,
+      "blocks": 330,
+      "steps": 890,
+      "tokens_per_round": 2.4,
+      "decode_ms_per_round": 74.7536625271261,
+      "length_caps": {
+        "2": 286,
+        "4": 36,
+        "1": 8
+      },
+      "cost_replay": {
+        "predicted_seconds": 24.246203143156947,
+        "observed_seconds": 24.66870863395161,
+        "pooled_error_percent": -1.7127183147851,
+        "request_mape_percent": 1.8202661054329508,
+        "request_error_range_percent": [
+          -2.842991929114924,
+          -0.5614862686434519
+        ],
+        "scope": "Uses realized lengths and catchup counts; excludes risk-prediction error and does not validate candidate ranking"
+      },
+      "full_key_decode_probes_now": 890,
+      "full_key_decode_probes_if_deferred": 314,
+      "deferred_probe_reduction_percent": 64.71910112359551,
+      "query_token_layer_gate_evaluations": 3560
+    },
+    "specextend16": {
+      "requests": 16,
+      "decode_seconds": 21.598815724006272,
+      "prefill_seconds": 9.727768464988912,
+      "total_seconds": 31.327529835980386,
+      "blocks": 250,
+      "steps": 1076,
+      "tokens_per_round": 3.168,
+      "decode_ms_per_round": 86.39526289602509,
+      "length_caps": {
+        "4": 244,
+        "2": 2,
+        "3": 2,
+        "1": 2
+      }
+    },
+    "specextend32": {
+      "requests": 16,
+      "decode_seconds": 21.639567506004823,
+      "prefill_seconds": 9.666083690040978,
+      "total_seconds": 31.306585584999993,
+      "blocks": 252,
+      "steps": 1072,
+      "tokens_per_round": 3.142857142857143,
+      "decode_ms_per_round": 85.87129962700327,
+      "length_caps": {
+        "4": 246,
+        "2": 2,
+        "1": 4
+      }
+    },
+    "target_ar": {
+      "requests": 16,
+      "decode_seconds": 16.81017028199858,
+      "prefill_seconds": 9.008680830069352,
+      "total_seconds": 25.818851112067932,
+      "blocks": 0,
+      "steps": 0,
+      "tokens_per_round": null,
+      "decode_ms_per_round": null,
+      "length_caps": {}
+    }
+  },
+  "fixed_vs_native_accounting": {
+    "decode_gap_seconds": 3.327382929928717,
+    "extra_round_count_component_seconds": 0.16435282911652746,
+    "higher_average_cycle_component_seconds": 3.1630301008121915,
+    "higher_average_cycle_component_fraction": 0.950605976956176,
+    "break_even_extra_emitted_tokens_per_round_percent": 15.694080997650817,
+    "scope": "Algebraic decomposition of saved totals, not causal per-module attribution; break-even holds other terms constant"
+  },
+  "analysis_source_sha256": "a636c9924b24b83423e788ed6efa72e51fcd89780136a2f05338904506d0038e"
+}

@@ -1,0 +1,5 @@
+{
+  "reason": "Initial prototype chose local oracle regret on fit states; final policy selection targets document-modeled throughput on the training monitor.",
+  "gpu_inference_requests": 0,
+  "used_by_study": false
+}

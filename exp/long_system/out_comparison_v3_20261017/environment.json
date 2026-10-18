@@ -1,0 +1,6 @@
+{
+  "torch": "2.7.1+cu128",
+  "gpu": "NVIDIA H100",
+  "packing_seconds": 0.02448642801027745,
+  "packing_allocated_delta_bytes": -58720256
+}

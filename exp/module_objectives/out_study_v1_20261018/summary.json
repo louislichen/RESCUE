@@ -1,0 +1,1640 @@
+{
+  "scope": "Three-document fresh-development pilot, paired by document; not independent paper confirmation or SOTA evidence",
+  "quality": {
+    "train": {
+      "modes": {
+        "full_native": {
+          "queries": 96,
+          "greedy_agreement": 0.7604166666666666,
+          "mean_kl": 0.6381853965998788,
+          "mean_reference_tokens": 12298.5,
+          "mean_teacher_mass": 1.0,
+          "mean_teacher_read_error": 2.3560825959042706e-15
+        },
+        "hier1024": {
+          "queries": 96,
+          "greedy_agreement": 0.7395833333333334,
+          "mean_kl": 0.5583658422177749,
+          "mean_reference_tokens": 1024,
+          "mean_teacher_mass": 0.9421150740236044,
+          "mean_teacher_read_error": 0.00847064906580878
+        },
+        "hier512": {
+          "queries": 96,
+          "greedy_agreement": 0.75,
+          "mean_kl": 0.5244432892437008,
+          "mean_reference_tokens": 512,
+          "mean_teacher_mass": 0.9225655638923248,
+          "mean_teacher_read_error": 0.015175584432048103
+        },
+        "hier512_goal": {
+          "queries": 96,
+          "greedy_agreement": 0.7604166666666666,
+          "mean_kl": 0.504300240569353,
+          "mean_reference_tokens": 512,
+          "mean_teacher_mass": 0.9225655638923248,
+          "mean_teacher_read_error": 0.015175584432048103
+        },
+        "hier512_old": {
+          "queries": 96,
+          "greedy_agreement": 0.7708333333333334,
+          "mean_kl": 0.5022928793377641,
+          "mean_reference_tokens": 512,
+          "mean_teacher_mass": 0.9225655638923248,
+          "mean_teacher_read_error": 0.015175584432048103
+        },
+        "joint512": {
+          "queries": 96,
+          "greedy_agreement": 0.7395833333333334,
+          "mean_kl": 0.5390089588419537,
+          "mean_reference_tokens": 512,
+          "mean_teacher_mass": 0.9488517561306556,
+          "mean_teacher_read_error": 0.005356527901615967
+        },
+        "teacher512": {
+          "queries": 96,
+          "greedy_agreement": 0.7395833333333334,
+          "mean_kl": 0.5096906117320431,
+          "mean_reference_tokens": 512,
+          "mean_teacher_mass": 0.9569765906780958,
+          "mean_teacher_read_error": 0.004166729054607761
+        }
+      },
+      "contrasts": {
+        "teacher512_vs_full_native": {
+          "corrected": 1,
+          "harmed": 3,
+          "net_percentage_points": -2.0833333333333335,
+          "doc_bootstrap_ci95_pp": [
+            -4.166666666666667,
+            0
+          ],
+          "documents": 2,
+          "by_document_pp": {
+            "246": 0,
+            "248": -4.166666666666667
+          }
+        },
+        "joint512_vs_teacher512": {
+          "corrected": 1,
+          "harmed": 1,
+          "net_percentage_points": 0.0,
+          "doc_bootstrap_ci95_pp": [
+            -2.0833333333333335,
+            2.0833333333333335
+          ],
+          "documents": 2,
+          "by_document_pp": {
+            "246": -2.0833333333333335,
+            "248": 2.0833333333333335
+          }
+        },
+        "hier512_vs_joint512": {
+          "corrected": 2,
+          "harmed": 1,
+          "net_percentage_points": 1.0416666666666667,
+          "doc_bootstrap_ci95_pp": [
+            0,
+            2.0833333333333335
+          ],
+          "documents": 2,
+          "by_document_pp": {
+            "246": 2.0833333333333335,
+            "248": 0
+          }
+        },
+        "hier1024_vs_hier512": {
+          "corrected": 1,
+          "harmed": 2,
+          "net_percentage_points": -1.0416666666666667,
+          "doc_bootstrap_ci95_pp": [
+            -2.0833333333333335,
+            0
+          ],
+          "documents": 2,
+          "by_document_pp": {
+            "246": -2.0833333333333335,
+            "248": 0
+          }
+        },
+        "hier512_old_vs_hier512": {
+          "corrected": 2,
+          "harmed": 0,
+          "net_percentage_points": 2.0833333333333335,
+          "doc_bootstrap_ci95_pp": [
+            2.0833333333333335,
+            2.0833333333333335
+          ],
+          "documents": 2,
+          "by_document_pp": {
+            "246": 2.0833333333333335,
+            "248": 2.0833333333333335
+          }
+        },
+        "hier512_goal_vs_hier512": {
+          "corrected": 2,
+          "harmed": 1,
+          "net_percentage_points": 1.0416666666666667,
+          "doc_bootstrap_ci95_pp": [
+            0,
+            2.0833333333333335
+          ],
+          "documents": 2,
+          "by_document_pp": {
+            "246": 2.0833333333333335,
+            "248": 0
+          }
+        },
+        "hier512_goal_vs_hier512_old": {
+          "corrected": 0,
+          "harmed": 1,
+          "net_percentage_points": -1.0416666666666667,
+          "doc_bootstrap_ci95_pp": [
+            -2.0833333333333335,
+            0
+          ],
+          "documents": 2,
+          "by_document_pp": {
+            "246": 0,
+            "248": -2.0833333333333335
+          }
+        }
+      }
+    },
+    "development": {
+      "modes": {
+        "full_native": {
+          "queries": 144,
+          "greedy_agreement": 0.8402777777777778,
+          "mean_kl": 0.39397139349224136,
+          "mean_reference_tokens": 12298.5,
+          "mean_teacher_mass": 1.0,
+          "mean_teacher_read_error": 2.1866096649139226e-15
+        },
+        "hier1024": {
+          "queries": 144,
+          "greedy_agreement": 0.8541666666666666,
+          "mean_kl": 0.3487505792704471,
+          "mean_reference_tokens": 1024,
+          "mean_teacher_mass": 0.9262623459928565,
+          "mean_teacher_read_error": 0.012897070383890727
+        },
+        "hier512": {
+          "queries": 144,
+          "greedy_agreement": 0.8680555555555556,
+          "mean_kl": 0.32466927678625424,
+          "mean_reference_tokens": 512,
+          "mean_teacher_mass": 0.9053608121143447,
+          "mean_teacher_read_error": 0.021330753289172815
+        },
+        "hier512_goal": {
+          "queries": 144,
+          "greedy_agreement": 0.8680555555555556,
+          "mean_kl": 0.31513053585740636,
+          "mean_reference_tokens": 512,
+          "mean_teacher_mass": 0.9053608121143447,
+          "mean_teacher_read_error": 0.021330753289172815
+        },
+        "hier512_old": {
+          "queries": 144,
+          "greedy_agreement": 0.8680555555555556,
+          "mean_kl": 0.3183370350004932,
+          "mean_reference_tokens": 512,
+          "mean_teacher_mass": 0.9053608121143447,
+          "mean_teacher_read_error": 0.021330753289172815
+        },
+        "joint512": {
+          "queries": 144,
+          "greedy_agreement": 0.8402777777777778,
+          "mean_kl": 0.34351616541789554,
+          "mean_reference_tokens": 512,
+          "mean_teacher_mass": 0.9364752968152364,
+          "mean_teacher_read_error": 0.007897360137677525
+        },
+        "teacher512": {
+          "queries": 144,
+          "greedy_agreement": 0.8611111111111112,
+          "mean_kl": 0.33364125386874044,
+          "mean_reference_tokens": 512,
+          "mean_teacher_mass": 0.9446638139585654,
+          "mean_teacher_read_error": 0.006341242213440839
+        }
+      },
+      "contrasts": {
+        "teacher512_vs_full_native": {
+          "corrected": 6,
+          "harmed": 3,
+          "net_percentage_points": 2.0833333333333335,
+          "doc_bootstrap_ci95_pp": [
+            0,
+            6.25
+          ],
+          "documents": 3,
+          "by_document_pp": {
+            "229": 0,
+            "231": 0,
+            "251": 6.25
+          }
+        },
+        "joint512_vs_teacher512": {
+          "corrected": 1,
+          "harmed": 4,
+          "net_percentage_points": -2.0833333333333335,
+          "doc_bootstrap_ci95_pp": [
+            -4.166666666666667,
+            0
+          ],
+          "documents": 3,
+          "by_document_pp": {
+            "229": 0,
+            "231": -2.0833333333333335,
+            "251": -4.166666666666667
+          }
+        },
+        "hier512_vs_joint512": {
+          "corrected": 5,
+          "harmed": 1,
+          "net_percentage_points": 2.7777777777777777,
+          "doc_bootstrap_ci95_pp": [
+            2.0833333333333335,
+            4.166666666666667
+          ],
+          "documents": 3,
+          "by_document_pp": {
+            "229": 2.0833333333333335,
+            "231": 2.0833333333333335,
+            "251": 4.166666666666667
+          }
+        },
+        "hier1024_vs_hier512": {
+          "corrected": 0,
+          "harmed": 2,
+          "net_percentage_points": -1.3888888888888888,
+          "doc_bootstrap_ci95_pp": [
+            -4.166666666666667,
+            0
+          ],
+          "documents": 3,
+          "by_document_pp": {
+            "229": 0,
+            "231": 0,
+            "251": -4.166666666666667
+          }
+        },
+        "hier512_old_vs_hier512": {
+          "corrected": 0,
+          "harmed": 0,
+          "net_percentage_points": 0.0,
+          "doc_bootstrap_ci95_pp": [
+            0,
+            0
+          ],
+          "documents": 3,
+          "by_document_pp": {
+            "229": 0,
+            "231": 0,
+            "251": 0
+          }
+        },
+        "hier512_goal_vs_hier512": {
+          "corrected": 0,
+          "harmed": 0,
+          "net_percentage_points": 0.0,
+          "doc_bootstrap_ci95_pp": [
+            0,
+            0
+          ],
+          "documents": 3,
+          "by_document_pp": {
+            "229": 0,
+            "231": 0,
+            "251": 0
+          }
+        },
+        "hier512_goal_vs_hier512_old": {
+          "corrected": 0,
+          "harmed": 0,
+          "net_percentage_points": 0.0,
+          "doc_bootstrap_ci95_pp": [
+            0,
+            0
+          ],
+          "documents": 3,
+          "by_document_pp": {
+            "229": 0,
+            "231": 0,
+            "251": 0
+          }
+        }
+      }
+    }
+  },
+  "runtime": {
+    "8192": {
+      "full_native": {
+        "total_tps": 29.686377221099363,
+        "acceptance_rate": 0.6501547987616099,
+        "mean_rounds": 27,
+        "wasted_per_committed": 0.3923611111111111,
+        "avoidable_tail_per_committed": 0.2465277777777778,
+        "draft_forwards_per_committed": 1.2465277777777777,
+        "verify_rounds_per_100_committed": 28.125,
+        "mean_reference_tokens": 8239.283247863248,
+        "length_wait_seconds": 0.0
+      },
+      "teacher512": {
+        "total_tps": 27.003429387463726,
+        "acceptance_rate": 0.58,
+        "mean_rounds": 29.333333333333332,
+        "wasted_per_committed": 0.5104166666666666,
+        "avoidable_tail_per_committed": 0.3194444444444444,
+        "draft_forwards_per_committed": 1.3194444444444444,
+        "verify_rounds_per_100_committed": 30.555555555555557,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0
+      },
+      "joint512": {
+        "total_tps": 27.260807394245045,
+        "acceptance_rate": 0.5930232558139535,
+        "mean_rounds": 29,
+        "wasted_per_committed": 0.4861111111111111,
+        "avoidable_tail_per_committed": 0.3090277777777778,
+        "draft_forwards_per_committed": 1.3090277777777777,
+        "verify_rounds_per_100_committed": 30.208333333333332,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0
+      },
+      "hier512": {
+        "total_tps": 27.673545528672417,
+        "acceptance_rate": 0.6179104477611941,
+        "mean_rounds": 28,
+        "wasted_per_committed": 0.4444444444444444,
+        "avoidable_tail_per_committed": 0.2743055555555556,
+        "draft_forwards_per_committed": 1.2743055555555556,
+        "verify_rounds_per_100_committed": 29.166666666666668,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0
+      },
+      "hier1024": {
+        "total_tps": 27.53145680250569,
+        "acceptance_rate": 0.6283987915407855,
+        "mean_rounds": 27.666666666666668,
+        "wasted_per_committed": 0.4270833333333333,
+        "avoidable_tail_per_committed": 0.2638888888888889,
+        "draft_forwards_per_committed": 1.2638888888888888,
+        "verify_rounds_per_100_committed": 28.819444444444443,
+        "mean_reference_tokens": 1024.0,
+        "length_wait_seconds": 0.0
+      },
+      "hier512_old": {
+        "total_tps": 27.216224447515533,
+        "acceptance_rate": 0.6179104477611941,
+        "mean_rounds": 28,
+        "wasted_per_committed": 0.4444444444444444,
+        "avoidable_tail_per_committed": 0.2743055555555556,
+        "draft_forwards_per_committed": 1.2743055555555556,
+        "verify_rounds_per_100_committed": 29.166666666666668,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0
+      },
+      "hier512_goal": {
+        "total_tps": 27.166019190523446,
+        "acceptance_rate": 0.6179104477611941,
+        "mean_rounds": 28,
+        "wasted_per_committed": 0.4444444444444444,
+        "avoidable_tail_per_committed": 0.2777777777777778,
+        "draft_forwards_per_committed": 1.2777777777777777,
+        "verify_rounds_per_100_committed": 29.166666666666668,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0
+      },
+      "risk_serial": {
+        "total_tps": 26.135194040984135,
+        "acceptance_rate": 0.6230529595015576,
+        "mean_rounds": 30,
+        "wasted_per_committed": 0.4201388888888889,
+        "avoidable_tail_per_committed": 0.2604166666666667,
+        "draft_forwards_per_committed": 1.2569444444444444,
+        "verify_rounds_per_100_committed": 31.25,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.001432869874406606
+      },
+      "risk_utility": {
+        "total_tps": 26.452000972173316,
+        "acceptance_rate": 0.6144578313253012,
+        "mean_rounds": 28.666666666666668,
+        "wasted_per_committed": 0.4444444444444444,
+        "avoidable_tail_per_committed": 0.2743055555555556,
+        "draft_forwards_per_committed": 1.2708333333333333,
+        "verify_rounds_per_100_committed": 29.86111111111111,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0013708099140785635
+      },
+      "risk_async_late": {
+        "total_tps": 25.494695717357306,
+        "acceptance_rate": 0.6230529595015576,
+        "mean_rounds": 30,
+        "wasted_per_committed": 0.4201388888888889,
+        "avoidable_tail_per_committed": 0.2604166666666667,
+        "draft_forwards_per_committed": 1.2569444444444444,
+        "verify_rounds_per_100_committed": 31.25,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.31080162775469944
+      },
+      "risk_async_early": {
+        "total_tps": 25.53246111397935,
+        "acceptance_rate": 0.6230529595015576,
+        "mean_rounds": 30,
+        "wasted_per_committed": 0.4201388888888889,
+        "avoidable_tail_per_committed": 0.2604166666666667,
+        "draft_forwards_per_committed": 1.2569444444444444,
+        "verify_rounds_per_100_committed": 31.25,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.17143130424665287
+      }
+    },
+    "16384": {
+      "full_native": {
+        "total_tps": 17.995810885070544,
+        "acceptance_rate": 0.4630541871921182,
+        "mean_rounds": 34,
+        "wasted_per_committed": 0.7569444444444444,
+        "avoidable_tail_per_committed": 0.5243055555555556,
+        "draft_forwards_per_committed": 1.5208333333333333,
+        "verify_rounds_per_100_committed": 35.416666666666664,
+        "mean_reference_tokens": 16431.57037037037,
+        "length_wait_seconds": 0.0
+      },
+      "teacher512": {
+        "total_tps": 16.97038301235329,
+        "acceptance_rate": 0.4312796208530806,
+        "mean_rounds": 35.666666666666664,
+        "wasted_per_committed": 0.8333333333333334,
+        "avoidable_tail_per_committed": 0.5763888888888888,
+        "draft_forwards_per_committed": 1.5729166666666667,
+        "verify_rounds_per_100_committed": 37.15277777777778,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0
+      },
+      "joint512": {
+        "total_tps": 17.108999683576872,
+        "acceptance_rate": 0.44019138755980863,
+        "mean_rounds": 35,
+        "wasted_per_committed": 0.8125,
+        "avoidable_tail_per_committed": 0.5659722222222222,
+        "draft_forwards_per_committed": 1.5625,
+        "verify_rounds_per_100_committed": 36.458333333333336,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0
+      },
+      "hier512": {
+        "total_tps": 16.691735762448065,
+        "acceptance_rate": 0.42289719626168226,
+        "mean_rounds": 36,
+        "wasted_per_committed": 0.8576388888888888,
+        "avoidable_tail_per_committed": 0.5902777777777778,
+        "draft_forwards_per_committed": 1.5868055555555556,
+        "verify_rounds_per_100_committed": 37.5,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0
+      },
+      "hier1024": {
+        "total_tps": 16.971596083911564,
+        "acceptance_rate": 0.44902912621359226,
+        "mean_rounds": 34.666666666666664,
+        "wasted_per_committed": 0.7881944444444444,
+        "avoidable_tail_per_committed": 0.5451388888888888,
+        "draft_forwards_per_committed": 1.5416666666666667,
+        "verify_rounds_per_100_committed": 36.111111111111114,
+        "mean_reference_tokens": 1024.0,
+        "length_wait_seconds": 0.0
+      },
+      "hier512_old": {
+        "total_tps": 16.49415516498755,
+        "acceptance_rate": 0.42289719626168226,
+        "mean_rounds": 36,
+        "wasted_per_committed": 0.8576388888888888,
+        "avoidable_tail_per_committed": 0.5902777777777778,
+        "draft_forwards_per_committed": 1.5868055555555556,
+        "verify_rounds_per_100_committed": 37.5,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0
+      },
+      "hier512_goal": {
+        "total_tps": 16.495807827421164,
+        "acceptance_rate": 0.42289719626168226,
+        "mean_rounds": 36,
+        "wasted_per_committed": 0.8576388888888888,
+        "avoidable_tail_per_committed": 0.5902777777777778,
+        "draft_forwards_per_committed": 1.5868055555555556,
+        "verify_rounds_per_100_committed": 37.5,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0
+      },
+      "risk_serial": {
+        "total_tps": 16.37804775869732,
+        "acceptance_rate": 0.4326241134751773,
+        "mean_rounds": 35.333333333333336,
+        "wasted_per_committed": 0.8333333333333334,
+        "avoidable_tail_per_committed": 0.5659722222222222,
+        "draft_forwards_per_committed": 1.5625,
+        "verify_rounds_per_100_committed": 36.80555555555556,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0016577027854509652
+      },
+      "risk_utility": {
+        "total_tps": 16.20953669054063,
+        "acceptance_rate": 0.4258823529411765,
+        "mean_rounds": 36,
+        "wasted_per_committed": 0.8472222222222222,
+        "avoidable_tail_per_committed": 0.5833333333333334,
+        "draft_forwards_per_committed": 1.5763888888888888,
+        "verify_rounds_per_100_committed": 37.5,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.0017165910103358328
+      },
+      "risk_async_late": {
+        "total_tps": 16.120379255403304,
+        "acceptance_rate": 0.4326241134751773,
+        "mean_rounds": 35.333333333333336,
+        "wasted_per_committed": 0.8333333333333334,
+        "avoidable_tail_per_committed": 0.5659722222222222,
+        "draft_forwards_per_committed": 1.5625,
+        "verify_rounds_per_100_committed": 36.80555555555556,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.3660089769400656
+      },
+      "risk_async_early": {
+        "total_tps": 16.156164696753912,
+        "acceptance_rate": 0.4326241134751773,
+        "mean_rounds": 35.333333333333336,
+        "wasted_per_committed": 0.8333333333333334,
+        "avoidable_tail_per_committed": 0.5659722222222222,
+        "draft_forwards_per_committed": 1.5625,
+        "verify_rounds_per_100_committed": 36.80555555555556,
+        "mean_reference_tokens": 512.0,
+        "length_wait_seconds": 0.20270986063405871
+      }
+    }
+  },
+  "contrasts": {
+    "teacher512_vs_full_native": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": -7.363275932016444,
+        "ci95": [
+          -7.852881333358086,
+          -6.830094669895908
+        ],
+        "by_document": {
+          "229": -7.406851792795338,
+          "231": -7.852881333358086,
+          "251": -6.830094669895908
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": -9.03560883965283,
+          "ci95": [
+            -13.03740159054132,
+            -6.251751504672487
+          ],
+          "by_document": {
+            "229": -6.251751504672487,
+            "231": -7.8176734237446865,
+            "251": -13.03740159054132
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": -5.690943024380058,
+          "ci95": [
+            -8.56195208091819,
+            -0.6227877492504974
+          ],
+          "by_document": {
+            "229": -8.56195208091819,
+            "231": -7.8880892429714855,
+            "251": -0.6227877492504974
+          }
+        }
+      }
+    },
+    "joint512_vs_teacher512": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": 1.374238217024861,
+        "ci95": [
+          -4.252464181379062,
+          5.804364879829382
+        ],
+        "by_document": {
+          "229": 5.804364879829382,
+          "231": -4.252464181379062,
+          "251": 2.5708139526242624
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": 1.6604998283889023,
+          "ci95": [
+            -7.47341961443988,
+            7.252403181646394
+          ],
+          "by_document": {
+            "229": 5.202515917960193,
+            "231": -7.47341961443988,
+            "251": 7.252403181646394
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": 1.0879766056608193,
+          "ci95": [
+            -2.1107752763978693,
+            6.406213841698571
+          ],
+          "by_document": {
+            "229": 6.406213841698571,
+            "231": -1.031508748318244,
+            "251": -2.1107752763978693
+          }
+        }
+      }
+    },
+    "hier512_vs_teacher512": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": 0.6757626994883933,
+        "ci95": [
+          -0.5434368671411838,
+          2.421659877728677
+        ],
+        "by_document": {
+          "229": 2.421659877728677,
+          "231": -0.5434368671411838,
+          "251": 0.14906508787768669
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": 2.9151928245188605,
+          "ci95": [
+            -3.8666852065056267,
+            7.174051075511478
+          ],
+          "by_document": {
+            "229": 5.4382126045507295,
+            "231": -3.8666852065056267,
+            "251": 7.174051075511478
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": -1.563667425542074,
+          "ci95": [
+            -6.875920899756105,
+            2.779811472223259
+          ],
+          "by_document": {
+            "229": -0.5948928490933758,
+            "231": 2.779811472223259,
+            "251": -6.875920899756105
+          }
+        }
+      }
+    },
+    "hier1024_vs_hier512": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": 0.8310020725560657,
+        "ci95": [
+          -2.2925872352736523,
+          5.555306136149529
+        ],
+        "by_document": {
+          "229": 5.555306136149529,
+          "231": -2.2925872352736523,
+          "251": -0.7697126832076795
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": -0.2661877316972279,
+          "ci95": [
+            -4.575010862787687,
+            5.11230896412771
+          ],
+          "by_document": {
+            "229": 5.11230896412771,
+            "231": -1.3358612964317063,
+            "251": -4.575010862787687
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": 1.9281918768093598,
+          "ci95": [
+            -3.249313174115598,
+            5.998303308171349
+          ],
+          "by_document": {
+            "229": 5.998303308171349,
+            "231": -3.249313174115598,
+            "251": 3.0355854963723283
+          }
+        }
+      }
+    },
+    "hier512_old_vs_hier512": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": -1.416734223475317,
+        "ci95": [
+          -1.4839111462582433,
+          -1.3317516141560515
+        ],
+        "by_document": {
+          "229": -1.4345399100116563,
+          "231": -1.4839111462582433,
+          "251": -1.3317516141560515
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": -1.6493740179451784,
+          "ci95": [
+            -1.6996100770850897,
+            -1.551120208245993
+          ],
+          "by_document": {
+            "229": -1.6973917685044526,
+            "231": -1.6996100770850897,
+            "251": -1.551120208245993
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": -1.1840944290054556,
+          "ci95": [
+            -1.2682122154313968,
+            -1.11238302006611
+          ],
+          "by_document": {
+            "229": -1.17168805151886,
+            "231": -1.2682122154313968,
+            "251": -1.11238302006611
+          }
+        }
+      }
+    },
+    "hier512_goal_vs_hier512": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": -1.5025139174328794,
+        "ci95": [
+          -1.5296142759599396,
+          -1.468080737093097
+        ],
+        "by_document": {
+          "229": -1.468080737093097,
+          "231": -1.5296142759599396,
+          "251": -1.5098467392456016
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": -1.8298733074385305,
+          "ci95": [
+            -1.8838418208849905,
+            -1.7267350725270747
+          ],
+          "by_document": {
+            "229": -1.7267350725270747,
+            "231": -1.8838418208849905,
+            "251": -1.8790430289035265
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": -1.1751545274272284,
+          "ci95": [
+            -1.2094264016591194,
+            -1.1406504495876768
+          ],
+          "by_document": {
+            "229": -1.2094264016591194,
+            "231": -1.1753867310348887,
+            "251": -1.1406504495876768
+          }
+        }
+      }
+    },
+    "hier512_goal_vs_hier512_old": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": -0.08718497734115926,
+        "ci95": [
+          -0.1808374235002297,
+          -0.03401787163290204
+        ],
+        "by_document": {
+          "229": -0.03401787163290204,
+          "231": -0.04669963689034606,
+          "251": -0.1808374235002297
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": -0.183452172356513,
+          "ci95": [
+            -0.3330894382456928,
+            -0.02984997504188458
+          ],
+          "by_document": {
+            "229": -0.02984997504188458,
+            "231": -0.18741710378196164,
+            "251": -0.3330894382456928
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": 0.009082217674194482,
+          "ci95": [
+            -0.0381857682239195,
+            0.09401783000126951
+          ],
+          "by_document": {
+            "229": -0.0381857682239195,
+            "231": 0.09401783000126951,
+            "251": -0.02858540875476656
+          }
+        }
+      }
+    },
+    "risk_serial_vs_hier512_old": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": -2.4055250570391262,
+        "ci95": [
+          -3.738188883427701,
+          -1.0136800334261675
+        ],
+        "by_document": {
+          "229": -3.738188883427701,
+          "231": -1.0136800334261675,
+          "251": -2.4647062542635103
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": -4.049356662635195,
+          "ci95": [
+            -6.916241564353587,
+            -2.007475843865536
+          ],
+          "by_document": {
+            "229": -3.2243525796864625,
+            "231": -2.007475843865536,
+            "251": -6.916241564353587
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": -0.7616934514430573,
+          "ci95": [
+            -4.25202518716894,
+            1.9868290558265667
+          ],
+          "by_document": {
+            "229": -4.25202518716894,
+            "231": -0.01988422298679904,
+            "251": 1.9868290558265667
+          }
+        }
+      }
+    },
+    "risk_utility_vs_risk_serial": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": 0.17084827805822397,
+        "ci95": [
+          -0.40940040842531444,
+          1.1005199765609097
+        ],
+        "by_document": {
+          "229": 1.1005199765609097,
+          "231": -0.40940040842531444,
+          "251": -0.17857473396092338
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": 1.2533445178642004,
+          "ci95": [
+            -0.09362144940869843,
+            3.500586305948583
+          ],
+          "by_document": {
+            "229": -0.09362144940869843,
+            "231": 0.3530686970527164,
+            "251": 3.500586305948583
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": -0.9116479617477524,
+          "ci95": [
+            -3.85773577387043,
+            2.294661402530518
+          ],
+          "by_document": {
+            "229": 2.294661402530518,
+            "231": -1.1718695139033453,
+            "251": -3.85773577387043
+          }
+        }
+      }
+    },
+    "risk_utility_vs_hier512_old": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": -2.3047036568434613,
+        "ci95": [
+          -2.8026587983946136,
+          -1.426507817680639
+        ],
+        "by_document": {
+          "229": -2.684944354455132,
+          "231": -1.426507817680639,
+          "251": -2.8026587983946136
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": -2.878071507529164,
+          "ci95": [
+            -3.6577642634930907,
+            -1.661494915618389
+          ],
+          "by_document": {
+            "229": -3.3149553434760115,
+            "231": -1.661494915618389,
+            "251": -3.6577642634930907
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": -1.7313358061577595,
+          "ci95": [
+            -2.0549333654342528,
+            -1.191520719742889
+          ],
+          "by_document": {
+            "229": -2.0549333654342528,
+            "231": -1.191520719742889,
+            "251": -1.947553333296137
+          }
+        }
+      }
+    },
+    "risk_async_late_vs_risk_serial": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": -2.0061501191485362,
+        "ci95": [
+          -2.0840797095543317,
+          -1.8758703573370172
+        ],
+        "by_document": {
+          "229": -1.8758703573370172,
+          "231": -2.05850029055426,
+          "251": -2.0840797095543317
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": -2.441215652408113,
+          "ci95": [
+            -2.593893015127968,
+            -2.301454874541131
+          ],
+          "by_document": {
+            "229": -2.301454874541131,
+            "231": -2.593893015127968,
+            "251": -2.4282990675552396
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": -1.57108458588896,
+          "ci95": [
+            -1.739860351553424,
+            -1.4502858401329033
+          ],
+          "by_document": {
+            "229": -1.4502858401329033,
+            "231": -1.5231075659805526,
+            "251": -1.739860351553424
+          }
+        }
+      }
+    },
+    "risk_async_early_vs_risk_async_late": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": 0.18192514924652015,
+        "ci95": [
+          0.09550557999108422,
+          0.2281404719444824
+        ],
+        "by_document": {
+          "229": 0.09550557999108422,
+          "231": 0.22212939580399382,
+          "251": 0.2281404719444824
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": 0.14486821451234663,
+          "ci95": [
+            0.06350929437848318,
+            0.2233476719483818
+          ],
+          "by_document": {
+            "229": 0.1477476772101749,
+            "231": 0.2233476719483818,
+            "251": 0.06350929437848318
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": 0.21898208398069366,
+          "ci95": [
+            0.043263482771993544,
+            0.3927716495104816
+          ],
+          "by_document": {
+            "229": 0.043263482771993544,
+            "231": 0.22091111965960586,
+            "251": 0.3927716495104816
+          }
+        }
+      }
+    },
+    "risk_async_early_vs_risk_serial": {
+      "all_lengths": {
+        "documents": 3,
+        "mean_percent": -1.8278185995234637,
+        "ci95": [
+          -1.8601271745124381,
+          -1.7823786724878221
+        ],
+        "by_document": {
+          "229": -1.7823786724878221,
+          "231": -1.840949951570131,
+          "251": -1.8601271745124381
+        }
+      },
+      "by_length": {
+        "8192": {
+          "documents": 3,
+          "mean_percent": -2.299926085023929,
+          "ci95": [
+            -2.3763387428416882,
+            -2.157107543450132
+          ],
+          "by_document": {
+            "229": -2.157107543450132,
+            "231": -2.3763387428416882,
+            "251": -2.3663319687799667
+          }
+        },
+        "16384": {
+          "documents": 3,
+          "mean_percent": -1.3557111140229987,
+          "ci95": [
+            -1.4076498015255123,
+            -1.305561160298574
+          ],
+          "by_document": {
+            "229": -1.4076498015255123,
+            "231": -1.305561160298574,
+            "251": -1.3539223802449096
+          }
+        }
+      }
+    }
+  },
+  "schedule_trajectories": {
+    "risk_async_late_vs_risk_serial": {
+      "matches": 12,
+      "pairs": 12
+    },
+    "risk_async_early_vs_risk_async_late": {
+      "matches": 12,
+      "pairs": 12
+    }
+  },
+  "profile_scope": "Host/stream elapsed intervals include overlap/idle; profiling requests excluded from throughput",
+  "profiles": [
+    {
+      "mode": "hier512_old",
+      "length": 8192,
+      "timeline": {
+        "stages": {
+          "length_prepare": {
+            "calls": 13,
+            "host_seconds": 0.00014684206689707935,
+            "stream_seconds": 0.00015075200237333776
+          },
+          "selection": {
+            "calls": 13,
+            "host_seconds": 0.026322147954488173,
+            "stream_seconds": 0.026334976255893705
+          },
+          "length_publish": {
+            "calls": 13,
+            "host_seconds": 0.0001349160447716713,
+            "stream_seconds": 0.00013455999922007322
+          },
+          "working_kv_bind": {
+            "calls": 13,
+            "host_seconds": 0.0019176850910298526,
+            "stream_seconds": 0.0023928960263729098
+          },
+          "injection_bind": {
+            "calls": 13,
+            "host_seconds": 0.014405305089894682,
+            "stream_seconds": 0.01398588812351227
+          },
+          "draft_first": {
+            "calls": 13,
+            "host_seconds": 0.17885122800362296,
+            "stream_seconds": 0.1788383359909058
+          },
+          "draft_tail": {
+            "calls": 38,
+            "host_seconds": 0.5051168329664506,
+            "stream_seconds": 0.5050748167037964
+          },
+          "target_verify": {
+            "calls": 13,
+            "host_seconds": 0.5992634780122899,
+            "stream_seconds": 0.599233310699463
+          },
+          "commit_and_probe": {
+            "calls": 12,
+            "host_seconds": 0.03175392598495819,
+            "stream_seconds": 0.031736127853393546
+          }
+        },
+        "scope": "Instrumentation only: overlapping stream/host intervals cannot be added as independent kernel costs"
+      },
+      "deadline_ready": 0,
+      "rounds": 13,
+      "wait_seconds": 0.0
+    },
+    {
+      "mode": "risk_serial",
+      "length": 8192,
+      "timeline": {
+        "stages": {
+          "length_prepare": {
+            "calls": 13,
+            "host_seconds": 0.00865877399337478,
+            "stream_seconds": 0.008675520002841948
+          },
+          "selection": {
+            "calls": 13,
+            "host_seconds": 0.02562862104969099,
+            "stream_seconds": 0.025658175915479656
+          },
+          "length_publish": {
+            "calls": 13,
+            "host_seconds": 0.00023630697978660464,
+            "stream_seconds": 0.00023609599936753515
+          },
+          "working_kv_bind": {
+            "calls": 13,
+            "host_seconds": 0.0018790260364767164,
+            "stream_seconds": 0.002351903975009918
+          },
+          "injection_bind": {
+            "calls": 13,
+            "host_seconds": 0.014040923939319327,
+            "stream_seconds": 0.013629376053810122
+          },
+          "draft_first": {
+            "calls": 13,
+            "host_seconds": 0.18274307902902365,
+            "stream_seconds": 0.182728063583374
+          },
+          "length_deadline": {
+            "calls": 13,
+            "host_seconds": 0.019768851023400202,
+            "stream_seconds": 0.01975932800769806
+          },
+          "draft_tail": {
+            "calls": 31,
+            "host_seconds": 0.41164578997995704,
+            "stream_seconds": 0.41161122989654536
+          },
+          "target_verify": {
+            "calls": 13,
+            "host_seconds": 0.5975972420128528,
+            "stream_seconds": 0.5975571212768555
+          },
+          "commit_and_probe": {
+            "calls": 12,
+            "host_seconds": 0.03110743992147036,
+            "stream_seconds": 0.031089311629533767
+          }
+        },
+        "scope": "Instrumentation only: overlapping stream/host intervals cannot be added as independent kernel costs"
+      },
+      "deadline_ready": 13,
+      "rounds": 13,
+      "wait_seconds": 0.00010336501873098314
+    },
+    {
+      "mode": "risk_async_late",
+      "length": 8192,
+      "timeline": {
+        "stages": {
+          "length_prepare": {
+            "calls": 13,
+            "host_seconds": 0.001968550932360813,
+            "stream_seconds": 0.0019721280038356784
+          },
+          "selection": {
+            "calls": 13,
+            "host_seconds": 0.03613340301671997,
+            "stream_seconds": 0.03673360002040863
+          },
+          "length_publish": {
+            "calls": 13,
+            "host_seconds": 0.0003375590604264289,
+            "stream_seconds": 0.00032432000152766706
+          },
+          "working_kv_bind": {
+            "calls": 13,
+            "host_seconds": 0.003112528007477522,
+            "stream_seconds": 0.003401152014732361
+          },
+          "injection_bind": {
+            "calls": 13,
+            "host_seconds": 0.026302340003894642,
+            "stream_seconds": 0.02611846387386322
+          },
+          "draft_first": {
+            "calls": 13,
+            "host_seconds": 0.1949541060021147,
+            "stream_seconds": 0.19499731159210204
+          },
+          "length_deadline": {
+            "calls": 13,
+            "host_seconds": 0.022550537978531793,
+            "stream_seconds": 0.0225446400642395
+          },
+          "draft_tail": {
+            "calls": 31,
+            "host_seconds": 0.41210786503506824,
+            "stream_seconds": 0.41210678577423093
+          },
+          "target_verify": {
+            "calls": 13,
+            "host_seconds": 0.5984932230494451,
+            "stream_seconds": 0.5984596214294434
+          },
+          "commit_and_probe": {
+            "calls": 12,
+            "host_seconds": 0.03141228907043114,
+            "stream_seconds": 0.03139500814676285
+          }
+        },
+        "scope": "Instrumentation only: overlapping stream/host intervals cannot be added as independent kernel costs"
+      },
+      "deadline_ready": 0,
+      "rounds": 13,
+      "wait_seconds": 0.021962319005979225
+    },
+    {
+      "mode": "risk_async_early",
+      "length": 8192,
+      "timeline": {
+        "stages": {
+          "length_prepare": {
+            "calls": 13,
+            "host_seconds": 0.0017408049898222089,
+            "stream_seconds": 0.0017443520277738572
+          },
+          "selection": {
+            "calls": 13,
+            "host_seconds": 0.03564997299690731,
+            "stream_seconds": 0.03630515253543854
+          },
+          "length_publish": {
+            "calls": 13,
+            "host_seconds": 0.00029670694493688643,
+            "stream_seconds": 0.000341440001502633
+          },
+          "working_kv_bind": {
+            "calls": 13,
+            "host_seconds": 0.0031354299862869084,
+            "stream_seconds": 0.0034617599397897716
+          },
+          "injection_bind": {
+            "calls": 13,
+            "host_seconds": 0.02628985105548054,
+            "stream_seconds": 0.026101279973983767
+          },
+          "draft_first": {
+            "calls": 13,
+            "host_seconds": 0.2026359861192759,
+            "stream_seconds": 0.20264524745941162
+          },
+          "length_deadline": {
+            "calls": 13,
+            "host_seconds": 0.012436524964869022,
+            "stream_seconds": 0.012446655988693236
+          },
+          "draft_tail": {
+            "calls": 31,
+            "host_seconds": 0.4132008769956883,
+            "stream_seconds": 0.4133174057006836
+          },
+          "target_verify": {
+            "calls": 13,
+            "host_seconds": 0.598895740986336,
+            "stream_seconds": 0.5988615989685058
+          },
+          "commit_and_probe": {
+            "calls": 12,
+            "host_seconds": 0.031084053945960477,
+            "stream_seconds": 0.031066400557756425
+          }
+        },
+        "scope": "Instrumentation only: overlapping stream/host intervals cannot be added as independent kernel costs"
+      },
+      "deadline_ready": 0,
+      "rounds": 13,
+      "wait_seconds": 0.012117914971895516
+    },
+    {
+      "mode": "hier512_old",
+      "length": 16384,
+      "timeline": {
+        "stages": {
+          "length_prepare": {
+            "calls": 13,
+            "host_seconds": 0.00013340995064936578,
+            "stream_seconds": 0.0001378880003467202
+          },
+          "selection": {
+            "calls": 13,
+            "host_seconds": 0.026704025105573237,
+            "stream_seconds": 0.026718912065029146
+          },
+          "length_publish": {
+            "calls": 13,
+            "host_seconds": 0.00013364199548959732,
+            "stream_seconds": 0.00013478400092571972
+          },
+          "working_kv_bind": {
+            "calls": 13,
+            "host_seconds": 0.0019229419413022697,
+            "stream_seconds": 0.0024012480080127714
+          },
+          "injection_bind": {
+            "calls": 13,
+            "host_seconds": 0.014880233007716015,
+            "stream_seconds": 0.014453472018241884
+          },
+          "draft_first": {
+            "calls": 13,
+            "host_seconds": 0.17948108704877086,
+            "stream_seconds": 0.17946985626220704
+          },
+          "draft_tail": {
+            "calls": 36,
+            "host_seconds": 0.4783511561981868,
+            "stream_seconds": 0.47832092952728267
+          },
+          "target_verify": {
+            "calls": 13,
+            "host_seconds": 0.9033126020513009,
+            "stream_seconds": 0.9032648620605469
+          },
+          "commit_and_probe": {
+            "calls": 12,
+            "host_seconds": 0.032569927017902955,
+            "stream_seconds": 0.032552320867776874
+          }
+        },
+        "scope": "Instrumentation only: overlapping stream/host intervals cannot be added as independent kernel costs"
+      },
+      "deadline_ready": 0,
+      "rounds": 13,
+      "wait_seconds": 0.0
+    },
+    {
+      "mode": "risk_serial",
+      "length": 16384,
+      "timeline": {
+        "stages": {
+          "length_prepare": {
+            "calls": 12,
+            "host_seconds": 0.008383031003177166,
+            "stream_seconds": 0.008845664024353028
+          },
+          "selection": {
+            "calls": 12,
+            "host_seconds": 0.02024614199763164,
+            "stream_seconds": 0.019924735963344577
+          },
+          "length_publish": {
+            "calls": 12,
+            "host_seconds": 0.00021924899192526937,
+            "stream_seconds": 0.00022032000496983528
+          },
+          "working_kv_bind": {
+            "calls": 12,
+            "host_seconds": 0.0017769220285117626,
+            "stream_seconds": 0.0022134400010108946
+          },
+          "injection_bind": {
+            "calls": 12,
+            "host_seconds": 0.013259756931802258,
+            "stream_seconds": 0.012876160144805908
+          },
+          "draft_first": {
+            "calls": 12,
+            "host_seconds": 0.1700345810095314,
+            "stream_seconds": 0.17002121639251708
+          },
+          "length_deadline": {
+            "calls": 12,
+            "host_seconds": 0.02388356701703742,
+            "stream_seconds": 0.02387574386596679
+          },
+          "draft_tail": {
+            "calls": 57,
+            "host_seconds": 0.7555179609917104,
+            "stream_seconds": 0.7554627513885499
+          },
+          "target_verify": {
+            "calls": 12,
+            "host_seconds": 0.8582632220350206,
+            "stream_seconds": 0.858216583251953
+          },
+          "commit_and_probe": {
+            "calls": 11,
+            "host_seconds": 0.018249970977194607,
+            "stream_seconds": 0.01823411202430725
+          }
+        },
+        "scope": "Instrumentation only: overlapping stream/host intervals cannot be added as independent kernel costs"
+      },
+      "deadline_ready": 12,
+      "rounds": 12,
+      "wait_seconds": 9.783401037566364e-05
+    },
+    {
+      "mode": "risk_async_late",
+      "length": 16384,
+      "timeline": {
+        "stages": {
+          "length_prepare": {
+            "calls": 12,
+            "host_seconds": 0.0024781690444797277,
+            "stream_seconds": 0.0020811519920825956
+          },
+          "selection": {
+            "calls": 12,
+            "host_seconds": 0.030621088051702827,
+            "stream_seconds": 0.030608064234256743
+          },
+          "length_publish": {
+            "calls": 12,
+            "host_seconds": 0.0003041679738089442,
+            "stream_seconds": 0.0002966079972684383
+          },
+          "working_kv_bind": {
+            "calls": 12,
+            "host_seconds": 0.0029720120364800096,
+            "stream_seconds": 0.003254751980304718
+          },
+          "injection_bind": {
+            "calls": 12,
+            "host_seconds": 0.025670074013760313,
+            "stream_seconds": 0.025533599853515627
+          },
+          "draft_first": {
+            "calls": 12,
+            "host_seconds": 0.18163933302275836,
+            "stream_seconds": 0.18169558429718016
+          },
+          "length_deadline": {
+            "calls": 12,
+            "host_seconds": 0.02060444897506386,
+            "stream_seconds": 0.020599680185317992
+          },
+          "draft_tail": {
+            "calls": 57,
+            "host_seconds": 0.7570363749691751,
+            "stream_seconds": 0.7569837093353269
+          },
+          "target_verify": {
+            "calls": 12,
+            "host_seconds": 0.8613613080524374,
+            "stream_seconds": 0.8613190002441405
+          },
+          "commit_and_probe": {
+            "calls": 11,
+            "host_seconds": 0.018264769023517147,
+            "stream_seconds": 0.01824691167473793
+          }
+        },
+        "scope": "Instrumentation only: overlapping stream/host intervals cannot be added as independent kernel costs"
+      },
+      "deadline_ready": 0,
+      "rounds": 12,
+      "wait_seconds": 0.02006534894462675
+    },
+    {
+      "mode": "risk_async_early",
+      "length": 16384,
+      "timeline": {
+        "stages": {
+          "length_prepare": {
+            "calls": 12,
+            "host_seconds": 0.0021340700332075357,
+            "stream_seconds": 0.0017582079991698264
+          },
+          "selection": {
+            "calls": 12,
+            "host_seconds": 0.030020933045307174,
+            "stream_seconds": 0.030194880008697515
+          },
+          "length_publish": {
+            "calls": 12,
+            "host_seconds": 0.00032151490449905396,
+            "stream_seconds": 0.0002969599962234497
+          },
+          "working_kv_bind": {
+            "calls": 12,
+            "host_seconds": 0.0029193260124884546,
+            "stream_seconds": 0.003269151985645294
+          },
+          "injection_bind": {
+            "calls": 12,
+            "host_seconds": 0.024866732041118667,
+            "stream_seconds": 0.02465328013896942
+          },
+          "draft_first": {
+            "calls": 12,
+            "host_seconds": 0.1884868170018308,
+            "stream_seconds": 0.1884829750061035
+          },
+          "length_deadline": {
+            "calls": 12,
+            "host_seconds": 0.011572303978027776,
+            "stream_seconds": 0.011607743978500368
+          },
+          "draft_tail": {
+            "calls": 57,
+            "host_seconds": 0.7562950631254353,
+            "stream_seconds": 0.7563616638183595
+          },
+          "target_verify": {
+            "calls": 12,
+            "host_seconds": 0.8608914370415732,
+            "stream_seconds": 0.8608461380004884
+          },
+          "commit_and_probe": {
+            "calls": 11,
+            "host_seconds": 0.01827547900029458,
+            "stream_seconds": 0.018259648382663727
+          }
+        },
+        "scope": "Instrumentation only: overlapping stream/host intervals cannot be added as independent kernel costs"
+      },
+      "deadline_ready": 0,
+      "rounds": 12,
+      "wait_seconds": 0.011285358952591196
+    }
+  ]
+}

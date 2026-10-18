@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "scope": "Saved-record/source checks, not a new GPU experiment",
+  "stages": {
+    "primary": {
+      "protocol_sha256": "158ccbaa6675a11f4c716ed69bd2719ba131cadd1b602a8015865f6b1df90903",
+      "audit_sha256": "1241cc165ec4c09e523c5dedf8c6006a5d817ad4787de5c1f715bf2ad4ea7b34",
+      "changes_since_frozen_execution": {
+        "rescue/__main__.py": {
+          "executed_sha256": "225a32dbca6fec668edb74650188b305935f5aff20311776febe75d3f9da8c7a",
+          "current_sha256": "44dbdba242cd2191a153f649c212f86196ea3d8c9e996684908e44fbf838a6c7"
+        },
+        "rescue/attention.py": {
+          "executed_sha256": "252f72eeac0e18292bb9cd3667a1126338f8548df4f9adb6af442417ceb91486",
+          "current_sha256": "4adef748d2bd0ac62d92d54493cb67d2a3eefc1f27406f5154a477f9f795dc86"
+        },
+        "rescue/injection.py": {
+          "executed_sha256": "e59d710ada882557750a8cc7040f3d291ca00ca7f428b3c2ba87c4779be33c25",
+          "current_sha256": "10ef58f82e3599a61921c84730605d42fdbb9364a461cd85def64b79bf631f5a"
+        },
+        "rescue/module_opt_training.py": {
+          "executed_sha256": "9e9d1af9749858d398b6af225157967cb021f78cd1f84da0e4674d21ebec743b",
+          "current_sha256": "48b6c78c381b21aacd20930d2e149e91b46955cc3e03c06a2e907d2a1c9add1d"
+        },
+        "rescue/query_mapper.py": {
+          "executed_sha256": "b6aa783543ab84acf761093eff73ed6538717ccda1cd6e6df11d73f29769b22f",
+          "current_sha256": "95e2629948ab43920355b79f700f74f40055fe39a3fecf9490a9f3d253d15e11"
+        },
+        "rescue/rollout_training.py": {
+          "executed_sha256": "793efc3324985fcbf4b39400f5e34ff3e9095a271277fe6f584eda043f08d6e6",
+          "current_sha256": "9a359739141a8e594ce206033e5da47ce3ee410011a5e8bf010d7788035c4b87"
+        },
+        "rescue/scheduler.py": {
+          "executed_sha256": "072abc199523e0a7992820143247b33fa38c3795695875f97467b96cb4f0d09f",
+          "current_sha256": "2361269dad6955d3f5f518457094646875a150c821b07442d5defbc907a18c82"
+        },
+        "tests/test_rescue_module_opt.py": {
+          "executed_sha256": "f428e255958837777e6be6dcfe58b6e7b154e4b1ec9088216c40be3f59a2a600",
+          "current_sha256": "28b02e5801a70dffe4f792c8aeb4727529fe3d14e697767624bcdaf5179a68b6"
+        }
+      }
+    },
+    "read_conditioned": {
+      "protocol_sha256": "d86ddfffd4430c7ffe0dc6652dd353858681f425bc77fe67bcef32d3ea0ffd53",
+      "audit_sha256": "edf9d49e609ebb58a4f7da9d3c0228c5382dc08ba9c750889f1aede96763d28b",
+      "changes_since_frozen_execution": {
+        "rescue/__main__.py": {
+          "executed_sha256": "225a32dbca6fec668edb74650188b305935f5aff20311776febe75d3f9da8c7a",
+          "current_sha256": "44dbdba242cd2191a153f649c212f86196ea3d8c9e996684908e44fbf838a6c7"
+        },
+        "rescue/module_opt_report.py": {
+          "executed_sha256": "f7e2ecf82b7ebcdcede68459130448fec3e36165915ac32dfc0075844a783a5b",
+          "current_sha256": "fc1a822411ccad509e7ffd00faf443cf320d00a36d7b60bc031ed3097805dce2"
+        },
+        "rescue/scheduler.py": {
+          "executed_sha256": "072abc199523e0a7992820143247b33fa38c3795695875f97467b96cb4f0d09f",
+          "current_sha256": "2361269dad6955d3f5f518457094646875a150c821b07442d5defbc907a18c82"
+        },
+        "tests/test_rescue_module_opt.py": {
+          "executed_sha256": "ca9f07962828fed3f6b83f4b0c5da35de21f1277ea51c862d360c70c0cc248c6",
+          "current_sha256": "28b02e5801a70dffe4f792c8aeb4727529fe3d14e697767624bcdaf5179a68b6"
+        }
+      }
+    }
+  },
+  "unchanged_cross_stage_trajectories": {
+    "m1_new_to_native": {
+      "matched": 12,
+      "total": 12
+    },
+    "m2_old_to_old": {
+      "matched": 12,
+      "total": 12
+    },
+    "m2_query_to_direction": {
+      "matched": 12,
+      "total": 12
+    },
+    "m3_old_to_old_risk": {
+      "matched": 12,
+      "total": 12
+    },
+    "m3_selected_to_feedback_surplus": {
+      "matched": 12,
+      "total": 12
+    }
+  },
+  "exact_confirmation_requests": 180,
+  "exact_saved_sd_requests": 278,
+  "confirmation_documents": 3,
+  "cohorts_are_independent": false,
+  "source_version_note": "Each stage used its own frozen source. Current CLI/RPC validation and analysis/export edits were made after GPU execution; they are not timed speed evidence.",
+  "cpu_checks": {
+    "passed": 52,
+    "log_sha256": "87033e1bafbe4c750f19762d6a4bed5885a1973da2ae6f5198e022857171e530"
+  },
+  "paused_test": {
+    "test_requests": 71,
+    "runtime_rows": 71,
+    "pause_sha256": "20a648603aa4e57cd408658bee1c001960d30234a64dad52fc34edb00fb8c9fe"
+  },
+  "analysis_sha256": "ffb4e0207feb9e002890e5004ea5d9154f6391bf4e097b2c00ae9e96077e4862"
+}

@@ -1,0 +1,5 @@
+{
+  "reason": "Add no-injection controls at the selected 1024-position budget before selection; initial zero controls had512positions",
+  "development_rows": 0,
+  "test_rows": 0
+}

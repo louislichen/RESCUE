@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "exact_saved_requests": 194,
+  "confirmation_requests": 96,
+  "unique_requests": 194,
+  "request_groups": {
+    "selector_tune.jsonl": 24,
+    "collection.jsonl": 24,
+    "length_tune.jsonl": 48,
+    "rate_calibration.jsonl": 2,
+    "runtime.jsonl": 96
+  },
+  "quality_rows": 720,
+  "frozen_sources": 60,
+  "confirmation_document_hashes_disjoint": true,
+  "choice_frozen_before_confirmation": true,
+  "analysis_source_sha256": "fc1a822411ccad509e7ffd00faf443cf320d00a36d7b60bc031ed3097805dce2",
+  "scope": "Saved source/data/output/choice/statistics verification, not a new GPU run"
+}

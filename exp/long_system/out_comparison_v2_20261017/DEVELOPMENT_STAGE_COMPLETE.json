@@ -1,0 +1,5 @@
+{
+  "status": "Development completed; independent test intentionally deferred",
+  "reason": "Expand full SpecExtend node menu to upstream common 50/64 and RESCUE fixed length2 before confirmation; no test timing used for tuning",
+  "test_timing_rows": 0
+}

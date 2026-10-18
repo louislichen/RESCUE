@@ -1,0 +1,46 @@
+{
+  "fit_queries": 960,
+  "monitor_queries": 192,
+  "baseline": {
+    "queries": 192,
+    "matches": 142,
+    "corrected": 0,
+    "harmed": 0,
+    "kl": 0.5877049562858332
+  },
+  "selected": {
+    "queries": 192,
+    "matches": 142,
+    "corrected": 0,
+    "harmed": 0,
+    "kl": 0.5877049562858332
+  },
+  "epoch": 0,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.6513922436906768,
+      "monitor": {
+        "queries": 192,
+        "matches": 142,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.5911406349216648
+      }
+    },
+    {
+      "epoch": 2,
+      "loss": 0.6371703492897051,
+      "monitor": {
+        "queries": 192,
+        "matches": 142,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.5888811049089332
+      }
+    }
+  ],
+  "trained": "All final-layer mapper blocks; frozen base, no historical backprop",
+  "objective": "Greedy margin, native-success preservation, KL and differentiable prefix survival; no per-query V oracle",
+  "selection": "Monitor matches, then fewer harms, then KL; initial weights eligible"
+}

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "frozen_sources": 27,
+  "validation_requests": 96,
+  "training_requests": 60,
+  "exact_outputs": 156,
+  "unique_speculative_request_ids": 140,
+  "frozen_training_selected_lengths": {
+    "native": 4,
+    "specextend16": 4,
+    "specextend32": 4
+  },
+  "scope": "Saved records and frozen source hashes; no GPU rerun or full SpecExtend reproduction"
+}

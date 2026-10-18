@@ -1,0 +1,167 @@
+{
+  "fit_queries": 480,
+  "monitor_queries": 96,
+  "monitor_document": 236,
+  "baseline": {
+    "queries": 96,
+    "matches": 71,
+    "corrected": 0,
+    "harmed": 0,
+    "kl": 0.6543022511262819
+  },
+  "initial_query_mapper": {
+    "queries": 96,
+    "matches": 71,
+    "corrected": 0,
+    "harmed": 0,
+    "kl": 0.6543022511262819
+  },
+  "selected": {
+    "queries": 96,
+    "matches": 71,
+    "corrected": 0,
+    "harmed": 0,
+    "kl": 0.6519317149393563
+  },
+  "selected_epoch": 11,
+  "promoted_for_length": false,
+  "current_attention_features": 2,
+  "attention_output_distillation": true,
+  "selection": "Monitor greedy matches first; KL breaks ties. Downstream replacement requires strictly more matches.",
+  "oracle_corrected": 27,
+  "objective": "Teacher greedy margin/native-success preservation plus normalized V oracle distillation; train residual vector head and last gate only",
+  "history": [
+    {
+      "epoch": 1,
+      "fit_loss": 1.9265887340399817,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6571400506001362
+      }
+    },
+    {
+      "epoch": 2,
+      "fit_loss": 1.9104313806369917,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6614762969521072
+      }
+    },
+    {
+      "epoch": 3,
+      "fit_loss": 1.8929571524932922,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6570080640004411
+      }
+    },
+    {
+      "epoch": 4,
+      "fit_loss": 1.8764917646217403,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6565870905561818
+      }
+    },
+    {
+      "epoch": 5,
+      "fit_loss": 1.8545311779306468,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6568400335394765
+      }
+    },
+    {
+      "epoch": 6,
+      "fit_loss": 1.836573307263082,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6578971528703074
+      }
+    },
+    {
+      "epoch": 7,
+      "fit_loss": 1.8163889220550118,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6580299651529344
+      }
+    },
+    {
+      "epoch": 8,
+      "fit_loss": 1.802135084933613,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6560320031016881
+      }
+    },
+    {
+      "epoch": 9,
+      "fit_loss": 1.7899336383836826,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6541602442664072
+      }
+    },
+    {
+      "epoch": 10,
+      "fit_loss": 1.7774356928017039,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6557595890485312
+      }
+    },
+    {
+      "epoch": 11,
+      "fit_loss": 1.76766057733888,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6519317149393563
+      }
+    },
+    {
+      "epoch": 12,
+      "fit_loss": 1.7547145389564982,
+      "monitor": {
+        "queries": 96,
+        "matches": 71,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.6533630246534514
+      }
+    }
+  ]
+}

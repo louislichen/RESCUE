@@ -1,0 +1,11 @@
+{
+  "changed_live_files": [
+    "rescue/__main__.py",
+    "rescue/module_study.py"
+  ],
+  "scope": "Frozen executed source remains immutable",
+  "reasons": {
+    "rescue/module_study.py": "Disable unnecessary base gradients in future mapper fits; original optimizer updated only mapper.",
+    "rescue/__main__.py": "Expose tested early publication and profile options in CLI."
+  }
+}

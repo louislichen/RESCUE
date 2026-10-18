@@ -1,0 +1,26 @@
+{
+  "source_files_verified": 11,
+  "measured_runs": 48,
+  "exact_output_runs": 48,
+  "unique_new_request_ids": 36,
+  "new_trajectories_match_across_modes_and_profiles": true,
+  "profiles": {
+    "0": {
+      "legacy_trajectory_matches_of_6": 3,
+      "async_rounds": 72,
+      "ready_by_deadline": 72,
+      "mean_decision_ms": 7.721748165446722,
+      "mean_overlap_window_ms": 29.00883972142765,
+      "mean_exposed_wait_ms": 0.015140458749050999
+    },
+    "10": {
+      "legacy_trajectory_matches_of_6": 3,
+      "async_rounds": 72,
+      "ready_by_deadline": 72,
+      "mean_decision_ms": 17.91458434753521,
+      "mean_overlap_window_ms": 29.12835644302605,
+      "mean_exposed_wait_ms": 0.015740694531511206
+    }
+  },
+  "scope": "Saved records and source hashes; no new model inference"
+}

@@ -1,0 +1,829 @@
+{
+  "scope": "Single-start model-cost counterfactuals on old-mapper training states, not full-trajectory TPS or a post-update rollout",
+  "source_sha256": "f1b252477de7e2b872a241f5712806b87148eb07083fadf0d01822ee40e7fa8a",
+  "menu": [
+    1,
+    2,
+    4,
+    8,
+    12
+  ],
+  "limitations": "Proposed=12 and remaining>12 only; EOS bonus termination is not fully recorded; costs are fitted and must be checked online.",
+  "fit_documents": [
+    211,
+    213,
+    220,
+    226,
+    233
+  ],
+  "monitor_documents": [
+    236
+  ],
+  "selection": "Maximize geometric document-modeled throughput on the training monitor; no fresh development/test outcomes used",
+  "selected": {
+    "prior_weight": 0.5,
+    "accept_bias": 1.5,
+    "fit": {
+      "frames": 1471,
+      "document_mean_myopic_regret": 0.21484361957177606,
+      "mean_log_document_modeled_tps": 3.20149203124358,
+      "selected_horizons": {
+        "1": 0,
+        "2": 188,
+        "4": 1283,
+        "8": 0,
+        "12": 0
+      },
+      "modeled_committed_per_second": 24.53401756286621,
+      "wasted_proposals_per_committed": 0.8038252592086792,
+      "avoidable_tail_per_committed": 0.5259757041931152,
+      "verify_rounds_per_100_committed": 38.02016024812613
+    },
+    "monitor": {
+      "frames": 245,
+      "document_mean_myopic_regret": 0.19276359373209428,
+      "mean_log_document_modeled_tps": 3.306642410138408,
+      "selected_horizons": {
+        "1": 0,
+        "2": 52,
+        "4": 193,
+        "8": 0,
+        "12": 0
+      },
+      "modeled_committed_per_second": 27.293333053588867,
+      "wasted_proposals_per_committed": 0.5923295617103577,
+      "avoidable_tail_per_committed": 0.37784090638160706,
+      "verify_rounds_per_100_committed": 34.80113636363637
+    }
+  },
+  "candidates": [
+    {
+      "prior_weight": 0.0,
+      "accept_bias": 0.0,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.14998615034135887,
+        "mean_log_document_modeled_tps": 3.240350645866078,
+        "selected_horizons": {
+          "1": 59,
+          "2": 946,
+          "4": 438,
+          "8": 28,
+          "12": 0
+        },
+        "modeled_committed_per_second": 25.529020309448242,
+        "wasted_proposals_per_committed": 0.530913233757019,
+        "avoidable_tail_per_committed": 0.2853091359138489,
+        "verify_rounds_per_100_committed": 41.718661372660236
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.17015668348390228,
+        "mean_log_document_modeled_tps": 3.2763258824395014,
+        "selected_horizons": {
+          "1": 26,
+          "2": 161,
+          "4": 58,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.47831153869629,
+        "wasted_proposals_per_committed": 0.4175257682800293,
+        "avoidable_tail_per_committed": 0.20618556439876556,
+        "verify_rounds_per_100_committed": 42.09621993127148
+      }
+    },
+    {
+      "prior_weight": 0.0,
+      "accept_bias": 0.5,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.19413135859146272,
+        "mean_log_document_modeled_tps": 3.2204093699555543,
+        "selected_horizons": {
+          "1": 0,
+          "2": 501,
+          "4": 826,
+          "8": 140,
+          "12": 4
+        },
+        "modeled_committed_per_second": 25.014432907104492,
+        "wasted_proposals_per_committed": 0.7609026432037354,
+        "avoidable_tail_per_committed": 0.496957391500473,
+        "verify_rounds_per_100_committed": 37.29716024340771
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.18254508801868985,
+        "mean_log_document_modeled_tps": 3.3027397695560263,
+        "selected_horizons": {
+          "1": 3,
+          "2": 89,
+          "4": 146,
+          "8": 7,
+          "12": 0
+        },
+        "modeled_committed_per_second": 27.187023162841797,
+        "wasted_proposals_per_committed": 0.5607613325119019,
+        "avoidable_tail_per_committed": 0.35139092803001404,
+        "verify_rounds_per_100_committed": 35.87115666178624
+      }
+    },
+    {
+      "prior_weight": 0.0,
+      "accept_bias": 1.0,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.2708934318241141,
+        "mean_log_document_modeled_tps": 3.1492520307261307,
+        "selected_horizons": {
+          "1": 0,
+          "2": 88,
+          "4": 935,
+          "8": 407,
+          "12": 41
+        },
+        "modeled_committed_per_second": 23.30925178527832,
+        "wasted_proposals_per_committed": 1.100965976715088,
+        "avoidable_tail_per_committed": 0.825206995010376,
+        "verify_rounds_per_100_committed": 33.831646734130636
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.2379494248604288,
+        "mean_log_document_modeled_tps": 3.2598131425086914,
+        "selected_horizons": {
+          "1": 0,
+          "2": 28,
+          "4": 164,
+          "8": 53,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.04467010498047,
+        "wasted_proposals_per_committed": 0.8123359680175781,
+        "avoidable_tail_per_committed": 0.5931758284568787,
+        "verify_rounds_per_100_committed": 32.15223097112861
+      }
+    },
+    {
+      "prior_weight": 0.0,
+      "accept_bias": 1.5,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.3632233197719961,
+        "mean_log_document_modeled_tps": 3.0370771547183018,
+        "selected_horizons": {
+          "1": 0,
+          "2": 0,
+          "4": 510,
+          "8": 780,
+          "12": 181
+        },
+        "modeled_committed_per_second": 20.81690788269043,
+        "wasted_proposals_per_committed": 1.5525583028793335,
+        "avoidable_tail_per_committed": 1.2706059217453003,
+        "verify_rounds_per_100_committed": 31.492185827445944
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.3148901829914171,
+        "mean_log_document_modeled_tps": 3.1898277834099207,
+        "selected_horizons": {
+          "1": 0,
+          "2": 2,
+          "4": 90,
+          "8": 145,
+          "12": 8
+        },
+        "modeled_committed_per_second": 24.284244537353516,
+        "wasted_proposals_per_committed": 1.1510957479476929,
+        "avoidable_tail_per_committed": 0.9238754510879517,
+        "verify_rounds_per_100_committed": 28.258362168396772
+      }
+    },
+    {
+      "prior_weight": 0.25,
+      "accept_bias": 0.0,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.1524199047907307,
+        "mean_log_document_modeled_tps": 3.2313093263944888,
+        "selected_horizons": {
+          "1": 15,
+          "2": 1019,
+          "4": 433,
+          "8": 4,
+          "12": 0
+        },
+        "modeled_committed_per_second": 25.29500389099121,
+        "wasted_proposals_per_committed": 0.5318655967712402,
+        "avoidable_tail_per_committed": 0.2789687216281891,
+        "verify_rounds_per_100_committed": 42.61297798377752
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.16472839384662863,
+        "mean_log_document_modeled_tps": 3.2822914570927417,
+        "selected_horizons": {
+          "1": 13,
+          "2": 182,
+          "4": 50,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.63673973083496,
+        "wasted_proposals_per_committed": 0.40753424167633057,
+        "avoidable_tail_per_committed": 0.1952054798603058,
+        "verify_rounds_per_100_committed": 41.95205479452055
+      }
+    },
+    {
+      "prior_weight": 0.25,
+      "accept_bias": 0.5,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.1800675165921889,
+        "mean_log_document_modeled_tps": 3.2232349300451415,
+        "selected_horizons": {
+          "1": 0,
+          "2": 591,
+          "4": 840,
+          "8": 40,
+          "12": 0
+        },
+        "modeled_committed_per_second": 25.0757999420166,
+        "wasted_proposals_per_committed": 0.6870005130767822,
+        "avoidable_tail_per_committed": 0.42354822158813477,
+        "verify_rounds_per_100_committed": 39.1848694725626
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.17503898533023132,
+        "mean_log_document_modeled_tps": 3.3041380611404336,
+        "selected_horizons": {
+          "1": 0,
+          "2": 106,
+          "4": 139,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 27.22506332397461,
+        "wasted_proposals_per_committed": 0.523308277130127,
+        "avoidable_tail_per_committed": 0.3142857253551483,
+        "verify_rounds_per_100_committed": 36.8421052631579
+      }
+    },
+    {
+      "prior_weight": 0.25,
+      "accept_bias": 1.0,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.22349569760445998,
+        "mean_log_document_modeled_tps": 3.1982528755301236,
+        "selected_horizons": {
+          "1": 0,
+          "2": 197,
+          "4": 1117,
+          "8": 157,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.466548919677734,
+        "wasted_proposals_per_committed": 0.8701330423355103,
+        "avoidable_tail_per_committed": 0.596599280834198,
+        "verify_rounds_per_100_committed": 36.24938393297191
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.19710748803858855,
+        "mean_log_document_modeled_tps": 3.2961540476851816,
+        "selected_horizons": {
+          "1": 0,
+          "2": 53,
+          "4": 188,
+          "8": 4,
+          "12": 0
+        },
+        "modeled_committed_per_second": 27.008567810058594,
+        "wasted_proposals_per_committed": 0.6168091297149658,
+        "avoidable_tail_per_committed": 0.4017094075679779,
+        "verify_rounds_per_100_committed": 34.9002849002849
+      }
+    },
+    {
+      "prior_weight": 0.25,
+      "accept_bias": 1.5,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.2774408113155006,
+        "mean_log_document_modeled_tps": 3.1352149849248447,
+        "selected_horizons": {
+          "1": 0,
+          "2": 4,
+          "4": 1064,
+          "8": 403,
+          "12": 0
+        },
+        "modeled_committed_per_second": 22.987937927246094,
+        "wasted_proposals_per_committed": 1.1164658069610596,
+        "avoidable_tail_per_committed": 0.8348689079284668,
+        "verify_rounds_per_100_committed": 34.750767776990315
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.2397392757084905,
+        "mean_log_document_modeled_tps": 3.2643129938375757,
+        "selected_horizons": {
+          "1": 0,
+          "2": 11,
+          "4": 186,
+          "8": 48,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.162128448486328,
+        "wasted_proposals_per_committed": 0.8069947957992554,
+        "avoidable_tail_per_committed": 0.5958549380302429,
+        "verify_rounds_per_100_committed": 31.735751295336787
+      }
+    },
+    {
+      "prior_weight": 0.5,
+      "accept_bias": 0.0,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.15375329020478293,
+        "mean_log_document_modeled_tps": 3.2238616446581374,
+        "selected_horizons": {
+          "1": 0,
+          "2": 1044,
+          "4": 427,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 25.10774803161621,
+        "wasted_proposals_per_committed": 0.5418618321418762,
+        "avoidable_tail_per_committed": 0.28366509079933167,
+        "verify_rounds_per_100_committed": 43.06206088992974
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.16275030471840685,
+        "mean_log_document_modeled_tps": 3.2873881267819103,
+        "selected_horizons": {
+          "1": 4,
+          "2": 187,
+          "4": 54,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.772844314575195,
+        "wasted_proposals_per_committed": 0.4172297418117523,
+        "avoidable_tail_per_committed": 0.20101352035999298,
+        "verify_rounds_per_100_committed": 41.38513513513514
+      }
+    },
+    {
+      "prior_weight": 0.5,
+      "accept_bias": 0.5,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.17086382996219782,
+        "mean_log_document_modeled_tps": 3.211938102353702,
+        "selected_horizons": {
+          "1": 0,
+          "2": 753,
+          "4": 718,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.775747299194336,
+        "wasted_proposals_per_committed": 0.6457512378692627,
+        "avoidable_tail_per_committed": 0.3798536956310272,
+        "verify_rounds_per_100_committed": 41.38998311761396
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.17134909191910103,
+        "mean_log_document_modeled_tps": 3.293325267307844,
+        "selected_horizons": {
+          "1": 0,
+          "2": 130,
+          "4": 115,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.932270050048828,
+        "wasted_proposals_per_committed": 0.5054602026939392,
+        "avoidable_tail_per_committed": 0.29485177993774414,
+        "verify_rounds_per_100_committed": 38.22152886115445
+      }
+    },
+    {
+      "prior_weight": 0.5,
+      "accept_bias": 1.0,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.18728487951767853,
+        "mean_log_document_modeled_tps": 3.2099791397871895,
+        "selected_horizons": {
+          "1": 0,
+          "2": 510,
+          "4": 961,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.727800369262695,
+        "wasted_proposals_per_committed": 0.7126250267028809,
+        "avoidable_tail_per_committed": 0.44228169322013855,
+        "verify_rounds_per_100_committed": 39.76750473100838
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.17898353897795385,
+        "mean_log_document_modeled_tps": 3.3010036832103817,
+        "selected_horizons": {
+          "1": 0,
+          "2": 95,
+          "4": 150,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 27.139863967895508,
+        "wasted_proposals_per_committed": 0.5424739122390747,
+        "avoidable_tail_per_committed": 0.3338301181793213,
+        "verify_rounds_per_100_committed": 36.51266766020864
+      }
+    },
+    {
+      "prior_weight": 0.5,
+      "accept_bias": 1.5,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.21484361957177606,
+        "mean_log_document_modeled_tps": 3.20149203124358,
+        "selected_horizons": {
+          "1": 0,
+          "2": 188,
+          "4": 1283,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.53401756286621,
+        "wasted_proposals_per_committed": 0.8038252592086792,
+        "avoidable_tail_per_committed": 0.5259757041931152,
+        "verify_rounds_per_100_committed": 38.02016024812613
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.19276359373209428,
+        "mean_log_document_modeled_tps": 3.306642410138408,
+        "selected_horizons": {
+          "1": 0,
+          "2": 52,
+          "4": 193,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 27.293333053588867,
+        "wasted_proposals_per_committed": 0.5923295617103577,
+        "avoidable_tail_per_committed": 0.37784090638160706,
+        "verify_rounds_per_100_committed": 34.80113636363637
+      }
+    },
+    {
+      "prior_weight": 0.75,
+      "accept_bias": 0.0,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.158815443115444,
+        "mean_log_document_modeled_tps": 3.217945897000531,
+        "selected_horizons": {
+          "1": 0,
+          "2": 961,
+          "4": 510,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.95370864868164,
+        "wasted_proposals_per_committed": 0.5766105651855469,
+        "avoidable_tail_per_committed": 0.31398722529411316,
+        "verify_rounds_per_100_committed": 42.68717353453279
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.16734568756453844,
+        "mean_log_document_modeled_tps": 3.2881206014856468,
+        "selected_horizons": {
+          "1": 0,
+          "2": 167,
+          "4": 78,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.792463302612305,
+        "wasted_proposals_per_committed": 0.46065574884414673,
+        "avoidable_tail_per_committed": 0.24098360538482666,
+        "verify_rounds_per_100_committed": 40.16393442622951
+      }
+    },
+    {
+      "prior_weight": 0.75,
+      "accept_bias": 0.5,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.1747761560058987,
+        "mean_log_document_modeled_tps": 3.2001353174908678,
+        "selected_horizons": {
+          "1": 0,
+          "2": 758,
+          "4": 713,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.481264114379883,
+        "wasted_proposals_per_committed": 0.6649557948112488,
+        "avoidable_tail_per_committed": 0.3943541347980499,
+        "verify_rounds_per_100_committed": 41.944682064442546
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.17325688697853867,
+        "mean_log_document_modeled_tps": 3.2868572693524105,
+        "selected_horizons": {
+          "1": 0,
+          "2": 132,
+          "4": 113,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.758634567260742,
+        "wasted_proposals_per_committed": 0.5133858323097229,
+        "avoidable_tail_per_committed": 0.29921260476112366,
+        "verify_rounds_per_100_committed": 38.58267716535433
+      }
+    },
+    {
+      "prior_weight": 0.75,
+      "accept_bias": 1.0,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.1764471964210229,
+        "mean_log_document_modeled_tps": 3.197898337618889,
+        "selected_horizons": {
+          "1": 0,
+          "2": 743,
+          "4": 728,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.422714233398438,
+        "wasted_proposals_per_committed": 0.6730330586433411,
+        "avoidable_tail_per_committed": 0.40165334939956665,
+        "verify_rounds_per_100_committed": 41.9327251995439
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.1725371986019368,
+        "mean_log_document_modeled_tps": 3.288811238664476,
+        "selected_horizons": {
+          "1": 0,
+          "2": 131,
+          "4": 114,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.81097412109375,
+        "wasted_proposals_per_committed": 0.511773943901062,
+        "avoidable_tail_per_committed": 0.29827314615249634,
+        "verify_rounds_per_100_committed": 38.46153846153846
+      }
+    },
+    {
+      "prior_weight": 0.75,
+      "accept_bias": 1.5,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.1764471964210229,
+        "mean_log_document_modeled_tps": 3.197898337618889,
+        "selected_horizons": {
+          "1": 0,
+          "2": 743,
+          "4": 728,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.422714233398438,
+        "wasted_proposals_per_committed": 0.6730330586433411,
+        "avoidable_tail_per_committed": 0.40165334939956665,
+        "verify_rounds_per_100_committed": 41.9327251995439
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.1725371986019368,
+        "mean_log_document_modeled_tps": 3.288811238664476,
+        "selected_horizons": {
+          "1": 0,
+          "2": 131,
+          "4": 114,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.81097412109375,
+        "wasted_proposals_per_committed": 0.511773943901062,
+        "avoidable_tail_per_committed": 0.29827314615249634,
+        "verify_rounds_per_100_committed": 38.46153846153846
+      }
+    },
+    {
+      "prior_weight": 1.0,
+      "accept_bias": 0.0,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.1764471964210229,
+        "mean_log_document_modeled_tps": 3.197898337618889,
+        "selected_horizons": {
+          "1": 0,
+          "2": 743,
+          "4": 728,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.422714233398438,
+        "wasted_proposals_per_committed": 0.6730330586433411,
+        "avoidable_tail_per_committed": 0.40165334939956665,
+        "verify_rounds_per_100_committed": 41.9327251995439
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.1725371986019368,
+        "mean_log_document_modeled_tps": 3.288811238664476,
+        "selected_horizons": {
+          "1": 0,
+          "2": 131,
+          "4": 114,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.81097412109375,
+        "wasted_proposals_per_committed": 0.511773943901062,
+        "avoidable_tail_per_committed": 0.29827314615249634,
+        "verify_rounds_per_100_committed": 38.46153846153846
+      }
+    },
+    {
+      "prior_weight": 1.0,
+      "accept_bias": 0.5,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.1764471964210229,
+        "mean_log_document_modeled_tps": 3.197898337618889,
+        "selected_horizons": {
+          "1": 0,
+          "2": 743,
+          "4": 728,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.422714233398438,
+        "wasted_proposals_per_committed": 0.6730330586433411,
+        "avoidable_tail_per_committed": 0.40165334939956665,
+        "verify_rounds_per_100_committed": 41.9327251995439
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.1725371986019368,
+        "mean_log_document_modeled_tps": 3.288811238664476,
+        "selected_horizons": {
+          "1": 0,
+          "2": 131,
+          "4": 114,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.81097412109375,
+        "wasted_proposals_per_committed": 0.511773943901062,
+        "avoidable_tail_per_committed": 0.29827314615249634,
+        "verify_rounds_per_100_committed": 38.46153846153846
+      }
+    },
+    {
+      "prior_weight": 1.0,
+      "accept_bias": 1.0,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.1764471964210229,
+        "mean_log_document_modeled_tps": 3.197898337618889,
+        "selected_horizons": {
+          "1": 0,
+          "2": 743,
+          "4": 728,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.422714233398438,
+        "wasted_proposals_per_committed": 0.6730330586433411,
+        "avoidable_tail_per_committed": 0.40165334939956665,
+        "verify_rounds_per_100_committed": 41.9327251995439
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.1725371986019368,
+        "mean_log_document_modeled_tps": 3.288811238664476,
+        "selected_horizons": {
+          "1": 0,
+          "2": 131,
+          "4": 114,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.81097412109375,
+        "wasted_proposals_per_committed": 0.511773943901062,
+        "avoidable_tail_per_committed": 0.29827314615249634,
+        "verify_rounds_per_100_committed": 38.46153846153846
+      }
+    },
+    {
+      "prior_weight": 1.0,
+      "accept_bias": 1.5,
+      "fit": {
+        "frames": 1471,
+        "document_mean_myopic_regret": 0.1764471964210229,
+        "mean_log_document_modeled_tps": 3.197898337618889,
+        "selected_horizons": {
+          "1": 0,
+          "2": 743,
+          "4": 728,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 24.422714233398438,
+        "wasted_proposals_per_committed": 0.6730330586433411,
+        "avoidable_tail_per_committed": 0.40165334939956665,
+        "verify_rounds_per_100_committed": 41.9327251995439
+      },
+      "monitor": {
+        "frames": 245,
+        "document_mean_myopic_regret": 0.1725371986019368,
+        "mean_log_document_modeled_tps": 3.288811238664476,
+        "selected_horizons": {
+          "1": 0,
+          "2": 131,
+          "4": 114,
+          "8": 0,
+          "12": 0
+        },
+        "modeled_committed_per_second": 26.81097412109375,
+        "wasted_proposals_per_committed": 0.511773943901062,
+        "avoidable_tail_per_committed": 0.29827314615249634,
+        "verify_rounds_per_100_committed": 38.46153846153846
+      }
+    }
+  ],
+  "original_monitor": {
+    "frames": 245,
+    "document_mean_myopic_regret": 0.17015668348390228,
+    "mean_log_document_modeled_tps": 3.2763258824395014,
+    "selected_horizons": {
+      "1": 26,
+      "2": 161,
+      "4": 58,
+      "8": 0,
+      "12": 0
+    },
+    "modeled_committed_per_second": 26.47831153869629,
+    "wasted_proposals_per_committed": 0.4175257682800293,
+    "avoidable_tail_per_committed": 0.20618556439876556,
+    "verify_rounds_per_100_committed": 42.09621993127148
+  },
+  "fixed4_monitor": {
+    "frames": 245,
+    "document_mean_myopic_regret": 0.22125680324982624,
+    "mean_log_document_modeled_tps": 3.2972207988429765,
+    "selected_horizons": {
+      "1": 0,
+      "2": 0,
+      "4": 245,
+      "8": 0,
+      "12": 0
+    },
+    "modeled_committed_per_second": 27.03739356994629,
+    "wasted_proposals_per_committed": 0.6666666865348816,
+    "avoidable_tail_per_committed": 0.45306122303009033,
+    "verify_rounds_per_100_committed": 33.333333333333336
+  },
+  "oracle_monitor": {
+    "frames": 245,
+    "document_mean_myopic_regret": 0.0,
+    "mean_log_document_modeled_tps": 3.6144342428076888,
+    "selected_horizons": {
+      "1": 120,
+      "2": 24,
+      "4": 57,
+      "8": 30,
+      "12": 14
+    },
+    "modeled_committed_per_second": 37.13033676147461,
+    "wasted_proposals_per_committed": 0.10887949168682098,
+    "avoidable_tail_per_committed": 0.005285412073135376,
+    "verify_rounds_per_100_committed": 25.898520084566595
+  }
+}

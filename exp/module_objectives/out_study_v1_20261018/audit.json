@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "system_requests": 132,
+  "exact_system_outputs": 132,
+  "paired_quality_rows": 1680,
+  "quality_modes": 7,
+  "frozen_sources": 51,
+  "uuid_unique": 132,
+  "schedule_trajectories": {
+    "risk_async_late_vs_risk_serial": {
+      "matches": 12,
+      "pairs": 12
+    },
+    "risk_async_early_vs_risk_async_late": {
+      "matches": 12,
+      "pairs": 12
+    }
+  },
+  "analysis_source_sha256": "15861e9fe020f58724a46246cad293a280c1559cba3377ac79d3b14e38547bc0",
+  "scope": "Saved records/configuration/hash/statistical verification, not a second GPU run"
+}

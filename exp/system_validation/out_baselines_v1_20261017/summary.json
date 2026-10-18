@@ -1,0 +1,164 @@
+{
+  "modes": {
+    "native": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 34.818033659460596,
+      "total_tps": 24.436114815494914,
+      "proposed": 1004,
+      "accepted": 542,
+      "blocks": 258,
+      "acceptance_rate": 0.5398406374501992,
+      "accepted_per_round": 2.10077519379845
+    },
+    "native_k4": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 34.82966917405324,
+      "total_tps": 24.439239431803326,
+      "proposed": 1004,
+      "accepted": 542,
+      "blocks": 258,
+      "acceptance_rate": 0.5398406374501992,
+      "accepted_per_round": 2.10077519379845
+    },
+    "rescue": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 29.91256298368053,
+      "total_tps": 21.900055403390155,
+      "proposed": 716,
+      "accepted": 470,
+      "blocks": 330,
+      "acceptance_rate": 0.6564245810055865,
+      "accepted_per_round": 1.4242424242424243
+    },
+    "specextend16": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 34.14676682536015,
+      "total_tps": 24.03416876669724,
+      "proposed": 974,
+      "accepted": 552,
+      "blocks": 250,
+      "acceptance_rate": 0.5667351129363449,
+      "accepted_per_round": 2.208
+    },
+    "specextend32": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 34.08512555579534,
+      "total_tps": 24.04274835700862,
+      "proposed": 972,
+      "accepted": 550,
+      "blocks": 252,
+      "acceptance_rate": 0.565843621399177,
+      "accepted_per_round": 2.1825396825396823
+    },
+    "target_ar": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 47.36213403252072,
+      "total_tps": 30.79318260634058,
+      "proposed": 0,
+      "accepted": 0,
+      "blocks": 0,
+      "acceptance_rate": 0.0,
+      "accepted_per_round": 0.0
+    }
+  },
+  "comparisons": {
+    "native": {
+      "total_tps": {
+        "mean_percent": -10.234817898464563,
+        "ci95": [
+          -14.612466379481951,
+          -5.548218701399252
+        ],
+        "documents": 8
+      },
+      "decode_tps": {
+        "mean_percent": -13.322327780705365,
+        "ci95": [
+          -19.376275945590514,
+          -6.477565387470105
+        ],
+        "documents": 8
+      }
+    },
+    "native_k4": {
+      "total_tps": {
+        "mean_percent": -10.260130772382805,
+        "ci95": [
+          -14.599615140648655,
+          -5.629414507580831
+        ],
+        "documents": 8
+      },
+      "decode_tps": {
+        "mean_percent": -13.358405463836437,
+        "ci95": [
+          -19.465252340755672,
+          -6.4874054578696665
+        ],
+        "documents": 8
+      }
+    },
+    "specextend16": {
+      "total_tps": {
+        "mean_percent": -8.43468739811471,
+        "ci95": [
+          -12.915575285214171,
+          -3.485412435211745
+        ],
+        "documents": 8
+      },
+      "decode_tps": {
+        "mean_percent": -11.234331519398554,
+        "ci95": [
+          -18.17876552603464,
+          -3.414193177062172
+        ],
+        "documents": 8
+      }
+    },
+    "specextend32": {
+      "total_tps": {
+        "mean_percent": -8.626641613118629,
+        "ci95": [
+          -11.414698490509926,
+          -6.043164523472285
+        ],
+        "documents": 8
+      },
+      "decode_tps": {
+        "mean_percent": -12.449596485911426,
+        "ci95": [
+          -16.574448880910463,
+          -9.047523215164041
+        ],
+        "documents": 8
+      }
+    },
+    "target_ar": {
+      "total_tps": {
+        "mean_percent": -27.542499664094912,
+        "ci95": [
+          -31.632102089969948,
+          -22.902793391559193
+        ],
+        "documents": 8
+      },
+      "decode_tps": {
+        "mean_percent": -35.127841294821344,
+        "ci95": [
+          -38.62665168567874,
+          -31.09123629729559
+        ],
+        "documents": 8
+      }
+    }
+  },
+  "measured_runs": 96,
+  "exact_outputs": 96
+}

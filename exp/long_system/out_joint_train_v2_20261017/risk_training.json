@@ -1,0 +1,135 @@
+{
+  "fit_frames": 1551,
+  "monitor_frames": 260,
+  "monitor_document": 236,
+  "selected_monitor_nll": 0.6037622690200806,
+  "selected_epoch": 147,
+  "history": [
+    {
+      "epoch": 1,
+      "training_nll": 1.1302533149719238,
+      "monitor_nll": 1.1268978118896484
+    },
+    {
+      "epoch": 11,
+      "training_nll": 1.0906367301940918,
+      "monitor_nll": 1.0894109010696411
+    },
+    {
+      "epoch": 21,
+      "training_nll": 1.0400325059890747,
+      "monitor_nll": 1.0410441160202026
+    },
+    {
+      "epoch": 31,
+      "training_nll": 0.9694244265556335,
+      "monitor_nll": 0.9748769998550415
+    },
+    {
+      "epoch": 41,
+      "training_nll": 0.8831688165664673,
+      "monitor_nll": 0.9003984928131104
+    },
+    {
+      "epoch": 51,
+      "training_nll": 0.7964245676994324,
+      "monitor_nll": 0.8263953328132629
+    },
+    {
+      "epoch": 61,
+      "training_nll": 0.7193281054496765,
+      "monitor_nll": 0.7508865594863892
+    },
+    {
+      "epoch": 71,
+      "training_nll": 0.6648285388946533,
+      "monitor_nll": 0.6903447508811951
+    },
+    {
+      "epoch": 81,
+      "training_nll": 0.6295601725578308,
+      "monitor_nll": 0.6539360284805298
+    },
+    {
+      "epoch": 91,
+      "training_nll": 0.6074112057685852,
+      "monitor_nll": 0.6338289380073547
+    },
+    {
+      "epoch": 101,
+      "training_nll": 0.5938881039619446,
+      "monitor_nll": 0.6189659237861633
+    },
+    {
+      "epoch": 111,
+      "training_nll": 0.5848109722137451,
+      "monitor_nll": 0.6093438267707825
+    },
+    {
+      "epoch": 121,
+      "training_nll": 0.5782321095466614,
+      "monitor_nll": 0.6056253910064697
+    },
+    {
+      "epoch": 131,
+      "training_nll": 0.5728887915611267,
+      "monitor_nll": 0.6043187975883484
+    },
+    {
+      "epoch": 141,
+      "training_nll": 0.5682492256164551,
+      "monitor_nll": 0.6040210723876953
+    },
+    {
+      "epoch": 151,
+      "training_nll": 0.5640246272087097,
+      "monitor_nll": 0.6038709878921509
+    },
+    {
+      "epoch": 161,
+      "training_nll": 0.5600502490997314,
+      "monitor_nll": 0.6048142313957214
+    },
+    {
+      "epoch": 171,
+      "training_nll": 0.556233286857605,
+      "monitor_nll": 0.6065664887428284
+    },
+    {
+      "epoch": 181,
+      "training_nll": 0.5525104403495789,
+      "monitor_nll": 0.6092731356620789
+    },
+    {
+      "epoch": 191,
+      "training_nll": 0.5488353967666626,
+      "monitor_nll": 0.6127777099609375
+    },
+    {
+      "epoch": 201,
+      "training_nll": 0.5451757907867432,
+      "monitor_nll": 0.6170818209648132
+    },
+    {
+      "epoch": 211,
+      "training_nll": 0.5415142774581909,
+      "monitor_nll": 0.6221113204956055
+    },
+    {
+      "epoch": 221,
+      "training_nll": 0.5378432869911194,
+      "monitor_nll": 0.6277406215667725
+    },
+    {
+      "epoch": 231,
+      "training_nll": 0.5341580510139465,
+      "monitor_nll": 0.6339333653450012
+    },
+    {
+      "epoch": 241,
+      "training_nll": 0.5304539799690247,
+      "monitor_nll": 0.6405861973762512
+    }
+  ],
+  "limitation": "Single seed, internal training monitor; states use collection mapper, which may differ if new mapper weights are selected"
+}

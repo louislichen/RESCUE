@@ -1,0 +1,18 @@
+{
+  "verify_beta": [
+    0.022361420712331173,
+    0.0030563464099627818,
+    8.831447952736794e-05,
+    0.0008567615460601112
+  ],
+  "student_step": 0.015209314493404236,
+  "fixed_round": 0.0034449700033292174,
+  "cache_update": 0.0,
+  "calibration_documents": [
+    1500,
+    1501
+  ],
+  "verify_mae": 0.0002926898559115044,
+  "verify_samples": 91,
+  "scope": "Actual engine, fixed horizons, training documents only; additive cost approximation"
+}

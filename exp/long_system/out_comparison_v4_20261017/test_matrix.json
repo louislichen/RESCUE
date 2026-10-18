@@ -1,0 +1,26 @@
+{
+  "source_indices": [
+    252,
+    253,
+    256,
+    262,
+    297,
+    327,
+    329,
+    335
+  ],
+  "lengths": [
+    2048,
+    4096,
+    8192,
+    16384
+  ],
+  "repeats": 2,
+  "modes": {
+    "rescue_positive": "refine_teacher025",
+    "rescue_guarded": "refine_matched_noinj",
+    "rescue_dynamic": "dynamic",
+    "retrieval": "retrieval32_k4",
+    "full_specextend": "full32_n8"
+  }
+}

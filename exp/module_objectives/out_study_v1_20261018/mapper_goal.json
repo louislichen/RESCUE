@@ -1,0 +1,99 @@
+{
+  "scope": "Same frozen last-layer old-rollout queries; not historical backprop or actual accepted-prefix improvement",
+  "fit_queries": 240,
+  "monitor_queries": 48,
+  "monitor_document": 236,
+  "objective": "0.25 KL + softplus teacher top1 margin + 0.5 native-success margin preservation + 0.01 residual",
+  "selection": "Training monitor greedy matches, then KL; original weights are eligible",
+  "selected_epoch": 4,
+  "original": {
+    "queries": 48,
+    "matches": 37,
+    "native_matches": 37,
+    "corrected": 0,
+    "harmed": 0,
+    "mean_kl": 0.6764002088743458
+  },
+  "selected": {
+    "queries": 48,
+    "matches": 37,
+    "native_matches": 37,
+    "corrected": 0,
+    "harmed": 0,
+    "mean_kl": 0.6732895348640872
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "fit_loss": 0.7709230466787631,
+      "monitor": {
+        "queries": 48,
+        "matches": 37,
+        "native_matches": 37,
+        "corrected": 0,
+        "harmed": 0,
+        "mean_kl": 0.6752391292790776
+      }
+    },
+    {
+      "epoch": 2,
+      "fit_loss": 0.7575442203980022,
+      "monitor": {
+        "queries": 48,
+        "matches": 37,
+        "native_matches": 37,
+        "corrected": 0,
+        "harmed": 0,
+        "mean_kl": 0.6745335367486783
+      }
+    },
+    {
+      "epoch": 3,
+      "fit_loss": 0.7433566718233086,
+      "monitor": {
+        "queries": 48,
+        "matches": 37,
+        "native_matches": 37,
+        "corrected": 0,
+        "harmed": 0,
+        "mean_kl": 0.6744085916600397
+      }
+    },
+    {
+      "epoch": 4,
+      "fit_loss": 0.7368984978801564,
+      "monitor": {
+        "queries": 48,
+        "matches": 37,
+        "native_matches": 37,
+        "corrected": 0,
+        "harmed": 0,
+        "mean_kl": 0.6732895348640872
+      }
+    },
+    {
+      "epoch": 5,
+      "fit_loss": 0.7277432187105243,
+      "monitor": {
+        "queries": 48,
+        "matches": 37,
+        "native_matches": 37,
+        "corrected": 0,
+        "harmed": 0,
+        "mean_kl": 0.6749332405244862
+      }
+    },
+    {
+      "epoch": 6,
+      "fit_loss": 0.7210044505520765,
+      "monitor": {
+        "queries": 48,
+        "matches": 37,
+        "native_matches": 37,
+        "corrected": 0,
+        "harmed": 0,
+        "mean_kl": 0.6763468818227617
+      }
+    }
+  ]
+}

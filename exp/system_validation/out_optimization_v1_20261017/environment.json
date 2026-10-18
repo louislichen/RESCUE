@@ -1,0 +1,9 @@
+{
+  "gpu": "NVIDIA H100",
+  "torch": "2.7.1+cu128",
+  "target_dtype": "torch.float32",
+  "draft_dtype": "torch.bfloat16",
+  "tf32": false,
+  "teacher_layers": 28,
+  "student_layers": 28
+}

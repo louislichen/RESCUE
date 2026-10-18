@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "collection_requests": 24,
+  "exact_collection_outputs": 24,
+  "replay_records": 288,
+  "risk_frames": 1811,
+  "mapper_changed_tensors": [
+    "encoders.3.0.weight",
+    "encoders.3.0.bias",
+    "encoders.3.1.weight",
+    "encoders.3.1.bias",
+    "decoders.3.weight",
+    "decoders.3.bias",
+    "query.3.0.weight",
+    "query.3.0.bias",
+    "query.3.1.weight",
+    "query.3.1.bias",
+    "native.3.0.weight",
+    "native.3.0.bias",
+    "native.3.1.weight",
+    "native.3.1.bias",
+    "gates.3.0.weight",
+    "gates.3.0.bias",
+    "gates.3.2.weight",
+    "gates.3.2.bias"
+  ],
+  "selected_monitor_nll": 0.6037622690200806,
+  "scope": "Frozen-source/selection/checkpoint and CPU hazard audit; no reexecution of mapper GPU gradients"
+}

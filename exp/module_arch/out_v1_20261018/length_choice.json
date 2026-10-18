@@ -1,0 +1,13 @@
+{
+  "chosen": "step5",
+  "eligible": [
+    "step5"
+  ],
+  "scores": {
+    "fixed4": 1.0,
+    "step0": 1.0095302670426838,
+    "step5": 0.9953084173460893,
+    "prior": 0.9912051822879485
+  },
+  "note": "Positive step candidate kept for confirmation even if fixed4 wins; not automatically promoted"
+}

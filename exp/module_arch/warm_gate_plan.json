@@ -1,0 +1,10 @@
+{
+  "time_utc": "2026-10-18T02:50:15.956743+00:00",
+  "base_confirmation_locked": false,
+  "reason": "Training-only compact stages retained zero initialization. Gate -2.2 attenuates residual gradient; first48-query sampling omits later output states. These are hypotheses, not established causal failures.",
+  "architecture": "Same NativeResidualMapper rank16/residual8/gate16; gate bias0 with zero output heads preserves identity while raising initial gain.",
+  "data": "Collect every verified prefix query over full128 output at fixed4. Fit: deterministic spread sample24 old-query rejections plus24 accepted positions per document/length, fill shortages. Monitor: uniform48 across complete output, no performance-based sample selection.",
+  "training": "Same prefix/margin/preservation/KL objective, all final-layer mapper blocks;4 epochs, recollect own full128 rollout, then2 epochs on mixed records. No oracle V targets.",
+  "confirmation": "Same new604/613/614 cohort as base, not independent replication. Fixed4 native/query/base full mapper/warm compact, two randomized timing repeats. No warm compact plus new length integration claim.",
+  "scope": "Supplement predefined from training diagnostics before primary confirmation opened; no selection on confirmation results"
+}

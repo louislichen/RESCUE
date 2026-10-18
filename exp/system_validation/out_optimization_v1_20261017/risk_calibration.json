@@ -1,0 +1,16 @@
+{
+  "scale": 1.5785329341888428,
+  "accept_bias": -0.159204363822937,
+  "training_nll_before": 0.43816933035850525,
+  "training_nll_after": 0.3932425081729889,
+  "frames": 28,
+  "documents": [
+    1500,
+    1501,
+    1503,
+    1504
+  ],
+  "regularization": 0.01,
+  "scope": "Fit only, two scalar parameters; no validation-set fitting or held-out calibration claim",
+  "base_checkpoint_sha256": "0e20c1c7d296db0b09cef9a667e7015a19e745becd789524445ce486d818fdf2"
+}

@@ -1,0 +1,372 @@
+{
+  "modes": {
+    "legacy": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 30.60766384801084,
+      "total_tps": 22.285045519462688,
+      "blocks": 330,
+      "proposed": 716,
+      "accepted": 470,
+      "acceptance_rate": 0.6564245810055865,
+      "draft_forwards": 890
+    },
+    "native": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 37.355821111956345,
+      "total_tps": 25.653940642738686,
+      "blocks": 258,
+      "proposed": 1004,
+      "accepted": 542,
+      "acceptance_rate": 0.5398406374501992,
+      "draft_forwards": 1104
+    },
+    "optimized_calibrated": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 30.608820729010233,
+      "total_tps": 22.256044051092935,
+      "blocks": 266,
+      "proposed": 1036,
+      "accepted": 540,
+      "acceptance_rate": 0.5212355212355212,
+      "draft_forwards": 1140
+    },
+    "optimized_fixed": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 32.2884462107572,
+      "total_tps": 23.11303773378585,
+      "blocks": 260,
+      "proposed": 1002,
+      "accepted": 544,
+      "acceptance_rate": 0.5429141716566867,
+      "draft_forwards": 1102
+    },
+    "optimized_oldrisk": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 32.10545034002989,
+      "total_tps": 23.06552032981898,
+      "blocks": 330,
+      "proposed": 716,
+      "accepted": 470,
+      "acceptance_rate": 0.6564245810055865,
+      "draft_forwards": 890
+    },
+    "specextend16": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 36.66867712194617,
+      "total_tps": 25.281278292499458,
+      "blocks": 250,
+      "proposed": 974,
+      "accepted": 552,
+      "acceptance_rate": 0.5667351129363449,
+      "draft_forwards": 1076
+    },
+    "specextend32": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 36.59962241760265,
+      "total_tps": 25.298191584951155,
+      "blocks": 252,
+      "proposed": 972,
+      "accepted": 550,
+      "acceptance_rate": 0.565843621399177,
+      "draft_forwards": 1072
+    },
+    "target_ar": {
+      "requests": 16,
+      "tokens": 792,
+      "decode_tps": 47.1143353525767,
+      "total_tps": 30.675261132351974,
+      "blocks": 0,
+      "proposed": 0,
+      "accepted": 0,
+      "acceptance_rate": 0.0,
+      "draft_forwards": 0
+    }
+  },
+  "comparisons": {
+    "optimized_oldrisk": {
+      "legacy": {
+        "decode_tps": {
+          "mean_percent": 4.937928197336386,
+          "ci95": [
+            4.810577910739563,
+            5.09266392542661
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": 3.3782808472891612,
+          "ci95": [
+            2.8063715240523424,
+            3.8162714847979036
+          ],
+          "documents": 8
+        }
+      },
+      "native": {
+        "decode_tps": {
+          "mean_percent": -13.252882040956965,
+          "ci95": [
+            -19.40510639250667,
+            -6.322547130748797
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -9.92051960232465,
+          "ci95": [
+            -14.435850713407259,
+            -5.120649882311184
+          ],
+          "documents": 8
+        }
+      },
+      "specextend16": {
+        "decode_tps": {
+          "mean_percent": -11.295255068405295,
+          "ci95": [
+            -18.4321249723407,
+            -3.2404481820354976
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -8.31756236873778,
+          "ci95": [
+            -13.067853052095826,
+            -2.957735489228691
+          ],
+          "documents": 8
+        }
+      },
+      "specextend32": {
+        "decode_tps": {
+          "mean_percent": -12.415788650991514,
+          "ci95": [
+            -16.42492251244286,
+            -9.203204953500288
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -8.535632646271516,
+          "ci95": [
+            -11.373437590999586,
+            -5.927737287605147
+          ],
+          "documents": 8
+        }
+      },
+      "target_ar": {
+        "decode_tps": {
+          "mean_percent": -29.93839802169312,
+          "ci95": [
+            -33.795979888326066,
+            -25.53167271703178
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -23.57430829526094,
+          "ci95": [
+            -27.466979706040462,
+            -19.22501236387928
+          ],
+          "documents": 8
+        }
+      }
+    },
+    "optimized_fixed": {
+      "legacy": {
+        "decode_tps": {
+          "mean_percent": 5.872227470437348,
+          "ci95": [
+            -2.2734479004893946,
+            13.945172038114828
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": 4.385307551208791,
+          "ci95": [
+            -0.961014592500771,
+            10.077791792899026
+          ],
+          "documents": 8
+        }
+      },
+      "native": {
+        "decode_tps": {
+          "mean_percent": -13.531492700858385,
+          "ci95": [
+            -14.68925838034463,
+            -12.301797645124491
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -9.54743563883184,
+          "ci95": [
+            -11.082267967813104,
+            -8.014965618218191
+          ],
+          "documents": 8
+        }
+      },
+      "specextend16": {
+        "decode_tps": {
+          "mean_percent": -11.398610035114372,
+          "ci95": [
+            -16.583390217256838,
+            -5.616689037752538
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -7.7857831119060155,
+          "ci95": [
+            -11.972928809212572,
+            -3.4350061815414348
+          ],
+          "documents": 8
+        }
+      },
+      "specextend32": {
+        "decode_tps": {
+          "mean_percent": -11.880971005621578,
+          "ci95": [
+            -18.251788555229098,
+            -5.598646363608384
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -7.833463675381049,
+          "ci95": [
+            -11.586878567109933,
+            -3.9407677715024443
+          ],
+          "documents": 8
+        }
+      },
+      "target_ar": {
+        "decode_tps": {
+          "mean_percent": -29.318616933555244,
+          "ci95": [
+            -35.877090904690014,
+            -22.37106826574182
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -22.77703920445655,
+          "ci95": [
+            -28.892220655036468,
+            -16.923196881560635
+          ],
+          "documents": 8
+        }
+      }
+    },
+    "optimized_calibrated": {
+      "legacy": {
+        "decode_tps": {
+          "mean_percent": 1.1536206755493439,
+          "ci95": [
+            -2.1269288587156128,
+            4.711760475488574
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": 0.6261990811594673,
+          "ci95": [
+            -1.9761761066349526,
+            3.3472238649163653
+          ],
+          "documents": 8
+        }
+      },
+      "native": {
+        "decode_tps": {
+          "mean_percent": -16.679638795167136,
+          "ci95": [
+            -21.09125489838656,
+            -11.350896104719904
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -12.45657921218043,
+          "ci95": [
+            -16.036781725759713,
+            -8.203735942371098
+          ],
+          "documents": 8
+        }
+      },
+      "specextend16": {
+        "decode_tps": {
+          "mean_percent": -14.675821169534593,
+          "ci95": [
+            -21.516890327820743,
+            -7.523009402871294
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -10.835254036380645,
+          "ci95": [
+            -15.529586280777801,
+            -5.835838533344958
+          ],
+          "documents": 8
+        }
+      },
+      "specextend32": {
+        "decode_tps": {
+          "mean_percent": -15.614488416072518,
+          "ci95": [
+            -20.12242991641924,
+            -11.92571303149771
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -10.986816200730413,
+          "ci95": [
+            -14.427767725802957,
+            -7.737914207903318
+          ],
+          "documents": 8
+        }
+      },
+      "target_ar": {
+        "decode_tps": {
+          "mean_percent": -32.308769109951356,
+          "ci95": [
+            -37.73294553508161,
+            -26.67428399132859
+          ],
+          "documents": 8
+        },
+        "total_tps": {
+          "mean_percent": -25.450483298893673,
+          "ci95": [
+            -30.841058082689248,
+            -19.90787343177108
+          ],
+          "documents": 8
+        }
+      }
+    }
+  },
+  "measured_runs": 128,
+  "exact_outputs": 128
+}

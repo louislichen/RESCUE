@@ -1,0 +1,11 @@
+{
+  "torch": "2.7.1+cu128",
+  "gpu": "NVIDIA H100",
+  "teacher_dtype": "torch.float32",
+  "draft_dtype": "torch.bfloat16",
+  "packing": {
+    "seconds": 0.024405723001109436,
+    "allocated_delta_bytes": -58720256,
+    "scope": "Common preparation before request timing, applied to both engines"
+  }
+}

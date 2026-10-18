@@ -1,0 +1,4 @@
+{
+  "reason": "Duplicate packed weights in sequential architecture wrappers cost 18718760960 extra allocated bytes; switch to shared immutable packed operations before development or test selection",
+  "status": "diagnostic setup only, no speed claims"
+}

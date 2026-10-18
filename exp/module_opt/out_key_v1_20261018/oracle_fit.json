@@ -1,0 +1,3845 @@
+{
+  "scope": "Teacher-aware auxiliary FIT targets only; monitor/confirmation never generate oracle targets",
+  "queries": [
+    {
+      "fit_query": 0,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 1,
+      "native_correct": true,
+      "initial_margin": 3.125,
+      "oracle_margin": 3.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 2,
+      "native_correct": true,
+      "initial_margin": 2.75,
+      "oracle_margin": 2.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 3,
+      "native_correct": true,
+      "initial_margin": 2.5,
+      "oracle_margin": 2.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 4,
+      "native_correct": true,
+      "initial_margin": 4.125,
+      "oracle_margin": 4.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 5,
+      "native_correct": true,
+      "initial_margin": 4.0,
+      "oracle_margin": 4.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 6,
+      "native_correct": true,
+      "initial_margin": 1.375,
+      "oracle_margin": 1.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 7,
+      "native_correct": true,
+      "initial_margin": 3.0,
+      "oracle_margin": 3.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 8,
+      "native_correct": true,
+      "initial_margin": 6.125,
+      "oracle_margin": 6.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 9,
+      "native_correct": true,
+      "initial_margin": 5.625,
+      "oracle_margin": 5.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 10,
+      "native_correct": true,
+      "initial_margin": 5.375,
+      "oracle_margin": 5.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 11,
+      "native_correct": true,
+      "initial_margin": 1.25,
+      "oracle_margin": 1.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 12,
+      "native_correct": true,
+      "initial_margin": 10.75,
+      "oracle_margin": 10.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 13,
+      "native_correct": true,
+      "initial_margin": 3.375,
+      "oracle_margin": 3.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 14,
+      "native_correct": true,
+      "initial_margin": 4.25,
+      "oracle_margin": 4.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 15,
+      "native_correct": false,
+      "initial_margin": -1.125,
+      "oracle_margin": -0.375,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 16,
+      "native_correct": true,
+      "initial_margin": 11.0,
+      "oracle_margin": 11.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 17,
+      "native_correct": true,
+      "initial_margin": 7.625,
+      "oracle_margin": 7.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 18,
+      "native_correct": true,
+      "initial_margin": 1.625,
+      "oracle_margin": 1.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 19,
+      "native_correct": true,
+      "initial_margin": 5.75,
+      "oracle_margin": 5.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 20,
+      "native_correct": true,
+      "initial_margin": 7.5,
+      "oracle_margin": 7.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 21,
+      "native_correct": true,
+      "initial_margin": 1.625,
+      "oracle_margin": 1.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 22,
+      "native_correct": true,
+      "initial_margin": 4.375,
+      "oracle_margin": 4.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 23,
+      "native_correct": true,
+      "initial_margin": 7.375,
+      "oracle_margin": 7.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 24,
+      "native_correct": true,
+      "initial_margin": 10.625,
+      "oracle_margin": 10.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 25,
+      "native_correct": true,
+      "initial_margin": 10.75,
+      "oracle_margin": 10.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 26,
+      "native_correct": true,
+      "initial_margin": 9.625,
+      "oracle_margin": 9.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 27,
+      "native_correct": true,
+      "initial_margin": 6.0,
+      "oracle_margin": 6.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 28,
+      "native_correct": true,
+      "initial_margin": 6.625,
+      "oracle_margin": 6.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 29,
+      "native_correct": true,
+      "initial_margin": 12.625,
+      "oracle_margin": 12.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 30,
+      "native_correct": true,
+      "initial_margin": 10.0,
+      "oracle_margin": 10.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 31,
+      "native_correct": true,
+      "initial_margin": 6.5,
+      "oracle_margin": 6.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 32,
+      "native_correct": false,
+      "initial_margin": -1.125,
+      "oracle_margin": -1.0,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 33,
+      "native_correct": false,
+      "initial_margin": -0.75,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 8
+    },
+    {
+      "fit_query": 34,
+      "native_correct": true,
+      "initial_margin": 0.875,
+      "oracle_margin": 0.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 35,
+      "native_correct": true,
+      "initial_margin": 11.0,
+      "oracle_margin": 11.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 36,
+      "native_correct": false,
+      "initial_margin": -1.0,
+      "oracle_margin": -0.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 37,
+      "native_correct": false,
+      "initial_margin": -2.625,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 10
+    },
+    {
+      "fit_query": 38,
+      "native_correct": false,
+      "initial_margin": -1.0,
+      "oracle_margin": -0.75,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 39,
+      "native_correct": false,
+      "initial_margin": -3.75,
+      "oracle_margin": -2.25,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 40,
+      "native_correct": true,
+      "initial_margin": 1.0,
+      "oracle_margin": 1.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 41,
+      "native_correct": true,
+      "initial_margin": 3.25,
+      "oracle_margin": 3.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 42,
+      "native_correct": false,
+      "initial_margin": -4.9375,
+      "oracle_margin": -1.5,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 43,
+      "native_correct": true,
+      "initial_margin": 3.625,
+      "oracle_margin": 3.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 44,
+      "native_correct": true,
+      "initial_margin": 1.25,
+      "oracle_margin": 1.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 45,
+      "native_correct": true,
+      "initial_margin": 0.5,
+      "oracle_margin": 0.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 46,
+      "native_correct": true,
+      "initial_margin": 3.25,
+      "oracle_margin": 3.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 47,
+      "native_correct": true,
+      "initial_margin": 1.25,
+      "oracle_margin": 1.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 48,
+      "native_correct": true,
+      "initial_margin": 0.0,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 0
+    },
+    {
+      "fit_query": 49,
+      "native_correct": true,
+      "initial_margin": 0.9375,
+      "oracle_margin": 0.9375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 50,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 51,
+      "native_correct": true,
+      "initial_margin": 1.625,
+      "oracle_margin": 1.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 52,
+      "native_correct": true,
+      "initial_margin": 4.75,
+      "oracle_margin": 4.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 53,
+      "native_correct": true,
+      "initial_margin": 3.375,
+      "oracle_margin": 3.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 54,
+      "native_correct": true,
+      "initial_margin": 0.875,
+      "oracle_margin": 0.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 55,
+      "native_correct": true,
+      "initial_margin": 2.6875,
+      "oracle_margin": 2.6875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 56,
+      "native_correct": true,
+      "initial_margin": 4.5,
+      "oracle_margin": 4.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 57,
+      "native_correct": true,
+      "initial_margin": 5.625,
+      "oracle_margin": 5.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 58,
+      "native_correct": true,
+      "initial_margin": 4.125,
+      "oracle_margin": 4.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 59,
+      "native_correct": false,
+      "initial_margin": -0.875,
+      "oracle_margin": -0.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 60,
+      "native_correct": true,
+      "initial_margin": 9.125,
+      "oracle_margin": 9.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 61,
+      "native_correct": true,
+      "initial_margin": 4.125,
+      "oracle_margin": 4.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 62,
+      "native_correct": true,
+      "initial_margin": 10.5625,
+      "oracle_margin": 10.5625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 63,
+      "native_correct": true,
+      "initial_margin": 6.8125,
+      "oracle_margin": 6.8125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 64,
+      "native_correct": true,
+      "initial_margin": 7.875,
+      "oracle_margin": 7.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 65,
+      "native_correct": true,
+      "initial_margin": 3.0,
+      "oracle_margin": 3.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 66,
+      "native_correct": true,
+      "initial_margin": 3.375,
+      "oracle_margin": 3.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 67,
+      "native_correct": true,
+      "initial_margin": 9.0,
+      "oracle_margin": 9.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 68,
+      "native_correct": true,
+      "initial_margin": 2.875,
+      "oracle_margin": 2.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 69,
+      "native_correct": true,
+      "initial_margin": 5.25,
+      "oracle_margin": 5.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 70,
+      "native_correct": true,
+      "initial_margin": 1.75,
+      "oracle_margin": 1.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 71,
+      "native_correct": true,
+      "initial_margin": 3.4375,
+      "oracle_margin": 3.4375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 72,
+      "native_correct": true,
+      "initial_margin": 6.5,
+      "oracle_margin": 6.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 73,
+      "native_correct": true,
+      "initial_margin": 1.125,
+      "oracle_margin": 1.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 74,
+      "native_correct": true,
+      "initial_margin": 5.5,
+      "oracle_margin": 5.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 75,
+      "native_correct": true,
+      "initial_margin": 3.25,
+      "oracle_margin": 3.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 76,
+      "native_correct": true,
+      "initial_margin": 0.875,
+      "oracle_margin": 0.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 77,
+      "native_correct": true,
+      "initial_margin": 3.875,
+      "oracle_margin": 3.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 78,
+      "native_correct": true,
+      "initial_margin": 4.75,
+      "oracle_margin": 4.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 79,
+      "native_correct": true,
+      "initial_margin": 9.0,
+      "oracle_margin": 9.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 80,
+      "native_correct": true,
+      "initial_margin": 10.25,
+      "oracle_margin": 10.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 81,
+      "native_correct": true,
+      "initial_margin": 8.75,
+      "oracle_margin": 8.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 82,
+      "native_correct": true,
+      "initial_margin": 5.5,
+      "oracle_margin": 5.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 83,
+      "native_correct": true,
+      "initial_margin": 10.0625,
+      "oracle_margin": 10.0625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 84,
+      "native_correct": true,
+      "initial_margin": 10.75,
+      "oracle_margin": 10.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 85,
+      "native_correct": true,
+      "initial_margin": 9.125,
+      "oracle_margin": 9.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 86,
+      "native_correct": true,
+      "initial_margin": 4.625,
+      "oracle_margin": 4.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 87,
+      "native_correct": false,
+      "initial_margin": -3.125,
+      "oracle_margin": -2.875,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 88,
+      "native_correct": false,
+      "initial_margin": -0.5,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 5
+    },
+    {
+      "fit_query": 89,
+      "native_correct": true,
+      "initial_margin": 0.875,
+      "oracle_margin": 0.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 90,
+      "native_correct": true,
+      "initial_margin": 8.5,
+      "oracle_margin": 8.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 91,
+      "native_correct": false,
+      "initial_margin": -0.875,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 4
+    },
+    {
+      "fit_query": 92,
+      "native_correct": false,
+      "initial_margin": -1.625,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 4
+    },
+    {
+      "fit_query": 93,
+      "native_correct": true,
+      "initial_margin": 1.25,
+      "oracle_margin": 1.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 94,
+      "native_correct": true,
+      "initial_margin": 2.0,
+      "oracle_margin": 2.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 95,
+      "native_correct": true,
+      "initial_margin": 1.375,
+      "oracle_margin": 1.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 96,
+      "native_correct": true,
+      "initial_margin": 1.625,
+      "oracle_margin": 1.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 97,
+      "native_correct": true,
+      "initial_margin": 0.5,
+      "oracle_margin": 0.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 98,
+      "native_correct": true,
+      "initial_margin": 2.375,
+      "oracle_margin": 2.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 99,
+      "native_correct": true,
+      "initial_margin": 1.625,
+      "oracle_margin": 1.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 100,
+      "native_correct": false,
+      "initial_margin": -3.9375,
+      "oracle_margin": -0.125,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 101,
+      "native_correct": false,
+      "initial_margin": -0.375,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 20
+    },
+    {
+      "fit_query": 102,
+      "native_correct": false,
+      "initial_margin": -2.125,
+      "oracle_margin": -0.5,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 103,
+      "native_correct": true,
+      "initial_margin": 6.25,
+      "oracle_margin": 6.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 104,
+      "native_correct": true,
+      "initial_margin": 1.0,
+      "oracle_margin": 1.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 105,
+      "native_correct": false,
+      "initial_margin": -3.75,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 19
+    },
+    {
+      "fit_query": 106,
+      "native_correct": true,
+      "initial_margin": 3.125,
+      "oracle_margin": 3.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 107,
+      "native_correct": true,
+      "initial_margin": 4.25,
+      "oracle_margin": 4.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 108,
+      "native_correct": true,
+      "initial_margin": 7.875,
+      "oracle_margin": 7.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 109,
+      "native_correct": true,
+      "initial_margin": 1.125,
+      "oracle_margin": 1.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 110,
+      "native_correct": true,
+      "initial_margin": 0.625,
+      "oracle_margin": 0.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 111,
+      "native_correct": true,
+      "initial_margin": 4.625,
+      "oracle_margin": 4.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 112,
+      "native_correct": true,
+      "initial_margin": 5.125,
+      "oracle_margin": 5.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 113,
+      "native_correct": true,
+      "initial_margin": 4.5,
+      "oracle_margin": 4.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 114,
+      "native_correct": false,
+      "initial_margin": 0.0,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 6
+    },
+    {
+      "fit_query": 115,
+      "native_correct": true,
+      "initial_margin": 0.625,
+      "oracle_margin": 0.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 116,
+      "native_correct": false,
+      "initial_margin": -2.0,
+      "oracle_margin": -0.375,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 117,
+      "native_correct": true,
+      "initial_margin": 0.5,
+      "oracle_margin": 0.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 118,
+      "native_correct": true,
+      "initial_margin": 6.625,
+      "oracle_margin": 6.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 119,
+      "native_correct": false,
+      "initial_margin": -0.125,
+      "oracle_margin": 0.25,
+      "oracle_correct": true,
+      "steps": 3
+    },
+    {
+      "fit_query": 120,
+      "native_correct": false,
+      "initial_margin": -1.0,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 5
+    },
+    {
+      "fit_query": 121,
+      "native_correct": true,
+      "initial_margin": 0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 122,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 123,
+      "native_correct": false,
+      "initial_margin": -0.625,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 5
+    },
+    {
+      "fit_query": 124,
+      "native_correct": false,
+      "initial_margin": -2.875,
+      "oracle_margin": -2.5,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 125,
+      "native_correct": true,
+      "initial_margin": 3.625,
+      "oracle_margin": 3.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 126,
+      "native_correct": true,
+      "initial_margin": 0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 127,
+      "native_correct": true,
+      "initial_margin": 1.125,
+      "oracle_margin": 1.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 128,
+      "native_correct": false,
+      "initial_margin": -3.5,
+      "oracle_margin": -3.125,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 129,
+      "native_correct": false,
+      "initial_margin": -2.25,
+      "oracle_margin": -1.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 130,
+      "native_correct": true,
+      "initial_margin": 4.25,
+      "oracle_margin": 4.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 131,
+      "native_correct": true,
+      "initial_margin": 4.75,
+      "oracle_margin": 4.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 132,
+      "native_correct": true,
+      "initial_margin": 3.25,
+      "oracle_margin": 3.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 133,
+      "native_correct": false,
+      "initial_margin": 0.0,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 1
+    },
+    {
+      "fit_query": 134,
+      "native_correct": true,
+      "initial_margin": 1.625,
+      "oracle_margin": 1.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 135,
+      "native_correct": false,
+      "initial_margin": -0.375,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 5
+    },
+    {
+      "fit_query": 136,
+      "native_correct": true,
+      "initial_margin": 1.25,
+      "oracle_margin": 1.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 137,
+      "native_correct": true,
+      "initial_margin": 2.875,
+      "oracle_margin": 2.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 138,
+      "native_correct": false,
+      "initial_margin": -2.625,
+      "oracle_margin": -2.25,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 139,
+      "native_correct": true,
+      "initial_margin": 9.375,
+      "oracle_margin": 9.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 140,
+      "native_correct": true,
+      "initial_margin": 4.875,
+      "oracle_margin": 4.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 141,
+      "native_correct": true,
+      "initial_margin": 3.5,
+      "oracle_margin": 3.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 142,
+      "native_correct": false,
+      "initial_margin": -1.875,
+      "oracle_margin": -1.5,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 143,
+      "native_correct": true,
+      "initial_margin": 2.125,
+      "oracle_margin": 2.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 144,
+      "native_correct": false,
+      "initial_margin": -1.0,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 3
+    },
+    {
+      "fit_query": 145,
+      "native_correct": false,
+      "initial_margin": -6.125,
+      "oracle_margin": 0.375,
+      "oracle_correct": true,
+      "steps": 5
+    },
+    {
+      "fit_query": 146,
+      "native_correct": false,
+      "initial_margin": -5.875,
+      "oracle_margin": -1.6875,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 147,
+      "native_correct": false,
+      "initial_margin": -2.625,
+      "oracle_margin": -1.375,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 148,
+      "native_correct": true,
+      "initial_margin": 8.375,
+      "oracle_margin": 8.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 149,
+      "native_correct": true,
+      "initial_margin": 0.625,
+      "oracle_margin": 0.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 150,
+      "native_correct": true,
+      "initial_margin": 2.125,
+      "oracle_margin": 2.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 151,
+      "native_correct": true,
+      "initial_margin": 4.875,
+      "oracle_margin": 4.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 152,
+      "native_correct": true,
+      "initial_margin": 3.5,
+      "oracle_margin": 3.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 153,
+      "native_correct": true,
+      "initial_margin": 9.125,
+      "oracle_margin": 9.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 154,
+      "native_correct": true,
+      "initial_margin": 2.375,
+      "oracle_margin": 2.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 155,
+      "native_correct": false,
+      "initial_margin": -1.0,
+      "oracle_margin": -0.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 156,
+      "native_correct": true,
+      "initial_margin": 0.375,
+      "oracle_margin": 0.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 157,
+      "native_correct": true,
+      "initial_margin": 0.5,
+      "oracle_margin": 0.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 158,
+      "native_correct": true,
+      "initial_margin": 2.25,
+      "oracle_margin": 2.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 159,
+      "native_correct": true,
+      "initial_margin": 2.25,
+      "oracle_margin": 2.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 160,
+      "native_correct": true,
+      "initial_margin": 12.125,
+      "oracle_margin": 12.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 161,
+      "native_correct": true,
+      "initial_margin": 4.0,
+      "oracle_margin": 4.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 162,
+      "native_correct": true,
+      "initial_margin": 1.625,
+      "oracle_margin": 1.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 163,
+      "native_correct": false,
+      "initial_margin": -0.625,
+      "oracle_margin": -0.375,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 164,
+      "native_correct": true,
+      "initial_margin": 3.125,
+      "oracle_margin": 3.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 165,
+      "native_correct": true,
+      "initial_margin": 1.125,
+      "oracle_margin": 1.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 166,
+      "native_correct": true,
+      "initial_margin": 5.125,
+      "oracle_margin": 5.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 167,
+      "native_correct": true,
+      "initial_margin": 2.0,
+      "oracle_margin": 2.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 168,
+      "native_correct": false,
+      "initial_margin": -1.75,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 15
+    },
+    {
+      "fit_query": 169,
+      "native_correct": true,
+      "initial_margin": 3.125,
+      "oracle_margin": 3.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 170,
+      "native_correct": true,
+      "initial_margin": 1.5,
+      "oracle_margin": 1.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 171,
+      "native_correct": false,
+      "initial_margin": -0.25,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 8
+    },
+    {
+      "fit_query": 172,
+      "native_correct": false,
+      "initial_margin": -2.375,
+      "oracle_margin": -2.0,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 173,
+      "native_correct": true,
+      "initial_margin": 2.625,
+      "oracle_margin": 2.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 174,
+      "native_correct": false,
+      "initial_margin": -0.875,
+      "oracle_margin": -0.75,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 175,
+      "native_correct": true,
+      "initial_margin": 5.5,
+      "oracle_margin": 5.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 176,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 177,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 178,
+      "native_correct": true,
+      "initial_margin": 2.625,
+      "oracle_margin": 2.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 179,
+      "native_correct": true,
+      "initial_margin": 4.75,
+      "oracle_margin": 4.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 180,
+      "native_correct": true,
+      "initial_margin": 1.125,
+      "oracle_margin": 1.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 181,
+      "native_correct": true,
+      "initial_margin": 2.875,
+      "oracle_margin": 2.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 182,
+      "native_correct": true,
+      "initial_margin": 10.875,
+      "oracle_margin": 10.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 183,
+      "native_correct": true,
+      "initial_margin": 11.75,
+      "oracle_margin": 11.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 184,
+      "native_correct": true,
+      "initial_margin": 1.25,
+      "oracle_margin": 1.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 185,
+      "native_correct": true,
+      "initial_margin": 3.625,
+      "oracle_margin": 3.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 186,
+      "native_correct": true,
+      "initial_margin": 3.75,
+      "oracle_margin": 3.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 187,
+      "native_correct": true,
+      "initial_margin": 2.875,
+      "oracle_margin": 2.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 188,
+      "native_correct": false,
+      "initial_margin": 0.0,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 4
+    },
+    {
+      "fit_query": 189,
+      "native_correct": true,
+      "initial_margin": 8.125,
+      "oracle_margin": 8.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 190,
+      "native_correct": false,
+      "initial_margin": -0.25,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 3
+    },
+    {
+      "fit_query": 191,
+      "native_correct": false,
+      "initial_margin": -4.75,
+      "oracle_margin": -4.0625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 192,
+      "native_correct": true,
+      "initial_margin": 2.375,
+      "oracle_margin": 2.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 193,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 194,
+      "native_correct": true,
+      "initial_margin": 8.0,
+      "oracle_margin": 8.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 195,
+      "native_correct": true,
+      "initial_margin": 6.75,
+      "oracle_margin": 6.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 196,
+      "native_correct": false,
+      "initial_margin": -2.75,
+      "oracle_margin": -1.125,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 197,
+      "native_correct": true,
+      "initial_margin": 4.0,
+      "oracle_margin": 4.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 198,
+      "native_correct": true,
+      "initial_margin": 0.5,
+      "oracle_margin": 0.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 199,
+      "native_correct": true,
+      "initial_margin": 7.25,
+      "oracle_margin": 7.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 200,
+      "native_correct": true,
+      "initial_margin": 2.25,
+      "oracle_margin": 2.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 201,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 202,
+      "native_correct": true,
+      "initial_margin": 1.75,
+      "oracle_margin": 1.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 203,
+      "native_correct": true,
+      "initial_margin": 5.125,
+      "oracle_margin": 5.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 204,
+      "native_correct": false,
+      "initial_margin": -4.375,
+      "oracle_margin": -2.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 205,
+      "native_correct": true,
+      "initial_margin": 3.375,
+      "oracle_margin": 3.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 206,
+      "native_correct": true,
+      "initial_margin": 7.875,
+      "oracle_margin": 7.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 207,
+      "native_correct": true,
+      "initial_margin": 6.125,
+      "oracle_margin": 6.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 208,
+      "native_correct": true,
+      "initial_margin": 6.125,
+      "oracle_margin": 6.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 209,
+      "native_correct": true,
+      "initial_margin": 12.875,
+      "oracle_margin": 12.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 210,
+      "native_correct": true,
+      "initial_margin": 13.0625,
+      "oracle_margin": 13.0625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 211,
+      "native_correct": true,
+      "initial_margin": 5.875,
+      "oracle_margin": 5.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 212,
+      "native_correct": true,
+      "initial_margin": 5.375,
+      "oracle_margin": 5.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 213,
+      "native_correct": false,
+      "initial_margin": -1.375,
+      "oracle_margin": -1.0,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 214,
+      "native_correct": false,
+      "initial_margin": -1.0,
+      "oracle_margin": -0.375,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 215,
+      "native_correct": true,
+      "initial_margin": 0.625,
+      "oracle_margin": 0.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 216,
+      "native_correct": true,
+      "initial_margin": 2.125,
+      "oracle_margin": 2.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 217,
+      "native_correct": false,
+      "initial_margin": -3.75,
+      "oracle_margin": -0.875,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 218,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 219,
+      "native_correct": true,
+      "initial_margin": 4.375,
+      "oracle_margin": 4.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 220,
+      "native_correct": false,
+      "initial_margin": -1.125,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 9
+    },
+    {
+      "fit_query": 221,
+      "native_correct": true,
+      "initial_margin": 7.125,
+      "oracle_margin": 7.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 222,
+      "native_correct": true,
+      "initial_margin": 2.625,
+      "oracle_margin": 2.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 223,
+      "native_correct": true,
+      "initial_margin": 4.75,
+      "oracle_margin": 4.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 224,
+      "native_correct": true,
+      "initial_margin": 9.375,
+      "oracle_margin": 9.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 225,
+      "native_correct": false,
+      "initial_margin": -0.875,
+      "oracle_margin": -0.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 226,
+      "native_correct": true,
+      "initial_margin": 3.75,
+      "oracle_margin": 3.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 227,
+      "native_correct": true,
+      "initial_margin": 0.875,
+      "oracle_margin": 0.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 228,
+      "native_correct": true,
+      "initial_margin": 3.75,
+      "oracle_margin": 3.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 229,
+      "native_correct": true,
+      "initial_margin": 1.375,
+      "oracle_margin": 1.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 230,
+      "native_correct": false,
+      "initial_margin": -4.0625,
+      "oracle_margin": -2.5625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 231,
+      "native_correct": true,
+      "initial_margin": 4.125,
+      "oracle_margin": 4.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 232,
+      "native_correct": true,
+      "initial_margin": 3.25,
+      "oracle_margin": 3.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 233,
+      "native_correct": true,
+      "initial_margin": 3.125,
+      "oracle_margin": 3.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 234,
+      "native_correct": true,
+      "initial_margin": 6.125,
+      "oracle_margin": 6.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 235,
+      "native_correct": true,
+      "initial_margin": 4.0,
+      "oracle_margin": 4.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 236,
+      "native_correct": true,
+      "initial_margin": 2.0,
+      "oracle_margin": 2.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 237,
+      "native_correct": true,
+      "initial_margin": 9.375,
+      "oracle_margin": 9.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 238,
+      "native_correct": true,
+      "initial_margin": 6.375,
+      "oracle_margin": 6.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 239,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 240,
+      "native_correct": true,
+      "initial_margin": 0.75,
+      "oracle_margin": 0.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 241,
+      "native_correct": true,
+      "initial_margin": 0.75,
+      "oracle_margin": 0.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 242,
+      "native_correct": true,
+      "initial_margin": 8.125,
+      "oracle_margin": 8.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 243,
+      "native_correct": true,
+      "initial_margin": 6.5,
+      "oracle_margin": 6.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 244,
+      "native_correct": true,
+      "initial_margin": 3.75,
+      "oracle_margin": 3.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 245,
+      "native_correct": true,
+      "initial_margin": 9.0,
+      "oracle_margin": 9.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 246,
+      "native_correct": true,
+      "initial_margin": 4.625,
+      "oracle_margin": 4.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 247,
+      "native_correct": true,
+      "initial_margin": 0.375,
+      "oracle_margin": 0.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 248,
+      "native_correct": true,
+      "initial_margin": 2.5,
+      "oracle_margin": 2.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 249,
+      "native_correct": true,
+      "initial_margin": 0.625,
+      "oracle_margin": 0.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 250,
+      "native_correct": true,
+      "initial_margin": 5.5,
+      "oracle_margin": 5.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 251,
+      "native_correct": false,
+      "initial_margin": -3.3125,
+      "oracle_margin": -2.25,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 252,
+      "native_correct": false,
+      "initial_margin": -3.625,
+      "oracle_margin": -2.5625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 253,
+      "native_correct": false,
+      "initial_margin": -2.9375,
+      "oracle_margin": -2.125,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 254,
+      "native_correct": true,
+      "initial_margin": 1.5,
+      "oracle_margin": 1.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 255,
+      "native_correct": true,
+      "initial_margin": 0.5,
+      "oracle_margin": 0.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 256,
+      "native_correct": true,
+      "initial_margin": 6.125,
+      "oracle_margin": 6.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 257,
+      "native_correct": true,
+      "initial_margin": 2.125,
+      "oracle_margin": 2.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 258,
+      "native_correct": true,
+      "initial_margin": 7.25,
+      "oracle_margin": 7.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 259,
+      "native_correct": true,
+      "initial_margin": 4.125,
+      "oracle_margin": 4.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 260,
+      "native_correct": true,
+      "initial_margin": 4.125,
+      "oracle_margin": 4.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 261,
+      "native_correct": true,
+      "initial_margin": 11.75,
+      "oracle_margin": 11.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 262,
+      "native_correct": true,
+      "initial_margin": 13.0,
+      "oracle_margin": 13.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 263,
+      "native_correct": true,
+      "initial_margin": 3.75,
+      "oracle_margin": 3.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 264,
+      "native_correct": true,
+      "initial_margin": 5.375,
+      "oracle_margin": 5.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 265,
+      "native_correct": true,
+      "initial_margin": 1.375,
+      "oracle_margin": 1.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 266,
+      "native_correct": false,
+      "initial_margin": -0.25,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 12
+    },
+    {
+      "fit_query": 267,
+      "native_correct": true,
+      "initial_margin": 2.75,
+      "oracle_margin": 2.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 268,
+      "native_correct": true,
+      "initial_margin": 6.0,
+      "oracle_margin": 6.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 269,
+      "native_correct": true,
+      "initial_margin": 5.375,
+      "oracle_margin": 5.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 270,
+      "native_correct": true,
+      "initial_margin": 13.875,
+      "oracle_margin": 13.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 271,
+      "native_correct": true,
+      "initial_margin": 8.125,
+      "oracle_margin": 8.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 272,
+      "native_correct": true,
+      "initial_margin": 13.0,
+      "oracle_margin": 13.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 273,
+      "native_correct": true,
+      "initial_margin": 7.0,
+      "oracle_margin": 7.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 274,
+      "native_correct": true,
+      "initial_margin": 8.25,
+      "oracle_margin": 8.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 275,
+      "native_correct": false,
+      "initial_margin": -4.5,
+      "oracle_margin": -4.0,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 276,
+      "native_correct": true,
+      "initial_margin": 4.0,
+      "oracle_margin": 4.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 277,
+      "native_correct": false,
+      "initial_margin": -1.625,
+      "oracle_margin": -0.375,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 278,
+      "native_correct": true,
+      "initial_margin": 0.0,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 0
+    },
+    {
+      "fit_query": 279,
+      "native_correct": true,
+      "initial_margin": 3.125,
+      "oracle_margin": 3.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 280,
+      "native_correct": true,
+      "initial_margin": 3.75,
+      "oracle_margin": 3.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 281,
+      "native_correct": true,
+      "initial_margin": 4.875,
+      "oracle_margin": 4.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 282,
+      "native_correct": true,
+      "initial_margin": 4.5,
+      "oracle_margin": 4.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 283,
+      "native_correct": true,
+      "initial_margin": 2.0,
+      "oracle_margin": 2.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 284,
+      "native_correct": true,
+      "initial_margin": 9.0,
+      "oracle_margin": 9.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 285,
+      "native_correct": true,
+      "initial_margin": 7.0,
+      "oracle_margin": 7.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 286,
+      "native_correct": true,
+      "initial_margin": 3.125,
+      "oracle_margin": 3.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 287,
+      "native_correct": true,
+      "initial_margin": 2.25,
+      "oracle_margin": 2.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 288,
+      "native_correct": true,
+      "initial_margin": 0.375,
+      "oracle_margin": 0.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 289,
+      "native_correct": true,
+      "initial_margin": 2.875,
+      "oracle_margin": 2.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 290,
+      "native_correct": true,
+      "initial_margin": 2.625,
+      "oracle_margin": 2.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 291,
+      "native_correct": true,
+      "initial_margin": 2.5,
+      "oracle_margin": 2.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 292,
+      "native_correct": true,
+      "initial_margin": 0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 293,
+      "native_correct": true,
+      "initial_margin": 5.25,
+      "oracle_margin": 5.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 294,
+      "native_correct": true,
+      "initial_margin": 0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 295,
+      "native_correct": false,
+      "initial_margin": -3.1875,
+      "oracle_margin": -1.5,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 296,
+      "native_correct": true,
+      "initial_margin": 4.75,
+      "oracle_margin": 4.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 297,
+      "native_correct": true,
+      "initial_margin": 4.875,
+      "oracle_margin": 4.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 298,
+      "native_correct": true,
+      "initial_margin": 3.125,
+      "oracle_margin": 3.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 299,
+      "native_correct": true,
+      "initial_margin": 6.5,
+      "oracle_margin": 6.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 300,
+      "native_correct": false,
+      "initial_margin": -1.0,
+      "oracle_margin": -0.75,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 301,
+      "native_correct": false,
+      "initial_margin": -2.125,
+      "oracle_margin": -0.875,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 302,
+      "native_correct": true,
+      "initial_margin": 4.25,
+      "oracle_margin": 4.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 303,
+      "native_correct": false,
+      "initial_margin": -0.875,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 7
+    },
+    {
+      "fit_query": 304,
+      "native_correct": true,
+      "initial_margin": 2.0,
+      "oracle_margin": 2.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 305,
+      "native_correct": true,
+      "initial_margin": 2.0,
+      "oracle_margin": 2.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 306,
+      "native_correct": true,
+      "initial_margin": 0.625,
+      "oracle_margin": 0.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 307,
+      "native_correct": true,
+      "initial_margin": 5.0,
+      "oracle_margin": 5.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 308,
+      "native_correct": true,
+      "initial_margin": 7.625,
+      "oracle_margin": 7.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 309,
+      "native_correct": true,
+      "initial_margin": 8.875,
+      "oracle_margin": 8.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 310,
+      "native_correct": true,
+      "initial_margin": 2.125,
+      "oracle_margin": 2.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 311,
+      "native_correct": true,
+      "initial_margin": 7.25,
+      "oracle_margin": 7.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 312,
+      "native_correct": true,
+      "initial_margin": 4.0,
+      "oracle_margin": 4.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 313,
+      "native_correct": true,
+      "initial_margin": 6.25,
+      "oracle_margin": 6.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 314,
+      "native_correct": true,
+      "initial_margin": 2.625,
+      "oracle_margin": 2.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 315,
+      "native_correct": true,
+      "initial_margin": 2.25,
+      "oracle_margin": 2.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 316,
+      "native_correct": true,
+      "initial_margin": 1.5,
+      "oracle_margin": 1.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 317,
+      "native_correct": false,
+      "initial_margin": -0.5,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 12
+    },
+    {
+      "fit_query": 318,
+      "native_correct": false,
+      "initial_margin": -1.375,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 7
+    },
+    {
+      "fit_query": 319,
+      "native_correct": true,
+      "initial_margin": 0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 320,
+      "native_correct": true,
+      "initial_margin": 0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 321,
+      "native_correct": true,
+      "initial_margin": 0.0,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 0
+    },
+    {
+      "fit_query": 322,
+      "native_correct": true,
+      "initial_margin": 9.125,
+      "oracle_margin": 9.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 323,
+      "native_correct": true,
+      "initial_margin": 4.0,
+      "oracle_margin": 4.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 324,
+      "native_correct": true,
+      "initial_margin": 1.25,
+      "oracle_margin": 1.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 325,
+      "native_correct": true,
+      "initial_margin": 0.875,
+      "oracle_margin": 0.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 326,
+      "native_correct": false,
+      "initial_margin": -2.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 9
+    },
+    {
+      "fit_query": 327,
+      "native_correct": false,
+      "initial_margin": -2.5,
+      "oracle_margin": -1.125,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 328,
+      "native_correct": true,
+      "initial_margin": 3.375,
+      "oracle_margin": 3.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 329,
+      "native_correct": true,
+      "initial_margin": 4.25,
+      "oracle_margin": 4.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 330,
+      "native_correct": true,
+      "initial_margin": 1.375,
+      "oracle_margin": 1.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 331,
+      "native_correct": false,
+      "initial_margin": -3.125,
+      "oracle_margin": -2.375,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 332,
+      "native_correct": false,
+      "initial_margin": -1.5625,
+      "oracle_margin": 0.25,
+      "oracle_correct": true,
+      "steps": 7
+    },
+    {
+      "fit_query": 333,
+      "native_correct": true,
+      "initial_margin": 6.625,
+      "oracle_margin": 6.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 334,
+      "native_correct": false,
+      "initial_margin": -1.75,
+      "oracle_margin": -1.25,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 335,
+      "native_correct": true,
+      "initial_margin": 1.75,
+      "oracle_margin": 1.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 336,
+      "native_correct": false,
+      "initial_margin": -0.625,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 2
+    },
+    {
+      "fit_query": 337,
+      "native_correct": true,
+      "initial_margin": 0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 338,
+      "native_correct": false,
+      "initial_margin": -1.0,
+      "oracle_margin": 0.625,
+      "oracle_correct": true,
+      "steps": 3
+    },
+    {
+      "fit_query": 339,
+      "native_correct": true,
+      "initial_margin": 0.5,
+      "oracle_margin": 0.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 340,
+      "native_correct": false,
+      "initial_margin": -2.0625,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 6
+    },
+    {
+      "fit_query": 341,
+      "native_correct": true,
+      "initial_margin": 5.0,
+      "oracle_margin": 5.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 342,
+      "native_correct": true,
+      "initial_margin": 2.0,
+      "oracle_margin": 2.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 343,
+      "native_correct": true,
+      "initial_margin": 1.25,
+      "oracle_margin": 1.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 344,
+      "native_correct": true,
+      "initial_margin": 6.75,
+      "oracle_margin": 6.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 345,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 346,
+      "native_correct": true,
+      "initial_margin": 1.375,
+      "oracle_margin": 1.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 347,
+      "native_correct": true,
+      "initial_margin": 3.125,
+      "oracle_margin": 3.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 348,
+      "native_correct": true,
+      "initial_margin": 2.25,
+      "oracle_margin": 2.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 349,
+      "native_correct": true,
+      "initial_margin": 0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 350,
+      "native_correct": false,
+      "initial_margin": -6.875,
+      "oracle_margin": -4.8125,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 351,
+      "native_correct": true,
+      "initial_margin": 1.25,
+      "oracle_margin": 1.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 352,
+      "native_correct": false,
+      "initial_margin": -0.75,
+      "oracle_margin": -0.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 353,
+      "native_correct": false,
+      "initial_margin": -10.0625,
+      "oracle_margin": -8.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 354,
+      "native_correct": false,
+      "initial_margin": -3.75,
+      "oracle_margin": -3.0,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 355,
+      "native_correct": true,
+      "initial_margin": 1.75,
+      "oracle_margin": 1.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 356,
+      "native_correct": true,
+      "initial_margin": 1.375,
+      "oracle_margin": 1.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 357,
+      "native_correct": true,
+      "initial_margin": 0.25,
+      "oracle_margin": 0.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 358,
+      "native_correct": false,
+      "initial_margin": -3.8125,
+      "oracle_margin": -2.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 359,
+      "native_correct": true,
+      "initial_margin": 0.75,
+      "oracle_margin": 0.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 360,
+      "native_correct": true,
+      "initial_margin": 2.875,
+      "oracle_margin": 2.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 361,
+      "native_correct": false,
+      "initial_margin": -2.0,
+      "oracle_margin": -0.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 362,
+      "native_correct": true,
+      "initial_margin": 2.75,
+      "oracle_margin": 2.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 363,
+      "native_correct": true,
+      "initial_margin": 3.25,
+      "oracle_margin": 3.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 364,
+      "native_correct": true,
+      "initial_margin": 0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 365,
+      "native_correct": false,
+      "initial_margin": -0.625,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 14
+    },
+    {
+      "fit_query": 366,
+      "native_correct": true,
+      "initial_margin": 4.125,
+      "oracle_margin": 4.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 367,
+      "native_correct": false,
+      "initial_margin": -0.875,
+      "oracle_margin": -0.75,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 368,
+      "native_correct": false,
+      "initial_margin": -1.75,
+      "oracle_margin": -0.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 369,
+      "native_correct": true,
+      "initial_margin": 0.75,
+      "oracle_margin": 0.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 370,
+      "native_correct": true,
+      "initial_margin": 3.625,
+      "oracle_margin": 3.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 371,
+      "native_correct": true,
+      "initial_margin": 3.0,
+      "oracle_margin": 3.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 372,
+      "native_correct": false,
+      "initial_margin": -0.625,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 13
+    },
+    {
+      "fit_query": 373,
+      "native_correct": true,
+      "initial_margin": 1.375,
+      "oracle_margin": 1.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 374,
+      "native_correct": false,
+      "initial_margin": -6.5625,
+      "oracle_margin": -3.5,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 375,
+      "native_correct": false,
+      "initial_margin": -0.125,
+      "oracle_margin": 0.25,
+      "oracle_correct": true,
+      "steps": 1
+    },
+    {
+      "fit_query": 376,
+      "native_correct": true,
+      "initial_margin": 0.375,
+      "oracle_margin": 0.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 377,
+      "native_correct": true,
+      "initial_margin": 0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 378,
+      "native_correct": true,
+      "initial_margin": 4.375,
+      "oracle_margin": 4.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 379,
+      "native_correct": false,
+      "initial_margin": -0.25,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 4
+    },
+    {
+      "fit_query": 380,
+      "native_correct": true,
+      "initial_margin": 4.25,
+      "oracle_margin": 4.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 381,
+      "native_correct": true,
+      "initial_margin": 7.75,
+      "oracle_margin": 7.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 382,
+      "native_correct": false,
+      "initial_margin": -3.125,
+      "oracle_margin": -2.875,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 383,
+      "native_correct": true,
+      "initial_margin": 2.75,
+      "oracle_margin": 2.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 384,
+      "native_correct": true,
+      "initial_margin": 2.25,
+      "oracle_margin": 2.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 385,
+      "native_correct": true,
+      "initial_margin": 1.375,
+      "oracle_margin": 1.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 386,
+      "native_correct": false,
+      "initial_margin": -2.5,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 5
+    },
+    {
+      "fit_query": 387,
+      "native_correct": true,
+      "initial_margin": 1.75,
+      "oracle_margin": 1.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 388,
+      "native_correct": false,
+      "initial_margin": -3.9375,
+      "oracle_margin": -1.375,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 389,
+      "native_correct": true,
+      "initial_margin": 7.0,
+      "oracle_margin": 7.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 390,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 391,
+      "native_correct": true,
+      "initial_margin": 7.5,
+      "oracle_margin": 7.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 392,
+      "native_correct": false,
+      "initial_margin": -1.75,
+      "oracle_margin": -1.0,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 393,
+      "native_correct": true,
+      "initial_margin": 9.25,
+      "oracle_margin": 9.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 394,
+      "native_correct": true,
+      "initial_margin": 9.0,
+      "oracle_margin": 9.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 395,
+      "native_correct": true,
+      "initial_margin": 2.25,
+      "oracle_margin": 2.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 396,
+      "native_correct": false,
+      "initial_margin": 0.0,
+      "oracle_margin": 0.25,
+      "oracle_correct": true,
+      "steps": 1
+    },
+    {
+      "fit_query": 397,
+      "native_correct": false,
+      "initial_margin": -1.5,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 11
+    },
+    {
+      "fit_query": 398,
+      "native_correct": true,
+      "initial_margin": 1.125,
+      "oracle_margin": 1.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 399,
+      "native_correct": true,
+      "initial_margin": 6.5,
+      "oracle_margin": 6.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 400,
+      "native_correct": true,
+      "initial_margin": 1.625,
+      "oracle_margin": 1.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 401,
+      "native_correct": true,
+      "initial_margin": 7.75,
+      "oracle_margin": 7.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 402,
+      "native_correct": true,
+      "initial_margin": 2.875,
+      "oracle_margin": 2.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 403,
+      "native_correct": true,
+      "initial_margin": 6.25,
+      "oracle_margin": 6.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 404,
+      "native_correct": true,
+      "initial_margin": 4.75,
+      "oracle_margin": 4.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 405,
+      "native_correct": false,
+      "initial_margin": -1.875,
+      "oracle_margin": -1.625,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 406,
+      "native_correct": true,
+      "initial_margin": 1.0,
+      "oracle_margin": 1.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 407,
+      "native_correct": false,
+      "initial_margin": -1.875,
+      "oracle_margin": -0.375,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 408,
+      "native_correct": true,
+      "initial_margin": 3.5,
+      "oracle_margin": 3.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 409,
+      "native_correct": true,
+      "initial_margin": 0.625,
+      "oracle_margin": 0.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 410,
+      "native_correct": true,
+      "initial_margin": 2.125,
+      "oracle_margin": 2.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 411,
+      "native_correct": true,
+      "initial_margin": 7.75,
+      "oracle_margin": 7.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 412,
+      "native_correct": true,
+      "initial_margin": 4.375,
+      "oracle_margin": 4.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 413,
+      "native_correct": true,
+      "initial_margin": 1.375,
+      "oracle_margin": 1.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 414,
+      "native_correct": true,
+      "initial_margin": 2.125,
+      "oracle_margin": 2.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 415,
+      "native_correct": false,
+      "initial_margin": -0.625,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 6
+    },
+    {
+      "fit_query": 416,
+      "native_correct": true,
+      "initial_margin": 2.5,
+      "oracle_margin": 2.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 417,
+      "native_correct": true,
+      "initial_margin": 2.5,
+      "oracle_margin": 2.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 418,
+      "native_correct": true,
+      "initial_margin": 2.375,
+      "oracle_margin": 2.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 419,
+      "native_correct": true,
+      "initial_margin": 2.375,
+      "oracle_margin": 2.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 420,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 421,
+      "native_correct": false,
+      "initial_margin": -1.875,
+      "oracle_margin": -0.5,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 422,
+      "native_correct": true,
+      "initial_margin": 2.25,
+      "oracle_margin": 2.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 423,
+      "native_correct": false,
+      "initial_margin": -0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 1
+    },
+    {
+      "fit_query": 424,
+      "native_correct": true,
+      "initial_margin": 6.875,
+      "oracle_margin": 6.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 425,
+      "native_correct": true,
+      "initial_margin": 8.5,
+      "oracle_margin": 8.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 426,
+      "native_correct": true,
+      "initial_margin": 7.5,
+      "oracle_margin": 7.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 427,
+      "native_correct": true,
+      "initial_margin": 5.5,
+      "oracle_margin": 5.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 428,
+      "native_correct": true,
+      "initial_margin": 5.5,
+      "oracle_margin": 5.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 429,
+      "native_correct": false,
+      "initial_margin": -2.375,
+      "oracle_margin": -1.75,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 430,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 431,
+      "native_correct": true,
+      "initial_margin": 2.125,
+      "oracle_margin": 2.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 432,
+      "native_correct": false,
+      "initial_margin": -0.125,
+      "oracle_margin": 0.375,
+      "oracle_correct": true,
+      "steps": 1
+    },
+    {
+      "fit_query": 433,
+      "native_correct": true,
+      "initial_margin": 0.25,
+      "oracle_margin": 0.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 434,
+      "native_correct": true,
+      "initial_margin": 0.375,
+      "oracle_margin": 0.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 435,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 436,
+      "native_correct": false,
+      "initial_margin": -2.625,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 12
+    },
+    {
+      "fit_query": 437,
+      "native_correct": true,
+      "initial_margin": 2.5,
+      "oracle_margin": 2.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 438,
+      "native_correct": true,
+      "initial_margin": 2.375,
+      "oracle_margin": 2.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 439,
+      "native_correct": false,
+      "initial_margin": -4.6875,
+      "oracle_margin": -2.0,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 440,
+      "native_correct": true,
+      "initial_margin": 8.125,
+      "oracle_margin": 8.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 441,
+      "native_correct": true,
+      "initial_margin": 3.0,
+      "oracle_margin": 3.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 442,
+      "native_correct": false,
+      "initial_margin": -1.375,
+      "oracle_margin": 0.0,
+      "oracle_correct": false,
+      "steps": 7
+    },
+    {
+      "fit_query": 443,
+      "native_correct": true,
+      "initial_margin": 6.0,
+      "oracle_margin": 6.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 444,
+      "native_correct": true,
+      "initial_margin": 0.875,
+      "oracle_margin": 0.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 445,
+      "native_correct": true,
+      "initial_margin": 5.0,
+      "oracle_margin": 5.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 446,
+      "native_correct": true,
+      "initial_margin": 4.125,
+      "oracle_margin": 4.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 447,
+      "native_correct": true,
+      "initial_margin": 2.375,
+      "oracle_margin": 2.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 448,
+      "native_correct": true,
+      "initial_margin": 0.25,
+      "oracle_margin": 0.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 449,
+      "native_correct": true,
+      "initial_margin": 2.0,
+      "oracle_margin": 2.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 450,
+      "native_correct": true,
+      "initial_margin": 10.625,
+      "oracle_margin": 10.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 451,
+      "native_correct": true,
+      "initial_margin": 1.875,
+      "oracle_margin": 1.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 452,
+      "native_correct": true,
+      "initial_margin": 6.875,
+      "oracle_margin": 6.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 453,
+      "native_correct": false,
+      "initial_margin": -1.5,
+      "oracle_margin": -0.875,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 454,
+      "native_correct": true,
+      "initial_margin": 8.375,
+      "oracle_margin": 8.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 455,
+      "native_correct": true,
+      "initial_margin": 1.625,
+      "oracle_margin": 1.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 456,
+      "native_correct": true,
+      "initial_margin": 1.125,
+      "oracle_margin": 1.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 457,
+      "native_correct": false,
+      "initial_margin": -2.9375,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 9
+    },
+    {
+      "fit_query": 458,
+      "native_correct": true,
+      "initial_margin": 4.25,
+      "oracle_margin": 4.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 459,
+      "native_correct": true,
+      "initial_margin": 9.375,
+      "oracle_margin": 9.375,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 460,
+      "native_correct": true,
+      "initial_margin": 7.5,
+      "oracle_margin": 7.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 461,
+      "native_correct": true,
+      "initial_margin": 6.5,
+      "oracle_margin": 6.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 462,
+      "native_correct": true,
+      "initial_margin": 6.0,
+      "oracle_margin": 6.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 463,
+      "native_correct": true,
+      "initial_margin": 7.625,
+      "oracle_margin": 7.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 464,
+      "native_correct": true,
+      "initial_margin": 3.875,
+      "oracle_margin": 3.875,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 465,
+      "native_correct": false,
+      "initial_margin": -0.5,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 4
+    },
+    {
+      "fit_query": 466,
+      "native_correct": true,
+      "initial_margin": 0.125,
+      "oracle_margin": 0.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 467,
+      "native_correct": true,
+      "initial_margin": 5.25,
+      "oracle_margin": 5.25,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 468,
+      "native_correct": true,
+      "initial_margin": 9.5,
+      "oracle_margin": 9.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 469,
+      "native_correct": true,
+      "initial_margin": 13.5625,
+      "oracle_margin": 13.5625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 470,
+      "native_correct": true,
+      "initial_margin": 7.125,
+      "oracle_margin": 7.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 471,
+      "native_correct": true,
+      "initial_margin": 7.125,
+      "oracle_margin": 7.125,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 472,
+      "native_correct": true,
+      "initial_margin": 8.0,
+      "oracle_margin": 8.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 473,
+      "native_correct": true,
+      "initial_margin": 2.5,
+      "oracle_margin": 2.5,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 474,
+      "native_correct": true,
+      "initial_margin": 0.75,
+      "oracle_margin": 0.75,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 475,
+      "native_correct": true,
+      "initial_margin": 9.0,
+      "oracle_margin": 9.0,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 476,
+      "native_correct": true,
+      "initial_margin": 4.625,
+      "oracle_margin": 4.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 477,
+      "native_correct": true,
+      "initial_margin": 0.625,
+      "oracle_margin": 0.625,
+      "oracle_correct": true,
+      "steps": 0
+    },
+    {
+      "fit_query": 478,
+      "native_correct": false,
+      "initial_margin": -3.625,
+      "oracle_margin": -0.125,
+      "oracle_correct": false,
+      "steps": 24
+    },
+    {
+      "fit_query": 479,
+      "native_correct": true,
+      "initial_margin": 1.125,
+      "oracle_margin": 1.125,
+      "oracle_correct": true,
+      "steps": 0
+    }
+  ]
+}

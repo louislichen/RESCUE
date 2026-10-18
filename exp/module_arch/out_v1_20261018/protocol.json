@@ -1,0 +1,127 @@
+{
+  "args": {
+    "output": "exp/module_arch/out_v1_20261018",
+    "data": "exp/module_arch/data_v1_20261018",
+    "cache": "/mnt/8T/cl/rescue_experiment_cache/module_arch_v1"
+  },
+  "source_sha256": {
+    "rescue/__init__.py": "89eba56e38c2689930a5bf1ba4e0221ada1da541dc16e4a759156fa9dd7fe11a",
+    "rescue/__main__.py": "44dbdba242cd2191a153f649c212f86196ea3d8c9e996684908e44fbf838a6c7",
+    "rescue/architecture_training.py": "a4da517b4210a1b7aa2fd9dc74e2eff72eceaebac9962ea35fce3e13333e9389",
+    "rescue/attention.py": "f85ef63dae607996e77f4f77be893bf9ad6ca4a88c784c3ec8bf3c0d360f6aa9",
+    "rescue/audit.py": "c7b1379dcce9745f5c2f0033bc67bc1156977becea51ef23b1050908885a83e9",
+    "rescue/baselines.py": "d2bac2cb4010859d6a0f1d6888e0e1e241d6bbc2ecd2bc6ec8c9037389debf44",
+    "rescue/benchmark.py": "3c4c844d217e33d6080ea6f1dfa1327852974dc97734c4f680eb81391d973a89",
+    "rescue/cache.py": "11809047dd4607c8004f19348c48e9de680b214dc37a0622bf55ab4fb83c31e2",
+    "rescue/calibration.py": "427dca78dd30e6ba287aef12694c0db1d2abccdd05807ff7040f1490eb955e94",
+    "rescue/compare_baselines.py": "a8229ff96551d16fff991a598c34bd2742a741cb4547a492d0466114d4abd9e9",
+    "rescue/comparison_audit.py": "ae6aa81269d5362bda6b3503fdba75f1839c6afe9f9ecaed660f7dbee17cb7f0",
+    "rescue/config.py": "716b017666b041ebe89aa5cfa58fd37dd699d49acfae567a83ffef2567121c66",
+    "rescue/efficient_attention.py": "baf97e3c5fc8d9ff5e6f91c5de7be5198b550da82da29a553781584bf679a108",
+    "rescue/engine.py": "b8c5751f224e780d02194fb022676131e20a50b37902dcf6020b37b4dc87c86c",
+    "rescue/features.py": "670b2fcd45d20d9e117ca624a5b78c42e351fcf18d7ff7d54794f7f69ea77fbf",
+    "rescue/full_spec_smoke.py": "abb1e5918e896a5ac409c44cb2d32572dc88158f8da96427df638decd8e635a8",
+    "rescue/injection.py": "10ef58f82e3599a61921c84730605d42fdbb9364a461cd85def64b79bf631f5a",
+    "rescue/length_server.py": "88aeee16e9eeee4fe4619ae014ef671b3c4473231677f8f12ebceeda6d2d50ec",
+    "rescue/loading.py": "74dddf647e933e0c22e166afd3de60a505a8ecbd58f3f2926966960c73d1836d",
+    "rescue/long_audit.py": "74d324847f39230723b7709d510309071432805c990ebb8e97ba1d45f8cf6f03",
+    "rescue/long_benchmark.py": "80a60b8f1bdc6e19a6c5706ac9576bb281c8efd83b2792e9958ca8bd38c65175",
+    "rescue/long_data.py": "d61ab5d976cc3ec139a530f01416dccf6ef99582eee46327854fc0e96759e9ba",
+    "rescue/long_forensics.py": "495090d57bc687f197664b79a043fffaf1d06e6bc278c246fc1dd7211a612707",
+    "rescue/long_plot.py": "c5691246de841387bc23ae28fbe23fc7ec8f3a79fc3f02afa7d6cfb960ac360b",
+    "rescue/long_probe.py": "abc3b8a2102bd28c8f12f4877f642fce453aa5417270608bc70c3c27d8bea12a",
+    "rescue/long_refine.py": "a4995abd43aa909798b9e97af9db3e24e0b42fb409a936fc2bb7c08b1297e2c6",
+    "rescue/long_refine_audit.py": "47ec4181be2914b87f045f4b8e9761435d5fed97c14ff148abfd46162750cf03",
+    "rescue/long_train.py": "50c7ce996559903717eb0b49cabbd4032e57db5c415144833fdbb0f8cc5df303",
+    "rescue/long_training_audit.py": "da79c880573ab323bad9337794f1c2404090debbec80af3fbac92a9669649368",
+    "rescue/mapper_capacity.py": "e4f66f37ddea9c4c7e8db429548b66229cf6bfcf6255c5baee41c5a7fcd85e93",
+    "rescue/messages.py": "0a73a82012fa166d922e5b5ba12f460761efddfd0e672ace87e4e769eca66d12",
+    "rescue/module_arch_data.py": "890fac72b1766f409f4db8434861f432c065acdd7ab30c1d3985ab10e67c3e0f",
+    "rescue/module_arch_run.py": "ef8514c4f35e8b799a0e5cfb4b3ba75040bfb26e6b92bd515961e9a28b65d599",
+    "rescue/module_key_report.py": "aa4a5c670ef6d7a2f6e499e0a126248a18cce71110c662c31bbe15b436b7b2b8",
+    "rescue/module_key_run.py": "2b68bb74a7c94ddf46965d988e9940576c85f4264172dc9297a58545f6fb2de9",
+    "rescue/module_opt_data.py": "7ad5f4dfb736ddd91557a3e122fb196921e64f874e09bba5ba8ed38fbb93578e",
+    "rescue/module_opt_report.py": "fc1a822411ccad509e7ffd00faf443cf320d00a36d7b60bc031ed3097805dce2",
+    "rescue/module_opt_run.py": "7fe2c966c43da1ad57061b724c104feae61273a141439f0155ec1d9e032edf3d",
+    "rescue/module_opt_training.py": "48b6c78c381b21aacd20930d2e149e91b46955cc3e03c06a2e907d2a1c9add1d",
+    "rescue/module_report.py": "15861e9fe020f58724a46246cad293a280c1559cba3377ac79d3b14e38547bc0",
+    "rescue/module_study.py": "a3a7b97cb031c8e72e50d03c991f95b00fd9b4857446648e4aacfd9ca14482de",
+    "rescue/objective_audit.py": "45e6aa2180b7a7ad7d21f1c2abd9e93aef9ce4c3fd2dc4bd3231e5b74406db08",
+    "rescue/objectives.py": "b88c9d238f92ce5b489c8a9b3fb10e133f7f2c56f2b64a70acfe686aff08e031",
+    "rescue/optimization.py": "afbbe5ae287a03689776401f081fac71b1bb44025c704d5ad4d81183fdb63d49",
+    "rescue/optimization_audit.py": "f8896baf2376442621b2de9da61ab5d72cd1b7e5f7f2d79688601c84ebc09c5a",
+    "rescue/packing.py": "2bbf54ae627acb8c76a41a4807a82585b1967921372389f182076212aaf960ed",
+    "rescue/policy.py": "3846427dfd6cd80976f4ef2e9dc03cafb8815dce701424150da72da82c52675b",
+    "rescue/profiling.py": "df0e92cabb6fbc7e351ad01cc90f5f696260905c64c9cb1cd40aed695992a9f1",
+    "rescue/query_mapper.py": "cc0ce9e6d3a0b9069ae5dd91a0a7f6a36ae44b82fe317feb47c58b436032d45d",
+    "rescue/residual_mapper.py": "f4cf8ca1cc08d93e6ba62b38ba9e235dbc3cc77cf338f80c7d739a1566a216f6",
+    "rescue/reuse_audit.py": "fa8593e0097aad277e1bd0d3b0e8c091683f2099b31702edcb62b37d529ff060",
+    "rescue/reuse_benchmark.py": "4eb8a7913ac62329ef628b385f64e1222d94204029ea3973077fd69360c1df19",
+    "rescue/rollout_training.py": "9a359739141a8e594ce206033e5da47ce3ee410011a5e8bf010d7788035c4b87",
+    "rescue/scheduler.py": "55c1bf50db0f3aac5e02e8bcb78583360fa9977697fc4733d687a095cf3b9a8e",
+    "rescue/selection.py": "9141d54a76aa6998c1760349b8d11818558656ff05cfdc18f30a63e613237c49",
+    "rescue/specextend_qwen.py": "3cc152edf8a909340b90adf2bc0f1c08abc7299c5565c25ae9642ed31c2e42f4",
+    "rescue/step_budget.py": "8dbb844c7a8915f08e5c4b96af854517e3f804a4cf4e675dd26906ec8c5a0f54",
+    "rescue/timeline.py": "e2cc6ace9cb6ad828496aefd20a0d4418816a0f303e431bfc1a5fbfe4c654971",
+    "rescue/transport.py": "4a933d006598a8d642f8d19ba13616a85d17dceaee6366185c8cac8ab3d3b4bb",
+    "tests/test_rescue_architecture.py": "70e668c5d1cfbf1113531ef1b254f9b5673d04ae177a31f7c73cef736a1bfc1d",
+    "tests/test_rescue_baselines.py": "6c1f9733169f109c016880b1a551fb13fae2dbad7565753d6389908cf21af19f",
+    "tests/test_rescue_long_context.py": "62a3a4c665c274c9b7a09d7d6983ce6c8dd93d5d981951cbe6e388044396c4f2",
+    "tests/test_rescue_module_opt.py": "28b02e5801a70dffe4f792c8aeb4727529fe3d14e697767624bcdaf5179a68b6",
+    "tests/test_rescue_objectives.py": "bea470cfc237ab0eae6f8a5a10ebb79057a633b18a29ab54a39fab32bea0e104",
+    "tests/test_rescue_optimization.py": "923571f1ecef0ea78f27946021a6a45568ca734c20ce894ec527d09b7a85076f",
+    "tests/test_rescue_reuse.py": "125501ee787ea061d5a6056a99a38b5e96d74a2c005b08c9bdbfe04ad722281b",
+    "tests/test_rescue_system.py": "2f17f19c3a9fd042da7a6fedebb316026953b509abf8c06b962d1b8236b70c54",
+    "exp/selective_kv/bridge.py": "04148446ea2f2307b5e70d0db55add34444c784ad6388fa28af0b62466c807d0",
+    "exp/attention_horizon/selection.py": "d5a96f86a1633ceab195dc9c0d7b06ea2aeb4d2571879df966810b457251929a"
+  },
+  "data_manifest": {
+    "data_sha256": {
+      "fit": "8ef43781c7f2b2a56b98ff5183bce05c7225c949cb29bf0432546a590d10c3d2",
+      "tune": "85b2eb1a81d1617b2d158c069c420c452459a8bdb90da128f257220cc27ded09",
+      "warmup": "d0bf671ea6e54f81533def13a812fb00f4b27d9199fbf2e0b1d2a8623c90d5ad",
+      "confirmation": "007fd9247bf8d77dc53eef51469c84c8a66d29bb2d9577815349c4601ecb29f9"
+    },
+    "source_sha256": "8098b61d7aef5b16de870963a2f074b69e625767715f9c5ce94e2fc860087398",
+    "selection": "First three naturally long validation reports after index600, no generation-dependent selection, excluding old report hashes/nested prefixes",
+    "ids": {
+      "fit": [
+        211,
+        213,
+        220,
+        226,
+        233,
+        236
+      ],
+      "tune": [
+        271,
+        272,
+        288
+      ],
+      "warmup": [
+        246
+      ],
+      "confirmation": [
+        604,
+        613,
+        614
+      ]
+    },
+    "scope": "Three-document fresh development confirmation; not the paused test or broad generalization"
+  },
+  "plan_sha256": "4ae00d8c69f967d84e631198a2c5f1b18e2ad0a2f435f0e5715587f228481b13",
+  "seed": 612,
+  "lengths": [
+    8192,
+    16384
+  ],
+  "max_new_tokens": 128,
+  "repeats": 2,
+  "mapper_epochs": [
+    4,
+    2
+  ],
+  "budget_epochs": 250,
+  "exploration": 0.25,
+  "scope": "Internal module architecture packages, fresh three-document development confirmation; original test paused"
+}

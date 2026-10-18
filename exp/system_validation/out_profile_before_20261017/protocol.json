@@ -1,0 +1,32 @@
+{
+  "source_sha256": {
+    "rescue/__init__.py": "89eba56e38c2689930a5bf1ba4e0221ada1da541dc16e4a759156fa9dd7fe11a",
+    "rescue/__main__.py": "d5a424f2977a89fb2e77aa235315c2e3fc017f85bbc866ddc5c062d1f7c75280",
+    "rescue/attention.py": "fced90ce41ee93209651a685d1a75ef8bc4ba625df555cd07193211c0cf1c735",
+    "rescue/audit.py": "c7b1379dcce9745f5c2f0033bc67bc1156977becea51ef23b1050908885a83e9",
+    "rescue/baselines.py": "3de0cacca0f2e84fcf3095d03dede7ef4949f6be8aa091a86cdc2bc1a6e28c1c",
+    "rescue/benchmark.py": "3c4c844d217e33d6080ea6f1dfa1327852974dc97734c4f680eb81391d973a89",
+    "rescue/cache.py": "6339fadbfe3cca70a5a3864d13c5e81561d277e77630455cbd82543d244e1ff1",
+    "rescue/calibration.py": "427dca78dd30e6ba287aef12694c0db1d2abccdd05807ff7040f1490eb955e94",
+    "rescue/compare_baselines.py": "a8229ff96551d16fff991a598c34bd2742a741cb4547a492d0466114d4abd9e9",
+    "rescue/comparison_audit.py": "ae6aa81269d5362bda6b3503fdba75f1839c6afe9f9ecaed660f7dbee17cb7f0",
+    "rescue/config.py": "467a3ed59dd9e2a778b065434c5d683bee53136dd04a531f44924ec91b59791b",
+    "rescue/engine.py": "e46a96e67386b90bc3caa76575db42d51584d6c60fadc4cbb1b2fff7b262de8f",
+    "rescue/features.py": "f92974279195d0482771a72c8e236a8aa2dbca67eeee87b548d898c55b77c1a4",
+    "rescue/injection.py": "dd78ad4eaf8059b65b374c6de2594cfabd76533469f6f95fe12817c51016ab41",
+    "rescue/length_server.py": "7f0b92be2f7bf0a08b95bb12ad2b3b7f16b21d52fc87b9c4ca16ef815b9e9d13",
+    "rescue/loading.py": "a4ac3d3cded0bfb4b0f649f071ed55ffdea509d8a69a0e9656dddac9015ed7cc",
+    "rescue/messages.py": "b4cf6da4cf2c4f94b9bf93a66c61a1209b0574e7157d06aa23b8e7f42e7b3695",
+    "rescue/policy.py": "45095ff3a6fc87858c7ca29c800d1b17056145f976a6c1f11929ff33e793ff7f",
+    "rescue/profiling.py": "f563a0f33fb2b61890a644207a38d85fd21c01925023282111358b36176c5943",
+    "rescue/scheduler.py": "506025e77ed7d45f97e6d6ef38153e4c541027bffaa483b4882098d4ef7ef1a9",
+    "rescue/selection.py": "8983786171ac40506c67b54a7a2a5bde8c47d37c688f8185231dbb99cb3623cc",
+    "rescue/transport.py": "4a933d006598a8d642f8d19ba13616a85d17dceaee6366185c8cac8ab3d3b4bb"
+  },
+  "scope": "Instrumented diagnostic only, nested CPU/CUDA timelines; training documents",
+  "source_indices": [
+    1500,
+    1501
+  ],
+  "max_new_tokens": 64
+}

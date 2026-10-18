@@ -1,0 +1,47 @@
+{
+  "fit_documents": [
+    211,
+    213,
+    220,
+    226,
+    233
+  ],
+  "monitor_document": 236,
+  "fit_queries": 240,
+  "monitor_queries": 48,
+  "original_loss": 0.7481199659878257,
+  "selected_loss": 0.7481199659878257,
+  "epochs": [
+    {
+      "epoch": 1,
+      "training_loss": 0.8488062927592789,
+      "monitor_loss": 0.7572239915345259
+    },
+    {
+      "epoch": 2,
+      "training_loss": 0.8446591119345309,
+      "monitor_loss": 0.7495835156196335
+    },
+    {
+      "epoch": 3,
+      "training_loss": 0.8328025800434261,
+      "monitor_loss": 0.7544815383174258
+    },
+    {
+      "epoch": 4,
+      "training_loss": 0.8195030892056517,
+      "monitor_loss": 0.7513847569407517
+    },
+    {
+      "epoch": 5,
+      "training_loss": 0.8128185518316968,
+      "monitor_loss": 0.7513609686329801
+    },
+    {
+      "epoch": 6,
+      "training_loss": 0.8057769657712621,
+      "monitor_loss": 0.7524885254476127
+    }
+  ],
+  "learning_rate": 0.0001
+}

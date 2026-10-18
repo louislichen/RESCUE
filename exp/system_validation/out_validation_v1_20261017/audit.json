@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "requests": 80,
+  "exact_outputs": 80,
+  "unique_system_request_ids": 64,
+  "frozen_sources": 26,
+  "trajectory_comparisons": {
+    "compat_vs_prototype": {
+      "matched": 16,
+      "pairs": 16
+    },
+    "fast_vs_compat": {
+      "matched": 10,
+      "pairs": 16
+    },
+    "rpc_vs_coverage": {
+      "matched": 16,
+      "pairs": 16
+    }
+  },
+  "scope": "Saved-record and frozen-source verification, not an independent GPU rerun"
+}

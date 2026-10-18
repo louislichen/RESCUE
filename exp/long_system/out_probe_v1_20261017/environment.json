@@ -1,0 +1,6 @@
+{
+  "torch": "2.7.1+cu128",
+  "gpu": "NVIDIA H100",
+  "teacher_dtype": "torch.bfloat16",
+  "student_dtype": "torch.bfloat16"
+}

@@ -1,0 +1,86 @@
+{
+  "status": "paused_by_user",
+  "time_utc": "2026-10-17T17:00:43.266781+00:00",
+  "reason": "用户要求：你先停一下，我想看一下目前的进展和结论",
+  "initial_development_requests": 114,
+  "refinement_development_requests": 84,
+  "test_requests": 71,
+  "registered_test_requests": 320,
+  "test_outputs_exact": 71,
+  "complete_test_cells": [
+    [
+      252,
+      2048,
+      0
+    ],
+    [
+      252,
+      2048,
+      1
+    ],
+    [
+      252,
+      4096,
+      0
+    ],
+    [
+      252,
+      4096,
+      1
+    ],
+    [
+      252,
+      8192,
+      0
+    ],
+    [
+      252,
+      8192,
+      1
+    ],
+    [
+      252,
+      16384,
+      0
+    ],
+    [
+      252,
+      16384,
+      1
+    ],
+    [
+      253,
+      2048,
+      0
+    ],
+    [
+      253,
+      2048,
+      1
+    ],
+    [
+      253,
+      4096,
+      0
+    ],
+    [
+      253,
+      4096,
+      1
+    ],
+    [
+      253,
+      8192,
+      0
+    ],
+    [
+      253,
+      8192,
+      1
+    ]
+  ],
+  "frozen_source_hashes_verified": 74,
+  "final_summary_not_created": true,
+  "queued_final_audit_and_plot_cancelled": true,
+  "scope": "Partial saved-output and frozen-source verification only; full matrix/statistical audit not run"
+}

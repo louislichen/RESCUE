@@ -1,0 +1,29 @@
+{
+  "data_sha256": {
+    "fit": "8ef43781c7f2b2a56b98ff5183bce05c7225c949cb29bf0432546a590d10c3d2",
+    "tune": "85b2eb1a81d1617b2d158c069c420c452459a8bdb90da128f257220cc27ded09",
+    "confirmation": "03eb1b126b424cc99b3586fb42594430ed74706f3ade587dc7102abfa5df90bb",
+    "warmup": "d0bf671ea6e54f81533def13a812fb00f4b27d9199fbf2e0b1d2a8623c90d5ad"
+  },
+  "source_sha256": "8098b61d7aef5b16de870963a2f074b69e625767715f9c5ce94e2fc860087398",
+  "selection": "First three naturally long validation documents after index300, excluding all previous document hashes; no generation-dependent selection",
+  "fit_ids": [
+    211,
+    213,
+    220,
+    226,
+    233,
+    236
+  ],
+  "tune_ids": [
+    271,
+    272,
+    288
+  ],
+  "confirmation_ids": [
+    303,
+    306,
+    327
+  ],
+  "scope": "New development confirmation pilot, not the paused test matrix"
+}

@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "args": {
+    "output": "exp/system_validation/out_optimization_v1_20261017",
+    "documents": 8,
+    "repeats": 2,
+    "max_new_tokens": 64
+  },
+  "config": {
+    "budget": 512,
+    "recent": 64,
+    "selector": "coverage",
+    "chunk_size": 1,
+    "student_weight": 1.0,
+    "coverage_candidates": 1024,
+    "coverage_batch": 16,
+    "refresh_every": 4,
+    "inject_tokens": 128,
+    "injection_strength": 0.5,
+    "attention_backend": "sdpa",
+    "schedule": "auto",
+    "length_policy": "risk",
+    "fixed_k": 4,
+    "max_draft": 12,
+    "max_new_tokens": 64,
+    "length_endpoint": null,
+    "rpc_timeout": 1.0,
+    "fallback_k": 1,
+    "profile": false,
+    "prefill_chunk_size": 0,
+    "optimized_execution": true
+  },
+  "fit_indices": [
+    1500,
+    1501,
+    1503,
+    1504
+  ],
+  "tune_indices": [
+    1505,
+    1506,
+    1507,
+    1508
+  ],
+  "validation_indices": [
+    1554,
+    1555,
+    1556,
+    1557,
+    1558,
+    1559,
+    1560,
+    1561
+  ],
+  "source_sha256": {
+    "rescue/__init__.py": "89eba56e38c2689930a5bf1ba4e0221ada1da541dc16e4a759156fa9dd7fe11a",
+    "rescue/__main__.py": "92e4c135a41bf0dc501e406c90e1c11490876c0d113b85f341d5a76284072d0d",
+    "rescue/attention.py": "94f08c75812f472de5afbb106ad60af657da18f9dcbbf8902cc948e669392188",
+    "rescue/audit.py": "c7b1379dcce9745f5c2f0033bc67bc1156977becea51ef23b1050908885a83e9",
+    "rescue/baselines.py": "e66068423465402369f1eb5661815eae2d97a05ed3737dbee7231a95994ac058",
+    "rescue/benchmark.py": "3c4c844d217e33d6080ea6f1dfa1327852974dc97734c4f680eb81391d973a89",
+    "rescue/cache.py": "aa8dc93f34106d41795ef1e31892768999045afa016c45913212962326552773",
+    "rescue/calibration.py": "427dca78dd30e6ba287aef12694c0db1d2abccdd05807ff7040f1490eb955e94",
+    "rescue/compare_baselines.py": "a8229ff96551d16fff991a598c34bd2742a741cb4547a492d0466114d4abd9e9",
+    "rescue/comparison_audit.py": "ae6aa81269d5362bda6b3503fdba75f1839c6afe9f9ecaed660f7dbee17cb7f0",
+    "rescue/config.py": "0e272fc7b717bdd28bc3af3b9d38cc53472402cdec8e03e1159f54c40019612f",
+    "rescue/engine.py": "2c84cad00ba1134b2911010fcb9c4f109dd7ccde2f7efa0ae974b075794602a7",
+    "rescue/features.py": "f92974279195d0482771a72c8e236a8aa2dbca67eeee87b548d898c55b77c1a4",
+    "rescue/injection.py": "d95964a82f3e84f9e90cafedec66068bc6e01f936f3b6c3aaaea1a5a763dcf55",
+    "rescue/length_server.py": "88aeee16e9eeee4fe4619ae014ef671b3c4473231677f8f12ebceeda6d2d50ec",
+    "rescue/loading.py": "32a846c5cf4f42284cbc59c85cd8711943b7f2b848960db1d9954181a62cbddc",
+    "rescue/messages.py": "b4cf6da4cf2c4f94b9bf93a66c61a1209b0574e7157d06aa23b8e7f42e7b3695",
+    "rescue/optimization.py": "afbbe5ae287a03689776401f081fac71b1bb44025c704d5ad4d81183fdb63d49",
+    "rescue/optimization_audit.py": "f8896baf2376442621b2de9da61ab5d72cd1b7e5f7f2d79688601c84ebc09c5a",
+    "rescue/policy.py": "16b88b0eec4da79e090052bd3b3336af08d9a855bb0e2f97d4a7ddec2d0f0131",
+    "rescue/profiling.py": "df0e92cabb6fbc7e351ad01cc90f5f696260905c64c9cb1cd40aed695992a9f1",
+    "rescue/scheduler.py": "506025e77ed7d45f97e6d6ef38153e4c541027bffaa483b4882098d4ef7ef1a9",
+    "rescue/selection.py": "3bc884d011db34e011ef215895b18d040a38ccbedf05fd0c93a918365990f735",
+    "rescue/transport.py": "4a933d006598a8d642f8d19ba13616a85d17dceaee6366185c8cac8ab3d3b4bb",
+    "tests/test_rescue_baselines.py": "6c1f9733169f109c016880b1a551fb13fae2dbad7565753d6389908cf21af19f",
+    "tests/test_rescue_optimization.py": "923571f1ecef0ea78f27946021a6a45568ca734c20ce894ec527d09b7a85076f",
+    "tests/test_rescue_system.py": "2f17f19c3a9fd042da7a6fedebb316026953b509abf8c06b962d1b8236b70c54",
+    "exp/attention_horizon/selection.py": "d5a96f86a1633ceab195dc9c0d7b06ea2aeb4d2571879df966810b457251929a",
+    "exp/selective_kv/bridge.py": "04148446ea2f2307b5e70d0db55add34444c784ad6388fa28af0b62466c807d0"
+  },
+  "artifact_sha256": {
+    "exp/selective_kv/out_pilot/performance_gated.pt": "9e150c272a21b45cf476ce7b2e3dbbfe588bc5c33893c76cad333311d194bf9f",
+    "exp/attention_horizon/out/risk_attention_read_42.pt": "0e20c1c7d296db0b09cef9a667e7015a19e745becd789524445ce486d818fdf2",
+    "exp/system_validation/out_validation_v1_20261017/calibrated_cost.json": "d158646ccbfea2c766901b60436d9d6eaab05c41e9bfcc6831ddf53bfbb1a65d"
+  },
+  "data_sha256": {
+    "exp/attention_horizon/data/train.jsonl": "52feac1e86d9b4a0532691e50310467747f77f7fc8ce13306018680ec2d98e14",
+    "exp/attention_horizon/data/validation.jsonl": "45fbb7127704bf5f1140d49afc73bbf04242a09775904347c82e401c73248b45"
+  },
+  "fixed_menu": [
+    1,
+    2,
+    4,
+    8,
+    12
+  ],
+  "order_seed": 42,
+  "scope": "Existing Qwen validation split; training-only system/cost/hazard calibration, no long-context/full SpecExtend claim",
+  "native_fairness": "Common GQA/direct-gather/catchup optimizations also enabled for native and retrieval baselines",
+  "profiling": "Separate instrumented training requests excluded from throughput matrix"
+}

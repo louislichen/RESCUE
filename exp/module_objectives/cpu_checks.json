@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "tests": 45,
+  "log_sha256": "5a7e20d210586160d73725bc8143a5da1e8d015e0b33da95c8f6f066a43cb8fb",
+  "command": "python -m unittest discover -s tests -v"
+}

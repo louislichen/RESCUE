@@ -1,0 +1,29 @@
+{
+  "source": "https://huggingface.co/datasets/ccdv/govreport-summarization",
+  "raw_sha256": {
+    "train-00000-of-00002.parquet": "8b02abb5691b3fa1ba95f76331cadc8bb3e80195c626b4656b480d36e0c92242",
+    "validation-00000-of-00001.parquet": "8098b61d7aef5b16de870963a2f074b69e625767715f9c5ce94e2fc860087398",
+    "test-00000-of-00001.parquet": "d4f4fa6f96f2cb43ffcdbf5e1d39d2ce1ebff5314d0a92413211103aae3d5957"
+  },
+  "data_sha256": {
+    "train": "ae1e3f58a663dd505ddc9d1f1fdb87af55cad1d967c6b771f696bcbbadce7083",
+    "development": "208fd791a426b56f566e6dd396a924eb8f21056710e7ad082e518123446f3842",
+    "test": "915b965119b52c194157e41897f6c6e1045c191376646dfd2758313ca709655d"
+  },
+  "counts": {
+    "train": 12,
+    "development": 6,
+    "test": 12
+  },
+  "context_lengths": [
+    2048,
+    4096,
+    8192,
+    16384
+  ],
+  "max_new_tokens": 256,
+  "selection": "First naturally >=16K-token reports after row 200, selected without generation or model results",
+  "splits": "Original corpus train/validation/test respectively; document SHA256 disjoint",
+  "truncation": "Nested report prefixes plus identical instruction; no repeated, padded or synthetic documents",
+  "quality": "Generation matches a matched Target reference; truncated-prefix outputs are not scored against full-report summaries"
+}

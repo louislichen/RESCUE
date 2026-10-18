@@ -1,0 +1,37 @@
+{
+  "fit_frames": 399,
+  "monitor_frames": 86,
+  "fit_censored": 0,
+  "monitor_censored": 0,
+  "selected_epoch": 250,
+  "monitor_nll": 1.3804304599761963,
+  "history": [
+    {
+      "epoch": 50,
+      "fit": 1.9777339696884155,
+      "monitor_nll": 1.8984204530715942
+    },
+    {
+      "epoch": 100,
+      "fit": 1.6046149730682373,
+      "monitor_nll": 1.578393578529358
+    },
+    {
+      "epoch": 150,
+      "fit": 1.4293675422668457,
+      "monitor_nll": 1.4527194499969482
+    },
+    {
+      "epoch": 200,
+      "fit": 1.345969796180725,
+      "monitor_nll": 1.4092000722885132
+    },
+    {
+      "epoch": 250,
+      "fit": 1.290218710899353,
+      "monitor_nll": 1.3804304599761963
+    }
+  ],
+  "contract": "12 causal features at draft depth2; exact-class/partial-class likelihood, bounded actions2/4",
+  "training": "Mixed fixed4 and policy/exploration states; no assumed labels beyond verified prefix"
+}

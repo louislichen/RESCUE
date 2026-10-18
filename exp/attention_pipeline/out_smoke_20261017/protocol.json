@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "scope": "Training-document execution smoke, not held-out efficacy or distributed benchmark",
+  "arguments": {
+    "output": "/home/wanghl/cl/RESCUE/exp/attention_pipeline/out_smoke_20261017",
+    "documents": 2,
+    "repeats": 3,
+    "max_new_tokens": 32,
+    "planning_spent_ms": 0.0,
+    "delivery_delay_ms": 0.0
+  },
+  "source_indices": [
+    1500,
+    1501
+  ],
+  "modes": [
+    "legacy_serial",
+    "serial_original",
+    "serial_cached",
+    "async_cached"
+  ],
+  "torch": "2.7.1+cu128",
+  "gpu": "NVIDIA H100",
+  "teacher_dtype": "float32",
+  "student_dtype": "bfloat16",
+  "source_sha256": {
+    "exp/attention_pipeline/planner.py": "d10a95d5a23d518ec16b74f5a3872df712e248e488c2984570a5338d68106cde",
+    "exp/attention_pipeline/run.py": "ddd2bc1c8fb0981d79688aa3dba5918b26ae12a142687135ba73f2b6c591762a",
+    "exp/attention_pipeline/runtime.py": "d48635760858edab5fbd2d2c7ed55dc064744f149e32640d40e45e6f9fd19579",
+    "exp/attention_pipeline/test_pipeline.py": "7a170feb4f7caacee43da660117dc49faab8d3edbc5b1a26e86efe60a3c72820",
+    "exp/attention_pipeline/cached_injection.py": "a0d723bbed714cc453adfd44774628b06dbf4657201ed949d897097c2ceefe74",
+    "exp/attention_horizon/runtime.py": "ddc3d0a1f32bbf61adb4b9cb5459c6c09c6f7fc28c61bc1fd72694fd64239b8c",
+    "exp/attention_horizon/experiment.py": "cb89cfb93b8c9e2e616eb0d90065959eef2178b228836c61b10dd992af185234",
+    "exp/attention_horizon/selection.py": "d5a96f86a1633ceab195dc9c0d7b06ea2aeb4d2571879df966810b457251929a",
+    "exp/attention_horizon/risk.py": "4af99a6eab7842a225a88b2401bf9cd0eb99c1d325596aee2f1b592c1b78dc97",
+    "exp/attention_selection/attention.py": "462923a5b9f6343ea9bf61933d12fdd9a2aa4d2156205776fec38b1b08451614",
+    "exp/selective_kv/bridge.py": "04148446ea2f2307b5e70d0db55add34444c784ad6388fa28af0b62466c807d0"
+  },
+  "artifact_sha256": {
+    "exp/attention_horizon/out/risk_attention_read_42.pt": "0e20c1c7d296db0b09cef9a667e7015a19e745becd789524445ce486d818fdf2",
+    "exp/attention_horizon/out/cost_model.json": "2d7154c6f7c29001d3f32e5cc4d936a36678d6f31a199ec669b77ecb3796ea11",
+    "exp/selective_kv/out_pilot/performance_gated.pt": "9e150c272a21b45cf476ce7b2e3dbbfe588bc5c33893c76cad333311d194bf9f"
+  },
+  "planning": "New serial/async controls use identical fixed spent cost input, historical reference and frozen checkpoints; legacy keeps measured spent",
+  "asynchronous": "Local thread and CUDA stream. Wait at first-token deadline; no extra Draft token. No RPC/network transport."
+}

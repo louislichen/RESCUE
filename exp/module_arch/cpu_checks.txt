@@ -1,0 +1,67 @@
+/home/wanghl/miniconda3/envs/rescue/lib/python3.10/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+test_censored_budget_fit_is_finite_and_base_defaults_are_eligible (test_rescue_architecture.ArchitectureTests) ... ok
+test_censored_short_budget_does_not_fabricate_tail_labels (test_rescue_architecture.ArchitectureTests) ... ok
+test_native_residual_identity_init_and_nonzero_cached_replay (test_rescue_architecture.ArchitectureTests) ... Qwen2Model is using Qwen2SdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+ok
+test_prefix_mapper_training_keeps_base_frozen_and_remaps_layer (test_rescue_architecture.ArchitectureTests) ... architecture mapper test {'epoch': 1, 'loss': 0.6273809274037679, 'monitor': {'queries': 4, 'matches': 1, 'corrected': 0, 'harmed': 0, 'kl': 0.010889832628890872}}
+ok
+test_step_budget_changes_caps_and_keeps_target_across_requests (test_rescue_architecture.ArchitectureTests) ... ok
+test_step_outcome_tables_respect_eos_bonus_and_output_limits (test_rescue_architecture.ArchitectureTests) ... ok
+test_all_accepted_catchup_and_exception_restore (test_rescue_baselines.BaselineTests) ... ok
+test_chunk_means_recent_initialization_frontier_and_budget (test_rescue_baselines.BaselineTests) ... ok
+test_fixed_lengths_native_and_retrieval_match_full_target (test_rescue_baselines.BaselineTests) ... ok
+test_chunk_prefill_and_cached_queries_match_dense_causal_reference (test_rescue_long_context.EfficientAttentionTests) ... ok
+test_compact_observation_selects_only_causally_visible_keys (test_rescue_long_context.EfficientAttentionTests) ... ok
+test_complete_fused_engine_preserves_target_output_across_requests (test_rescue_long_context.EfficientAttentionTests) ... ok
+test_full_engine_prefix_dispatch_uses_bottom_right_causal_alignment (test_rescue_long_context.EfficientAttentionTests) ... ok
+test_projection_packing_preserves_logits_and_repeated_calls (test_rescue_long_context.EfficientAttentionTests) ... ok
+test_attention_shift_refreshes_before_maximum_age (test_rescue_long_context.HierarchicalSelectionTests) ... ok
+test_budget_anchors_bounded_similarity_and_append_only_normalization (test_rescue_long_context.HierarchicalSelectionTests) ... ok
+test_injection_conditioned_length_observes_first_token_and_matches_training_features (test_rescue_long_context.RolloutTrainingTests) ... ok
+test_recorded_last_layer_replay_matches_runtime_and_trains_only_mapper (test_rescue_long_context.RolloutTrainingTests) ... ok
+test_attention_anchors_and_modular_floor_keep_budget_and_salient_tokens (test_rescue_module_opt.ModuleOptimizationTests) ... ok
+test_feedback_is_conditional_censored_and_request_local (test_rescue_module_opt.ModuleOptimizationTests) ... ok
+test_injected_policies_reject_old_rpc_before_allocating_resources (test_rescue_module_opt.ModuleOptimizationTests) ... ok
+test_key_conditioned_mapper_cached_runtime_and_replay_agree (test_rescue_module_opt.ModuleOptimizationTests) ... ok
+test_light_policy_skips_reads_and_feedback_repeated_requests_reset (test_rescue_module_opt.ModuleOptimizationTests) ... ok
+test_query_direction_initializes_from_base_and_changes_with_query (test_rescue_module_opt.ModuleOptimizationTests) ... ok
+test_query_mapper_cached_runtime_matches_replay_with_real_direction (test_rescue_module_opt.ModuleOptimizationTests) ... ok
+test_early_publication_and_profile_keep_decisions_and_trajectories (test_rescue_objectives.ObjectiveTests) ... ok
+test_horizon_counterfactual_observes_rejection_censoring (test_rescue_objectives.ObjectiveTests) ... ok
+test_prior_mixture_serialization_and_featureless_fast_path (test_rescue_objectives.ObjectiveTests) ... ok
+test_quality_and_margin_preservation_detect_native_harm (test_rescue_objectives.ObjectiveTests) ... ok
+test_rejected_first_token_and_tail_are_separate_from_catchup_work (test_rescue_objectives.ObjectiveTests) ... ok
+test_folded_hazard_calibration_matches_logits (test_rescue_optimization.OptimizationTests) ... ok
+test_lazy_state_and_direct_output_gather_match (test_rescue_optimization.OptimizationTests) ... ok
+test_optimized_and_legacy_target_outputs_and_eager_trajectory (test_rescue_optimization.OptimizationTests) ... ok
+test_static_gate_factorization_matches_dynamic_original (test_rescue_optimization.OptimizationTests) ... ok
+test_affine_memo_remains_correct_when_prior_and_positions_change (test_rescue_reuse.ReuseTests) ... ok
+test_deferral_matches_every_boundary_attention_and_target_output (test_rescue_reuse.ReuseTests) ... ok
+test_incremental_engine_all_accepted_eos_and_request_reset (test_rescue_reuse.ReuseTests) ... ok
+test_incremental_engine_with_mapper_and_hard_layer_route (test_rescue_reuse.ReuseTests) ... ok
+test_incremental_restores_old_injection_and_discards_rejected_tail (test_rescue_reuse.ReuseTests) ... ok
+test_packed_and_layerwise_gather_have_identical_native_views (test_rescue_reuse.ReuseTests) ... ok
+test_native_append_rollback_overwrite_and_capacity (test_rescue_system.CacheTests) ... ok
+test_working_append_is_private_and_gathers_only_on_bind (test_rescue_system.CacheTests) ... ok
+test_chunked_prefill_matches_full_teacher_output (test_rescue_system.EngineTests) ... ok
+test_concurrent_use_is_rejected_without_corrupting_request (test_rescue_system.EngineTests) ... ok
+test_eos_and_output_budget_omit_terminal_catchup (test_rescue_system.EngineTests) ... ok
+test_failure_unblocks_pending_planner_and_restores_model (test_rescue_system.EngineTests) ... ok
+test_full_workflow_and_serial_async_trajectory (test_rescue_system.EngineTests) ... ok
+test_real_model_coverage_and_sdpa_path (test_rescue_system.EngineTests) ... ok
+test_carry_and_chunk_modes_keep_strict_token_budget (test_rescue_system.FeatureSelectionTests) ... ok
+test_chunk_coverage_preserves_budget_and_anchors (test_rescue_system.FeatureSelectionTests) ... ok
+test_coverage_avoids_redundant_high_attention_tokens (test_rescue_system.FeatureSelectionTests) ... ok
+test_split_matches_frozen_feature_contract_with_gqa (test_rescue_system.FeatureSelectionTests) ... ok
+test_vectorized_cost_choice_matches_scalar_expected_tokens (test_rescue_system.FeatureSelectionTests) ... ok
+test_inplace_matches_original_and_memo_reuses_committed_content (test_rescue_system.InjectionTests) ... ok
+test_oversize_frame_is_rejected_before_allocation (test_rescue_system.TransportTests) ... ok
+test_real_tcp_policy_roundtrip (test_rescue_system.TransportTests) ... ok
+test_rpc_failure_uses_explicit_safe_length (test_rescue_system.TransportTests) ... ok
+test_stale_and_nonfinite_lengths_are_rejected (test_rescue_system.TransportTests) ... ok
+
+----------------------------------------------------------------------
+Ran 58 tests in 3.680s
+
+OK

@@ -1,0 +1,17 @@
+{
+  "chosen": "compact",
+  "chosen_overall": "native",
+  "scores": {
+    "native": 1.0249262497205023,
+    "query": 1.0,
+    "full": 1.002072974734779,
+    "compact": 1.0043307638793197
+  },
+  "parameter_counts": {
+    "native": 759556,
+    "query": 759556,
+    "full": 759556,
+    "compact": 49433
+  },
+  "selection": "Train tune rolling geometric whole-request TPS; native no-injection separately eligible overall"
+}

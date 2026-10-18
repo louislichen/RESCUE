@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "tests": 40,
+  "scope": "CPU unit and integration checks before the frozen comparison; no performance result",
+  "test_sources": {
+    "tests/test_rescue_baselines.py": "6c1f9733169f109c016880b1a551fb13fae2dbad7565753d6389908cf21af19f",
+    "tests/test_rescue_long_context.py": "62a3a4c665c274c9b7a09d7d6983ce6c8dd93d5d981951cbe6e388044396c4f2",
+    "tests/test_rescue_optimization.py": "923571f1ecef0ea78f27946021a6a45568ca734c20ce894ec527d09b7a85076f",
+    "tests/test_rescue_reuse.py": "125501ee787ea061d5a6056a99a38b5e96d74a2c005b08c9bdbfe04ad722281b",
+    "tests/test_rescue_system.py": "2f17f19c3a9fd042da7a6fedebb316026953b509abf8c06b962d1b8236b70c54"
+  },
+  "log_sha256": "365d788631786b96d9f75657ce4493fdb0a1f84cf2f799886ef71632ab398e92"
+}

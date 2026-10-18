@@ -1,0 +1,15 @@
+{
+  "python": "3.10.20 (main, Jun 11 2026, 15:17:37) [GCC 14.3.0]",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "packages": {
+    "torch": "2.7.1+cu128",
+    "transformers": "4.40.2",
+    "numpy": "2.2.6",
+    "flash-attn": "2.8.3",
+    "termcolor": "3.1.0",
+    "sentencepiece": "0.2.1",
+    "safetensors": "0.8.0",
+    "accelerate": "1.14.0"
+  },
+  "scope": "Dependency metadata captured during the frozen single-GPU run; no timed inference"
+}

@@ -1,0 +1,80 @@
+{
+  "matched_injection": {
+    "budget1024": {
+      "requests": 6,
+      "committed": 1536,
+      "accepted": 1056,
+      "proposed": 1921,
+      "rounds": 483,
+      "draft_forwards": 2100,
+      "wasted_proposals": 865,
+      "avoidable_tail": 565,
+      "mean_reference_tokens": 1024.0,
+      "total_tps": 24.246005652602946
+    },
+    "refine_matched_noinj": {
+      "requests": 6,
+      "committed": 1536,
+      "accepted": 1059,
+      "proposed": 1908,
+      "rounds": 480,
+      "draft_forwards": 2093,
+      "wasted_proposals": 849,
+      "avoidable_tail": 558,
+      "mean_reference_tokens": 1024.0,
+      "total_tps": 24.78062719476466
+    }
+  },
+  "matched_length": {
+    "h64_k4": {
+      "requests": 6,
+      "committed": 1536,
+      "accepted": 1006,
+      "proposed": 2122,
+      "rounds": 533,
+      "draft_forwards": 2284,
+      "wasted_proposals": 1116,
+      "avoidable_tail": 749,
+      "mean_reference_tokens": 512.0,
+      "total_tps": 22.409192527706068
+    },
+    "dynamic": {
+      "requests": 6,
+      "committed": 1536,
+      "accepted": 953,
+      "proposed": 1810,
+      "rounds": 585,
+      "draft_forwards": 2043,
+      "wasted_proposals": 857,
+      "avoidable_tail": 509,
+      "mean_reference_tokens": 512.0,
+      "total_tps": 22.002153401092098
+    }
+  },
+  "reference_budget": {
+    "h64_k4": {
+      "requests": 6,
+      "committed": 1536,
+      "accepted": 1006,
+      "proposed": 2122,
+      "rounds": 533,
+      "draft_forwards": 2284,
+      "wasted_proposals": 1116,
+      "avoidable_tail": 749,
+      "mean_reference_tokens": 512.0,
+      "total_tps": 22.409192527706068
+    },
+    "budget1024": {
+      "requests": 6,
+      "committed": 1536,
+      "accepted": 1056,
+      "proposed": 1921,
+      "rounds": 483,
+      "draft_forwards": 2100,
+      "wasted_proposals": 865,
+      "avoidable_tail": 565,
+      "mean_reference_tokens": 1024.0,
+      "total_tps": 24.162037745742662
+    }
+  }
+}

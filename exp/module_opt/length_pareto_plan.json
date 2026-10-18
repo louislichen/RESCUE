@@ -1,0 +1,17 @@
+{
+  "time_utc": "2026-10-18T01:31:54.650063+00:00",
+  "basis": "Training only: feedback_ratio waste408/rounds287, surplus waste504/rounds255, fixed4 waste501/rounds258. Include both Pareto endpoints instead of only TPS-selected surplus.",
+  "training_sha256": "8e9e0d234dff7f45d30bf7622fd3d3645a237e58e4a85bca8fec0c155fc2aece",
+  "modes": [
+    "old_risk",
+    "feedback_ratio",
+    "feedback_surplus"
+  ],
+  "mapper": "Old matched mapper for all three; key-conditioned mapper is not combined",
+  "confirmation_ids": [
+    303,
+    306,
+    327
+  ],
+  "scope": "Same confirmation cohort; no additional independent sample and no parameter selection on confirmation outcomes"
+}

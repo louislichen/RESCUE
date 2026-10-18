@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "document_hashes_disjoint": true,
+  "confirmation_ids": [
+    604,
+    613,
+    614
+  ],
+  "previous_documents": 43,
+  "prefix_collisions": {
+    "8192": [],
+    "16384": []
+  }
+}
