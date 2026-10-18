@@ -1,0 +1,68 @@
+{
+  "fit_queries": 480,
+  "monitor_queries": 96,
+  "baseline": {
+    "queries": 96,
+    "matches": 69,
+    "corrected": 0,
+    "harmed": 0,
+    "kl": 0.740527279941451
+  },
+  "selected": {
+    "queries": 96,
+    "matches": 69,
+    "corrected": 0,
+    "harmed": 0,
+    "kl": 0.740527279941451
+  },
+  "epoch": 0,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 1.0910118139888112,
+      "monitor": {
+        "queries": 96,
+        "matches": 68,
+        "corrected": 0,
+        "harmed": 1,
+        "kl": 0.7433639538391693
+      }
+    },
+    {
+      "epoch": 2,
+      "loss": 1.077678339889175,
+      "monitor": {
+        "queries": 96,
+        "matches": 69,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.7455448283840838
+      }
+    },
+    {
+      "epoch": 3,
+      "loss": 1.052333283738086,
+      "monitor": {
+        "queries": 96,
+        "matches": 69,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.745926878682989
+      }
+    },
+    {
+      "epoch": 4,
+      "loss": 1.0367958723714477,
+      "monitor": {
+        "queries": 96,
+        "matches": 69,
+        "corrected": 0,
+        "harmed": 0,
+        "kl": 0.7464268550446604
+      }
+    }
+  ],
+  "trained": "All final-layer mapper blocks; frozen base, no historical backprop",
+  "objective": "Greedy margin, native-success preservation, KL and differentiable prefix survival; no per-query V oracle",
+  "selection": "Monitor matches, then fewer harms, then KL; initial weights eligible"
+}

@@ -1,0 +1,19 @@
+{
+  "time_utc": "2026-10-18T03:08:15.340703+00:00",
+  "status": "in_progress",
+  "scope": "Consistent staged text snapshot while authorized GPU training continues. No final supplementary performance claim.",
+  "staged_records": {
+    "bundles.jsonl": {
+      "rows": 24,
+      "sha256": "120e7dbcacbfb37ef8472b4fd2c2136c3bdb8b70bdaf85fdc0e61a13fad92a15"
+    },
+    "collection.jsonl": {
+      "rows": 24,
+      "sha256": "c7e3af778d9fd93031b2857d8d2acd9c8e595d357153c83dec03b477de381207"
+    }
+  },
+  "source_hashes_verified": 70,
+  "registered_confirmation_requests": 84,
+  "complete_json_in_snapshot": false,
+  "excluded": "Ignored checkpoint/tensor binaries and files produced after this snapshot are not included."
+}
