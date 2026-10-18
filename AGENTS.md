@@ -95,6 +95,15 @@ Keep these distinctions explicit:
   also retained. New confirmation is 604/613/614, not the paused test. Consult
   exp/module_arch/REPORT.md and each stage's COMPLETE/audit status before citing
   results. Pending runs and training loss are not established performance gains.
+- Its primary architecture run has now completed 72 exact confirmation requests
+  and saved-record auditing. Whole-final-layer M2 retraining corrects one extra
+  common query versus the prior query mapper (124/144 versus 123/144) but still
+  trails no injection. The depth-two 2/4 policy reduces waste 1054 to 866 with
+  verification rounds 524 to 526 and improves paired whole-request TPS 2.40%
+  versus matched fixed4 on these three documents. The matched mapper retained
+  zero correction, so this is a limited length-module signal, not successful
+  nonzero content injection plus length, attention attribution, or SOTA evidence.
+  The predefined warm-gate and fastest-length supplement is still running.
 
 Use the original per-experiment protocols and reports for numbers. Keep
 different datasets, budgets, numerical precisions, and output limits separate.

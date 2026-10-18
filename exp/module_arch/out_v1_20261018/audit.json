@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "exact_saved_requests": 180,
+  "confirmation_requests": 72,
+  "quality_rows": 864,
+  "frozen_sources": 69,
+  "current_source_changes": {
+    "tests/test_rescue_architecture.py": {
+      "executed": "70e668c5d1cfbf1113531ef1b254f9b5673d04ae177a31f7c73cef736a1bfc1d",
+      "current": "45fee236a6a53e5d214c308f60f11cf8b512447bb9f4a0ec6f3327ac0a84008f"
+    }
+  },
+  "paused_test_requests": 71,
+  "analysis_sha256": "76b2d839d0c5ec17e08fbcfb3228787a2fd9ad363a9d30a765d041b476ec367d",
+  "source": "Saved-record verification, not extra GPU runs"
+}
