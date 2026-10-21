@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "status": "TEMPLATE_NOT_EXECUTED",
+  "is_template": true,
+  "seed": 20261026,
+  "selection_rule": {
+    "original_split": "validation",
+    "minimum_source_index": 0,
+    "minimum_natural_tokens": 8192,
+    "documents": 16,
+    "order": "original source_index ascending; first eligible sixteen",
+    "context_lengths": [
+      4096,
+      8192
+    ],
+    "duplicate_rule": "exclude all eleven old used/reserved cohort document SHA and exact4K/8K input SHA, including within selected cohort",
+    "replacement": "never use generation, EOS, speed or nonzero-injection outcomes to select or replace",
+    "rationale": "Match actual4K/8K inputs using naturally8192-token bodies; the unexecuted>=900/16384 draft was retired before any candidate access"
+  },
+  "fixed": {
+    "teacher": "Qwen2-7B-Instruct",
+    "student": "Qwen2-1.5B-Instruct",
+    "target_dtype": "float32",
+    "draft_dtype": "bfloat16",
+    "prefill_precision": "bfloat16",
+    "tf32": false,
+    "context_lengths": [
+      4096,
+      8192
+    ],
+    "max_new_tokens": 128,
+    "repeats": 2,
+    "schedule": "serial",
+    "graph_max_entries": 128
+  },
+  "own_method": {
+    "mapper_sha256": "d08889e796ca2527e23241ff34a072ef640e2fdf3fe9a2f9ba5439975af04d9f",
+    "policy_sha256": "3c333a470119c236afcc1308c18592842a535bee0b8f83c4fb4da359ff17eff5",
+    "cost_sha256": "d92c843a84676c0cd6adaf9364bbf7e8c771d56548f1016b5720a3e04f371fa1",
+    "selector": "hierarchical",
+    "working_budget": 512,
+    "recent": 64,
+    "coverage_rows": 64,
+    "coverage_candidates": 1024,
+    "coverage_batch": 16,
+    "coarse_chunk_size": 32,
+    "refresh_every": 4,
+    "refresh_policy": "periodic",
+    "injection_layers": [
+      27
+    ],
+    "inject_tokens": 64,
+    "injection_strength": 0.5,
+    "draft_execution": "cuda_graph",
+    "coverage_execution": "eager",
+    "length_policy": "frozen old-cost causal2/4",
+    "mapper_required_nonzero": true,
+    "no_training": true,
+    "no_cost_promotion": true
+  },
+  "statistics": {
+    "bootstrap_seed": 20261026,
+    "bootstrap_draws": 100000,
+    "independent_unit": "whole document",
+    "primary": "pooled token/time throughput ratio",
+    "paired_indices": "same document resample for all arms and both contexts",
+    "plotted_interval": "pointwise two-sided95 percentile [0.025,0.975]",
+    "formal_gate": "ALL M effects have positive point estimate AND positive simultaneous one-sided95 lower bound",
+    "simultaneous_lower_quantile_rule": ".05/M",
+    "filtering": "no capture-free filtering, outcome selection, imputation or optional stopping",
+    "comparisons": "M",
+    "simultaneous_lower_quantile": null
+  },
+  "execution": {
+    "primary": "Whole-generate outer includes handoff,input construction,prefill,reset,all legal lazy captures,decode,cleanup; excludes common model loading identically",
+    "owner_trace": "At most one live private owner; each context/mode has one separately billed old271 prime then32 warm requests; all legal captures charged",
+    "first_prime": "Fixed old train document271, separately billed per context/arm, using the exact verified baseline input and canonical128 output; no extra AR, free warmup or quality Graph borrowing",
+    "order": "Freeze seeded owner-block order and within-block document order. One owner executes all32 warm requests before close; this is not interleaving. Disclose block clock-drift limitation; reset per-request policy RNG",
+    "secondaries": "Report cold constructor+prime and active-service constructor+prime+32warm+close separately; do not substitute them after observing primary",
+    "captures": "Keep every legal capture in timing; no pre-capture union, test-aware warmup or capture-free filtering",
+    "union": "Keep every unique stage1+stage2 challenger at each context; never reselect after confirmation"
+  },
+  "counts_rule": {
+    "reference_requests": 32,
+    "own_quality_requests": 64,
+    "baseline_quality_requests": "M",
+    "matching_quality_requests": "R",
+    "prime_requests": "M+2",
+    "timing_requests": "32*(M+2)",
+    "owners": "M+2",
+    "scientific_requests": "162+34*M+R",
+    "M": "Total retained context/mode contrasts,8..16",
+    "R": "Missing matching-eager geometries,0..8"
+  },
+  "required_source_files": [
+    "rescue/fair_union_confirmation_data.py",
+    "rescue/fair_union_confirmation.py",
+    "rescue/fair_union_confirmation_report.py",
+    "tests/test_rescue_fair_union_confirmation_data.py",
+    "tests/test_rescue_fair_union_confirmation.py",
+    "tests/test_rescue_fair_union_confirmation_report.py",
+    "exp/draft_graph/fair_union_confirmation_20261020_preregistration.json",
+    "exp/draft_graph/run_fair_union_confirmation_20261020_v1.sh"
+  ],
+  "scope": "Unexecuted union-confirmation template; no candidate content opened; not a random official test sample"
+}

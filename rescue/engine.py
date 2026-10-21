@@ -7,6 +7,7 @@ from functools import wraps
 import torch
 
 from .attention import DraftAttention, TargetObservation
+from .attention_summary import mean_attention
 from .cache import NativeCache, WorkingCache
 from .injection import ContentInjector
 from .messages import ContextPacket, RoundKey
@@ -41,6 +42,18 @@ class RescueEngine:
             raise ValueError('Risk policy requires a checkpoint or remote length service')
         self.mapper, self.risk, self.memoize = mapper, risk, memoize
         self.draft_observer, self.round_observer = draft_observer, round_observer
+        if config.coverage_execution == 'cuda_graph' and self.device.type != 'cuda':
+            raise ValueError('Coverage Graph execution requires a CUDA device')
+        if config.draft_execution != 'eager':
+            if draft_observer is not None:
+                raise ValueError('Resident Draft execution does not support a Draft observer')
+            if config.draft_execution == 'cuda_graph' and self.device.type != 'cuda':
+                raise ValueError('CUDA Graph Draft execution requires a CUDA device')
+            if mapper is not None and getattr(mapper, 'attention_features', 0):
+                raise ValueError('Resident Draft prototype does not support current-QK Mapper features')
+            if config.length_policy == 'risk' and getattr(risk, 'group', None) in (
+                    'attention_injected', 'attention_injected_light'):
+                raise ValueError('Resident Draft prototype does not support injection-conditioning callbacks')
         self.vocab = vocab_size or min(teacher.config.vocab_size, student.config.vocab_size)
         if mapper is not None:
             expected = (teacher.config.num_key_value_heads*(teacher.config.hidden_size//teacher.config.num_attention_heads),
@@ -57,6 +70,11 @@ class RescueEngine:
         self.observation = TargetObservation(teacher).install()
         self.scheduler = Scheduler(config, risk, self.cost, self.device)
         self.native_t = self.native_s = self.working = self.injector = None
+        self.draft_runtime = None
+        self.coverage_runtime = None
+        if config.coverage_execution == 'cuda_graph':
+            from .coverage_graph import CoverageGraphRuntime
+            self.coverage_runtime = CoverageGraphRuntime(mode='cuda_graph', max_entries=64)
         self.closed = False
         self._request_lock = threading.Lock()
 
@@ -74,6 +92,9 @@ class RescueEngine:
             self.injector.projected_positions = 0
             self.injector.affine_positions = 0
             return
+        if self.draft_runtime is not None:
+            self.draft_runtime.close()
+            self.draft_runtime = None
         capacity = 1 << (capacity-1).bit_length()
         def native(model):
             c = model.config
@@ -89,6 +110,10 @@ class RescueEngine:
                                        optimized=self.config.optimized_execution,
                                        memo_affine=self.config.memoized_gate_affine,
                                        layers=self.config.injection_layers)
+        if self.config.draft_execution != 'eager':
+            from .draft_graph import ResidentDraftRuntime
+            self.draft_runtime = ResidentDraftRuntime(self.student, self.native_s, self.working,
+                                                     self.injector, mode=self.config.draft_execution)
 
     def _ids(self, tokens):
         return torch.tensor([tokens], dtype=torch.long, device=self.device)
@@ -150,9 +175,11 @@ class RescueEngine:
         draft_attn = DraftAttention(self.student, self.working, self.injector, c.attention_backend,
                                     optimized=c.optimized_execution,
                                     deferred=c.optimized_execution and c.deferred_probes,
-                                    observer=self.draft_observer).install()
+                                    observer=self.draft_observer, runtime=self.draft_runtime).install()
+        runtime_before = self.draft_runtime.stats() if self.draft_runtime is not None else None
+        coverage_before = self.coverage_runtime.stats() if self.coverage_runtime is not None else None
         request_id = uuid.uuid4().hex
-        selector = ContextSelector(c)
+        selector = ContextSelector(c, runtime=self.coverage_runtime)
         trace, generated = [], []
         profile_steps, profile_verify, profile_overhead = [], [], []
         condition_steps = 0
@@ -204,9 +231,9 @@ class RescueEngine:
                 if c.injection_rule == 'joint':
                     priority = selector.priority
                     if priority is None:
-                        priority = t.a.mean(0)+c.student_weight*s.a.mean(0)
+                        priority = mean_attention(t)+c.student_weight*mean_attention(s)
                 timing = timeline.begin('injection_bind')
-                self.injector.bind(self.native_t, self.native_s, selected, t.a.mean(0), c.recent,
+                self.injector.bind(self.native_t, self.native_s, selected, mean_attention(t), c.recent,
                                    working=self.working, priority=priority)
                 timeline.end(timing)
                 draft_attn.condition_callback = (lambda extra: self.scheduler.condition(job, extra)) if (
@@ -231,11 +258,15 @@ class RescueEngine:
                     draft_attn.record_injection_summary = record_step and len(draft)<2
                     condition_steps += int(draft_attn.conditioning)
                     logits = draft_attn.step(next_input, self.native_s)
-                    next_input = int(logits[0, :self.vocab].argmax())
+                    next_token = logits[0, :self.vocab].argmax()
+                    token_value = int(next_token)
+                    # Keep the next embedding input on-device. The host read
+                    # remains necessary for the existing EOS/control boundary.
+                    next_input = next_token if self.draft_runtime is not None else token_value
                     timeline.end(timing)
                     if c.profile:
                         profile_steps.append(time.perf_counter()-tick)
-                    draft.append(next_input)
+                    draft.append(token_value)
                     if record_step and len(draft)<=2:
                         top=logits[0,:self.vocab].topk(2).values
                         margins.append(top[0]-top[1])
@@ -243,7 +274,11 @@ class RescueEngine:
                             moments=(torch.stack(self.injector.summaries).mean(0) if self.injector.summaries else logits.new_zeros(2))
                             budget_vector=step_features(budget_base,margins,moments)
                             if stepwise:
-                                cap, _ = self.risk.decide(budget_vector,self.cost,n,remaining)
+                                decide_cap = getattr(self.risk, 'decide_cap', None)
+                                if decide_cap is None:
+                                    cap, _ = self.risk.decide(budget_vector,self.cost,n,remaining)
+                                else:
+                                    cap = decide_cap(budget_vector,self.cost,n,remaining)
                                 cap = min(cap,c.max_draft,remaining)
                     probes.append(draft_attn.last_query if draft_attn.deferred else draft_attn.shadow)
                     if decision is None:
@@ -253,7 +288,7 @@ class RescueEngine:
                         decision, ready, wait = self.scheduler.resolve(job, key, remaining)
                         timeline.end(timing)
                         cap = decision.cap
-                    if next_input == eos_token_id:
+                    if token_value == eos_token_id:
                         break
                 self.scheduler.drain()
                 draft_attn.conditioning = False
@@ -361,6 +396,18 @@ class RescueEngine:
         if c.profile:
             result['cost_samples'] = dict(student_step=profile_steps, verify=profile_verify, overhead=profile_overhead)
             result['timeline'] = timeline.result()
+        if self.draft_runtime is not None:
+            runtime_after = self.draft_runtime.stats()
+            counts = ('captures', 'replays', 'resident_steps', 'capture_host_seconds', 'shadow_updates')
+            result['draft_runtime'] = dict(mode=c.draft_execution, lifetime=runtime_after,
+                request={name: runtime_after[name]-runtime_before[name] for name in counts},
+                scope='Request total includes lazy initialization, capture, warmup and restoration; EOS and 2/4 control remain outside graphs')
+        if self.coverage_runtime is not None:
+            coverage_after = self.coverage_runtime.stats()
+            fields = ('captures', 'replays', 'capture_host_seconds')
+            result['coverage_runtime'] = dict(mode=c.coverage_execution, lifetime=coverage_after,
+                request={name: coverage_after[name]-coverage_before[name] for name in fields},
+                scope='Actual pool shapes; capture and GPU input/output copies included in full generate')
         return result
 
     @exclusive
@@ -369,8 +416,18 @@ class RescueEngine:
             try:
                 self.scheduler.close()
             finally:
-                self.observation.restore()
-                self.closed = True
+                try:
+                    if self.draft_runtime is not None:
+                        self.draft_runtime.close()
+                finally:
+                    try:
+                        if self.coverage_runtime is not None:
+                            self.coverage_runtime.close()
+                    finally:
+                        try:
+                            self.observation.restore()
+                        finally:
+                            self.closed = True
 
     def __enter__(self):
         return self

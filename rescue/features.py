@@ -2,6 +2,8 @@
 import math
 import torch
 
+from .attention_summary import mean_attention
+
 
 def entropy(p):
     return -(p*p.clamp_min(1e-12).log()).sum(-1)
@@ -9,7 +11,7 @@ def entropy(p):
 
 def prepare(t, s, progress, remaining, recent):
     n = t.n
-    ta, sa = t.a.mean(0), s.a.mean(0)
+    ta, sa = mean_attention(t), mean_attention(s)
     end = max(2, n-recent)
     tr, sr = ta[1:end], sa[1:end]
     tr, sr = tr/tr.sum().clamp_min(1e-12), sr/sr.sum().clamp_min(1e-12)

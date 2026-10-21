@@ -40,6 +40,10 @@ def main():
     parser.add_argument('--length-policy', choices=['risk', 'fixed'], default='risk')
     parser.add_argument('--fixed-k', type=int, default=4)
     parser.add_argument('--working-mode', choices=['layerwise', 'packed', 'incremental'], default='packed')
+    parser.add_argument('--draft-execution', choices=['eager', 'resident', 'cuda_graph'], default='eager',
+                        help='Opt-in single-token Draft execution; lazy graph setup remains inside request timing')
+    parser.add_argument('--coverage-execution', choices=['eager', 'cuda_graph'], default='eager',
+                        help='Opt-in unchanged hierarchical greedy-loop Graph; all setup/copies are charged')
     parser.add_argument('--eager-probes', action='store_true', help='Compute complete-key probes at every draft step')
     parser.add_argument('--round-gate-affine', action='store_true', help='Recompute static content affine terms per round')
     parser.add_argument('--inject-tokens', type=int, default=128)
@@ -73,6 +77,8 @@ def main():
                           optimized_execution=not args.legacy_execution,
                           length_policy=args.length_policy, fixed_k=args.fixed_k,
                           working_mode=args.working_mode, deferred_probes=not args.eager_probes,
+                          draft_execution=args.draft_execution,
+                          coverage_execution=args.coverage_execution,
                           memoized_gate_affine=not args.round_gate_affine,
                           injection_strength=args.injection_strength,
                           injection_layers=None if args.injection_layers is None else tuple(args.injection_layers),

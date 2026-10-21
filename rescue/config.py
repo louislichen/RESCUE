@@ -42,6 +42,9 @@ class SystemConfig:
     early_length_publish: bool = False
     coverage_anchor_fraction: float = 0.
     coverage_attention_weight: float = 0.
+    # Opt-in execution prototypes; neither changes the learned length policy.
+    draft_execution: str = 'eager'
+    coverage_execution: str = 'eager'
 
     def __post_init__(self):
         for name in ('optimized_execution', 'deferred_probes', 'memoized_gate_affine', 'early_length_publish'):
@@ -49,6 +52,19 @@ class SystemConfig:
                 raise ValueError(f'{name} must be boolean')
         if self.working_mode not in ('layerwise', 'packed', 'incremental'):
             raise ValueError('Unknown working-cache mode')
+        if self.draft_execution not in ('eager', 'resident', 'cuda_graph'):
+            raise ValueError('Unknown Draft execution mode')
+        if self.coverage_execution not in ('eager', 'cuda_graph'):
+            raise ValueError('Unknown coverage execution mode')
+        if self.coverage_execution != 'eager' and (
+                self.selector != 'hierarchical' or not self.optimized_execution or
+                self.asynchronous or self.length_endpoint is not None):
+            raise ValueError('Coverage Graph requires optimized hierarchical serial local execution')
+        if self.draft_execution != 'eager' and (
+                not self.optimized_execution or not self.deferred_probes or
+                self.working_mode != 'packed' or self.attention_backend != 'sdpa' or
+                self.asynchronous or self.length_endpoint is not None or self.early_length_publish):
+            raise ValueError('Resident Draft execution requires optimized/deferred/packed/SDPA serial local execution')
         if self.injection_rule not in ('teacher', 'joint'):
             raise ValueError('Unknown injection ranking')
         if self.injection_layers is not None:

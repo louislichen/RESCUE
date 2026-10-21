@@ -2,7 +2,16 @@
 import torch
 import torch.nn.functional as F
 
-from exp.attention_horizon.selection import ReadState
+from exp.attention_horizon.selection import ReadState as BaseReadState
+
+from .attention_summary import mean_attention
+
+
+class ReadState(BaseReadState):
+    """Native read equations with an eagerly shared, round-local head mean."""
+    def __init__(self, rows, values):
+        super().__init__(rows, values)
+        self.mean_attention = self.a.mean(0)
 
 
 class LazyReadState(ReadState):
@@ -10,6 +19,7 @@ class LazyReadState(ReadState):
     def __init__(self, rows, values):
         self.a = rows.float()
         self.a = self.a/self.a.sum(-1, keepdim=True).clamp_min(1e-12)
+        self.mean_attention = self.a.mean(0)
         self._values, self._v, self._target, self._scale = values, None, None, None
         self.heads, self.n = self.a.shape
         self.groups = self.heads//values.shape[0]
@@ -41,8 +51,11 @@ def mandatory(n, recent, device):
 
 
 class ContextSelector:
-    def __init__(self, config):
+    def __init__(self, config, runtime=None):
         self.config = config
+        self.runtime = runtime
+        if config.coverage_execution != 'eager' and runtime is None:
+            raise ValueError('Coverage Graph needs an explicit persistent runtime owner')
         self.previous = None
         self.version = 0
         self.refreshes = 0
@@ -106,6 +119,15 @@ class ContextSelector:
             coverage.append((content[support]@content[fixed].T).clamp_min_(0).amax(-1))
             weight = state.a[:, support].mean(0)
             objective.append(weight/weight.sum().clamp_min(1e-12))
+        if self.runtime is not None:
+            # Preserve the original multiply/divide association. Only this
+            # loop-invariant term moves out of the identical greedy loop.
+            bonus = (c.coverage_attention_weight*joint[pool]/joint[free].sum().clamp_min(1e-12)
+                     if c.coverage_attention_weight else None)
+            chosen = self.runtime.select(similarities, coverage, objective, pool, slots,
+                c.coverage_batch, student_weight=c.student_weight,
+                attention_bonus=bonus)
+            return torch.cat((fixed, chosen)).sort().values
         chosen, used = [], torch.zeros(len(pool), device=pool.device, dtype=torch.bool)
         for offset in range(0, slots, c.coverage_batch):
             gains = sum(scale*((sim-cover[:, None]).clamp_min(0)*weight[:, None]).sum(0)
@@ -134,7 +156,7 @@ class ContextSelector:
             available = torch.arange(n, device=device)
             free = available[~torch.isin(available, fixed)]
         slots = c.budget-len(fixed)
-        joint = t.a.mean(0)+c.student_weight*s.a.mean(0)
+        joint = mean_attention(t)+c.student_weight*mean_attention(s)
         self.priority = joint
         refresh = self.previous is None or round_index % c.refresh_every == 0
         remote = None
@@ -176,7 +198,7 @@ class ContextSelector:
             selected = self._hierarchical(t, s, fixed, free, slots, joint)
         else:
             self.refreshes += 1
-            scores = t.a.mean(0) if c.selector == 'teacher' else joint
+            scores = mean_attention(t) if c.selector == 'teacher' else joint
             if c.chunk_size > 1:
                 # Rank chunks, then expand positions; the last chunk may be
                 # partial to enforce the same actual token budget.
@@ -197,7 +219,7 @@ class ContextSelector:
                     content = F.normalize(state.v.transpose(0, 1).flatten(1), dim=-1)
                     similarities.append((content@content[pool].T).clamp_min_(0))
                     coverage.append((content@content[fixed].T).clamp_min_(0).amax(-1))
-                    weight = state.a.mean(0).clone()
+                    weight = mean_attention(state).clone()
                     weight[fixed] = 0
                     weights.append(weight/weight.sum().clamp_min(1e-12))
                 if c.chunk_size == 1:

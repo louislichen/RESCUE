@@ -1,0 +1,227 @@
+{
+  "actual_cuda": false,
+  "all_request_jit_and_captures_charged": true,
+  "arm_ids": [
+    "original_rescue",
+    "candidate_rescue",
+    "original_retrieval",
+    "candidate_retrieval"
+  ],
+  "arms": {
+    "candidate_rescue": {
+      "arm": {
+        "backend": "cuda_graph",
+        "family": "rescue",
+        "mode": "rescue_graph"
+      },
+      "arm_id": "candidate_rescue",
+      "method": "rescue",
+      "variant": "candidate"
+    },
+    "candidate_retrieval": {
+      "arm": {
+        "backend": "cuda_graph",
+        "family": "retrieval",
+        "fixed_k": 4,
+        "mode": "retrieval32_k4_graph",
+        "top_chunks": 32
+      },
+      "arm_id": "candidate_retrieval",
+      "method": "retrieval",
+      "variant": "candidate"
+    },
+    "original_rescue": {
+      "arm": {
+        "backend": "cuda_graph",
+        "family": "rescue",
+        "mode": "rescue_graph"
+      },
+      "arm_id": "original_rescue",
+      "method": "rescue",
+      "variant": "original"
+    },
+    "original_retrieval": {
+      "arm": {
+        "backend": "cuda_graph",
+        "family": "retrieval",
+        "fixed_k": 4,
+        "mode": "retrieval32_k4_graph",
+        "top_chunks": 32
+      },
+      "arm_id": "original_retrieval",
+      "method": "retrieval",
+      "variant": "original"
+    }
+  },
+  "candidate_equals_original_trajectory_required": false,
+  "candidate_repeat_trajectory_equal_required": true,
+  "candidate_scope": "One scoped Target+owned HookOwners lease per entire persistent owner: cold+32warm",
+  "cold_prime_source_index": 271,
+  "constructor_scope_clone_and_close_reported": true,
+  "expected_counts": {
+    "owners": 24,
+    "prime_requests": 24,
+    "timing_requests": 768
+  },
+  "external_model_process_absence_barrier_required": true,
+  "fresh_confirmation": false,
+  "goal_complete": false,
+  "graph_max_entries": 128,
+  "lengths": [
+    2048,
+    4096,
+    6144,
+    8192,
+    12288,
+    16384
+  ],
+  "max_new_tokens": 128,
+  "model_helper_sha256": "e91f613d760f9b94c9c67241fecdc39442d0e917b4ca4de21d75b400a3276bf3",
+  "model_test_sha256": "ff8affd94fecccd6b311c4745ba2704f7448838d7f6cdb6d10cc0ec96f1e2d93",
+  "native_digest": false,
+  "new_generation_calls": 0,
+  "no_new_corpus": true,
+  "no_new_references": true,
+  "no_retry": true,
+  "no_search": true,
+  "no_training": true,
+  "operator_or_model_gate_is_not_speed_evidence": true,
+  "original_history_work_equal_required": true,
+  "owner_order": [
+    [
+      "original_rescue",
+      "candidate_rescue",
+      "original_retrieval",
+      "candidate_retrieval"
+    ],
+    [
+      "candidate_retrieval",
+      "original_retrieval",
+      "candidate_rescue",
+      "original_rescue"
+    ],
+    [
+      "candidate_rescue",
+      "candidate_retrieval",
+      "original_rescue",
+      "original_retrieval"
+    ],
+    [
+      "original_retrieval",
+      "original_rescue",
+      "candidate_retrieval",
+      "candidate_rescue"
+    ],
+    [
+      "original_rescue",
+      "original_retrieval",
+      "candidate_rescue",
+      "candidate_retrieval"
+    ],
+    [
+      "candidate_retrieval",
+      "candidate_rescue",
+      "original_retrieval",
+      "original_rescue"
+    ]
+  ],
+  "passed": false,
+  "performance_gate": "NOT_RUN",
+  "performance_measured": false,
+  "planned_generation_calls": 792,
+  "planned_private_owners": 24,
+  "primary": "Sum warm output tokens / sum frozen-curve whole-generate elapsed; document-paired analysis, n16",
+  "prior_model_token_pass_required": true,
+  "profiler": false,
+  "quality_observer": false,
+  "repeats": 2,
+  "source_indices": [
+    211,
+    213,
+    220,
+    226,
+    233,
+    236,
+    246,
+    248,
+    253,
+    271,
+    272,
+    288,
+    303,
+    306,
+    327,
+    604
+  ],
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "target_adapter_metadata_append_kept": true,
+  "timer_boundary": "Frozen RuntimeAdapter elapsed starts after before() telemetry/seed/idle and includes HookOwners.generate; row normalization outside",
+  "token_gate": "NOT_RUN",
+  "root": "/mnt/8T/cl/rescue_experiment_cache/fp32_splitkv_timing_20261021_v1",
+  "execution_output": "/mnt/8T/cl/rescue_experiment_cache/fp32_splitkv_timing_20261021_v1/results",
+  "session": "rescue_fp32_splitkv_timing_v1",
+  "generation_calls": 792,
+  "private_owners": 24,
+  "old_root": "/mnt/8T/cl/rescue_experiment_cache/frozen_devcheck_20261020_v1",
+  "source_root": "/mnt/8T/cl/rescue_experiment_cache/frozen_devcheck_20261020_v1/capsule/after",
+  "curve_root": "/mnt/8T/cl/rescue_experiment_cache/context_curve_20261020_v2",
+  "model_terminal_sha256": "ae9f5870b37097699c791ee1fa139bc9de7fe0f3b50ab70d1666fd2deb9c8993",
+  "terminal_barrier_sha256": "d7646b2f8e05550be7929574d0257f6dad7e531223406c69f127b1650841bd83",
+  "runner_sha256": "65832cea19b111740bf711e9d609e0bca61a92925a5ddc6183b388defffc62b2",
+  "runner_test_sha256": "ee4bce8fba8101ecb6a0ee3e2d3c1cdb661d23c13a81adaadc61510a2fff6907",
+  "target_adapter_source_sha256": "78092c417c10e25aa69ac9055fda59394e4349d021a277cfecfb43757e0e63a5",
+  "target_adapter_test_sha256": "a76c3eaa7630c33a8ff343a06978b6a1f96721a10d15744a12c210cfbe16367f",
+  "candidate_source_sha256": "9f133cc824915afd09d9ad25a1b16e6cd721522e1f583cabd5e102235358cfd2",
+  "launcher_sha256": "011fc694a74f844d5d490c3c398133085f6d5f6c44b3974eba73a4b818da1a83",
+  "python_binary_sha256": "8119915f96beb2ae0797f1b92434b15f4a0f4a55900297fe3c713c3f1e5a5a3d",
+  "gpu_uuid": "GPU-9db4f7b5-1447-9a2a-5c1b-80379d909fd9",
+  "target_dtype": "float32",
+  "target_prefix_dtype": "bfloat16",
+  "draft_dtype": "bfloat16",
+  "tf32": false,
+  "torch": "2.7.1+cu128",
+  "triton": "3.3.1",
+  "cpu_combined_checks_passed": 77,
+  "primary_contrast": "candidate_rescue / candidate_retrieval TPS minus1; both receive identical newTarget execution. Original four-arm comparison separately remeasured, not cross-batch old curve subtraction.",
+  "execution_contrasts": [
+    "candidate_rescue/original_rescue",
+    "candidate_retrieval/original_retrieval"
+  ],
+  "secondary_contrast": "original_rescue/original_retrieval; interaction of relative improvements reported descriptively.",
+  "statistics": {
+    "unit": "16 reused development documents, each2 repeats; resample paired whole documents retaining both repeats/all fourarms",
+    "point_estimate": "sum warm outputtokens/sum outerseconds perarm; percentage relativeTPS contrast",
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20261031,
+    "confidence": "pointwise paired95% percentile intervals, not simultaneous or fresh-confirmation inference",
+    "primary_success_gate": "All six candidate_rescue/candidate_retrieval point gains >10% and each paired95% lowerbound>0, plus all792 Token outputs equal originalcanonical; report all points whether pass/fail",
+    "sample_limitations": "One owner block percontext/arm and nonconcurrent fixedbalanced order; documentCIs do not cover clock drift/owner effects. Already-used16 devdocs; no fresh-confirmation/production/stochastic/SOTA claim."
+  },
+  "metrics": {
+    "quality": [
+      "accepted Draft tokens perverification round",
+      "accepted/proposed Draft rate",
+      "verificationrounds and Draftwork"
+    ],
+    "system": [
+      "whole-generate warmTPS",
+      "full finiteowner accounted serviceTPS including constructor,coldprime,32warm,scopeclose"
+    ],
+    "mechanisms": [
+      "per-request Graph captures/replays/chargedcapturetime",
+      "realTargetcandidate layercall counts and N/Q distribution",
+      "old/new work and trajectory differences",
+      "constructor/cold/close cost",
+      "ownercacheidentity and Graphentry ledger"
+    ]
+  },
+  "fixed_mapper_policy_cost_bytes": true,
+  "new_datasets": false,
+  "paused_confirmation_untouched": true,
+  "all_792_outputs_must_match_old_canonical": true,
+  "request_time_captures_may_not_be_subtracted": true,
+  "fully_prewarmed_production_claim": false,
+  "fullstate_bitwise_claim": false,
+  "general_stochastic_distribution_claim": false,
+  "terminal_policy": "Preserve all failed/partial data; no retry or cleanup. Raw COMPLETE cannot establish success without paired analysis, independentaudit, separate quality/TPS figures with source, renderedinspection and writtenreport."
+}

@@ -13,6 +13,10 @@ import torch
 from .attention import DraftAttention, TargetObservation
 from .cache import NativeCache, WorkingCache
 from .engine import RescueEngine, exclusive
+from .injection import ContentInjector
+
+
+BASELINE_GRAPH_ENTRIES = 128
 
 
 class ChunkRetrieval:
@@ -53,7 +57,8 @@ class ChunkRetrieval:
 
 
 class BaselineEngine(RescueEngine):
-    def __init__(self, teacher, student, config, vocab_size=None, top_chunks=None):
+    def __init__(self, teacher, student, config, vocab_size=None, top_chunks=None,
+                 round_observer=None):
         if config.length_policy != 'fixed':
             raise ValueError('Baseline uses a fixed draft length')
         if teacher.config.model_type != 'qwen2' or student.config.model_type != 'qwen2':
@@ -66,16 +71,35 @@ class BaselineEngine(RescueEngine):
         self.top_chunks = top_chunks
         if top_chunks is not None and (type(top_chunks) is not int or top_chunks < 1):
             raise ValueError('top_chunks must be positive or None')
+        mode = getattr(config, 'draft_execution', 'eager')
+        if mode != 'eager' and top_chunks is None:
+            raise ValueError('Full-context native baseline currently supports eager execution only; no silent fallback')
+        if mode == 'cuda_graph' and self.device.type != 'cuda':
+            raise ValueError('CUDA Graph baseline execution requires a CUDA device')
+        self.round_observer = round_observer
+        self.draft_observer = None
         self.observation = TargetObservation(teacher)
         if top_chunks is not None:
             self.observation.install()
         teacher.eval().requires_grad_(False)
         student.eval().requires_grad_(False)
         self.native_t = self.native_s = self.working = None
+        self.injector = self.draft_runtime = None
         self.closed = False
         self._request_lock = threading.Lock()
 
     def _buffers(self, capacity):
+        if self.native_t is not None and self.native_t.capacity >= capacity:
+            self.native_t.reset()
+            self.native_s.reset()
+            if self.working is not None:
+                self.working.reset()
+            if self.injector is not None:
+                self.injector.clear()
+            return
+        if self.draft_runtime is not None:
+            self.draft_runtime.close()
+            self.draft_runtime = None
         capacity = 1 << (capacity-1).bit_length()
         def allocate(model):
             c = model.config
@@ -87,6 +111,17 @@ class BaselineEngine(RescueEngine):
             self.working = WorkingCache(self.native_s, self.top_chunks*32, self.config.max_draft,
                                         direct_gather=self.config.optimized_execution,
                                         mode=self.config.working_mode if self.config.optimized_execution else 'layerwise')
+            mode = getattr(self.config, 'draft_execution', 'eager')
+            if mode != 'eager':
+                from .draft_graph import ResidentDraftRuntime
+                # Empty bindings, no network, no learned parameters, no mapped
+                # V: the same resident tensor path without intervention work.
+                self.injector = ContentInjector(None, capacity, self.device,
+                    tokens=0, strength=0., optimized=True)
+                self.draft_runtime = ResidentDraftRuntime(self.student, self.native_s,
+                    self.working, self.injector, mode=mode,
+                    max_entries=BASELINE_GRAPH_ENTRIES,
+                    retain_query=self.round_observer is not None)
 
     @torch.no_grad()
     @exclusive
@@ -99,8 +134,10 @@ class BaselineEngine(RescueEngine):
         self.synchronize()
         start = time.perf_counter()
         self._buffers(len(input_ids)+c.max_new_tokens+c.max_draft+1)
-        adapter = DraftAttention(self.student, self.working, None, c.attention_backend,
-                                 observe=False, optimized=c.optimized_execution).install()
+        adapter = DraftAttention(self.student, self.working, self.injector, c.attention_backend,
+                                 observe=self.round_observer is not None, deferred=True,
+                                 optimized=c.optimized_execution, runtime=self.draft_runtime).install()
+        runtime_before = self.draft_runtime.stats() if self.draft_runtime is not None else None
         selector = ChunkRetrieval(self.top_chunks) if self.top_chunks is not None else None
         generated, trace = [], []
         attention = None
@@ -118,6 +155,7 @@ class BaselineEngine(RescueEngine):
                 if self.native_s.get_seq_length() != n:
                     raise RuntimeError('Committed native prefixes diverged')
                 workset_tokens = n
+                positions = None
                 if selector is not None:
                     positions = selector.select(n, self.device, attention)
                     self.working.bind(self.native_s, positions)
@@ -125,8 +163,11 @@ class BaselineEngine(RescueEngine):
                     attention = None
                 cap = min(c.fixed_k, c.max_new_tokens-progress)
                 draft, token = [], current
+                next_input = current
                 for _ in range(cap):
-                    token = int(adapter.step(token, self.native_s)[0, :self.vocab].argmax())
+                    next_token = adapter.step(next_input, self.native_s)[0, :self.vocab].argmax()
+                    token = int(next_token)
+                    next_input = next_token if self.draft_runtime is not None else token
                     draft.append(token)
                     if token == eos_token_id:
                         break
@@ -141,6 +182,12 @@ class BaselineEngine(RescueEngine):
                     count += 1
                     if token == eos_token_id:
                         break
+                if self.round_observer is not None:
+                    self.round_observer(dict(round_index=len(trace), prefix=n,
+                        progress=progress, remaining=c.max_new_tokens-progress,
+                        selected=positions if positions is not None else torch.arange(n, device=self.device),
+                        draft=list(draft), checks=list(checks), accepted=count, cap=cap,
+                        budget_features=None, selector=selector))
                 proposed += len(draft)
                 accepted += count
                 generated.extend(draft[:count])
@@ -173,7 +220,7 @@ class BaselineEngine(RescueEngine):
             if self.working is not None:
                 self.working.invalidate()
         end = time.perf_counter()
-        return dict(request_id=uuid.uuid4().hex, generated=generated, tokens=len(generated),
+        result = dict(request_id=uuid.uuid4().hex, generated=generated, tokens=len(generated),
                     proposed=proposed, accepted=accepted, acceptance_rate=accepted/max(1, proposed),
                     blocks=len(trace), trace=trace, prefill_seconds=prefill_end-start,
                     decode_seconds=decode_end-prefill_end, cleanup_seconds=end-decode_end,
@@ -185,10 +232,26 @@ class BaselineEngine(RescueEngine):
                     working_incremental_binds=self.working.incremental_binds if self.working is not None else 0,
                     selector_refreshes=selector.refreshes if selector is not None else 0,
                     target_probe_rounds=sum(i % c.refresh_every == 0 for i in range(len(trace))) if selector else 0,
-                    draft_shadow_probes=0, projected_positions=0, rpc_calls=0)
+                    draft_shadow_probes=adapter.probe_calls, projected_positions=0, rpc_calls=0,
+                    execution_backend=getattr(c, 'draft_execution', 'eager'), persistent_buffers=True,
+                    baseline_algorithm='native_full_context' if selector is None else 'qwen_chunk_retrieval')
+        if self.draft_runtime is not None:
+            runtime_after = self.draft_runtime.stats()
+            counts = ('captures', 'replays', 'resident_steps', 'capture_host_seconds', 'shadow_updates')
+            result['draft_runtime'] = dict(mode=c.draft_execution, lifetime=runtime_after,
+                request={name: runtime_after[name]-runtime_before[name] for name in counts},
+                max_graph_entries=BASELINE_GRAPH_ENTRIES, retain_query=self.round_observer is not None,
+                scope='Actual variable retrieval lengths, no padding, no Mapper; request total includes capture; per-token EOS and fixed-k remain outside graphs')
+        return result
 
     @exclusive
     def close(self):
         if not self.closed:
-            self.observation.restore()
-            self.closed = True
+            try:
+                if self.draft_runtime is not None:
+                    self.draft_runtime.close()
+            finally:
+                try:
+                    self.observation.restore()
+                finally:
+                    self.closed = True

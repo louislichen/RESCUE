@@ -339,3 +339,137 @@ unobserved continuations censored. The experiment trains the whole final-layer
 mapper with prefix-aware margin/preservation loss and recollects changed states.
 New modules remain explicit checkpoints. Training/partial runs do not establish
 content-transfer benefit or acceleration; see the frozen per-stage protocol.
+
+## Round-overhead execution reuse (2026-10-19)
+
+This code-only update leaves model weights, attention normalization/features,
+selection budgets, length thresholds, exploration RNG and EOS rules unchanged:
+
+- The online engine uses optional `StepBudget.decide_cap`, which omits the
+  unused relative-rate score and its host scalar read. The host read needed for
+  the actual 2/4 action remains. The original `decide` diagnostic API and older
+  stepwise policies are supported.
+- Three nonpersistent buffers store six geometry cases: remaining-output
+  budgets 1 through 5 and the saturated case >=6. The five-token boundary must remain distinct:
+  four accepts plus the bonus exhaust it, so no Draft catchup is needed.
+  Costs are read afresh with the original floating-point expression. Existing
+  checkpoint/state_dict fields are unchanged.
+- Runtime `ReadState`/`LazyReadState` eagerly compute the normalized head mean
+  once, before the planner's existing ready event. Selection, Mapper binding
+  and length features share this read-only round snapshot. Legacy states use
+  an uncached fallback; subset/head-specific reductions are unchanged. Coverage
+  still clones its weights before masking, and no new stream synchronization
+  or Teacher query is introduced. Some full-context/fixed/no-injection controls
+  did not previously need the Student mean; no all-configuration speedup is
+  claimed.
+
+Regression coverage is in `tests/test_rescue_attention_summary.py`,
+`tests/test_rescue_step_budget_fast.py` and `tests/test_rescue_round_overhead.py`.
+The last compares cached execution with uncached rules using nonzero query-V
+corrections: selected positions, features, draft/check tokens, caps, acceptance,
+refreshes, work counts and canonical Target outputs, including request reset
+and serial/async CPU scheduling. Optional CUDA tests cover device-moved geometry
+and producer/planner stream ordering; they skip when CUDA is unavailable.
+
+Run `python -m unittest discover -s tests -v`. The local validation environment
+is Python 3.12, PyTorch 2.7.1 CPU and Transformers 4.40.2. The CPU regressions
+alone do not establish a GPU speedup.
+
+The subsequent [H100 execution-only validation](../exp/round_overhead/out_h100_v1_20261019/results/analysis_final/REPORT.md)
+is complete: 4 independent warmups, 12 Target AR references, 24 correctness
+requests and 72 observer-free paired timing requests. The existing nonzero
+Mapper and StepBudget are frozen. All selected positions, causal features,
+draft/check tokens, 2/4 decisions, acceptance trajectories and canonical outputs
+remain identical. All 26 server-side targeted tests, including the two CUDA
+checks, pass. Six reused development documents have exact 4096/8192-token
+inputs, output limits 128 and three repeats; this is not a fresh held-out test,
+RTX 4090 measurement, or comparison against SpecExtend/native SD.
+
+The joint three-change whole-request TPS effects are only +0.1671% at 4K
+(paired document 95% CI -0.0485% to +0.3961%) and +0.1557% at 8K
+(+0.0504% to +0.2648%). Acceptance-length deltas are exactly zero. The strict
+both-context speed criterion is not met; these changes do not establish a
+material full-system acceleration or isolate any individual optimization.
+The raw requests, source/asset hashes, report, separate acceptance/TPS figures
+and stage-latency diagnostics are linked from that report. The paused held-out
+matrix remains untouched.
+
+## Optional resident Draft and single-token CUDA Graph (2026-10-19)
+
+`--draft-execution resident` reuses device token/position buffers and executes
+the Qwen2 single-token body directly. `--draft-execution cuda_graph` additionally
+captures that body, not the proposal loop. Both are opt-in; the default remains
+`eager`. The next embedding input stays on the GPU, but a host token read still
+serves the unchanged per-token EOS check and the causal 2/4 decision after the
+second token. This is not a fully device-controlled decoding loop.
+
+The adapter currently requires optimized execution, deferred probes, packed
+Working KV, SDPA and local serial scheduling. Unsupported observer, mapper and
+scheduling combinations fail explicitly instead of silently falling back.
+Native KV writes and Python logical lengths stay outside capture. Each graph
+uses the actual Working KV length, stable Mapper shadow bindings and owned
+buffers; refreshed bindings are copied before replay. Buffer replacement
+invalidates the owner. Query/summary snapshots have independent storage.
+Capture warmups restore all touched Working KV before the real replay.
+Graph ownership persists across requests only while the same Engine and cache
+buffers are reused; closing or growing the buffers requires fresh capture.
+
+The [H100 pilot](../exp/draft_graph/out_h100_v1_20261019/pilot/analysis/REPORT.md)
+completed 16 real-model requests: one AR reference, three instrumented
+correctness requests and twelve observer-free timing requests in six fresh
+Engine sessions. Every session has one cold and one warm request. Frozen
+nonzero V-only Mapper, selection and causal 2/4 policy were unchanged; all
+output tokens, decisions, selection/features and all valid Native KV/query
+byte hashes matched. The server passed 19 targeted tests, including five real
+CUDA Graph tests. CPU and conditional CUDA regressions live in
+`tests/test_rescue_draft_graph_primitives.py` and
+`tests/test_rescue_draft_runtime.py`.
+
+| Mode | Cold request TPS | Warm request TPS | Complete two-request session TPS |
+|---|---:|---:|---:|
+| Prior optimized eager baseline | 20.0421 | 20.3447 | 19.8601 |
+| Resident body | 21.0395 | 21.2691 | 20.7713 |
+| Resident + CUDA Graph | 16.9379 | 29.2098 | 20.9815 |
+
+Relative to eager, resident improved cold/warm TPS by 4.98%/4.54%; Graph
+changed them by -15.49%/+43.57%. Mean cold capture cost was 0.779 seconds.
+The complete-session changes were +4.59% and +5.65%, respectively: Graph adds
+only 1.01% over resident in this two-request regime. That session clock includes
+intervening raw-record I/O/safety checks and teardown, not just model service.
+Model loading is excluded in every mode. Accepted Draft tokens per round stayed
+exactly 1.2 (18 accepted, 53 proposed, 15 rounds per request).
+
+These are one reused development document (303), exact 4096-token input,
+32-token output and two timing repeats on H100 80GB; Target FP32, Draft/prefill
+BF16 and TF32 disabled. Two repeats are not two independent documents: the
+figures show timing ranges, not document-level confidence intervals. This
+execution pilot does not establish an 8K/128-output, RTX 4090, production-speed,
+held-out, or SpecExtend win. Separate acceptance/TPS, session and latency
+figures, frozen sources/assets and raw evidence are linked from the report.
+The prototype and evidence are local changes, not a GitHub publication.
+
+The subsequent [persistent-owner benchmark](../exp/draft_graph/out_h100_benchmark_v1_20261020/results/analysis_final_v2/REPORT.md)
+completed 162 requests on six reused documents at exact 4096/8192 input tokens,
+128 output tokens and three timing repeats. Twelve independent AR references
+and 36 exactness requests precede six independently measured cold primes and
+108 randomized crossover warm requests. Target hooks are explicitly leased to
+one Engine at a time, while all cache/Graph owners stay private and persistent.
+Every warm Graph request has zero new captures and unchanged buffer pointers.
+
+Graph improves document-paired full-generate TPS versus the prior optimized
+eager baseline by **59.6553% [58.8655%, 60.5639%] at 4K**, and **47.4942%
+[47.1129%, 47.9420%] at 8K** (95% document bootstrap). Resident alone improves
+5.5327% and 4.6869%. Acceptance/outputs and the separate instrumented KV/query,
+selection and feature evidence remain identical with actual nonzero injection.
+This passes the registered both-context execution-speed gate, not a new
+attention/Mapper-quality or external-baseline gate.
+
+For doc303 only, the first 128-token Graph request, including constructor and
+818/830 ms capture costs, is 18.25%/16.10% faster at 4K/8K; cold has no document
+CI. This does not contradict the older 32-output cold slowdown. Full-generate
+warm requests include prefill, hook handoff, cache reset, decode and cleanup;
+shared model loading is excluded for all modes. Constructor+one prime+18 warm
+requests+close yields accounted active-service gains of 56.81%/45.33%, not
+contiguous production-session wall gains. See the report's six PNG/SVG figures
+and frozen raw evidence. All 26 server tests, including six real Graph tests,
+pass. The default remains eager and unsupported combinations still fail.

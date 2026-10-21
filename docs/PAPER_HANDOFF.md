@@ -1,6 +1,6 @@
 # RESCUE 论文研究交接
 
-更新日期：2026-10-18，Asia/Shanghai。工作区：`/home/wanghl/cl/RESCUE`。
+更新日期：2026-10-20，Asia/Shanghai。原实验工作区：`/home/wanghl/cl/RESCUE`。
 实验代码与结果的已推送基准提交：`87b2c39`，分支 `main`，仓库
 [louislichen/RESCUE](https://github.com/louislichen/RESCUE)。
 最新拉取的远端实验归档提交：`9740a04`，新增 CSGB 4K 内部预实验；
@@ -11,7 +11,689 @@
 上面的绝对路径记录原实验环境；在本地写作时以本地仓库根目录为准，
 直接使用本文的相对文件链接，无需建立相同的服务器路径或安装 GPU 实验环境。
 
-## 0. 最新同步：2026-10-17，远端归档与系统实现
+## 0. 最新同步：执行更新与历史归档
+
+### 2026-10-21：FP32 split-KV公平测速已完成，共同提速但相对10%目标未达
+
+用户明确允许中间浮点末位不同，仍要求FP32 Target decode、关闭全局TF32、评测最终Token
+与冻结原Target完全一致，并把相同执行实现给检索基线。只新增隔离执行候选，不改变非零
+V-only Mapper、causal2/4策略、成本模型、原运行源码或暂停确认数据。
+
+算子v1/v2各100/112后因“旧FSDPA参考不等于单键解析值”严格FAIL，两次原样保留；
+v2清零Q/K没有修好该参考差异。另行预注册v3明确候选解析值严格、参考仅诊断，原112
+输入/算法不变，真实112全部执行、16候选解析例逐位通过。此烟测不等于数值/Token/速度
+等价。三版均有真实raw、独立可复算报告与图，不以新合同重分类旧失败。
+
+随后48次真实模型门禁已exit0：两篇旧doc271/303×六长度×两Graph方法×原/候选，
+全部输出匹配旧798封存canonical、48owner关闭；24对语义接受/工作轨迹及DraftQ/NativeS
+相同、NativeT字节均不同，符合用户的有限Token合同。29344次候选Target层调用，672
+fallback。31712项独审PASS、7报告测试PASS、五图实际视检、保存CLI summary字节重现，
+local148文件完整SHA+size双屏障已核；[最终质量报告](../exp/round_overhead/out_fp32_splitkv_model_20261021_v1/analysis_v2/REPORT.md)。
+这是两个复用文档的质量检查，不是生产速度/一般随机分布等价/新确认；它本身不含TPS收益。
+
+为检验原六点曲线能否提高，另行冻结792请求公平计时，已完成H100隔离根
+`/mnt/8T/cl/rescue_experiment_cache/fp32_splitkv_timing_20261021_v1`，tmux
+`rescue_fp32_splitkv_timing_v1`，pane334007/模型PID334017。两方法均有原/候选执行，
+24owner各冷271+原同32暖，共16旧文档×2重复×六长度；相同旧generate计时边界，全部
+晚capture计费，构造/冷启动/close另报。77联合CPU及独审GO，15source/launch先验SHA通过。
+2026-10-20 17:58:44 UTC正常exit0，actualtmux/PIDs/children缺席、GPU空，全部24prime/
+768warm/24closed owner完整，792输出Token一致，384组原/新工作量与语义轨迹不变。
+同新执行的RESCUE/检索六点收益为+6.120/+3.602/+1.977/+4.777/+1.557/−3.980%；
+配对95%CI分别[0.526,12.365]/[−2.734,11.475]/[−3.081,8.001]/[0.389,10.003]/
+[−2.444,6.067]/[−7.862,−0.301]%。自身加速8.006%–32.114%，基线也加速6.560%–
+31.828%；共同执行提速不能充当相对算法优势。16K我方1462轮对1404轮，每完整generate
+秒/轮近乎相同，账面上轮数差仍存在；无本轮stageprofile，不作单模块因果归因。
+34份导出逐SHA/size双屏障一致、25891项独审/1293项独立数值对照、主线程12/12测试、
+raw直接配对CI复算、九套最终图实际视检、保存CLI summary字节复现全过。162份产物已
+0444可恢复只读封存，manifest SHA `9b727ca38bea86343dd6d5004342da2969ff3b6f1b4d605016445fdf967a47bd`。
+[最终报告及九图](../exp/round_overhead/out_fp32_splitkv_timing_20261021_v1/analysis_v2/REPORT.md)。
+[执行候选、真实失败保留、质量证据与计时协议入口](../exp/round_overhead/FP32_SPLITKV_CANDIDATE_V1.md)。
+总体>10%目标保持active；本轮实验完成但六点>10门槛全部未达，不跨批次相减或外推完全
+预热生产/SOTA，暂停的独立确认继续不动。下一隔离execution候选只准备M1非refresh
+固定512位置维护：避免动态bool索引/两排序，保留同分规则及选位/Mapper/M3/Token不变；
+还没有GPU或系统收益，不能承诺靠这一微优化补齐16K差距。
+
+### 2026-10-20：六输入长度曲线已完整完成，16K出现负点
+
+冻结Mapper／causal2/4策略／旧cost的六输入长度实测于北京时间18:16:11正常结束。
+798新生成、140质量owner、18计时owner、96canonical单元、198tree raw完整；全部576
+计时输出逐Token匹配。原始导出、独立raw审计、8套图实际审阅及保存源独立精确重跑均通过。
+同16篇旧开发文档×2重复，实际2/4/6/8/12/16K对固定检索Top32/k4 Graph的TPS收益为
++5.8640/+5.0935/+2.8553/+5.6608/+1.7498/−3.7408%；点态95%配对CI仅2K、8K下界>0，
+4K仍跨0、稳定优势未证实，16K也跨0、不能称显著落后。负点完整保留，不改参数重搜。
+16K接受Draft/round1.815对1.930，轮数1462对1404，decode多6.379秒、outer多6.387秒，
+prefill近乎相同；仅为账面分解，不能单独归因Mapper。
+
+所有点相对固定完整树端口TPS均正（+80.66%到+38.10%），但它不是更强检索臂的替代。
+主TPS含每owner一次cold后的32请求完整generate及所有晚capture；我方warm capture0，
+检索16–22次/4.26–5.80秒，收益与有限摊销有关，不外推完全预热生产速度。三代表臂并非
+新长度最优菜单；复用dev与非交错owner/硬件漂移限制保留，新确认数据未读，总体目标未达成。
+[完成报告、八套图、raw、源码及核验](../exp/context_curve/out_h100_context_curve_v2_20261020/PROGRESS.md)。
+最终只读封存清单SHA
+`70e46d52c3f3f57b1efa8d1633b665f345d54d7656529c9b09e2d25e185bf41e`，
+实际summary SHA `554cce558d3523ac96b414332095c9f01f39e3b5aeca86199aadab019d28602f`。
+用户随后授权完成后通知；检查时实测已终态，因此直接收齐、核验和出图，无须新建或遗留重复监测。
+
+### 2026-10-20：冻结同16篇检查已完成，六输入长度曲线另行补测
+
+原130次请求于08:21:22 UTC正常exit0，实际模型进程与tmux均结束。64份质量请求、
+64个质量owner和2个计时owner均核验关闭，130份输出逐Token符合Target；真实非零
+V-only Mapper、causal2/4策略与旧cost保持不变。独立raw核查、六套图实际审阅、保存
+入口独立重跑及2677份产物逐SHA/只读检查均已完成。最终清单SHA
+`0f9e19fddd4cc57a6813c795b9ccdfc6f707bf816ec1323f94e4d45039db1c79`。
+
+相对同规模最快检索Top32/k4 Graph：4K 47.8834 vs46.5915 TPS，+2.7728%，配对
+文档95%CI[-2.4142%,8.9559%]；8K 38.6480 vs36.8361 TPS，+4.9190%，CI
+[0.9825%,9.3774%]。全部12个保留对手点估计均正，仅满足旧开发可行性门槛。
+4K稳定性未获证实，8K原单文档负差距在此队列未重现；不将跨批次变化解释为纯代码
+提速。两臂有限服务轨迹的capture摊销不同，点态文档CI不覆盖owner/硬件漂移。
+原新确认文档仍未打开；总体目标未完成。
+[完整说明、raw、分析、图及封存证明](../exp/draft_graph/out_h100_frozen_devcheck_v1_20261020/PROGRESS.md)。
+
+用户另明确要求输入上下文2K/4K/6K/8K/12K/16K曲线，不改Mapper/策略。
+新独立协议只复用这16篇旧文档的自然文本、冻结三条代表臂，重新测量全部六长度计时；
+不把代表臂称作各长度最优，也不替代原4K/8K全部12对手的最终确认。
+六长度v1在首条AR前因完整上下文构造器误用Graph退出，新生成0次，原根/日志保留。
+独立v2只把untimed AR显式设eager，Mapper/策略/计时方法/样本/统计不变；42项本地
+回归全过（含真实tinyQwen AR），于09:10:30 UTC单次启动，PID3674374、tmux
+`rescue_context_curve_v2`。09:10:52 UTC实际8项CUDA前检全过，新矩阵未完成，
+现有两点图继续明确标PARTIAL。
+[六长度实际状态、失败保留与冻结协议](../exp/context_curve/out_h100_context_curve_v2_20261020/PROGRESS.md)。
+
+### 2026-10-20：不改Mapper／策略的同16篇匹配检查已单次启动
+
+08:10:26 UTC（北京时间16:10:26）隔离根`frozen_devcheck_20261020_v1`单次启动，
+精确tmux `rescue_frozen_devcheck_v1`、执行器PID3602661；两轮基线终态已先完整封存。
+08:11:40 UTC只读确认同执行器live、实际模型PID3603253，8项真实CUDA前检全过，
+已保存3/64质量请求及3/64关闭owner，尚无主计时结果。不是130矩阵已完成。
+Mapper／causal2/4策略／旧cost／16旧文档／32请求顺序均冻结，保留全部12对手；
+新确认Parquet、暂停71/320测试和新device-cap原型均不在本轮执行范围。
+[真实启动、完整协议与后续结果入口](../exp/draft_graph/out_h100_frozen_devcheck_v1_20261020/PROGRESS.md)。
+
+### 2026-10-20：32暖请求基线终态已完整封存；下一步为冻结我方旧开发检查
+
+服务器记录2540请求于05:52:34 UTC正常exit0，root于07:40 UTC读回终态；实际PID与tmux
+均已结束。32 AR、76冷prime、2432暖、76 owner、528树raw完整；2508份SD输出逐Token
+匹配canonical。657原始导出SHA、全部76指标cell与短／长周期12对手并集经独立核对。
+九套质量／TPS／捕获／周期／latency／GPU边界图已生成并由root实际查看；标题裁切
+只在独立显示adapter修复，旧显示版本完整保留，冻结分析源码及summary／union逐字节不变。
+保存源在全新目录精确重跑；最终只读清单SHA
+`45f7d25a5516e8f1ffeaac51571941fce212d307837f7408a88841ccc60b0319`。
+原183份程序源重新逐SHA核对不变；不把本地CUDA skips当作GPU通过。
+
+本轮16篇旧开发文档×2重复，精确4K／8K、上限128；两个context最快均为Top32/k4 Graph，
+46.5915／36.8361 TPS，开发点态95%文档CI为[43.7533,49.6620]／[34.9244,38.9590]。
+旧短流候选不能删除，最终并集4K五项、8K七项（M12、匹配质量参考R3）。这是基线选择，
+没有我方方法臂，不能与旧doc303数字交叉相减或宣称总体目标达成。
+[终态说明、九套图、冻结分析与raw](../exp/draft_graph/out_h100_baseline_horizon_v1_20261020_final/PROGRESS.md)。
+
+下一步仅原冻结130请求旧开发检查：不改真实非零Mapper／causal2／4策略／旧cost，
+不含device-cap新原型、不读新的确认Parquet、不恢复71／320暂停测试。只有全部
+质量／非零／不可变门槛及双context对全部12个对手TPS点均正，才考虑原先fresh16确认。
+此条同步时我方130尚未启动；部署和真实启动凭据另记，不能用计划代替运行证据。
+
+### 2026-10-20：长流选型正常运行；联合确认工具仅本地准备
+
+04:13:26 UTC同一实际PID2874165仍live（elapsed1:51:49，Rl+）且tmux存在，
+非原子计数32AR/43prime/1364warm、42个关闭owner，无FAILURE/PIPELINE_EXIT；8K继续。
+04:06:29 UTC真实第三份快照完整覆盖4K全部38配置，各16篇旧文档×2；8K只有部分。
+654份导出、152科学源锚点SHA通过；1311次SD逐Token匹配、264份树原始记录、39个
+关闭owner及991次记录轨迹/工作对照通过，仍非完整矩阵终态或独立模型tensor证明。
+九套PARTIAL图由root实际查看，保存源重跑summary逐字节一致，独立指标复算通过。
+4K最高观测基线点为Graph Top32/k4：46.5915 TPS，描述性文档95%CI
+[43.7533,49.6620]。8K两个展示cell分别16/7篇完整重复对，不作不等样本排名；
+不冻结最终union，不与旧doc303的RESCUE数字交叉相减，也不宣称RESCUE胜出。
+721份本地产物只读封存，清单SHA
+`e1f04dd90d59758e642732a22d8806e58473dcbbadfdc40e2c892fecbfcd0405`，
+状态仅PARTIAL_NOT_TERMINAL；不能作后续双终态冻结门控。
+[第三份真实快照、独立审计、图、分析源和原始数据](../exp/draft_graph/out_h100_baseline_horizon_v1_20261020_snapshot_4k_complete/PROGRESS.md)。
+
+另有**未推广的执行原型**：外部adapter只在第二个Draft Token合并Token与2／4 cap为
+int64[2]一次host读回，不改模型、Mapper、特征或策略规则，默认关闭，也不并入冻结130
+检查。root最终8项CPU差分全过（5760个决策/RNG组合及真实tinyQwen的KV/Q/选择/EOS/
+catchup比较）；独立8项复跑也过，183份冻结程序源仍逐SHA相同。新增构建前覆盖测试后
+封闭了类方法提前覆盖及@wraps伪装的边界洞；只改两个新原型文件，不改运行源码。
+这不是实际GPU同步减少或提速证据，仍须真实Graph输出生命周期/逐步状态等价、独立
+CUDA trace与未插桩配对端到端测试；stack/where/检查开销可能抵消收益。
+[原型CPU核查及未满足的CUDA门槛](../exp/round_overhead/DEVICE_CAP_ADAPTER_REVIEW_v2.json)。
+
+04:24:24 UTC原PID2874165/tmux仍live（elapsed2:02:48，Rl+），非原子32AR/47prime/
+1498warm、46closed owners，最后8K retrieval32_k4_eager/warm25，无失败/终态标记。
+未改变当前运行，不在计时服务器上并发跑Torch/模型预检。新增的CUDA语义预检和Kineto
+边界解析工具只完成本地18项联测：14CPU通过、4CUDA明确skip；真实强制GPU入口在本地
+缺CUDA分别exit2/1且不建输出，不能报GPU已过。语义预检包含实际Graph借用输出毒化
+与逐bit KV/Q/动作比较，但这些body仍未执行；trace仅二步决策primitive，解析器只报保存
+轨迹schema/linkage通过，不冒充独立硬件观察。原生8+1字节两回传与优化16字节一次
+回传必须有实际GPU事件与唯一关联链，仍无E2E速度收益。
+[新预检代码/测试与强制拒绝凭据](../exp/round_overhead/DEVICE_CAP_PRECHECK_REVIEW_v1.json)。
+
+03:58:16 UTC同一实际PID2874165仍live（elapsed1:36:40，Rl+），32AR/37prime/
+1162warm、36个关闭owner，无FAILURE/PIPELINE_EXIT，最后4K retrieval16_k1_graph/
+warm9。4K菜单也尚未全部关闭；没有导出新快照、冻结完整union或启动后续。
+
+冻结旧开发检查的新包装器、报告、独立接收/单次启动和只读收集工具现已完成本地实现。
+全员冻结后444项完整回归426通过、18因无CUDA跳过；root看图后只改长标签换行及
+非负数轴，再完整复跑444项仍426通过/18跳过，183份程序源前后SHA一致，152份
+当前运行锚点（125本地+27封存树）也相同。最终本地凭证：
+[444项日志](../exp/draft_graph/FROZEN_DEVCHECK_FULL_LOCAL_REGRESSION_v2.log)、
+[183源码与152运行锚点](../exp/draft_graph/FROZEN_DEVCHECK_LOCAL_REGRESSION_RECEIPT_v2.json)。
+这不是H100新实验完成；只有合成130编排/严格分析联调，六张布局检查图均明确标记
+SYNTHETIC且root实际查看，不可作真实TPS结果。原444项v1凭证与旧423项凭证保留。
+服务器仅只读查过固定Python3.10.20/依赖metadata、六资产路径均存在且无祖先/叶symlink。
+真实stage1+PARTIAL stage2的新入口也在缺PIPELINE_EXIT时拒绝，未建输出或触发GPU：
+[实际未完成门控凭证及早期诊断纠正](../exp/draft_graph/FROZEN_DEVCHECK_ACTUAL_PENDING_GATE_CHECK_v2.json)。
+正式包/隔离根/新确认gate依然未建，无新候选访问、模型生成或旧源修改。
+
+03:36:58 UTC同一实际PID2874165仍live（elapsed1:15:21，Rl+），32AR/29prime/
+898warm、28个关闭owner，无FAILURE/PIPELINE_EXIT；未达到完整2540请求，不启动后续。
+下一步新增的是**冻结旧开发可行性检查**，不是新算法搜索或最终确认：沿用全部16篇
+已用文档和stage2原32暖序列，64个私有eager/Graph质量请求全部关闭后，两个新Graph
+owner各付旧271冷prime再跑32暖，总计130次新生成、复用34个已封存AR参考。所有保留
+对手都取完整stage2的同16篇/32暖计时，不能混入stage1原六暖数字。不同时间owner块
+只作开发可行性与成本定位，不能作同期因果速度结论。预注册模板：
+[冻结旧开发检查](../exp/draft_graph/frozen_devcheck_20261020_preregistration.json)。
+只有质量/非零注入/不可变门槛通过且双context对全部保留对手的TPS点估计均正，才进入
+原先不变的fresh16确认；否则保留fresh16未读，不换参数/文档/对手。描述性文档CI照报，
+不冒称最终同时置信下界。此时包装器/报告/安全部署工具尚在实现，当前已完成本地检查
+（见上方03:58更新），仍未打包、部署或启动。
+
+03:30:21 UTC实际PID2874165（elapsed1:08:44，Rl+）与tmux仍live，32AR/25prime/
+800warm、25个关闭owner，无FAILURE/PIPELINE_EXIT。当前仍是4K子矩阵，未完整结束、
+未冻结最终对手，也没有新确认启动。目标保持active，不因工具绿或旧诊断完成而改称成功。
+
+03:23:19 UTC同一实际PID2874165仍live，32AR/23prime/709warm、22个关闭owner，无失败。
+补齐了独立v2一次性执行器/launcher及动态M/R收集、独立raw审计与封存工具，focused
+13/6/9个CPU检查分别通过；全员冻结后root统一回归423项中405通过、18因无CUDA跳过，
+175份程序源前后SHA相同，152份运行锚点也保持一致，不能用合成通过宣称GPU胜出。
+新数据gate/实际计划/v1 capsule/v2执行根均未建立，两个v1入口仍硬禁用。共享测试
+曾因并行改源触发10个稳定性拒绝，失败记录保留；详见
+[未执行审查说明](../exp/draft_graph/UNEXECUTED_UNION_REVIEW.md)。
+
+旧匹配doc303预实验的只读事后分解进一步明确8K差距：两个128-token请求的prefill
+1.0160s对1.0171s几乎相同，decode5.6798s对4.9064s。RESCUE84轮对检索Top32/k4
+Graph76轮（+10.5263%），平均整段decode每轮67.6168ms对64.5577ms（+4.7385%）；
+1.157636=1.105263×1.047385只是记账恒等式，不是Target独占延迟、Mapper危害或可实现
+优化收益的因果分解。样本仍为1篇复用开发文档/2计时重复，没有文档级95%CI，只示重复
+范围；不与新16篇/32暖选型交叉相减。未改Mapper、长度、cost或当前正式协议。
+共同Target/Draft内核优化也必须公平提供给基线。等输出时，相对TPS仅在我方省时比例
+大于基线时改善；这个旧8K样本每outer秒的轮数和Draft步数反而都是基线更多，因此
+“每轮/每步共同省固定时间”的简化模型不保证缩小差距，不能仅凭最大profile阶段许诺胜出。
+一个尚未实施/测量的执行候选是第二步合并Token与2／4决策的host读回，严格保持RNG、
+EOS、topk/argmax、全部Q/KV/features/cap不变；只可能少一次等待，不减少模型计算，
+新增stack/copy也可能抵消。它不是已取得的优化结果，不能改当前冻结检查或冒充新算法收益。
+三图（接受量/TPS/轮数成本）已实际查看，保存源重跑summary逐字节相等：
+[事后诊断报告、图与源码](../exp/draft_graph/out_h100_match_pilot_cost_diagnostic_20261020_v3/REPORT.md)。
+另一个旧coverage-Graph插桩运行（同doc303但不同于上面的未插桩匹配计时）在8K记录
+Target verify约45.9ms/轮、Draft约4.3ms/步，支持把验证轮数与Target侧成本也纳入
+未来优化定位。host/stream区间重叠且包括排队，不能相加当独立kernel成本或与上方未插桩
+结果相减，不能推导保证可实现的加速上限。原始记录：
+[旧四条profile](../exp/draft_graph/out_h100_coverage_pilot_v2_20261020/results/profiles.jsonl)、
+[原插桩范围说明](../exp/draft_graph/out_h100_coverage_pilot_v2_20261020/results/analysis_v1/REPORT.md)。
+
+02:59 UTC实际PID2874165仍正常运行，32AR/14prime/423warm、13个关闭owner，
+不重启或改冻结协议。接收器P2边界收紧后，完整本地回归393项中375通过、18因无CUDA
+跳过，165份程序源码前后SHA一致；此前386/392项凭证保留为历史检查，不覆盖。终态工具新增的第10项
+测试通过生产API合成2540请求/76 owner/528树记录到分析、独立审计、封存、UNION验证
+全链，仍不是实际GPU终态结果。新增隔离打包/接收工具只接受硬禁用胶囊，正式可执行
+启动流程尚需另行审查。真实stage1完整+stage2 PARTIAL输入已验证在创建输出目录前
+拒绝，无打包、部署、确认根或新候选读取。接收器现强制连续USTAR header，两个空
+global-PAX/隐藏metadata纯内存复现均在建根前拒绝，不改科学源、协议或远程运行。
+
+02:47:36 UTC只读快照新增真实完整树/后端证据：32AR/9prime/278warm/8closed owner，
+654文件SHA通过。287SD逐Token匹配，33实际树原始记录、8完整owner账本、175次
+冷/重复/同几何后端轨迹与工作计数比较通过，仍非全矩阵终态审计或全模型tensor证明。
+同一32暖序列中，4K Top32 Graph k1/k4前6暖TPS为39.5044/38.7019，全部32为
+39.9227/46.5915；k4相对k1+16.7044%，逐项文档配对区间[10.2131%,23.2228%]。
+这是两基线探索性诊断，不是完整菜单赢家或RESCUE比较；前6/32文档覆盖不同，
+不能把全部变化因果归于capture。保留全部短/长流候选并集的决策不变，不调我方参数。
+九套PARTIAL主图与专项诊断已生成并实际查看，入口：
+[第二份PARTIAL说明/图/数据/源码](../exp/draft_graph/out_h100_baseline_horizon_v1_20261020_snapshot_0250/PROGRESS.md)。
+
+02:35:09 UTC只读核实：实际Python PID2874165仍在运行，已留存32AR/5prime/
+154warm、4个关闭owner，无FAILURE；不重启、不修改当前冻结源码。
+02:30:43 UTC快照留存653份文件SHA通过、32AR/3prime/88warm/2owners；
+91个SD输出逐Token匹配AR，独立复算接受量/TPS/捕获计数通过。九套PARTIAL图已逐张查看，
+k1仅8篇完整重复对、k12与resident k2各16篇，不能据不等样本选赢家；8K尚无计时。
+显示适配只补实际样本计数，不改冻结分析源/原始数据。入口：
+[PARTIAL说明与数据/图](../exp/draft_graph/out_h100_baseline_horizon_v1_20261020_snapshot_0234/PROGRESS.md)。
+
+新建`fair_union_confirmation.py/data/report`，只做本地合成流程与CPU测试，未部署、
+未读新确认数据。最终必须保留短流/长流选型的全部unique(context,mode)并集，M为8..16，
+缺失匹配eager质量参考R为0..8；固定总请求162+34M+R，所有方法/两个context同32暖序列。
+16篇文档为独立配对单位、两重复，seed20261026；普通95%区间与同时单侧95%下界分开，
+正式所有M项点估计及Bonferroni-bootstrap下界(.05/M分位)均需>0，并满足严格exactness/非零注入。
+这不是宣称基线选型或最终确认已经完成，工具测试也不是GPU速度证据。
+
+**新数据规则尚未执行、会先于候选读取冻结**：原validation从索引0升序，首16篇自然正文
+至少8192 Token、排除11份历史used/reserved元数据的文档SHA及精确4K/8K输入SHA，
+也排除新cohort内部重复。不得按EOS/速度/注入结果换样本。原“索引>=900/长度>=16384”
+仅未执行旧草案，已在任何候选读取前退役；调整依据是本阶段实际4K/8K输入范围，
+不是观察候选性能后选样。新模板为TEMPLATE_NOT_EXECUTED；新旧确认launcher均硬exit64，
+尚无最终source/data gate或服务器确认根。Mapper/旧cost/2／4策略仍冻结不搜索。
+
+新联合确认工具已完成最终交叉审查与本地全量回归：386项中368通过、18项因
+无CUDA跳过，前后162份source SHA一致；这不是服务器GPU验证或最终科学source freeze。
+联测修复了新报告把排除元数据`rows`列表误认为整数的错误，独立核对11份cohort及
+由其重建的denysets；失败日志保留，修正后MIN/MAX真实API合成链与standalone均通过。
+终态收集/独立审计/封存工具已写成新文件，9项合成门槛检查通过；真实2540终态仍未到达，
+不能把工具检查冒充已经完整审计。入口：[本地审查说明](../exp/draft_graph/UNEXECUTED_UNION_REVIEW.md)。
+
+### 2026-10-20：用户确认本阶段最终验收范围
+
+用户明确选择：**先以相同Qwen2权重的两种公平基线验收**，即完整树解码适配版
+与最快检索版；本阶段不要求另行下载、训练或验证原论文Vicuna7B/68M。
+不因此削弱正在运行的冻结基线选型：每context仍保留检索eager/resident/Graph
+三个后端的开发优胜配置及完整树优胜配置，后续所有保留对手都须报告，防止短流
+捕获摊销隐藏长流更有竞争力的后端。4K/8K必须同时通过预先冻结的吞吐与配对CI
+门槛，并逐Token匹配同精度Target参考；Mapper继续保持真实非零。
+当前538请求只是开发选型，未打开新确认文档，不能单凭开发winner宣布目标完成。
+最终可以声明的范围限于此模型对、硬件、输入/输出协议和被公平选择的两类Qwen2
+基线，不推广成原版Vicuna或普遍SOTA结果。此用户确认不改变已冻结的运行源码。
+
+### 2026-10-20：538请求基线选型已完整核验；总目标尚未完成
+
+服务器2026-10-20 02:11:56 UTC正常exit0，原tmux与Python PID2807824均已结束。
+6AR/76cold prime/456warm、76owner完整，532个SD输出及EOS匹配独立AR；
+112份树原始记录的overshoot/质量计数与整段计费一致。270份只读终态导出逐SHA通过，
+含3份原协议已pinned的Target Tokenizer JSON，用于独立解析EOS151645。
+独立审计重算所有76暖配置cell、完整排名与8个winner；七套PNG/SVG由root实际查看，
+保存源码的重跑summary逐字节相等，全部产物已封存。未改旧服务器根或运行源码。
+最终清单SHA `297657429434d6a3e058bde11e1ffc4890c0345382a436b2570c824dcaa39c10`；
+本地`validate_baseline_freeze`返回`BASELINE_VERIFIED`。
+
+| 输入 | 检索短流开发winner / TPS | 完整树短流开发winner / TPS |
+|---|---|---|
+| 4K | Top32/k1 Graph，38.4055 | Top32/nodes8/depth10，27.3159 |
+| 8K | Top32/k8 Graph，35.0870 | Top32/nodes8/depth10，24.8536 |
+
+仍保留4K Top32/k2 eager/resident、8K Top16/k2 eager/resident。主口径严格保留原6暖
+SUM Token/SUM generate outer秒，含晚capture；不改成第二遍、服务摊销或扣除capture。
+3篇复用train文档、2次重复，文档级10000次配对bootstrap，选择偏差与owner分块
+时钟漂移仍需披露。这是两类Qwen公平基线的开发选择，**不是RESCUE最终超过它们**。
+
+匹配32暖请求的另一个隔离开发补充已经本地实现并交叉审查，现已启动（见下）。
+16篇固定旧文档/2重复/38配置/4K8K，共2540请求；同一32请求顺序用于所有配置，
+每owner冷prime271且始终最多一个owner。源码证明并用真实CPU缓存回归测试确认：
+非eager检索每owner最多63+k≤75种Graph状态，128条目上限足够，不必改容量。
+运行器、数据与launcher已有31检查通过；最终报告含实际runner输出的2540模拟
+fixture、文档配对区间、9套独立质量/速度/捕获/服务长度/漂移图及安全路径验证。
+原8个候选与32暖新候选取并集，不能用后者替换/删除前者。无Mapper/策略/成本搜索，
+不打开新的确认数据或暂停测试；未执行的旧fair_confirmation launcher继续硬禁用。
+
+02:20:47 UTC只启动一次隔离根`/mnt/8T/cl/rescue_experiment_cache/baseline_horizon_20261020_v1`，
+tmux`rescue_baseline_horizon_v1`；02:21只读核实RUN_STARTED及真实GPU前检正在运行，
+尚不声称本轮正式科学结果。完整本地338检查为320通过、18因无CUDA跳过；
+服务器`--validate-only`验证177份staged源码与538请求/76owner封存链成功。
+传输SHA `723f39d663340fc4a44ea659d148a2517709f0d2830dd1443545948b084c0bf9`，
+清单SHA `8a4dc1dafc41fcab8da6dd072e20c1d1324ab21ea362edb3b2470afd0146d658`。
+所有运行源码只读，旧根与旧仓库不动，不重启、不省略配置或清理partial。
+最新状态及部署日志入口：[RUNNING / PARTIAL](../exp/draft_graph/out_h100_baseline_horizon_v1_20261020/PROGRESS.md)。
+02:23:04 UTC追加只读核实：服务器6组共64检查全部通过（4/15/9/10/16/10）；
+实际运行Python PID2874165，15/32AR已保存、尚无暖请求，无FAILURE/PIPELINE_EXIT。
+16固定输入、32个精确context SHA、152科学源码及旧data receipt均已冻结。正式计时
+和完整配对图尚未就绪，不得引用预检速度为科学结果。后续只读监测该PID/tmux/日志，
+不重复启动；终态后执行保存数据的独立审计、9套图、渲染检查、文字总结与封存。
+
+结果：[说明与解释](../exp/draft_graph/out_h100_baseline_selection_v1_20261020_final/PROGRESS.md)、
+[完整排名报告](../exp/draft_graph/out_h100_baseline_selection_v1_20261020_final/results/analysis_final_v1/REPORT.md)、
+[接受质量](../exp/draft_graph/out_h100_baseline_selection_v1_20261020_final/results/analysis_final_v1/quality.png)、
+[实际TPS](../exp/draft_graph/out_h100_baseline_selection_v1_20261020_final/results/analysis_final_v1/tps.png)、
+[可运行分析](../exp/draft_graph/out_h100_baseline_selection_v1_20261020_final/results/analysis_final_v1/analysis_source.py)、
+[原始暖请求](../exp/draft_graph/out_h100_baseline_selection_v1_20261020_final/results/runtime.jsonl)。
+
+### 2026-10-20：重要新发现——捕获摊销的服务长度错配（以下为完成前历史记录）
+
+01:47:58 UTC的只读快照已完整覆盖4K全部38配置；原538请求继续，8K尚未完整。
+264份文件SHA通过，6AR/40prime/234warm/39closed owners，七套PNG/SVG已检查。
+对Top32 Graph，六暖主口径k1=38.4055 TPS、k4=37.8141；各付2/16次新捕获，
+0.372249/2.903610秒。完整repeat1三文档（全部纳入、均零新capture）却是
+k1=39.4407、k4=44.6085，k4高13.10%。这只是原预注册允许的二级诊断，
+不能事后改六暖指标、冒称完全稳态或推出32请求/新文档必胜。
+
+**这改变下一步：不能用六暖每backend赢家直接验收32warm。** 保留三个后端也不能
+解决同backend不同k的摊销反转。原538不改不重启，结束后仍完整分析/冻结原结果；
+但本地新写的fair_confirmation.py/data/report与434+R模板仅是未执行候选，
+没有最终source/data gate、没有创建服务器确认根、没有读取新确认内容。
+`run_fair_confirmation_20261020_v1.sh`现已在任何远程状态操作之前硬exit64，
+禁止把它当成可直接启动的正式确认。禁止因其CPU测试全绿而绕过这项方法学修正。
+
+下一优先步骤：当前538完成后，另立全38配置、每context1旧271冷prime+32warm的
+匹配服务长度开发补充；拟用已有旧train全12篇＋旧确认303/306/327/604共16篇
+不同输入、每篇两次，每配置使用相同的冻结文档顺序。需先核实source identity、
+文档SHA、4K/8K输入SHA、去重、自然长度和模板，失败不按性能换文档。
+这是已反复使用的开发/训练cohort扩展，不是新的held-out；不读或重用暂停测试outcomes。
+预计32新AR+76prime+2432warm=2540请求；尚未实现/部署/启动，不能把计划写成结果。
+原8个短流choices和补充后choices均保留，最终报告所有unique retained对手，
+不能按新确认结果选择较弱者。记录温度/时钟只能只读，不改GPU配置。
+
+4组确认候选代码已覆盖真实非零Mapper、all-layer NativeKV/Q精确等价、独立quality与
+timing owner、真实Graph128上限、EOS、资产/源码/图审链及文档同步bootstrap。
+交叉审查修正了分析器错用不存在的own execution_backend与working_budget字段；
+这些代码可复用，但最终协议和对手集合须在服务长度问题解决后重新审查。
+当前没有任何最终超过两类Qwen2基线的确认结论，总目标保持active。
+
+02:06 UTC更新：原538运行仍为实际Python PID2807824，已保存6AR/67prime/
+402warm/67closed owners，无失败标记。此轮属于有效进展，不是因等待而判定blocked。
+01:48快照已独立复算，保存源码重跑summary逐字节一致；289份本地产物封存为PARTIAL，
+清单SHA `25b3ad050116bb0fa0ae7dd3577e638aa060590bc322c1bf7adbae434ae8e496`。
+
+新`baseline_horizon`开发补充运行器与数据工具已经本地实现，尚未部署或启动。
+源数据只读核实四文件SHA、12篇train身份211/213/220/226/233/236/246/248/
+253/271/272/288，补充固定303/306/327/604；保存的16篇输入同prompt，均可自然
+满足精确4K/8K。旧271既是各owner单独计费的冷prime，也是16篇warm之一，必须披露
+这一同配置共享的重叠；不得把它算第17篇独立文档。原始corpus/shard身份继承旧数据
+准备源码，不重新打开raw Parquet。所有样本都是已用过的开发数据。
+
+本地已有30项检查通过：9项运行器（包括真实2540次控制流程模拟、76独立owner、
+528份原始tree、失败先存raw再释放owner），16项纯stdlib数据验证，5项实际shell
+`--validate-only`分支测试。CPU模拟不是CUDA或性能结果；最终分析器/跨文件整合审查
+仍须完成。拟隔离根`baseline_horizon_20261020_v1`保持未创建状态；当前538必须先
+完成原始数据、七套图和独立审计后才能通过新launcher门槛。
+
+新入口：[预注册](../exp/draft_graph/baseline_horizon_20261020_preregistration.json)、
+[运行器](../rescue/baseline_horizon.py)、[固定旧数据工具](../rescue/baseline_horizon_data.py)、
+[启动脚本](../exp/draft_graph/run_baseline_horizon_20261020_v1.sh)。
+
+入口：[最新PARTIAL说明/数据/图](../exp/draft_graph/out_h100_baseline_selection_v1_20261020_snapshot_0148/PROGRESS.md)、
+[未执行确认运行器](../rescue/fair_confirmation.py)、[数据冻结工具](../rescue/fair_confirmation_data.py)、
+[未执行确认分析器](../rescue/fair_confirmation_report.py)、
+[候选模板](../exp/draft_graph/fair_confirmation_20261020_preregistration.json)。
+
+### 2026-10-20：公平基线开发选型（已启动，未完成、未推送）
+
+在前述成本重标定未获稳定增益后，冻结真实非零Mapper、旧cost与2/4策略，
+先做**仅基线**的38配置选型，不再用开发结果改动我方参数，也不读取新的确认文档
+或暂停71/320测试。2026-10-20 01:22 UTC只启动一次隔离根目录
+`/mnt/8T/cl/rescue_experiment_cache/baseline_selection_20261020_v1`，
+tmux `rescue_baseline_selection_v1`。启动时H100空闲；140份源码冻结并只读，
+传输包SHA `70f62f5f973111c596242b15f04e1e96bfc460810042307dbc3d49e9c833e677`，
+清单SHA `69ef185a3de2b0e8aec729cee08265d9e95c1b35963f1ada661326d17bd2330a`。
+本地261项检查243通过、18因无CUDA跳过，完整538请求模拟和报告14项检查通过；
+正式运行先经过独立真实GPU门槛，不能将本地跳过当作GPU验证。
+
+固定复用train-tune文档271/272/288，精确4096/8192输入、128输出、两次暖重复。
+检索Top16/32×k1/2/4/8/12×eager/resident/Graph共30配置；完整Qwen树
+Top16/32×节点8/32/50/64共8配置，depth10、threshold0.7不变。
+计划6AR、76独立冷prime、456暖请求，共538请求；每context/config一个私有owner，
+依次构造、冷prime、六次暖请求、同步关闭，最多一个owner存活。所有合法晚捕获、
+树overshoot都计费；主口径完整generate outer，不借正确性Graph或免费预热。
+共同模型加载/共享wrapper准备等同排除，构造、冷启动与七请求服务摊销另报。
+
+完整核验后，每context按六次暖请求池化Token/time，分别冻结检索三个执行后端及
+完整树各一个winner，共八个后续确认候选。保留全部后端是为了防止短流捕获摊销
+使长流可能有竞争力的后端被提前丢弃。后续我方必须对每context四个固定对手全部
+比较，不能看确认结果再选择较弱基线。该38配置、3篇复用文档的选型有winner bias，
+**本次即使完成也不构成独立确认、产线速度、原版Vicuna或超过SpecExtend的证明**。
+服务器38项真实GPU前检全部通过，包括k12 Graph/EOS/catchup；已进入正式科学请求。
+01:26:20 UTC只读快照留存6AR、4prime、22warm、3个完整owner，263份文件SHA通过；
+本地七套PNG/SVG已检查，全部PARTIAL。8K仅有AR、没有计时，图中空白不是零TPS；
+不冻结临时优胜配置。01:28 UTC确认tmux及实际Python PID2807824仍在运行，
+6AR、7prime、37warm留存、6owner关闭，无FAILURE/PIPELINE_EXIT/COMPLETE；
+GPU仅该PID，约40,578MiB。不要把锁文件或PARTIAL图当作运行结束的证明。
+服务器不安装Matplotlib；完整结束后仍需拉回严格分析、七套图与文档配对CI，检查渲染后
+才报告完成。部分失败保留原根目录，禁止重启或自动省略配置。当前尚无本次最终结论。
+
+进度快照：[PARTIAL说明与图/原始数据入口](../exp/draft_graph/out_h100_baseline_selection_v1_20261020_snapshot_0126/PROGRESS.md)。
+传输包SHA `22a99033a457df3d0cb67fe1ae6f25e9d7728b952ae22e404dae3c83e67a98a4`。
+后续确认设计仅只读审查、未冻结或启动：可用预先排除历史/保留cohort后的首16篇
+自然长validation新文档，两次重复，对每context四个冻结对手全部比较；不能在确认后
+挑较弱对手。普通逐项95%文档配对CI与真正同时下界须区别，具体门槛先于新数据锁定。
+Target post-attention MLP子图Graph也仅完成可行性审查，没有实现或额外速度结果，
+不能声称完整verify可直接捕获，亦不能只给我方而不给保留基线同等实现与捕获计费。
+
+入口：[预注册](../exp/draft_graph/baseline_selection_20261020_preregistration.json)、
+[运行器](../rescue/baseline_selection.py)、[严格分析器](../rescue/baseline_selection_report.py)、
+[隔离启动脚本](../exp/draft_graph/run_baseline_selection_20261020_v1.sh)。
+
+### 2026-10-20：Draft Graph 单系数成本重标定（已核验，未推送）
+
+仅重标定旧成本 JSON 的 `student_step`，不训练 Mapper/策略，也不重拟合
+`verify_beta`、`fixed_round` 或 `cache_update`。本地237项测试中220通过、17因无CUDA
+跳过，独立审查未发现P0/P1。隔离根目录
+`/mnt/8T/cl/rescue_experiment_cache/draft_cost_recalibration_20261020_v2`，
+tmux `rescue_draft_cost_recalibration_v2`，于2026-10-20 00:16:41 UTC启动一次，
+00:24:53 UTC完成全部94请求、exit0，当前无该运行任务。
+v1在纯CPU报告绘图前检因服务器缺Matplotlib失败，零科学请求；117条源码/日志SHA与
+原失败根目录完整保留。v2不改共享依赖，仅将已测试的报告/绘图移到本地完成，科学协议不变。
+原仓库、旧根目录、暂停71/320测试不变；不改VPN、不使用密码。
+
+冻结94请求协议：原训练文档246的2AR＋2冷prime＋4暖profile；只用repeat0所有
+逐步样本池化中位数拟合，repeat1在4K/8K分别检查20%同文重复性，所有暖profile必须
+零新增捕获且匹配自身prime轨迹；先封存成本再读开发271/272/288。开发6AR、24质量、
+8独立冷prime、48交错热计时，比较旧risk、新step成本risk、真实非零Mapper＋固定4
+（关闭M3），以及同样Graph的Top32/k4检索。M1仍eager，Draft Graph，FP32 Target、
+BF16 Draft/前缀、128输出、每文档两重复。所有合法热捕获计费，冷与active-service另报。
+
+实测 `student_step` 13.444691ms→4.736646ms；全部86个SD请求输出均匹配独立AR的
+128 Token。24个质量请求留存28层Native KV/每步Q、真实非零V证据，固定4关闭M3。
+39项服务器前检通过，221条外层SHA通过；独立配对复算与保存源码的真实数据重跑一致，
+五套PNG/SVG均已人工检查。246与三个开发文档均来自原train语料，不构成held-out。
+
+| 新成本risk相对 | 4K TPS变化，95% CI | 8K TPS变化，95% CI |
+|---|---:|---:|
+| 旧cost risk | −1.0585% [−1.6817%, −0.2994%] | +1.9028% [−1.7456%, +7.9432%] |
+| 同Mapper固定4 | −2.4461% [−6.0426%, −0.4294%] | +0.0878% [−0.7732%, +0.5769%] |
+| Top32/k4 Graph检索锚点 | +11.9843% [+1.8607%, +18.2245%] | +16.4396% [+5.1909%, +30.3105%] |
+
+**单系数重标定没有稳定增益，不提升为默认。** 接受长度虽从1.6770/2.1571升至
+1.6959/2.2757，cap4更接近固定4，却未稳定提速。检索锚点暖请求仍支付16/13个新
+Graph捕获、2.3541/1.9329秒，RESCUE为零；正差距是有限请求流的真实捕获计费结果，
+不是全部形状预热后的稳态或最强SpecExtend胜出。先前doc303的8K负结果不被覆盖。
+保留已验证的Draft Graph优化，冻结Mapper，不借本轮开发再调cost；后续应先公平选择
+检索执行后端/固定长度与完整树节点配置，再打开新确认文档。旧71/320仍暂停，总目标未达成。
+
+结果入口：[解释与决定](../exp/draft_graph/out_h100_cost_recalibration_v2_20261020/results/analysis_v1/INTERPRETATION.md)、
+[自动严格报告](../exp/draft_graph/out_h100_cost_recalibration_v2_20261020/results/analysis_v1/REPORT.md)、
+[接受量](../exp/draft_graph/out_h100_cost_recalibration_v2_20261020/results/analysis_v1/acceptance.png)、
+[TPS](../exp/draft_graph/out_h100_cost_recalibration_v2_20261020/results/analysis_v1/tps.png)、
+[捕获/标定](../exp/draft_graph/out_h100_cost_recalibration_v2_20261020/results/analysis_v1/calibration_capture.png)、
+[原始账本](../exp/draft_graph/out_h100_cost_recalibration_v2_20261020/results/runtime.jsonl)、
+[分析源码](../exp/draft_graph/out_h100_cost_recalibration_v2_20261020/results/analysis_v1/analysis_source.py)。
+入口：[预注册](../exp/draft_graph/cost_recalibration_20261020_preregistration.json)、
+[运行器](../rescue/draft_cost_recalibration.py)、[分析器](../rescue/draft_cost_recalibration_report.py)、
+[隔离启动脚本](../exp/draft_graph/run_cost_recalibration_20261020_v2.sh)、
+[v1零请求失败记录](../exp/draft_graph/out_h100_cost_preflight_failed_v1_20261020/REPORT.md)。
+
+### 2026-10-20：M1 不变贪心循环 Graph 试验（本地新增，未推送）
+
+在 Draft 已启用 Graph 的前提下，只把 M1 的28轮贪心覆盖内循环改为实际pool
+形状的Graph重放；粗选、归一化、选位目标、非零Mapper、2/4策略和旧成本均冻结。
+v1先在CUDA测试门槛失败（Python bool索引写入不可捕获），**零个科学请求**；
+原失败根目录/源码/日志完整保留。独立v2只把Graph中的布尔used-mask写入改为
+`index_fill_`，不改浮点运算或eager参考；40项真实H100测试全部通过。
+
+v2在复用开发文档303、精确4K/8K、128输出上完成22请求：2AR、4严格正确性、
+4独立冷prime、8无profile交错热计时、4单独暖profile，四个持久私有owner。
+
+| 输入 | 原Draft Graph热TPS | 加M1 Graph热TPS | 热变化 | 冷变化 | 3请求计费吞吐变化 |
+|---|---:|---:|---:|---:|---:|
+| 4096 | 47.8716 | 48.6920 | +1.7137% | -14.3613% | -5.4087% |
+| 8192 | 37.9337 | 38.6607 | +1.9165% | -14.3315% | -5.0705% |
+
+20次SD均与独立AR的128 Token一致；224层缓存对、686条Q、逐轮选位、12维特征、
+cap和接受轨迹完全一致，Mapper确有非零校正。8次热计时先于所有profile；
+profile时间/Token从主TPS和active-service中排除；关闭后所有Graph entries清零。
+接受长度不变。228条SHA（连清单229文件）、原始账本、三套图已独立核验；
+保存的分析脚本及helper可脱离仓库重跑。n=1，不给文档CI，不是SpecExtend胜出。
+
+**该微优化只改善热吞吐，冷与三请求计费口径反而更慢，因此不提升为默认设置。**
+profile中Target验证host约1.50/1.93s，明显大于M1选择的约0.126/0.128s；
+阶段host/stream不是独立可加的纯kernel成本，不能据此断言全是CPU launch瓶颈。
+另外发现旧长度控制器仍按Draft单步13.445ms估价，而新Graph profile约4.32–4.33ms。
+下一优先候选是**仅用原训练文档246重标定成本**，不从开发文档303拟合参数；
+尚未启动该标定。Target dense区部分Graph也仅完成只读设计，未实现/测速，
+且其共用执行优化同样应给检索基线使用。旧71/320测试仍暂停，正式目标未完成。
+
+入口：[报告](../exp/draft_graph/out_h100_coverage_pilot_v2_20261020/results/analysis_v1/REPORT.md)、
+[接受量](../exp/draft_graph/out_h100_coverage_pilot_v2_20261020/results/analysis_v1/acceptance.png)、
+[TPS](../exp/draft_graph/out_h100_coverage_pilot_v2_20261020/results/analysis_v1/tps.png)、
+[机制诊断](../exp/draft_graph/out_h100_coverage_pilot_v2_20261020/results/analysis_v1/diagnostics.png)、
+[原始测速](../exp/draft_graph/out_h100_coverage_pilot_v2_20261020/results/runtime.jsonl)、
+[原始profile](../exp/draft_graph/out_h100_coverage_pilot_v2_20261020/results/profiles.jsonl)、
+[分析源码](../exp/draft_graph/out_h100_coverage_pilot_v2_20261020/results/analysis_v1/analysis_source.py)、
+[核验](../exp/draft_graph/out_h100_coverage_pilot_v2_20261020/results/analysis_v1/VERIFIED_COMPLETE.json)、
+[v1零请求失败前检](../exp/draft_graph/out_h100_coverage_gpu_gate_failed_v1_20261020/REPORT.md)。
+
+### 2026-10-20：相同 Graph 优化后的 SpecExtend 差距 pilot（本地新增，未推送）
+
+在相同 H100、Qwen2 权重、FP32 Target/BF16 Draft 与前缀、128 输出下，
+只用复用开发文档303的精确4K/8K、两次热计时，完成44请求：2 AR、12正确性、
+10独立冷prime、20热计时。固定真实非零Mapper与2/4策略/成本；检索控制也获得
+持久缓存和eager/resident/Graph三后端。完整Qwen树控制保留历史n8、depth10、
+Flash prefill和hybrid attention，官方Flash2.8.3仅装入新隔离venv。
+
+| 输入 | RESCUE Graph TPS | 同样Graph的Top32/k4检索TPS | 相对变化 | 完整树n8 TPS |
+|---|---:|---:|---:|---:|
+| 4096 | 48.0804 | 45.8394 | +4.8887% | 27.3849 |
+| 8192 | 38.2277 | 43.2102 | -11.5307% | 23.3977 |
+
+这是每个模式两次完整generate outer的Token/time池化，不含共同模型加载。
+所有冷/热捕获成本保留；冷启动和构造+冷prime+两次热请求+关闭的active-service
+另报，不能用后者替代稳态口径。完整树额外计算2/3个Token的耗时全部计入，
+其接受量为含overshoot的raw每轮计数，不伪造树接受率或未返回的尾部Token ID。
+
+42 SD输出均匹配独立AR的128 Token；相同算法各执行后端的选位、决策、
+560个质量层缓存记录及1781条Q记录一致，且M2保持真实非零。43项H100测试全过；
+245个证据清单条目（加清单自身246文件）、原始账本和三套图均已独立核验。
+**n=1，不给文档CI；k4/n8是历史开发配置，并未重新搜索最优基线。因此不能据此
+宣布超过SpecExtend，尤其8K仍慢11.53%。正式目标保持未完成，旧71/320测试仍暂停。**
+下一候选仅将M1不变的贪心覆盖内循环做Graph重放，默认关闭；尚无该候选速度结果。
+
+入口：[报告](../exp/draft_graph/out_h100_match_pilot_v1_20261020/results/analysis_v1/REPORT.md)、
+[接受量](../exp/draft_graph/out_h100_match_pilot_v1_20261020/results/analysis_v1/quality.png)、
+[端到端TPS](../exp/draft_graph/out_h100_match_pilot_v1_20261020/results/analysis_v1/tps.png)、
+[延迟/捕获](../exp/draft_graph/out_h100_match_pilot_v1_20261020/results/analysis_v1/latency_captures.png)、
+[原始计时](../exp/draft_graph/out_h100_match_pilot_v1_20261020/results/runtime.jsonl)、
+[分析源码](../exp/draft_graph/out_h100_match_pilot_v1_20261020/results/analysis_v1/analysis_source.py)、
+[核验](../exp/draft_graph/out_h100_match_pilot_v1_20261020/results/analysis_v1/VERIFIED_COMPLETE.json)。
+
+### 2026-10-20：持久 Draft Graph 端到端执行优化（本地新增，未推送）
+
+前一日单文档 32 输出 pilot 之后，按预注册完成六篇复用开发文档
+303/306/327/604/613/614、精确 4096/8192 输入、128 输出、三次计时重复。
+12 独立 AR＋36 严格正确性＋6 独立冷 prime＋108 无 observer/profile 的交错计时，
+共 **162 请求**，均生成 128 Token 并匹配 Target。每 context/mode 使用独立私有
+持久缓存/Graph owner，冷 prime 固定为文档303，不借正确性阶段的 Graph。
+三模式共享冻结权重，但每请求显式 install/restore Target hook，切换成本纳入 outer。
+所有热 Graph 请求零新增捕获、owner/缓存地址不变，六类实际形状均由冷 prime 覆盖。
+
+| 输入 | GPU 常驻相对原优化 eager TPS，95% CI | 常驻＋Graph 相对 eager TPS，95% CI |
+|---|---|---|
+| 4096 | +5.5327% [+5.4123%, +5.6496%] | **+59.6553% [+58.8655%, +60.5639%]** |
+| 8192 | +4.6869% [+4.5858%, +4.7910%] | **+47.4942% [+47.1129%, +47.9420%]** |
+
+主口径为完整 generate outer：含 prefill、缓存重置、hook 切换、decode、请求清理，
+各模式均不含共同模型加载。每文档先池化三次实际 Token/time，再对六文档配对差异
+做 10,000 次 bootstrap；不能把 108 请求或两个 context 算成独立样本。
+4K 的 pooled warm TPS eager/resident/Graph 为 29.0267/30.6343/46.3322，
+8K 为 26.5729/27.8179/39.1913；池化比值与上表逐文档配对百分比不是同一统计量。
+
+首次 128-token 请求也包含捕获成本：文档303上 Graph 冷 TPS 在 4K 为35.8549
+对30.3206（+18.25%），8K 为29.9329对25.7823（+16.10%）；捕获约818/830ms。
+冷请求每 context 仅一个文档，不给文档级 CI。这不覆盖或否定旧32输出 pilot 的
+冷启动减速。计入构造＋一次冷 prime＋18次热请求＋关闭的实测 active-service sum，
+Graph TPS 为45.6202/38.5548，相对 eager 为+56.81%/+45.33%；因模式交错，
+这不是连续单模式 session wall 或生产服务吞吐。真实 context wall 另行保存。
+
+接受量、逐轮决策与输出不变。独立质量审计确认所有28层 Target/Draft K/V 和
+6294条 Q 记录哈希、选位、有效12维特征、draft/check/接受轨迹一致，且 Mapper
+确有非零校正（并非关闭 M2）；最后 remaining=1 无控制器特征是合法边界。
+服务器26项相关测试全过，含六项真实 CUDA Graph 测试；本地156项中148过、
+8项因无CUDA跳过。320份冻结证据 SHA、本地独立原始计时重算与六张图已核验。
+原服务器仓库、旧实验和71/320暂停测试未修改，未训练、改成本或搜索新策略。
+
+**这次通过的是完整配置的执行速度门槛，不是三模块算法质量或超过 SpecExtend 的门槛。**
+它仍是 H100、六篇复用开发文档、单模型对、固定非零 V-only Mapper 与2/4策略，
+不是4090、独立测试泛化、原版Vicuna树解码或真实边云网络结果。默认仍为 eager，
+需显式启用 `draft_execution='cuda_graph'` 并复用同一个 Engine。记录仅在本地，未推送。
+
+入口：[最终报告](../exp/draft_graph/out_h100_benchmark_v1_20261020/results/analysis_final_v2/REPORT.md)、
+[接受长度](../exp/draft_graph/out_h100_benchmark_v1_20261020/results/analysis_final_v2/acceptance.png)、
+[端到端TPS](../exp/draft_graph/out_h100_benchmark_v1_20261020/results/analysis_final_v2/warm_tps.png)、
+[延迟](../exp/draft_graph/out_h100_benchmark_v1_20261020/results/analysis_final_v2/stage_latency.png)、
+[冷捕获/摊销](../exp/draft_graph/out_h100_benchmark_v1_20261020/results/analysis_final_v2/cold_and_accounted_service.png)、
+[原始计时](../exp/draft_graph/out_h100_benchmark_v1_20261020/results/runtime.jsonl)、
+[分析源码](../exp/draft_graph/out_h100_benchmark_v1_20261020/results/analysis_final_v2/analysis_source.py)、
+[预注册](../exp/draft_graph/benchmark_20261020_preregistration.json)。初版图留在 `results/analysis`；
+final v2 只修正诊断图的颜色/标签，未改原始数据或统计。执行时保留旧冻结report源码，
+后续本地分析源码另存；不把报告排版更新伪装成已经测过的运行代码。
+
+### 2026-10-19：Draft GPU 常驻与单 Token Graph 小验证（本地新增，未推送）
+
+实现默认关闭的 `resident` / `cuda_graph` 执行路径，只捕获单 Token 模型计算主体，
+不捕获整轮生成循环。GPU Token/位置和 Mapper shadow binding 复用；Native KV 写入、
+逻辑长度、逐 Token EOS 和第二 Token 后的 2/4 决策仍在 Graph 外。
+Graph 使用真实工作缓存长度，不用额外 padding 改变注意力。
+缓存重新分配会使 Graph owner 失效；只有同一个 Engine/缓存复用才复用 Graph。
+这不是完全消除 CPU 控制与逐 Token 同步。
+
+对照为下面三项开销优化实验的 **after** 源码，不是裸 `24f63f9`、legacy 路径或
+SpecExtend。真实非零 V-only Mapper、已训练 StepBudget/成本及算法配置全部冻结。
+H100 80GB 上使用复用开发文档 303、精确 4096 输入、32 输出、两次计时重复：
+1 次 AR、3 次正确性、12 次主计时，共 16 请求。六个计时 session 各建新 Engine，
+先冷后暖，未借用正确性阶段的 Graph。模型加载不计入请求，各模式一致。
+
+| 执行模式 | 冷请求 TPS | 热请求 TPS | 完整双请求会话 TPS |
+|---|---:|---:|---:|
+| 原优化 eager | 20.0421 | 20.3447 | 19.8601 |
+| GPU 常驻主体 | 21.0395 | 21.2691 | 20.7713 |
+| 常驻＋CUDA Graph | 16.9379 | 29.2098 | 20.9815 |
+
+常驻版冷/热分别 **+4.98%/+4.54%**；Graph 冷/热分别 **-15.49%/+43.57%**，
+平均首次捕获成本 **0.779 秒**。完整双请求 session 分别 **+4.59%/+5.65%**，
+Graph 比常驻仅多 **1.01%**；session 包含中间记录 I/O、安全检查和关闭开销，
+不能冒充纯产线服务吞吐。不能只报道热请求的 43.57% 而隐藏首次捕获成本。
+
+三路每请求均接受 18/提出 53 个 Draft Token、15 轮、56 次 Draft 前向，
+平均接受长度 1.2 Token/轮；质量没有提升也没有改变。Target 输出、选择位置、
+12 维特征、2/4/接受轨迹、全部有效 Native KV 和每步 Query 的字节哈希一致，
+均观察到真实非零 Mapper 注入。服务器 19 项测试通过，含五项真实 CUDA Graph 测试；
+150 份证据哈希及原始计时由独立审查重算，四张 PNG/SVG 已人工检查。
+
+**COMPLETE 仅指这个小规模 pilot 的运行、核验、作图和报告完整。** n=1 文档，
+两次 timing repeat 不是独立样本，没有文档级 95% CI，不支持 8K、128 输出、
+4090、独立泛化或优于 SpecExtend 的结论。下一步可验证持久 Engine 下捕获摊销，
+但本记录没有自动启动更大实验。原服务器仓库、暂停测试及旧实验均未修改。
+
+入口：[报告](../exp/draft_graph/out_h100_v1_20261019/pilot/analysis/REPORT.md)、
+[接受长度图](../exp/draft_graph/out_h100_v1_20261019/pilot/analysis/acceptance.png)、
+[冷/热 TPS 图](../exp/draft_graph/out_h100_v1_20261019/pilot/analysis/cold_warm_tps.png)、
+[会话 TPS 图](../exp/draft_graph/out_h100_v1_20261019/pilot/analysis/session_tps.png)、
+[延迟图](../exp/draft_graph/out_h100_v1_20261019/pilot/analysis/latency.png)、
+[原始计时](../exp/draft_graph/out_h100_v1_20261019/pilot/runtime.jsonl)、
+[分析源码](../exp/draft_graph/out_h100_v1_20261019/pilot/analysis/analysis_source.py)、
+[执行实现](../rescue/draft_graph.py)。执行时冻结的 report 源码与后续本地分析源码
+分别保存：后者只修正图中文字排版，不改原始数据或远端冻结文件。
+
+### 2026-10-19：H100 三项执行开销优化验证（本地新增，未推送）
+
+用户授权在 H100 上验证执行优化；原仓库和暂停的 71/320 测试均未修改。
+对照为提交 `24f63f987f36fe167620e2a418d57574860cf7df` 的已优化执行路径，
+不是 `legacy-execution`。处理仅包括不读取无用长度评分、缓存固定结果几何、
+复用归一化注意力 head mean；非零 `full_final.pt` Mapper、已训练 StepBudget、
+成本和全部算法设置冻结。实际长度仍在提出两个草稿后决定总长 2/4，容量 12
+不是十二 token 动作。基础模型沿用 Qwen2 7B/1.5B，Target FP32、Draft/prefill BF16。
+
+在六篇复用开发文档 303/306/327/604/613/614 上使用精确 4096/8192 输入、
+最大输出 128、每条件三次重复；独立预热四次、AR 参考十二次、正确性二十四次、
+无 observer/profile 主计时七十二次，共 112 请求完成。选中位置、12 维因果特征、
+draft/check token、长度、接受轨迹和最终 Target 输出全部相同，且每个正确性请求
+均有实际非零注入。服务器 26 项相关测试通过，包含两项 CUDA 检查。
+
+整请求 TPS 的逐文档配对均值变化：4K **+0.1671%**，95% CI
+**[-0.0485%, +0.3961%]**；8K **+0.1557%**，CI **[+0.0504%, +0.2648%]**。
+接受长度差为零。四张 PNG/SVG 图、原始记录、冻结源码/权重哈希和分析源码均已保存，
+独立重算及 141 个证据文件 SHA 核验通过。**COMPLETE 指运行和报告完整，不指加速成功**：
+两种上下文区间下界均为正的速度门槛未通过；不能写成明显系统加速、4090 结果、
+独立泛化或超过 SpecExtend/native SD。本轮没有重训、调参或新增外部 baseline 对照。
+
+入口：[完整报告](../exp/round_overhead/out_h100_v1_20261019/results/analysis_final/REPORT.md)、
+[统计](../exp/round_overhead/out_h100_v1_20261019/results/analysis_final/summary.json)、
+[原始主计时](../exp/round_overhead/out_h100_v1_20261019/results/runtime.jsonl)、
+[执行 Runner](../rescue/round_overhead_run.py)。后续分析源码/说明更新与执行时冻结副本
+分开保存，未覆盖任何原始记录。这一批仅在本地，未提交或推送 GitHub。
+
+### 2026-10-17：远端归档与系统实现
 
 已从 `origin/main` 快进拉取 `960f1be → 9740a04`。新增
 [CSGB 归档入口](../exp/specextend_bridgekv/csgb_acceptance_pilot_v3/README.md)，

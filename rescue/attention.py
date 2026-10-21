@@ -63,7 +63,7 @@ class TargetObservation:
 
 class DraftAttention:
     def __init__(self, model, working, injector, backend='sdpa', observe=True, optimized=False, deferred=False,
-                 observer=None):
+                 observer=None, runtime=None):
         self.model, self.working, self.injector = model, working, injector
         self.backend = backend
         self.observe = observe
@@ -77,6 +77,7 @@ class DraftAttention:
         self.observer, self.capture_step = observer, False
         self.conditioning, self.condition_features = False, None
         self.condition_callback = None
+        self.runtime = runtime
 
     def install(self):
         for index, layer in enumerate(self.model.model.layers):
@@ -173,6 +174,20 @@ class DraftAttention:
         return row.detach()
 
     def step(self, token, native, logits=True):
+        if self.runtime is not None:
+            if self.prefill or self.conditioning or self.condition_callback is not None or self.observer is not None:
+                raise ValueError('Resident Draft step cannot run prefill, conditioning callbacks or Draft observers')
+            if native is not self.runtime.native:
+                raise ValueError('Resident Draft runtime is bound to another native cache')
+            summary = getattr(self, 'record_injection_summary', False)
+            scores, query, summaries = self.runtime.step(token, logits=logits, summary=summary)
+            self.last_query, self.shadow = query, None
+            self.capture_step = logits
+            self.steps += 1
+            if self.injector is not None:
+                self.injector.capture_summary = False
+                self.injector.summaries = summaries
+            return scores
         model = self.model.model
         ids = torch.as_tensor([[token]], dtype=torch.long, device=model.embed_tokens.weight.device)
         positions = torch.tensor([[native.get_seq_length()]], device=ids.device)

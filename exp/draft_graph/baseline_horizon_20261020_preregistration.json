@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "study": "Horizon-matched Qwen2 baseline development selection",
+  "remote_root": "/mnt/8T/cl/rescue_experiment_cache/baseline_horizon_20261020_v1",
+  "seed": 20261025,
+  "gpu_uuid": "GPU-9db4f7b5-1447-9a2a-5c1b-80379d909fd9",
+  "scope": "Already-used development data only, not independent confirmation, production speed, original Vicuna reproduction or final superiority proof",
+  "reason": "Stage1 six-warm primary and complete repeat1 diagnostic rank Graph k1/k4 differently. Match the planned 32-warm,16-distinct-document service horizon without modifying the original538-request protocol or its results",
+  "stage1_required": "Full538 raw requests,76 owners, eight original choices, independent raw audit, seven rendered figure pairs, exact saved analysis rerun, pipeline exit0 and immutable verified artifact chain before this run",
+  "no_training": true,
+  "no_mapper_or_policy_search": true,
+  "no_new_confirmation_access": true,
+  "paused_test_untouched": true,
+  "common": {
+    "teacher": "Qwen2-7B-Instruct",
+    "student": "Qwen2-1.5B-Instruct",
+    "target_dtype": "float32",
+    "student_dtype": "bfloat16",
+    "target_prefill_precision": "bfloat16",
+    "tf32": false,
+    "input_tokens": [4096, 8192],
+    "max_new_tokens": 128,
+    "chunk_size": 32,
+    "refresh_every": 4,
+    "mapper": false,
+    "controller": false,
+    "profile": false,
+    "observer": false,
+    "graph_max_entries": 128
+  },
+  "frozen_rescue_anchor_for_later_confirmation": {
+    "mapper_sha256": "d08889e796ca2527e23241ff34a072ef640e2fdf3fe9a2f9ba5439975af04d9f",
+    "policy_sha256": "3c333a470119c236afcc1308c18592842a535bee0b8f83c4fb4da359ff17eff5",
+    "cost_sha256": "d92c843a84676c0cd6adaf9364bbf7e8c771d56548f1016b5720a3e04f371fa1",
+    "draft_execution": "cuda_graph",
+    "coverage_execution": "eager",
+    "injection_layers": [27],
+    "inject_tokens": 64,
+    "injection_strength": 0.5,
+    "length_policy": "Frozen old-cost causal2/4; no recalibrated cost promotion",
+    "note": "Baseline-only run does not execute Mapper/controller. Freeze their identities to prevent changing our side during baseline search"
+  },
+  "data": {
+    "train_indices": [211,213,220,226,233,236,246,248,253,271,272,288],
+    "old_opt_confirmation_indices": [303,306,327],
+    "old_arch_confirmation_indices": [604],
+    "documents": 16,
+    "repeats": 2,
+    "metadata_source_sha256": {
+      "exp/long_system/data/train.jsonl": "ae1e3f58a663dd505ddc9d1f1fdb87af55cad1d967c6b771f696bcbbadce7083",
+      "exp/module_opt/data_v1_20261018/confirmation.jsonl": "03eb1b126b424cc99b3586fb42594430ed74706f3ade587dc7102abfa5df90bb",
+      "exp/module_arch/data_v1_20261018/confirmation.jsonl": "007fd9247bf8d77dc53eef51469c84c8a66d29bb2d9577815349c4601ecb29f9",
+      "exp/module_opt/data_v1_20261018/tune.jsonl": "85b2eb1a81d1617b2d158c069c420c452459a8bdb90da128f257220cc27ded09"
+    },
+    "source_identity": "First12 are original corpus train;303306327604 are original validation, already reused in previous development. All16 are now development, never called held-out",
+    "inputs": "Reuse saved tokenized document_ids, require all16 prefix_ids/suffix_ids identical to frozen tune271, extract exact4096/8192 IDs using original context formula. Freeze source/cohort/ordinal/docSHA/inputSHA and tokenizer assets before generation",
+    "prime": "One separately billed old271 per owner, validated against stage1 canonical reference with exact model/input/precision provenance. Doc271 is also one of the16 warm documents; disclose this same-for-all-config overlap",
+    "no_replacement": "Fail closed on wrong source SHA, identity, count, duplicate document/input or insufficient natural/stored length; never replace based on EOS, quality, capture count or speed",
+    "new_parquet_not_opened": true,
+    "source_files_copied_for_offline_recomputation": true
+  },
+  "arms": {
+    "retrieval": {"top_chunks": [16,32], "fixed_k": [1,2,4,8,12], "backends": ["eager","resident","graph"], "count": 30},
+    "full_tree": {"top_chunks": [16,32], "nodes": [8,32,50,64], "max_depth": 10, "threshold": 0.7, "count": 8, "backend": "Same archived full Qwen2 tree port with actual Flash2.8.3/hybrid path and disclosed FP32 attention shim"},
+    "total": 38,
+    "source_parity": "All shared runtime modules and all27 tree source paths/SHA remain identical to stage1. Only new horizon orchestration, old-data manifest, report/tests/protocol/launcher are added"
+  },
+  "execution": {
+    "reference_requests": 32,
+    "prime_requests": 76,
+    "timing_requests": 2432,
+    "owners": 76,
+    "total_scientific_requests": 2540,
+    "upstream_tree_raw_records": 528,
+    "order": "Single seeded32 document/repeat sequence shared by all38 configs and both contexts. Independently seeded frozen owner-block order per context. Persist full schedule before first generation",
+    "private_owner": "At most one live owner. Each fresh owner: constructor, old271 cold prime, all32 warm requests in fixed order, synchronize and close. No concurrent owner memory/Graph pools",
+    "primary_clock": "Full unprofiled generate outer including handoff,input preparation,prefill,reset,all legal lazy captures,decode,cleanup. Common model loading/shared wrapper preparation excluded identically",
+    "captures": "No free pre-capture, test-aware warmup, borrowing quality-stage Graphs or capture-free filtering. Start Graph owner with zero captures; bill every legal late capture",
+    "secondary_clocks": "Constructor+prime cold and constructor+prime+32warm+close accounted active-service sums separately; not production wall throughput",
+    "drift": "Owner blocks, not interleaved requests: disclose thermal/clock drift limitation. Read-only GPU diagnostics outside primary request clock; never change clocks/power or discard slow blocks",
+    "failure": "Save raw first then check. Preserve partial/failed roots, no resume/restart/delete/fallback or silent candidate omission"
+  },
+  "correctness": {
+    "canonical": "All2508 SD outputs match independent same-precision Target AR including exact client-visible EOS boundary. Validate reused old271 reference before prime use",
+    "repeats": "Stable per-document trajectory/counters across repeats, same Top/k trajectories across eager/resident/Graph; do not require equality across algorithms",
+    "tree": "Keep raw accepted rounds, raw generation count and overshoot; bill entire tree run. Do not invent unexposed tail IDs/proposal counts",
+    "immutability": "Bind all imported runtime,27 upstream tree sources, real Flash extension, models, data, tokenizer, dtype, physical GPU, staged manifest; recheck before completion"
+  },
+  "selection": {
+    "primary": "Per context and group MAX SUM(client_tokens over32warm)/SUM(actual outer_seconds over32warm)",
+    "groups": ["retrieval/eager","retrieval/resident","retrieval/graph","full_tree"],
+    "tie": "Exact numeric tie only, lexical mode",
+    "retained_challengers": "Per context deduplicated union of each stage1 group winner and stage2 group winner, with original group/source provenance. Never replace/discard a stage1 choice after seeing new data",
+    "later_confirmation": "Report every unique retained challenger and require frozen method to beat all at both contexts, with actual predeclared comparison count and simultaneous document-paired CI gate. No confirmation data access in this study",
+    "diagnostics": "Cumulative request-horizon TPS, first6 actual shared-sequence requests and complete32. First6 is NOT stage1 original3documents x2 and is not substituted for the primary32",
+    "winner_bias": "38-way selection on repeatedly used data remains biased; no independent superiority claim"
+  },
+  "analysis": {
+    "bootstrap_seed": 20261025,
+    "bootstrap_draws": 10000,
+    "unit": "16 whole documents; pool two repeats, synchronize resampled document indices across all arms/contexts. Do not treat32 requests as independent",
+    "figures": ["acceptance separate from TPS", "all38 primary TPS ranks and paired document intervals", "capture count/time", "cold construction and accounted service", "cumulative horizon TPS with first6/32 marked", "retained-choice comparisons"],
+    "completion": "All2540 requests,76 closed owners, strict source/data/raw audit, original and new choice freeze plus union, standalone exact analysis rerun, rendered figures inspected, written report and immutable manifest",
+    "partial": "Only completed cells, clearly PARTIAL, missing data blank notzero, no authoritative winners",
+    "goal_complete": false
+  },
+  "safety": ["BatchMode key-agent SSH only", "Never touch VPNs/passwords", "Do not modify original repository or old roots", "Do not kill other jobs", "Do not open paused outcomes or new confirmation data", "No duplicate launch or GitHub push"]
+}

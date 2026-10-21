@@ -1,0 +1,21 @@
+{
+  "all792_original_canonical_tokens": true,
+  "analysis": "analysis_v2/analysis_entry.py",
+  "completed_at_utc": "2026-10-21T02:42:05.290455+00:00",
+  "figures_png": 9,
+  "figures_svg": 9,
+  "fresh_confirmation": false,
+  "goal_complete": false,
+  "goal_status": "ACTIVE_NOT_ACHIEVED",
+  "manifest_sha256": "9b727ca38bea86343dd6d5004342da2969ff3b6f1b4d605016445fdf967a47bd",
+  "owners": 24,
+  "preserved_operator_failures": true,
+  "production_speed_claim": false,
+  "protection": "Recoverable local Unix file mode0444, not OS immutable",
+  "raw": "results/RUNTIME.jsonl",
+  "raw_calls": 792,
+  "rendered_figures_actually_inspected": true,
+  "report": "analysis_v2/REPORT.md",
+  "scientific_gate_pass": false,
+  "status": "VERIFIED_MATCHED_DEVELOPMENT_TIMING_COMPLETE"
+}
